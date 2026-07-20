@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://community.example/ai-agent-book-ru/verify-translation.schema.json",
+  "title": "GPT source verification result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_sha256",
+    "draft_sha256",
+    "model_id",
+    "issues",
+    "corrected_translation"
+  ],
+  "properties": {
+    "source_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "draft_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "model_id": {
+      "const": "gpt-5.6-sol"
+    },
+    "issues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "category",
+          "severity",
+          "source_start_line",
+          "source_end_line",
+          "draft_start_line",
+          "draft_end_line",
+          "evidence",
+          "correction"
+        ],
+        "properties": {
+          "category": {
+            "enum": [
+              "semantic",
+              "omission",
+              "addition",
+              "russian",
+              "terminology",
+              "markdown"
+            ]
+          },
+          "severity": {
+            "enum": ["critical", "major", "minor"]
+          },
+          "source_start_line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "source_end_line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "draft_start_line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "draft_end_line": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "evidence": {
+            "type": "string",
+            "minLength": 1
+          },
+          "correction": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "corrected_translation": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

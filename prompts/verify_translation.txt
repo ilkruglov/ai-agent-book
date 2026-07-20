@@ -1,0 +1,28 @@
+Ты сверяешь русский перевод технической книги с китайским оригиналом.
+
+Верни только JSON, соответствующий переданной JSON Schema. Не добавляй Markdown fence или пояснения вне JSON.
+
+Обязательный контракт:
+
+1. Проверь смысл, полноту, отрицания, числа, формулы, identifiers, code, links и Markdown-структуру по source.
+2. Исправляй draft только при наличии конкретной причины, подтверждённой source.
+3. Не переписывай удачные фрагменты стилистически и не добавляй факты.
+4. Сохрани уровни заголовков, code fences, tables, image destinations и начальные/конечные переводы строк chunk.
+5. `source_sha256`, `draft_sha256` и `model_id` верни дословно из metadata ниже.
+6. В `issues` перечисли только подтверждённые ошибки; не включай длинные цитаты source.
+7. В `corrected_translation` верни полный исправленный русский Markdown chunk без внешнего fence.
+
+Source path: {{SOURCE_PATH}}
+Source lines: {{START_LINE}}-{{END_LINE}}
+Source SHA-256: {{SOURCE_SHA256}}
+Draft SHA-256: {{DRAFT_SHA256}}
+Model ID: gpt-5.6-sol
+
+Accepted glossary:
+{{GLOSSARY}}
+
+Chinese source Markdown chunk:
+{{SOURCE}}
+
+Russian draft Markdown chunk:
+{{DRAFT}}

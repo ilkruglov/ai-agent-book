@@ -132,3 +132,20 @@ def test_attribution_is_present_in_project_metadata() -> None:
 
 def test_license_is_the_pinned_upstream_blob() -> None:
     assert _git("hash-object", "LICENSE") == "bd3e071f150cf46f86c91d3341d36644f16e11cb"
+
+
+def test_translation_manifest_starts_with_exact_gpt_transport() -> None:
+    manifest = json.loads((ROOT / "translation-manifest.json").read_text(encoding="utf-8"))
+
+    assert manifest == {
+        "schema_version": 1,
+        "upstream_commit": UPSTREAM_COMMIT,
+        "model_id": "gpt-5.6-sol",
+        "transport": {
+            "name": "codex-app-server",
+            "provider_fallback": False,
+            "sandbox": "read-only",
+            "ephemeral": True,
+        },
+        "files": [],
+    }

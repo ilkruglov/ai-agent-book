@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from collections.abc import Iterator
 from pathlib import Path
 
@@ -21,10 +22,11 @@ def _sha256(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
-def _prepare_repo(tmp_path: Path) -> tuple[Path, Path, Path, Path]:
+def _prepare_repo(tmp_path: Path) -> tuple[Path, Path, Path, Path, Path]:
     repo = tmp_path / "repo"
     source = repo / ".tmp/upstream/book/chapter.md"
     output = repo / ".tmp/drafts/chapter.md"
+    evidence = repo / ".tmp/evidence/chapter.translation.json"
     glossary = repo / "glossary.yml"
     source.parent.mkdir(parents=True)
     (repo / "prompts").mkdir()
@@ -53,7 +55,7 @@ terms:
         "HASH={{SOURCE_SHA256}}\nGLOSSARY:\n{{GLOSSARY}}\nSOURCE:\n{{SOURCE}}",
         encoding="utf-8",
     )
-    return repo, source, output, glossary
+    return repo, source, output, evidence, glossary
 
 
 def _result(output_path: Path, response: str) -> ModelResult:
@@ -88,7 +90,7 @@ def test_translates_lossless_chunks_with_same_accepted_glossary(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    repo, source, output, glossary = _prepare_repo(tmp_path)
+    repo, source, output, evidence, glossary = _prepare_repo(tmp_path)
     responses: Iterator[str] = iter(
         ["## Первый раздел\nРусский текст.\n\n", "## Второй раздел\nЕщё текст.\n"]
     )
@@ -109,7 +111,7 @@ def test_translates_lossless_chunks_with_same_accepted_glossary(
 
     monkeypatch.setattr("scripts.translate_file.run_model", fake_run_model)
 
-    manifest = translate_file(source, output, glossary, repo, 40_000)
+    manifest = translate_file(source, output, glossary, evidence, repo, 40_000)
 
     draft = output.read_text(encoding="utf-8")
     assert draft.startswith("<!-- Русский перевод: community edition.")
@@ -123,25 +125,36 @@ def test_translates_lossless_chunks_with_same_accepted_glossary(
     assert manifest.draft_sha256 == _sha256(draft)
     assert [chunk.index for chunk in manifest.chunks] == ["000", "001"]
     assert not (repo / "evals").exists()
+    stored = json.loads(evidence.read_text(encoding="utf-8"))
+    assert stored["pass"] == "translation"
+    assert stored["model_id"] == "gpt-5.6-sol"
+    assert stored["source_sha256"] == _sha256(SOURCE)
+    assert stored["draft_sha256"] == _sha256(draft)
+    assert [chunk["runtime"]["thread_id"] for chunk in stored["chunks"]] == [
+        "thread-test",
+        "thread-test",
+    ]
+    assert "source_text" not in evidence.read_text(encoding="utf-8")
 
 
 def test_rejects_source_outside_pinned_upstream(tmp_path: Path) -> None:
-    repo, _, output, glossary = _prepare_repo(tmp_path)
+    repo, _, output, evidence, glossary = _prepare_repo(tmp_path)
     outside = repo / "tracked-source.md"
     outside.write_text(SOURCE, encoding="utf-8")
 
     with pytest.raises(TranslationError, match=r"\.tmp/upstream/book"):
-        translate_file(outside, output, glossary, repo, 40_000)
+        translate_file(outside, output, glossary, evidence, repo, 40_000)
 
 
 def test_rejects_output_outside_drafts(tmp_path: Path) -> None:
-    repo, source, _, glossary = _prepare_repo(tmp_path)
+    repo, source, _, evidence, glossary = _prepare_repo(tmp_path)
 
     with pytest.raises(TranslationError, match=r"\.tmp/drafts"):
         translate_file(
             source,
             repo / "book/chapter.md",
             glossary,
+            evidence,
             repo,
             40_000,
         )
@@ -151,7 +164,7 @@ def test_rejects_extra_outer_markdown_fence(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    repo, source, output, glossary = _prepare_repo(tmp_path)
+    repo, source, output, evidence, glossary = _prepare_repo(tmp_path)
 
     def fake_run_model(
         model: str,
@@ -166,14 +179,14 @@ def test_rejects_extra_outer_markdown_fence(
     monkeypatch.setattr("scripts.translate_file.run_model", fake_run_model)
 
     with pytest.raises(TranslationError, match="внешний Markdown fence"):
-        translate_file(source, output, glossary, repo, 40_000)
+        translate_file(source, output, glossary, evidence, repo, 40_000)
 
 
 def test_rejects_assembled_draft_with_changed_shape(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    repo, source, output, glossary = _prepare_repo(tmp_path)
+    repo, source, output, evidence, glossary = _prepare_repo(tmp_path)
     responses: Iterator[str] = iter(["Без заголовка.\n", "Тоже без заголовка.\n"])
 
     def fake_run_model(
@@ -188,26 +201,35 @@ def test_rejects_assembled_draft_with_changed_shape(
     monkeypatch.setattr("scripts.translate_file.run_model", fake_run_model)
 
     with pytest.raises(TranslationError, match="heading-structure"):
-        translate_file(source, output, glossary, repo, 40_000)
+        translate_file(source, output, glossary, evidence, repo, 40_000)
 
 
 def test_cli_uses_exact_model_without_model_argument(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    repo, source, output, glossary = _prepare_repo(tmp_path)
-    calls: list[tuple[Path, Path, Path, Path, int, int]] = []
+    repo, source, output, evidence, glossary = _prepare_repo(tmp_path)
+    calls: list[tuple[Path, Path, Path, Path, Path, int, int]] = []
 
     def fake_translate_file(
         source_path: Path,
         output_path: Path,
         glossary_path: Path,
+        evidence_path: Path,
         repo_root: Path,
         max_chars: int = 40_000,
         timeout_seconds: int = 3_600,
     ) -> object:
         calls.append(
-            (source_path, output_path, glossary_path, repo_root, max_chars, timeout_seconds)
+            (
+                source_path,
+                output_path,
+                glossary_path,
+                evidence_path,
+                repo_root,
+                max_chars,
+                timeout_seconds,
+            )
         )
         return type(
             "Manifest",
@@ -231,6 +253,8 @@ def test_cli_uses_exact_model_without_model_argument(
             str(output),
             "--glossary",
             str(glossary),
+            "--evidence",
+            str(evidence),
             "--max-chars",
             "1234",
             "--timeout-seconds",
@@ -239,4 +263,16 @@ def test_cli_uses_exact_model_without_model_argument(
     )
 
     assert exit_code == 0
-    assert calls == [(source, output, glossary, repo, 1234, 5678)]
+    assert calls == [(source, output, glossary, evidence, repo, 1234, 5678)]
+
+
+def test_rejects_evidence_outside_tmp_and_existing_partial_artifacts(tmp_path: Path) -> None:
+    repo, source, output, evidence, glossary = _prepare_repo(tmp_path)
+
+    with pytest.raises(TranslationError, match=r"\.tmp/evidence"):
+        translate_file(source, output, glossary, repo / "evidence.json", repo, 40_000)
+
+    evidence.parent.mkdir(parents=True)
+    evidence.write_text("partial", encoding="utf-8")
+    with pytest.raises(TranslationError, match="уже существует"):
+        translate_file(source, output, glossary, evidence, repo, 40_000)

@@ -1,6 +1,9 @@
 from __future__ import annotations
 
+import hashlib
+import json
 from pathlib import Path
+from typing import cast
 
 import pytest
 
@@ -13,6 +16,7 @@ from scripts.check_translation import (
     validate_pdf_text,
     validate_translation,
 )
+from scripts.markdown_chunks import split_markdown
 
 SOURCE = """# 原标题
 
@@ -82,6 +86,123 @@ def _codes(tmp_path: Path, target_text: str) -> set[str]:
     return {issue.code for issue in issues}
 
 
+def _git_blob_sha1(data: bytes) -> str:
+    header = f"blob {len(data)}\0".encode()
+    return hashlib.sha1(header + data).hexdigest()  # noqa: S324 - Git object identity
+
+
+def _sha256(text: str) -> str:
+    return hashlib.sha256(text.encode()).hexdigest()
+
+
+def _runtime(response_sha256: str) -> dict[str, object]:
+    return {
+        "requested_model": "gpt-5.6-sol",
+        "reported_model": "gpt-5.6-sol",
+        "provider": "openai",
+        "thread_id": "thread-1",
+        "turn_id": "turn-1",
+        "ephemeral": True,
+        "fallback_allowed": False,
+        "sandbox_type": "readOnly",
+        "completion_observed": True,
+        "usage_observed": True,
+        "command_sha256": "a" * 64,
+        "prompt_sha256": "b" * 64,
+        "response_sha256": response_sha256,
+        "stdout_sha256": "d" * 64,
+        "stderr_sha256": "e" * 64,
+    }
+
+
+def _write_manifest(
+    tmp_path: Path,
+    source: Path,
+    target: Path,
+    mutate: object | None = None,
+) -> Path:
+    source_text = source.read_text(encoding="utf-8")
+    target_text = target.read_text(encoding="utf-8")
+    prefix = f"{TRANSLATION_NOTICE}\n\n"
+    assert target_text.startswith(prefix)
+    final_body = target_text[len(prefix) :]
+    source_chunks = split_markdown(source_text, max_chars=100_000)
+    final_chunks = split_markdown(final_body, max_chars=100_000)
+    assert len(source_chunks) == len(final_chunks)
+    source_offset = 0
+    final_offset = 0
+    chunks: list[dict[str, object]] = []
+    for source_chunk, final_chunk in zip(source_chunks, final_chunks, strict=True):
+        source_end = source_offset + len(source_chunk.text)
+        final_end = final_offset + len(final_chunk.text)
+        draft_sha256 = _sha256(final_chunk.text)
+        final_sha256 = _sha256(final_chunk.text)
+        chunks.append(
+            {
+                "index": source_chunk.index,
+                "start_line": source_chunk.start_line,
+                "end_line": source_chunk.end_line,
+                "source_start": source_offset,
+                "source_end": source_end,
+                "final_start": final_offset,
+                "final_end": final_end,
+                "source_sha256": source_chunk.sha256,
+                "draft_sha256": draft_sha256,
+                "final_sha256": final_sha256,
+                "passes": {
+                    "translation": _runtime(draft_sha256),
+                    "source_verification": _runtime("f" * 64),
+                },
+            }
+        )
+        source_offset = source_end
+        final_offset = final_end
+
+    document: dict[str, object] = {
+        "schema_version": 1,
+        "upstream_commit": "97de455e9aa44cf9f93441ce0c771c9aa9643d92",
+        "model_id": "gpt-5.6-sol",
+        "transport": {
+            "name": "codex-app-server",
+            "provider_fallback": False,
+            "sandbox": "read-only",
+            "ephemeral": True,
+        },
+        "files": [
+            {
+                "path": target.name,
+                "source": {
+                    "path": f"book/{target.name}",
+                    "blob_sha1": _git_blob_sha1(source.read_bytes()),
+                    "sha256": _sha256(source_text),
+                },
+                "final_sha256": _sha256(target_text),
+                "chunks": chunks,
+            }
+        ],
+    }
+    if callable(mutate):
+        mutate(document)
+    manifest = tmp_path / "translation-manifest.json"
+    manifest.write_text(json.dumps(document), encoding="utf-8")
+    (tmp_path / "upstream.json").write_text(
+        json.dumps(
+            {
+                "commit": "97de455e9aa44cf9f93441ce0c771c9aa9643d92",
+                "markdown": [
+                    {
+                        "path": f"book/{target.name}",
+                        "blob_sha1": _git_blob_sha1(source.read_bytes()),
+                        "size": len(source.read_bytes()),
+                    }
+                ],
+            }
+        ),
+        encoding="utf-8",
+    )
+    return manifest
+
+
 def test_matching_markdown_shape_passes_with_translated_headings_and_alt_text(
     tmp_path: Path,
 ) -> None:
@@ -90,6 +211,86 @@ def test_matching_markdown_shape_passes_with_translated_headings_and_alt_text(
     issues = validate_translation(source, target, load_glossary(glossary))
 
     assert issues == []
+
+
+def test_matching_manifest_provenance_passes(tmp_path: Path) -> None:
+    source, target, glossary = _write_pair(tmp_path)
+    manifest = _write_manifest(tmp_path, source, target)
+
+    issues = validate_translation(
+        source,
+        target,
+        load_glossary(glossary),
+        manifest_path=manifest,
+    )
+
+    assert issues == []
+
+
+def test_manifest_rejects_missing_second_pass_evidence(tmp_path: Path) -> None:
+    source, target, glossary = _write_pair(tmp_path)
+
+    def remove_second_pass(document: dict[str, object]) -> None:
+        files = cast(list[dict[str, object]], document["files"])
+        chunks = cast(list[dict[str, object]], files[0]["chunks"])
+        passes = cast(dict[str, object], chunks[0]["passes"])
+        del passes["source_verification"]
+
+    manifest = _write_manifest(tmp_path, source, target, remove_second_pass)
+
+    issues = validate_translation(
+        source,
+        target,
+        load_glossary(glossary),
+        manifest_path=manifest,
+    )
+
+    assert {issue.code for issue in issues} == {"manifest-second-pass"}
+
+
+@pytest.mark.parametrize(
+    ("field", "expected_code"),
+    [
+        ("source", "manifest-source-hash"),
+        ("final", "manifest-final-hash"),
+        ("model", "manifest-model"),
+        ("runtime", "manifest-runtime"),
+        ("range", "manifest-chunks"),
+    ],
+)
+def test_manifest_rejects_tampered_provenance(
+    tmp_path: Path,
+    field: str,
+    expected_code: str,
+) -> None:
+    source, target, glossary = _write_pair(tmp_path)
+
+    def tamper(document: dict[str, object]) -> None:
+        files = cast(list[dict[str, object]], document["files"])
+        file_entry = files[0]
+        if field == "source":
+            cast(dict[str, object], file_entry["source"])["sha256"] = "0" * 64
+        elif field == "final":
+            file_entry["final_sha256"] = "0" * 64
+        elif field == "model":
+            document["model_id"] = "other-model"
+        elif field == "range":
+            chunks = cast(list[dict[str, object]], file_entry["chunks"])
+            chunks[0]["start_line"] = 999
+        else:
+            chunks = cast(list[dict[str, object]], file_entry["chunks"])
+            passes = cast(dict[str, dict[str, object]], chunks[0]["passes"])
+            passes["translation"]["usage_observed"] = False
+
+    manifest = _write_manifest(tmp_path, source, target, tamper)
+    issues = validate_translation(
+        source,
+        target,
+        load_glossary(glossary),
+        manifest_path=manifest,
+    )
+
+    assert expected_code in {issue.code for issue in issues}
 
 
 @pytest.mark.parametrize(
@@ -194,6 +395,36 @@ def test_only_option_checks_requested_pair(tmp_path: Path) -> None:
             str(target_dir),
             "--glossary",
             str(glossary),
+            "--only",
+            "chapter2.md",
+        ]
+    )
+
+    assert exit_code == 0
+
+
+def test_cli_checks_manifest_for_requested_pair(tmp_path: Path) -> None:
+    source_dir = tmp_path / "source"
+    target_dir = tmp_path / "target"
+    source_dir.mkdir()
+    target_dir.mkdir()
+    source = source_dir / "chapter2.md"
+    target = target_dir / "chapter2.md"
+    source.write_text(SOURCE, encoding="utf-8")
+    target.write_text(TARGET, encoding="utf-8")
+    _, _, glossary = _write_pair(tmp_path / "pair")
+    manifest = _write_manifest(tmp_path, source, target)
+
+    exit_code = main(
+        [
+            "--source",
+            str(source_dir),
+            "--target",
+            str(target_dir),
+            "--glossary",
+            str(glossary),
+            "--manifest",
+            str(manifest),
             "--only",
             "chapter2.md",
         ]

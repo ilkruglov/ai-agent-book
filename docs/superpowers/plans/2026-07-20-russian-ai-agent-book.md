@@ -187,13 +187,14 @@ git commit -m "refactor: use an exact GPT-only runtime" -m "Replace the dual-mod
 - Create: `prompts/verify_translation.schema.json`
 - Modify: `scripts/check_translation.py:1`
 - Modify: `tests/test_check_translation.py:1`
+- Modify: `tests/test_project_metadata.py:1`
 - Create: `translation-manifest.json`
 
 **Interfaces:**
 
 - Consumes: `run_model("gpt-5.6-sol", prompt, repo_root, output_path, timeout_seconds)` from Task 1.
 - Produces: `translate_file(..., evidence_path: Path) -> TranslationManifest` without a comparison gate.
-- Produces: `verify_file(source_path, draft_path, output_path, evidence_path, manifest_fragment_path, glossary_path, repo_root, timeout_seconds) -> VerificationManifest`.
+- Produces: `verify_file(source_path, draft_path, translation_evidence_path, output_path, evidence_path, manifest_fragment_path, glossary_path, repo_root, timeout_seconds) -> VerificationManifest`.
 - Extends: `validate_translation(..., manifest_path: Path | None = None)` and CLI `--manifest`.
 
 - [ ] **Step 1: Write failing first-pass and second-pass tests**
@@ -208,14 +209,14 @@ def test_translation_starts_after_exact_smoke_without_eval_file(...) -> None:
 
 
 def test_verifier_binds_source_and_draft_hashes(...) -> None:
-    result = verify_file(source, draft, verified, evidence, fragment, glossary, repo, 60)
+    result = verify_file(source, draft, translation_evidence, verified, evidence, fragment, glossary, repo, 60)
     assert result.source_sha256 == sha256(source.read_bytes()).hexdigest()
     assert result.draft_sha256 == sha256(draft.read_bytes()).hexdigest()
     assert verified.read_text().startswith("<!-- Русский перевод: community edition.")
 
 
 def test_manifest_rejects_missing_second_pass_evidence(...) -> None:
-    issues = validate_translation(source_root, target_root, glossary, manifest_path=manifest)
+    issues = validate_translation(source, target, load_glossary(glossary), manifest_path=manifest)
     assert {issue.code for issue in issues} == {"manifest-second-pass"}
 ```
 
@@ -290,7 +291,7 @@ uv run ruff format scripts tests
 uv run ruff check scripts tests
 pyright scripts tests
 git diff --check
-git add scripts/translate_file.py scripts/verify_translation.py scripts/check_translation.py tests/test_translate_file.py tests/test_verify_translation.py tests/test_check_translation.py prompts/verify_translation.txt prompts/verify_translation.schema.json translation-manifest.json
+git add scripts/translate_file.py scripts/verify_translation.py scripts/check_translation.py tests/test_translate_file.py tests/test_verify_translation.py tests/test_check_translation.py tests/test_project_metadata.py prompts/verify_translation.txt prompts/verify_translation.schema.json translation-manifest.json docs/superpowers/plans/2026-07-20-russian-ai-agent-book.md
 git commit -m "feat: verify translations with a second GPT pass" -m "Bind corrected Markdown to pinned source and draft hashes, preserve runtime provenance, and validate the tracked translation manifest."
 ```
 
@@ -390,7 +391,7 @@ Check every relevant candidate against `.tmp/upstream/book/introduction.md`; edi
 
 ```bash
 uv run python scripts/translate_file.py --source .tmp/upstream/book/introduction.md --output .tmp/drafts/introduction.md --evidence .tmp/evidence/introduction.translation.json --glossary glossary.yml
-uv run python scripts/verify_translation.py --source .tmp/upstream/book/introduction.md --draft .tmp/drafts/introduction.md --output .tmp/verified/introduction.md --evidence .tmp/evidence/introduction.verification.json --manifest-fragment .tmp/evidence/introduction.manifest.json --glossary glossary.yml
+uv run python scripts/verify_translation.py --source .tmp/upstream/book/introduction.md --draft .tmp/drafts/introduction.md --translation-evidence .tmp/evidence/introduction.translation.json --output .tmp/verified/introduction.md --evidence .tmp/evidence/introduction.verification.json --manifest-fragment .tmp/evidence/introduction.manifest.json --glossary glossary.yml
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/verified --glossary glossary.yml --only introduction.md
 ```
 
@@ -419,7 +420,7 @@ git commit -m "docs(book): translate the introduction into Russian" -m "Translat
 
 ```bash
 uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter1.md --output .tmp/drafts/chapter1.md --evidence .tmp/evidence/chapter1.translation.json --glossary glossary.yml
-uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter1.md --draft .tmp/drafts/chapter1.md --output .tmp/verified/chapter1.md --evidence .tmp/evidence/chapter1.verification.json --manifest-fragment .tmp/evidence/chapter1.manifest.json --glossary glossary.yml
+uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter1.md --draft .tmp/drafts/chapter1.md --translation-evidence .tmp/evidence/chapter1.translation.json --output .tmp/verified/chapter1.md --evidence .tmp/evidence/chapter1.verification.json --manifest-fragment .tmp/evidence/chapter1.manifest.json --glossary glossary.yml
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/verified --glossary glossary.yml --only chapter1.md
 ```
 
@@ -445,7 +446,7 @@ git commit -m "docs(book): translate chapter 1 into Russian" -m "Preserve agent-
 
 ```bash
 uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter2.md --output .tmp/drafts/chapter2.md --evidence .tmp/evidence/chapter2.translation.json --glossary glossary.yml
-uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter2.md --draft .tmp/drafts/chapter2.md --output .tmp/verified/chapter2.md --evidence .tmp/evidence/chapter2.verification.json --manifest-fragment .tmp/evidence/chapter2.manifest.json --glossary glossary.yml
+uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter2.md --draft .tmp/drafts/chapter2.md --translation-evidence .tmp/evidence/chapter2.translation.json --output .tmp/verified/chapter2.md --evidence .tmp/evidence/chapter2.verification.json --manifest-fragment .tmp/evidence/chapter2.manifest.json --glossary glossary.yml
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/verified --glossary glossary.yml --only chapter2.md
 ```
 
@@ -471,7 +472,7 @@ git commit -m "docs(book): translate chapter 2 into Russian" -m "Preserve LLM ru
 
 ```bash
 uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter3.md --output .tmp/drafts/chapter3.md --evidence .tmp/evidence/chapter3.translation.json --glossary glossary.yml
-uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter3.md --draft .tmp/drafts/chapter3.md --output .tmp/verified/chapter3.md --evidence .tmp/evidence/chapter3.verification.json --manifest-fragment .tmp/evidence/chapter3.manifest.json --glossary glossary.yml
+uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter3.md --draft .tmp/drafts/chapter3.md --translation-evidence .tmp/evidence/chapter3.translation.json --output .tmp/verified/chapter3.md --evidence .tmp/evidence/chapter3.verification.json --manifest-fragment .tmp/evidence/chapter3.manifest.json --glossary glossary.yml
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/verified --glossary glossary.yml --only chapter3.md
 ```
 
@@ -497,7 +498,7 @@ git commit -m "docs(book): translate chapter 3 into Russian" -m "Preserve memory
 
 ```bash
 uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter4.md --output .tmp/drafts/chapter4.md --evidence .tmp/evidence/chapter4.translation.json --glossary glossary.yml
-uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter4.md --draft .tmp/drafts/chapter4.md --output .tmp/verified/chapter4.md --evidence .tmp/evidence/chapter4.verification.json --manifest-fragment .tmp/evidence/chapter4.manifest.json --glossary glossary.yml
+uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter4.md --draft .tmp/drafts/chapter4.md --translation-evidence .tmp/evidence/chapter4.translation.json --output .tmp/verified/chapter4.md --evidence .tmp/evidence/chapter4.verification.json --manifest-fragment .tmp/evidence/chapter4.manifest.json --glossary glossary.yml
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/verified --glossary glossary.yml --only chapter4.md
 ```
 
@@ -523,7 +524,7 @@ git commit -m "docs(book): translate chapter 4 into Russian" -m "Preserve tool s
 
 ```bash
 uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter5.md --output .tmp/drafts/chapter5.md --evidence .tmp/evidence/chapter5.translation.json --glossary glossary.yml
-uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter5.md --draft .tmp/drafts/chapter5.md --output .tmp/verified/chapter5.md --evidence .tmp/evidence/chapter5.verification.json --manifest-fragment .tmp/evidence/chapter5.manifest.json --glossary glossary.yml
+uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter5.md --draft .tmp/drafts/chapter5.md --translation-evidence .tmp/evidence/chapter5.translation.json --output .tmp/verified/chapter5.md --evidence .tmp/evidence/chapter5.verification.json --manifest-fragment .tmp/evidence/chapter5.manifest.json --glossary glossary.yml
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/verified --glossary glossary.yml --only chapter5.md
 ```
 
@@ -549,7 +550,7 @@ git commit -m "docs(book): translate chapter 5 into Russian" -m "Preserve coding
 
 ```bash
 uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter6.md --output .tmp/drafts/chapter6.md --evidence .tmp/evidence/chapter6.translation.json --glossary glossary.yml
-uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter6.md --draft .tmp/drafts/chapter6.md --output .tmp/verified/chapter6.md --evidence .tmp/evidence/chapter6.verification.json --manifest-fragment .tmp/evidence/chapter6.manifest.json --glossary glossary.yml
+uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter6.md --draft .tmp/drafts/chapter6.md --translation-evidence .tmp/evidence/chapter6.translation.json --output .tmp/verified/chapter6.md --evidence .tmp/evidence/chapter6.verification.json --manifest-fragment .tmp/evidence/chapter6.manifest.json --glossary glossary.yml
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/verified --glossary glossary.yml --only chapter6.md
 ```
 
@@ -575,7 +576,7 @@ git commit -m "docs(book): translate chapter 6 into Russian" -m "Preserve evalua
 
 ```bash
 uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter7.md --output .tmp/drafts/chapter7.md --evidence .tmp/evidence/chapter7.translation.json --glossary glossary.yml
-uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter7.md --draft .tmp/drafts/chapter7.md --output .tmp/verified/chapter7.md --evidence .tmp/evidence/chapter7.verification.json --manifest-fragment .tmp/evidence/chapter7.manifest.json --glossary glossary.yml
+uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter7.md --draft .tmp/drafts/chapter7.md --translation-evidence .tmp/evidence/chapter7.translation.json --output .tmp/verified/chapter7.md --evidence .tmp/evidence/chapter7.verification.json --manifest-fragment .tmp/evidence/chapter7.manifest.json --glossary glossary.yml
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/verified --glossary glossary.yml --only chapter7.md
 ```
 
@@ -601,7 +602,7 @@ git commit -m "docs(book): translate chapter 7 into Russian" -m "Preserve traini
 
 ```bash
 uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter8.md --output .tmp/drafts/chapter8.md --evidence .tmp/evidence/chapter8.translation.json --glossary glossary.yml
-uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter8.md --draft .tmp/drafts/chapter8.md --output .tmp/verified/chapter8.md --evidence .tmp/evidence/chapter8.verification.json --manifest-fragment .tmp/evidence/chapter8.manifest.json --glossary glossary.yml
+uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter8.md --draft .tmp/drafts/chapter8.md --translation-evidence .tmp/evidence/chapter8.translation.json --output .tmp/verified/chapter8.md --evidence .tmp/evidence/chapter8.verification.json --manifest-fragment .tmp/evidence/chapter8.manifest.json --glossary glossary.yml
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/verified --glossary glossary.yml --only chapter8.md
 ```
 
@@ -627,7 +628,7 @@ git commit -m "docs(book): translate chapter 8 into Russian" -m "Preserve realti
 
 ```bash
 uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter9.md --output .tmp/drafts/chapter9.md --evidence .tmp/evidence/chapter9.translation.json --glossary glossary.yml
-uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter9.md --draft .tmp/drafts/chapter9.md --output .tmp/verified/chapter9.md --evidence .tmp/evidence/chapter9.verification.json --manifest-fragment .tmp/evidence/chapter9.manifest.json --glossary glossary.yml
+uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter9.md --draft .tmp/drafts/chapter9.md --translation-evidence .tmp/evidence/chapter9.translation.json --output .tmp/verified/chapter9.md --evidence .tmp/evidence/chapter9.verification.json --manifest-fragment .tmp/evidence/chapter9.manifest.json --glossary glossary.yml
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/verified --glossary glossary.yml --only chapter9.md
 ```
 
@@ -653,7 +654,7 @@ git commit -m "docs(book): translate chapter 9 into Russian" -m "Preserve embodi
 
 ```bash
 uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter10.md --output .tmp/drafts/chapter10.md --evidence .tmp/evidence/chapter10.translation.json --glossary glossary.yml
-uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter10.md --draft .tmp/drafts/chapter10.md --output .tmp/verified/chapter10.md --evidence .tmp/evidence/chapter10.verification.json --manifest-fragment .tmp/evidence/chapter10.manifest.json --glossary glossary.yml
+uv run python scripts/verify_translation.py --source .tmp/upstream/book/chapter10.md --draft .tmp/drafts/chapter10.md --translation-evidence .tmp/evidence/chapter10.translation.json --output .tmp/verified/chapter10.md --evidence .tmp/evidence/chapter10.verification.json --manifest-fragment .tmp/evidence/chapter10.manifest.json --glossary glossary.yml
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/verified --glossary glossary.yml --only chapter10.md
 ```
 
@@ -678,7 +679,7 @@ git commit -m "docs(book): translate chapter 10 into Russian" -m "Preserve multi
 
 ```bash
 uv run python scripts/translate_file.py --source .tmp/upstream/book/afterword.md --output .tmp/drafts/afterword.md --evidence .tmp/evidence/afterword.translation.json --glossary glossary.yml
-uv run python scripts/verify_translation.py --source .tmp/upstream/book/afterword.md --draft .tmp/drafts/afterword.md --output .tmp/verified/afterword.md --evidence .tmp/evidence/afterword.verification.json --manifest-fragment .tmp/evidence/afterword.manifest.json --glossary glossary.yml
+uv run python scripts/verify_translation.py --source .tmp/upstream/book/afterword.md --draft .tmp/drafts/afterword.md --translation-evidence .tmp/evidence/afterword.translation.json --output .tmp/verified/afterword.md --evidence .tmp/evidence/afterword.verification.json --manifest-fragment .tmp/evidence/afterword.manifest.json --glossary glossary.yml
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/verified --glossary glossary.yml --only afterword.md
 ```
 
