@@ -81,14 +81,14 @@ terms:
   - id: agent_loop
     source: ["agent loop"]
     preferred: "цикл агента"
-    status: candidate
+    status: accepted
     rule: "Не смешивать с event loop среды выполнения."
     forbidden: []
 
   - id: inference
     source: ["inference"]
     preferred: "инференс"
-    status: candidate
+    status: accepted
     rule: "Согласовать вариант с контекстами выполнения модели и логического вывода."
     forbidden: []
 
@@ -130,7 +130,7 @@ terms:
   - id: throughput
     source: ["throughput"]
     preferred: "пропускная способность"
-    status: candidate
+    status: accepted
     rule: "Сохранять единицы и знаменатель метрики."
     forbidden: []
 
