@@ -615,6 +615,7 @@ def verify_file(
     jobs: int = 1,
     reuse_run: Path | None = None,
     rerun_chunks: frozenset[str] = frozenset(),
+    review_notes: Mapping[str, str] | None = None,
 ) -> VerificationManifest:
     if timeout_seconds <= 0:
         raise ValueError("timeout_seconds должен быть положительным")
@@ -624,6 +625,16 @@ def verify_file(
         raise VerificationError("rerun_chunks требует reuse_run")
     if reuse_run is not None and not rerun_chunks:
         raise VerificationError("reuse_run требует хотя бы один rerun chunk")
+    notes = dict(review_notes or {})
+    if notes and reuse_run is None:
+        raise VerificationError("review_notes требует reuse_run")
+    unknown_notes = notes.keys() - rerun_chunks
+    if unknown_notes:
+        raise VerificationError(
+            f"Review notes заданы не для rerun chunks: {', '.join(sorted(unknown_notes))}"
+        )
+    if any(not note.strip() for note in notes.values()):
+        raise VerificationError("Review note не может быть пустой")
     (
         root,
         source,
@@ -681,6 +692,18 @@ def verify_file(
             chunk,
             glossary,
         )
+        previous = reused_chunks.get(chunk.source.index)
+        if previous is not None:
+            note = notes.get(chunk.source.index, "Повторно проверь весь перевод.")
+            prompt += (
+                "\n\nRetry contract:\n"
+                "Предыдущий исправленный перевод ниже является baseline. "
+                "Сохрани все его корректные исправления, повторно сверь его с source "
+                "и внеси reviewer note. Не возвращайся к ошибкам исходного draft.\n"
+                f"Reviewer note: {note}\n\n"
+                "Предыдущий исправленный перевод:\n"
+                f"{previous.corrected}"
+            )
         response_path = response_root / f"{chunk.source.index}.json"
         result = run_model(
             EXACT_MODEL,
@@ -854,7 +877,20 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--jobs", type=int, default=4)
     parser.add_argument("--reuse-run", type=Path)
     parser.add_argument("--rerun-chunk", action="append", default=[])
+    parser.add_argument("--review-note", action="append", default=[])
     return parser
+
+
+def _parse_review_notes(values: Sequence[str]) -> dict[str, str]:
+    notes: dict[str, str] = {}
+    for value in values:
+        index, separator, note = value.partition("=")
+        if not separator or not index or not note.strip():
+            raise ValueError("--review-note должен иметь формат CHUNK=TEXT")
+        if index in notes:
+            raise ValueError(f"Повторный --review-note для chunk {index}")
+        notes[index] = note
+    return notes
 
 
 def main(argv: Sequence[str] | None = None) -> int:
@@ -874,6 +910,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             cast(int, arguments.jobs),
             cast(Path | None, arguments.reuse_run),
             frozenset(cast(list[str], arguments.rerun_chunk)),
+            _parse_review_notes(cast(list[str], arguments.review_note)),
         )
     except (OSError, ValueError, VerificationError) as error:
         print(f"verification-error: {error}", file=sys.stderr)

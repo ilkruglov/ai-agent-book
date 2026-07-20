@@ -434,7 +434,18 @@ def test_verifier_reuses_valid_chunks_and_reruns_only_selected_chunk(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    output, evidence, fragment = _run_with_payloads(tmp_path, monkeypatch)
+    def preserve_correction(payload: dict[str, object], ordinal: int) -> None:
+        if ordinal == 1:
+            payload["issues"] = [_issue()]
+            payload["corrected_translation"] = DRAFT_CHUNKS[1].replace(
+                "Ещё русский", "Исправленный русский"
+            )
+
+    output, evidence, fragment = _run_with_payloads(
+        tmp_path,
+        monkeypatch,
+        preserve_correction,
+    )
     repo = output.parents[2]
     reuse_run = repo / ".tmp/failed/reuse-run"
     (reuse_run / "evidence").mkdir(parents=True)
@@ -456,8 +467,8 @@ def test_verifier_reuses_valid_chunks_and_reruns_only_selected_chunk(
         "source_sha256": selected.sha256,
         "draft_sha256": _sha256(DRAFT_CHUNKS[1]),
         "model_id": "gpt-5.6-sol",
-        "issues": [],
-        "corrected_translation": DRAFT_CHUNKS[1],
+        "issues": [_issue()],
+        "corrected_translation": DRAFT_CHUNKS[1].replace("Ещё русский", "Исправленный русский"),
     }
     calls: list[str] = []
 
@@ -469,7 +480,10 @@ def test_verifier_reuses_valid_chunks_and_reruns_only_selected_chunk(
         timeout_seconds: int,
         output_schema: Mapping[str, object] | None = None,
     ) -> ModelResult:
-        del model, prompt, repo_root, timeout_seconds, output_schema
+        del model, repo_root, timeout_seconds, output_schema
+        assert "Предыдущий исправленный перевод" in prompt
+        assert "Исправленный русский" in prompt
+        assert "Проверь согласование" in prompt
         calls.append(output_path.stem)
         return _result(output_path, json.dumps(payload, ensure_ascii=False), 9)
 
@@ -488,6 +502,7 @@ def test_verifier_reuses_valid_chunks_and_reruns_only_selected_chunk(
         jobs=2,
         reuse_run=reuse_run,
         rerun_chunks=frozenset({"001"}),
+        review_notes={"001": "Проверь согласование"},
     )
 
     stored = json.loads(evidence.read_text(encoding="utf-8"))
