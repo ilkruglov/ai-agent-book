@@ -381,7 +381,6 @@ def test_verifier_accepts_source_newline_boundary_restored_by_gpt(
     def mutate(payload: dict[str, object], ordinal: int) -> None:
         if ordinal == 0:
             payload["corrected_translation"] = DRAFT_CHUNKS[0] + "\n\n"
-            payload["issues"] = [_issue()]
 
     output, _, _ = _run_with_payloads(tmp_path, monkeypatch, mutate)
 

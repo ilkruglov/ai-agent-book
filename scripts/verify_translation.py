@@ -402,8 +402,6 @@ def _parse_response(
         raise VerificationError("GPT-сверка model_id не совпал")
     corrected = _string(document, "corrected_translation", "GPT-сверка result")
     issues = document.get("issues")
-    if corrected != chunk.draft_text and isinstance(issues, list) and not issues:
-        raise VerificationError("GPT-сверка изменила draft без связанной issue")
     lines = tuple(line for line in corrected.strip().splitlines() if line.strip())
     if (
         len(lines) >= 2
@@ -428,6 +426,12 @@ def _parse_response(
         )
     ):
         raise VerificationError("GPT-сверка изменила newline boundary chunk")
+    restored_draft, restored_corrected = restore_missing_newline_boundaries(
+        (chunk.source, chunk.source),
+        (chunk.draft_text, corrected),
+    )
+    if restored_corrected != restored_draft and isinstance(issues, list) and not issues:
+        raise VerificationError("GPT-сверка изменила draft без связанной issue")
     return corrected
 
 
