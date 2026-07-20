@@ -17,7 +17,11 @@ if __package__:
         load_glossary,
         validate_translation,
     )
-    from scripts.markdown_chunks import MarkdownChunk, split_markdown
+    from scripts.markdown_chunks import (
+        MarkdownChunk,
+        restore_missing_newline_boundaries,
+        split_markdown,
+    )
     from scripts.model_runner import EXACT_MODEL, ModelName, ModelResult, run_model
 else:
     from check_translation import (  # pyright: ignore[reportImplicitRelativeImport]
@@ -28,6 +32,7 @@ else:
     )
     from markdown_chunks import (  # pyright: ignore[reportImplicitRelativeImport]
         MarkdownChunk,
+        restore_missing_newline_boundaries,
         split_markdown,
     )
     from model_runner import (  # pyright: ignore[reportImplicitRelativeImport]
@@ -233,7 +238,8 @@ def translate_file(
         )
         runtime_records.append(runtime_record(result))
 
-    draft = f"{TRANSLATION_NOTICE}\n\n{''.join(responses)}"
+    restored_responses = restore_missing_newline_boundaries(chunks, responses)
+    draft = f"{TRANSLATION_NOTICE}\n\n{''.join(restored_responses)}"
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(draft, encoding="utf-8")
     issues = validate_translation(source, output, terms)

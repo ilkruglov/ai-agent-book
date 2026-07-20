@@ -13,7 +13,7 @@ from scripts.check_translation import (
     load_glossary,
     validate_translation,
 )
-from scripts.markdown_chunks import split_markdown
+from scripts.markdown_chunks import restore_missing_newline_boundaries, split_markdown
 from scripts.model_runner import ModelResult, RuntimeEvidence
 from scripts.verify_translation import VerificationError, verify_file
 
@@ -48,12 +48,9 @@ print("ok")
 |---|---|
 | 1 | 2 |
 
-![Русская подпись](images/a.svg)
-
-""",
+![Русская подпись](images/a.svg)""",
     """## Второй раздел
-Ещё русский текст.
-""",
+Ещё русский текст.""",
 )
 
 
@@ -101,7 +98,9 @@ def _prepare_repo(
     draft.parent.mkdir(parents=True)
     (repo / "prompts").mkdir()
     source.write_text(SOURCE, encoding="utf-8")
-    draft_text = f"{TRANSLATION_NOTICE}\n\n{''.join(DRAFT_CHUNKS)}"
+    source_chunks = split_markdown(SOURCE, max_chars=40_000)
+    stitched_draft_chunks = restore_missing_newline_boundaries(source_chunks, DRAFT_CHUNKS)
+    draft_text = f"{TRANSLATION_NOTICE}\n\n{''.join(stitched_draft_chunks)}"
     draft.write_text(draft_text, encoding="utf-8")
     glossary.write_text(
         """schema_version: 1
@@ -124,7 +123,6 @@ terms:
         repo / "prompts/verify_translation.schema.json",
     )
 
-    source_chunks = split_markdown(SOURCE, max_chars=40_000)
     chunk_dir = repo / ".tmp/drafts/.chunks/chapter"
     chunk_dir.mkdir(parents=True)
     chunks: list[dict[str, object]] = []
@@ -311,7 +309,9 @@ def test_verifier_binds_hashes_and_emits_two_pass_fragment(
     verified = output.read_text(encoding="utf-8")
     stored_evidence = json.loads(evidence.read_text(encoding="utf-8"))
     stored_fragment = json.loads(fragment.read_text(encoding="utf-8"))
-    assert verified == f"{TRANSLATION_NOTICE}\n\n{''.join(DRAFT_CHUNKS)}"
+    source_chunks = split_markdown(SOURCE, max_chars=40_000)
+    stitched_draft_chunks = restore_missing_newline_boundaries(source_chunks, DRAFT_CHUNKS)
+    assert verified == f"{TRANSLATION_NOTICE}\n\n{''.join(stitched_draft_chunks)}"
     assert stored_evidence["source_sha256"] == _sha256(SOURCE)
     assert stored_evidence["draft_sha256"] == _sha256(verified)
     assert stored_evidence["final_sha256"] == _sha256(verified)
@@ -394,7 +394,7 @@ def test_rejects_unknown_second_pass_json_field(
 @pytest.mark.parametrize(
     ("replacement", "message"),
     [
-        ("Без заголовка.\n\n", "heading-structure"),
+        ("Без заголовка.", "heading-structure"),
         ("```markdown\n## Раздел\nТекст\n```\n", "внешний Markdown fence"),
         (DRAFT_CHUNKS[0].replace("```python", "```text"), "fence-structure"),
         (DRAFT_CHUNKS[0].replace("|---|---|", "| A | B |"), "table-structure"),

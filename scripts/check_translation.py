@@ -334,7 +334,8 @@ def _glossary_issues(
         folded_line = line.casefold()
         for term in accepted:
             for forbidden in term.forbidden:
-                if forbidden and forbidden.casefold() in folded_line:
+                pattern = rf"(?<!\w){re.escape(forbidden.casefold())}(?!\w)"
+                if forbidden and re.search(pattern, folded_line) is not None:
                     issues.append(
                         ValidationIssue(
                             path=str(path),

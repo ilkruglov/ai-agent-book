@@ -67,7 +67,7 @@ terms:
     preferred: "AI-агент"
     status: accepted
     rule: "Первое упоминание"
-    forbidden: ["ИИ-агент"]
+    forbidden: ["ИИ-агент", "ИИ агент"]
   - id: prompt
     source: ["prompt"]
     preferred: "промпт"
@@ -366,10 +366,20 @@ def test_empty_cjk_allow_reason_fails(tmp_path: Path) -> None:
     assert "cjk-allow-reason" in _codes(tmp_path, allowed)
 
 
-def test_forbidden_accepted_glossary_spelling_fails(tmp_path: Path) -> None:
-    changed = TARGET.replace("Первый раздел", "ИИ-агент")
+@pytest.mark.parametrize("forbidden", ["ИИ-агент", "ИИ агент"])
+def test_forbidden_accepted_glossary_spelling_fails(
+    tmp_path: Path,
+    forbidden: str,
+) -> None:
+    changed = TARGET.replace("Первый раздел", forbidden)
 
     assert "glossary-forbidden" in _codes(tmp_path, changed)
+
+
+def test_forbidden_glossary_spelling_does_not_match_inside_words(tmp_path: Path) -> None:
+    changed = TARGET.replace("Первый раздел", "Об участии агента")
+
+    assert "glossary-forbidden" not in _codes(tmp_path, changed)
 
 
 def test_candidate_glossary_spelling_is_not_enforced(tmp_path: Path) -> None:

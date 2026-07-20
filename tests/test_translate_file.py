@@ -92,7 +92,7 @@ def test_translates_lossless_chunks_with_same_accepted_glossary(
 ) -> None:
     repo, source, output, evidence, glossary = _prepare_repo(tmp_path)
     responses: Iterator[str] = iter(
-        ["## Первый раздел\nРусский текст.\n\n", "## Второй раздел\nЕщё текст.\n"]
+        ["## Первый раздел\nРусский текст.", "## Второй раздел\nЕщё текст."]
     )
     prompts: list[str] = []
 
@@ -117,6 +117,8 @@ def test_translates_lossless_chunks_with_same_accepted_glossary(
     assert draft.startswith("<!-- Русский перевод: community edition.")
     assert "## Первый раздел" in draft
     assert "## Второй раздел" in draft
+    assert "Русский текст.\n\n## Второй раздел" in draft
+    assert draft.endswith("Ещё текст.\n")
     assert len(prompts) == 2
     assert all("AI-агент" in prompt for prompt in prompts)
     assert all("НЕ-ПЕРЕДАВАТЬ" not in prompt for prompt in prompts)

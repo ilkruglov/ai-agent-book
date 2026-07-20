@@ -19,7 +19,11 @@ if __package__:
         load_glossary,
         validate_translation,
     )
-    from scripts.markdown_chunks import MarkdownChunk, split_markdown
+    from scripts.markdown_chunks import (
+        MarkdownChunk,
+        restore_missing_newline_boundaries,
+        split_markdown,
+    )
     from scripts.model_runner import EXACT_MODEL, run_model
     from scripts.translate_file import runtime_record
 else:
@@ -31,6 +35,7 @@ else:
     )
     from markdown_chunks import (  # pyright: ignore[reportImplicitRelativeImport]
         MarkdownChunk,
+        restore_missing_newline_boundaries,
         split_markdown,
     )
     from model_runner import (  # pyright: ignore[reportImplicitRelativeImport]
@@ -315,7 +320,8 @@ def _load_translation_chunks(
         )
         draft_parts.append(draft_chunk)
 
-    assembled_draft = f"{TRANSLATION_NOTICE}\n\n{''.join(draft_parts)}"
+    restored_draft_parts = restore_missing_newline_boundaries(source_chunks, draft_parts)
+    assembled_draft = f"{TRANSLATION_NOTICE}\n\n{''.join(restored_draft_parts)}"
     if assembled_draft != draft_text:
         raise VerificationError("translation evidence draft chunks не собирают exact draft")
     return tuple(result)
@@ -505,10 +511,14 @@ def verify_file(
         response_path = response_root / f"{chunk.source.index}.json"
         result = run_model(EXACT_MODEL, prompt, root, response_path, timeout_seconds)
         corrected = _parse_response(result.response, schema, chunk)
-        corrected_sha256 = _sha256(corrected)
+        restored_corrected = restore_missing_newline_boundaries(
+            (chunk.source,),
+            (corrected,),
+        )[0]
+        corrected_sha256 = _sha256(restored_corrected)
         verification_runtime = runtime_record(result)
         source_end = source_offset + len(chunk.source.text)
-        final_end = final_offset + len(corrected)
+        final_end = final_offset + len(restored_corrected)
         verified_chunks.append(
             VerifiedChunk(
                 index=chunk.source.index,
@@ -525,7 +535,7 @@ def verify_file(
                 verification_runtime=verification_runtime,
             )
         )
-        corrected_parts.append(corrected)
+        corrected_parts.append(restored_corrected)
         source_offset = source_end
         final_offset = final_end
         if ordinal + 1 != len(chunks) and not corrected:

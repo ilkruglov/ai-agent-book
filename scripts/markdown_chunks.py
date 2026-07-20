@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hashlib
 import re
+from collections.abc import Sequence
 from dataclasses import dataclass
 from itertools import pairwise
 
@@ -20,6 +21,28 @@ class MarkdownChunk:
 
 class ChunkingError(ValueError):
     """Markdown нельзя разбить без повреждения неделимого блока."""
+
+
+def restore_missing_newline_boundaries(
+    source_chunks: Sequence[MarkdownChunk],
+    translated_chunks: Sequence[str],
+) -> tuple[str, ...]:
+    """Восстановить потерянные моделью внешние переводы строк каждого чанка."""
+    if len(source_chunks) != len(translated_chunks):
+        raise ValueError("Количество source и translated chunks должно совпадать")
+
+    restored: list[str] = []
+    for source, translated in zip(source_chunks, translated_chunks, strict=True):
+        required_leading = len(source.text) - len(source.text.lstrip("\n"))
+        required_trailing = len(source.text) - len(source.text.rstrip("\n"))
+        actual_leading = len(translated) - len(translated.lstrip("\n"))
+        actual_trailing = len(translated) - len(translated.rstrip("\n"))
+        restored.append(
+            "\n" * max(0, required_leading - actual_leading)
+            + translated
+            + "\n" * max(0, required_trailing - actual_trailing)
+        )
+    return tuple(restored)
 
 
 def _heading_offsets(text: str, level: int) -> tuple[int, ...]:
