@@ -5,6 +5,7 @@ import json
 import shutil
 from collections.abc import Callable, Iterator, Mapping
 from pathlib import Path
+from threading import Barrier
 from typing import cast
 
 import pytest
@@ -379,6 +380,124 @@ def test_verifier_binds_hashes_and_emits_two_pass_fragment(
         manifest_path=global_manifest,
     )
     assert issues == []
+
+
+def test_verifier_runs_chunks_in_parallel_and_preserves_order(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    (
+        repo,
+        source,
+        draft,
+        translation_evidence,
+        output,
+        verification_evidence,
+        fragment,
+        glossary,
+    ) = _prepare_repo(tmp_path)
+    barrier = Barrier(2)
+    responses = tuple(_payloads())
+
+    def fake_run_model(
+        model: str,
+        prompt: str,
+        repo_root: Path,
+        output_path: Path,
+        timeout_seconds: int,
+        output_schema: Mapping[str, object] | None = None,
+    ) -> ModelResult:
+        del model, prompt, repo_root, timeout_seconds, output_schema
+        barrier.wait(timeout=2)
+        ordinal = int(output_path.stem)
+        return _result(output_path, responses[ordinal], ordinal)
+
+    monkeypatch.setattr("scripts.verify_translation.run_model", fake_run_model)
+
+    manifest = verify_file(
+        source,
+        draft,
+        translation_evidence,
+        output,
+        verification_evidence,
+        fragment,
+        glossary,
+        repo,
+        60,
+        jobs=2,
+    )
+
+    assert [chunk.index for chunk in manifest.chunks] == ["000", "001"]
+
+
+def test_verifier_reuses_valid_chunks_and_reruns_only_selected_chunk(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    output, evidence, fragment = _run_with_payloads(tmp_path, monkeypatch)
+    repo = output.parents[2]
+    reuse_run = repo / ".tmp/failed/reuse-run"
+    (reuse_run / "evidence").mkdir(parents=True)
+    (reuse_run / "responses").mkdir()
+    shutil.move(output, reuse_run / output.name)
+    shutil.move(evidence, reuse_run / "evidence" / evidence.name)
+    shutil.move(fragment, reuse_run / "evidence" / fragment.name)
+    shutil.move(
+        output.parent / ".responses" / output.stem,
+        reuse_run / "responses" / output.stem,
+    )
+    source = repo / ".tmp/upstream/book/chapter.md"
+    draft = repo / ".tmp/drafts/chapter.md"
+    translation_evidence = repo / ".tmp/evidence/chapter.translation.json"
+    glossary = repo / "glossary.yml"
+    source_chunks = split_markdown(SOURCE, max_chars=40_000)
+    selected = source_chunks[1]
+    payload: dict[str, object] = {
+        "source_sha256": selected.sha256,
+        "draft_sha256": _sha256(DRAFT_CHUNKS[1]),
+        "model_id": "gpt-5.6-sol",
+        "issues": [],
+        "corrected_translation": DRAFT_CHUNKS[1],
+    }
+    calls: list[str] = []
+
+    def fake_retry(
+        model: str,
+        prompt: str,
+        repo_root: Path,
+        output_path: Path,
+        timeout_seconds: int,
+        output_schema: Mapping[str, object] | None = None,
+    ) -> ModelResult:
+        del model, prompt, repo_root, timeout_seconds, output_schema
+        calls.append(output_path.stem)
+        return _result(output_path, json.dumps(payload, ensure_ascii=False), 9)
+
+    monkeypatch.setattr("scripts.verify_translation.run_model", fake_retry)
+
+    verify_file(
+        source,
+        draft,
+        translation_evidence,
+        output,
+        evidence,
+        fragment,
+        glossary,
+        repo,
+        60,
+        jobs=2,
+        reuse_run=reuse_run,
+        rerun_chunks=frozenset({"001"}),
+    )
+
+    stored = json.loads(evidence.read_text(encoding="utf-8"))
+    assert calls == ["001"]
+    assert stored["chunks"][0]["runtime"]["thread_id"] == "verification-0"
+    assert stored["chunks"][1]["runtime"]["thread_id"] == "verification-9"
+    assert sorted(path.name for path in (output.parent / ".responses/chapter").iterdir()) == [
+        "000.json",
+        "001.json",
+    ]
 
 
 def test_verifier_accepts_source_newline_boundary_restored_by_gpt(

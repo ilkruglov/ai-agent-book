@@ -6,6 +6,7 @@ import json
 import re
 import sys
 from collections.abc import Sequence
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
@@ -192,7 +193,10 @@ def translate_file(
     repo_root: Path,
     max_chars: int = 40_000,
     timeout_seconds: int = 3_600,
+    jobs: int = 1,
 ) -> TranslationManifest:
+    if jobs <= 0:
+        raise ValueError("jobs должен быть положительным")
     root, source, output, evidence = _validate_paths(
         repo_root,
         source_path,
@@ -218,12 +222,25 @@ def translate_file(
     responses: list[str] = []
     runtime_records: list[dict[str, object]] = []
 
-    for chunk in chunks:
+    def run_chunk(chunk: MarkdownChunk) -> tuple[MarkdownChunk, ModelResult]:
         prompt = _render_prompt(template, source_relative, chunk, accepted_glossary)
         chunk_output = chunk_root / f"{chunk.index}.md"
         result = run_model(EXACT_MODEL, prompt, root, chunk_output, timeout_seconds)
         if _has_extra_outer_fence(chunk.text, result.response):
             raise TranslationError(f"Chunk {chunk.index}: обнаружен лишний внешний Markdown fence")
+        return chunk, result
+
+    if jobs == 1:
+        chunk_results = tuple(run_chunk(chunk) for chunk in chunks)
+    else:
+        with ThreadPoolExecutor(
+            max_workers=min(jobs, len(chunks)),
+            thread_name_prefix="translate-chunk",
+        ) as executor:
+            chunk_results = tuple(executor.map(run_chunk, chunks))
+
+    for chunk, result in chunk_results:
+        chunk_output = chunk_root / f"{chunk.index}.md"
         responses.append(result.response)
         translated_chunks.append(
             TranslatedChunk(
@@ -293,6 +310,7 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--evidence", required=True, type=Path)
     parser.add_argument("--max-chars", type=int, default=40_000)
     parser.add_argument("--timeout-seconds", type=int, default=3_600)
+    parser.add_argument("--jobs", type=int, default=4)
     return parser
 
 
@@ -308,6 +326,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             repo_root,
             cast(int, arguments.max_chars),
             cast(int, arguments.timeout_seconds),
+            cast(int, arguments.jobs),
         )
     except (OSError, ValueError, TranslationError) as error:
         print(f"translation-error: {error}", file=sys.stderr)

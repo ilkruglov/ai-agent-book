@@ -6,6 +6,7 @@ import json
 import re
 import sys
 from collections.abc import Mapping, Sequence
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
@@ -91,6 +92,13 @@ class VerifiedChunk:
     final_sha256: str
     translation_runtime: JsonObject
     verification_runtime: JsonObject
+
+
+@dataclass(frozen=True)
+class ReusedChunk:
+    response: str
+    corrected: str
+    runtime: JsonObject
 
 
 @dataclass(frozen=True)
@@ -464,6 +472,136 @@ def _write_json(path: Path, document: Mapping[str, object]) -> None:
         raise VerificationError(f"Partial artifact уже существует: {path}") from error
 
 
+def _write_response(path: Path, response: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    try:
+        with path.open("x", encoding="utf-8", newline="") as response_file:
+            response_file.write(response)
+    except FileExistsError as error:
+        raise VerificationError(f"Partial artifact уже существует: {path}") from error
+
+
+def _load_reused_chunks(
+    root: Path,
+    reuse_run_path: Path,
+    source: Path,
+    draft: Path,
+    output: Path,
+    chunks: tuple[TranslationChunkEvidence, ...],
+    schema: JsonObject,
+) -> dict[str, ReusedChunk]:
+    reuse_run = _inside(reuse_run_path, root / ".tmp/failed", "Reuse run")
+    if not reuse_run.is_dir():
+        raise VerificationError(f"Reuse run не является каталогом: {reuse_run}")
+    evidence_path = reuse_run / "evidence" / f"{output.stem}.verification.json"
+    response_root = (reuse_run / "responses" / output.stem).resolve()
+    final_path = reuse_run / output.name
+    if not evidence_path.is_file() or not response_root.is_dir() or not final_path.is_file():
+        raise VerificationError("Reuse run не содержит полный verification artifact set")
+
+    document = _load_json(evidence_path, "reuse verification evidence")
+    if set(document) != {
+        "schema_version",
+        "pass",
+        "model_id",
+        "source_path",
+        "draft_path",
+        "output_path",
+        "source_sha256",
+        "draft_sha256",
+        "final_sha256",
+        "chunks",
+    }:
+        raise VerificationError("Reuse verification evidence fields не совпали")
+    source_text = source.read_text(encoding="utf-8")
+    draft_text = draft.read_text(encoding="utf-8")
+    if (
+        document.get("schema_version") != 1
+        or document.get("pass") != "source_verification"
+        or document.get("model_id") != EXACT_MODEL
+        or document.get("source_path") != source.relative_to(root).as_posix()
+        or document.get("draft_path") != draft.relative_to(root).as_posix()
+        or document.get("output_path") != output.relative_to(root).as_posix()
+        or document.get("source_sha256") != _sha256(source_text)
+        or document.get("draft_sha256") != _sha256(draft_text)
+        or document.get("final_sha256") != _sha256(final_path.read_text(encoding="utf-8"))
+    ):
+        raise VerificationError("Reuse verification evidence identity не совпала")
+
+    raw_chunks = document.get("chunks")
+    if not isinstance(raw_chunks, list):
+        raise VerificationError("Reuse verification chunk count не совпал")
+    raw_chunk_items = cast(list[object], raw_chunks)
+    if len(raw_chunk_items) != len(chunks):
+        raise VerificationError("Reuse verification chunk count не совпал")
+    reused: dict[str, ReusedChunk] = {}
+    source_offset = 0
+    final_offset = 0
+    for ordinal, (chunk, raw_chunk) in enumerate(zip(chunks, raw_chunk_items, strict=True)):
+        context = f"reuse verification chunks[{ordinal}]"
+        item = _mapping(raw_chunk, context)
+        if set(item) != {
+            "index",
+            "start_line",
+            "end_line",
+            "source_start",
+            "source_end",
+            "final_start",
+            "final_end",
+            "source_sha256",
+            "draft_sha256",
+            "final_sha256",
+            "runtime",
+        }:
+            raise VerificationError(f"{context}: fields не совпали")
+        response_path = response_root / f"{chunk.source.index}.json"
+        if (
+            response_path.is_symlink()
+            or not response_path.is_file()
+            or not response_path.resolve().is_relative_to(response_root)
+        ):
+            raise VerificationError(f"{context}: response artifact отсутствует")
+        response = response_path.read_text(encoding="utf-8")
+        runtime = _validate_runtime(item.get("runtime"), f"{context} runtime", _sha256(response))
+        corrected = _parse_response(response, schema, chunk)
+        restored_corrected = restore_missing_newline_boundaries(
+            (chunk.source,),
+            (corrected,),
+        )[0]
+        source_end = source_offset + len(chunk.source.text)
+        final_end = final_offset + len(restored_corrected)
+        expected_identity = (
+            chunk.source.index,
+            chunk.source.start_line,
+            chunk.source.end_line,
+            source_offset,
+            source_end,
+            final_offset,
+            final_end,
+            chunk.source.sha256,
+            chunk.draft_sha256,
+            _sha256(restored_corrected),
+        )
+        actual_identity = (
+            item.get("index"),
+            item.get("start_line"),
+            item.get("end_line"),
+            item.get("source_start"),
+            item.get("source_end"),
+            item.get("final_start"),
+            item.get("final_end"),
+            item.get("source_sha256"),
+            item.get("draft_sha256"),
+            item.get("final_sha256"),
+        )
+        if actual_identity != expected_identity:
+            raise VerificationError(f"{context}: identity/ranges не совпали")
+        reused[chunk.source.index] = ReusedChunk(response, corrected, runtime)
+        source_offset = source_end
+        final_offset = final_end
+    return reused
+
+
 def verify_file(
     source_path: Path,
     draft_path: Path,
@@ -474,9 +612,18 @@ def verify_file(
     glossary_path: Path,
     repo_root: Path,
     timeout_seconds: int = 3_600,
+    jobs: int = 1,
+    reuse_run: Path | None = None,
+    rerun_chunks: frozenset[str] = frozenset(),
 ) -> VerificationManifest:
     if timeout_seconds <= 0:
         raise ValueError("timeout_seconds должен быть положительным")
+    if jobs <= 0:
+        raise ValueError("jobs должен быть положительным")
+    if reuse_run is None and rerun_chunks:
+        raise VerificationError("rerun_chunks требует reuse_run")
+    if reuse_run is not None and not rerun_chunks:
+        raise VerificationError("reuse_run требует хотя бы один rerun chunk")
     (
         root,
         source,
@@ -506,13 +653,28 @@ def verify_file(
     glossary = _render_glossary(terms)
     template = prompt_path.read_text(encoding="utf-8")
     schema = _load_schema(schema_path)
+    available_indices = frozenset(chunk.source.index for chunk in chunks)
+    unknown_reruns = rerun_chunks - available_indices
+    if unknown_reruns:
+        raise VerificationError(f"Неизвестные rerun chunks: {', '.join(sorted(unknown_reruns))}")
     corrected_parts: list[str] = []
     verified_chunks: list[VerifiedChunk] = []
     source_offset = 0
     final_offset = 0
 
     response_root = output.parent / ".responses" / output.stem
-    for ordinal, chunk in enumerate(chunks):
+    reused_chunks = (
+        _load_reused_chunks(root, reuse_run, source, draft, output, chunks, schema)
+        if reuse_run is not None
+        else {}
+    )
+    chunks_to_run = tuple(
+        chunk for chunk in chunks if reuse_run is None or chunk.source.index in rerun_chunks
+    )
+
+    def run_chunk(
+        chunk: TranslationChunkEvidence,
+    ) -> tuple[str, str, JsonObject]:
         prompt = _render_prompt(
             template,
             source.relative_to(root).as_posix(),
@@ -529,12 +691,37 @@ def verify_file(
             output_schema=schema,
         )
         corrected = _parse_response(result.response, schema, chunk)
+        return chunk.source.index, corrected, runtime_record(result)
+
+    if jobs == 1:
+        fresh_result_items = tuple(run_chunk(chunk) for chunk in chunks_to_run)
+    else:
+        with ThreadPoolExecutor(
+            max_workers=min(jobs, len(chunks_to_run)),
+            thread_name_prefix="verify-chunk",
+        ) as executor:
+            fresh_result_items = tuple(executor.map(run_chunk, chunks_to_run))
+    fresh_results = {
+        index: (corrected, runtime) for index, corrected, runtime in fresh_result_items
+    }
+
+    for ordinal, chunk in enumerate(chunks):
+        response_path = response_root / f"{chunk.source.index}.json"
+        fresh = fresh_results.get(chunk.source.index)
+        if fresh is not None:
+            corrected, verification_runtime = fresh
+        else:
+            reused = reused_chunks.get(chunk.source.index)
+            if reused is None:
+                raise AssertionError("Chunk отсутствует и в fresh, и в reused results")
+            _write_response(response_path, reused.response)
+            corrected = reused.corrected
+            verification_runtime = reused.runtime
         restored_corrected = restore_missing_newline_boundaries(
             (chunk.source,),
             (corrected,),
         )[0]
         corrected_sha256 = _sha256(restored_corrected)
-        verification_runtime = runtime_record(result)
         source_end = source_offset + len(chunk.source.text)
         final_end = final_offset + len(restored_corrected)
         verified_chunks.append(
@@ -664,6 +851,9 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--manifest-fragment", required=True, type=Path)
     parser.add_argument("--glossary", required=True, type=Path)
     parser.add_argument("--timeout-seconds", type=int, default=3_600)
+    parser.add_argument("--jobs", type=int, default=4)
+    parser.add_argument("--reuse-run", type=Path)
+    parser.add_argument("--rerun-chunk", action="append", default=[])
     return parser
 
 
@@ -681,6 +871,9 @@ def main(argv: Sequence[str] | None = None) -> int:
             cast(Path, arguments.glossary),
             repo_root,
             cast(int, arguments.timeout_seconds),
+            cast(int, arguments.jobs),
+            cast(Path | None, arguments.reuse_run),
+            frozenset(cast(list[str], arguments.rerun_chunk)),
         )
     except (OSError, ValueError, VerificationError) as error:
         print(f"verification-error: {error}", file=sys.stderr)

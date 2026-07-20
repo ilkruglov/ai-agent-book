@@ -4,6 +4,7 @@ import hashlib
 import json
 from collections.abc import Iterator
 from pathlib import Path
+from threading import Barrier
 
 import pytest
 
@@ -139,6 +140,38 @@ def test_translates_lossless_chunks_with_same_accepted_glossary(
     assert "source_text" not in evidence.read_text(encoding="utf-8")
 
 
+def test_runs_translation_chunks_in_parallel_and_preserves_order(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    repo, source, output, evidence, glossary = _prepare_repo(tmp_path)
+    barrier = Barrier(2)
+    responses = {
+        "000": "## Первый раздел\nРусский текст.",
+        "001": "## Второй раздел\nЕщё текст.",
+    }
+
+    def fake_run_model(
+        model: str,
+        prompt: str,
+        repo_root: Path,
+        output_path: Path,
+        timeout_seconds: int,
+    ) -> ModelResult:
+        del model, prompt, repo_root, timeout_seconds
+        barrier.wait(timeout=2)
+        return _result(output_path, responses[output_path.stem])
+
+    monkeypatch.setattr("scripts.translate_file.run_model", fake_run_model)
+
+    manifest = translate_file(source, output, glossary, evidence, repo, jobs=2)
+
+    assert [chunk.index for chunk in manifest.chunks] == ["000", "001"]
+    assert output.read_text(encoding="utf-8").index("Первый") < output.read_text(
+        encoding="utf-8"
+    ).index("Второй")
+
+
 def test_rejects_source_outside_pinned_upstream(tmp_path: Path) -> None:
     repo, _, output, evidence, glossary = _prepare_repo(tmp_path)
     outside = repo / "tracked-source.md"
@@ -211,7 +244,7 @@ def test_cli_uses_exact_model_without_model_argument(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     repo, source, output, evidence, glossary = _prepare_repo(tmp_path)
-    calls: list[tuple[Path, Path, Path, Path, Path, int, int]] = []
+    calls: list[tuple[Path, Path, Path, Path, Path, int, int, int]] = []
 
     def fake_translate_file(
         source_path: Path,
@@ -221,6 +254,7 @@ def test_cli_uses_exact_model_without_model_argument(
         repo_root: Path,
         max_chars: int = 40_000,
         timeout_seconds: int = 3_600,
+        jobs: int = 1,
     ) -> object:
         calls.append(
             (
@@ -231,6 +265,7 @@ def test_cli_uses_exact_model_without_model_argument(
                 repo_root,
                 max_chars,
                 timeout_seconds,
+                jobs,
             )
         )
         return type(
@@ -261,11 +296,13 @@ def test_cli_uses_exact_model_without_model_argument(
             "1234",
             "--timeout-seconds",
             "5678",
+            "--jobs",
+            "3",
         ]
     )
 
     assert exit_code == 0
-    assert calls == [(source, output, glossary, evidence, repo, 1234, 5678)]
+    assert calls == [(source, output, glossary, evidence, repo, 1234, 5678, 3)]
 
 
 def test_rejects_evidence_outside_tmp_and_existing_partial_artifacts(tmp_path: Path) -> None:
