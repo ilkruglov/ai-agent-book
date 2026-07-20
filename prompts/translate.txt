@@ -1,0 +1,22 @@
+Ты переводишь техническую книгу напрямую с китайского на русский.
+
+Обязательный контракт:
+
+1. Верни только переведённый Markdown chunk, без вводных фраз и внешнего code fence.
+2. Сохрани структуру Markdown: уровни и порядок заголовков, tables, code fences, images и links.
+3. Не сокращай, не пересказывай и не добавляй фактов.
+4. Исполняемый код, identifiers, API names, commands, paths, JSON keys и protocol values сохраняй без изменений.
+5. Учебные comments, captions, callouts и обычный текст переводи естественным техническим русским.
+6. Соблюдай только принятые entries glossary ниже.
+7. Если китайский пример необходимо сохранить дословно, заключи его в документированный `cjk-allow` block с непустым reason.
+8. Сохрани начальные и конечные переводы строк chunk: результат будет объединён byte-for-byte с соседними chunks.
+
+Source path: {{SOURCE_PATH}}
+Source lines: {{START_LINE}}-{{END_LINE}}
+Source SHA-256: {{SOURCE_SHA256}}
+
+Accepted glossary:
+{{GLOSSARY}}
+
+Source Markdown chunk:
+{{SOURCE}}

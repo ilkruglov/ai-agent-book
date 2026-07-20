@@ -1,0 +1,259 @@
+from __future__ import annotations
+
+import argparse
+import hashlib
+import json
+import re
+import sys
+from collections.abc import Sequence
+from dataclasses import dataclass
+from pathlib import Path
+from typing import cast
+
+from scripts.check_translation import (
+    TRANSLATION_NOTICE,
+    GlossaryTerm,
+    load_glossary,
+    validate_translation,
+)
+from scripts.markdown_chunks import MarkdownChunk, split_markdown
+from scripts.model_runner import ModelName, run_model
+
+
+@dataclass(frozen=True)
+class TranslatedChunk:
+    index: str
+    start_line: int
+    end_line: int
+    source_sha256: str
+    response_sha256: str
+    runtime_id: str
+
+
+@dataclass(frozen=True)
+class TranslationManifest:
+    source_path: Path
+    output_path: Path
+    model: ModelName
+    source_sha256: str
+    draft_sha256: str
+    chunks: tuple[TranslatedChunk, ...]
+
+
+class TranslationError(RuntimeError):
+    """Translation orchestration нарушил закреплённый контракт."""
+
+
+def _sha256(text: str) -> str:
+    return hashlib.sha256(text.encode("utf-8")).hexdigest()
+
+
+def _validate_paths(
+    repo_root: Path, source_path: Path, output_path: Path
+) -> tuple[Path, Path, Path]:
+    root = repo_root.resolve()
+    source = source_path.resolve()
+    output = output_path.resolve()
+    source_root = (root / ".tmp/upstream/book").resolve()
+    output_root = (root / ".tmp/drafts").resolve()
+    if not source.is_file() or not source.is_relative_to(source_root):
+        raise TranslationError(f"Source должен находиться внутри {source_root}")
+    if output == output_root or not output.is_relative_to(output_root):
+        raise TranslationError(f"Output должен находиться внутри {output_root}")
+    return root, source, output
+
+
+def _load_benchmark_gate(repo_root: Path) -> None:
+    benchmark_path = repo_root / "evals/translation-benchmark.json"
+    if not benchmark_path.is_file():
+        raise TranslationError("benchmark gate не выполнен: отсутствует accepted result")
+    try:
+        raw: object = json.loads(benchmark_path.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as error:
+        raise TranslationError("benchmark gate содержит некорректный JSON") from error
+    if not isinstance(raw, dict):
+        raise TranslationError("benchmark gate root должен быть object")
+    document = cast(dict[str, object], raw)
+    decision = document.get("decision")
+    gate = document.get("gate")
+    approved = (
+        isinstance(decision, dict)
+        and cast(dict[object, object], decision).get("approved_primary") is True
+    )
+    blocked = isinstance(gate, dict) and cast(dict[object, object], gate).get("blocked") is True
+    if document.get("primary_model") != "gpt-5.6-sol" or not approved or blocked:
+        raise TranslationError("benchmark gate не одобрил exact primary gpt-5.6-sol")
+
+
+def _render_glossary(terms: tuple[GlossaryTerm, ...]) -> str:
+    accepted = tuple(term for term in terms if term.status == "accepted")
+    lines: list[str] = []
+    for term in accepted:
+        lines.extend(
+            [
+                f"- id: {term.id}",
+                f"  source: {', '.join(term.source)}",
+                f"  preferred: {term.preferred}",
+                f"  rule: {term.rule}",
+                f"  forbidden: {', '.join(term.forbidden) or '(none)'}",
+            ]
+        )
+    return "\n".join(lines) if lines else "(accepted entries отсутствуют)"
+
+
+def _render_prompt(
+    template: str,
+    source_relative: str,
+    chunk: MarkdownChunk,
+    accepted_glossary: str,
+) -> str:
+    required = (
+        "{{SOURCE_PATH}}",
+        "{{START_LINE}}",
+        "{{END_LINE}}",
+        "{{SOURCE_SHA256}}",
+        "{{GLOSSARY}}",
+        "{{SOURCE}}",
+    )
+    missing = tuple(marker for marker in required if marker not in template)
+    if missing:
+        raise TranslationError(f"Translation prompt не содержит markers: {', '.join(missing)}")
+    rendered = template
+    replacements = {
+        "{{SOURCE_PATH}}": source_relative,
+        "{{START_LINE}}": str(chunk.start_line),
+        "{{END_LINE}}": str(chunk.end_line),
+        "{{SOURCE_SHA256}}": chunk.sha256,
+        "{{GLOSSARY}}": accepted_glossary,
+    }
+    for marker, value in replacements.items():
+        rendered = rendered.replace(marker, value)
+    return rendered.replace("{{SOURCE}}", chunk.text)
+
+
+def _has_extra_outer_fence(source: str, response: str) -> bool:
+    response_lines = tuple(line for line in response.strip().splitlines() if line.strip())
+    if len(response_lines) < 2:
+        return False
+    opening = re.fullmatch(r"(```|~~~)(?:markdown|md)?", response_lines[0].strip(), re.IGNORECASE)
+    if opening is None or response_lines[-1].strip() != opening.group(1):
+        return False
+    source_lines = tuple(line for line in source.strip().splitlines() if line.strip())
+    source_starts_with_same_fence = bool(
+        source_lines and source_lines[0].lstrip().startswith(opening.group(1))
+    )
+    return not source_starts_with_same_fence or response_lines[0].strip().casefold() in {
+        "```markdown",
+        "```md",
+        "~~~markdown",
+        "~~~md",
+    }
+
+
+def translate_file(
+    source_path: Path,
+    output_path: Path,
+    glossary_path: Path,
+    model: ModelName,
+    repo_root: Path,
+    max_chars: int = 40_000,
+    timeout_seconds: int = 3_600,
+) -> TranslationManifest:
+    if model != "gpt-5.6-sol":
+        raise TranslationError("Primary translation разрешён только exact model gpt-5.6-sol")
+    root, source, output = _validate_paths(repo_root, source_path, output_path)
+    _load_benchmark_gate(root)
+    if not glossary_path.is_file():
+        raise TranslationError(f"Glossary не существует: {glossary_path}")
+    prompt_path = root / "prompts/translate.txt"
+    if not prompt_path.is_file():
+        raise TranslationError(f"Translation prompt не существует: {prompt_path}")
+
+    source_text = source.read_text(encoding="utf-8")
+    chunks = split_markdown(source_text, max_chars=max_chars)
+    if not chunks:
+        raise TranslationError("Source Markdown пуст")
+    terms = load_glossary(glossary_path)
+    accepted_glossary = _render_glossary(terms)
+    template = prompt_path.read_text(encoding="utf-8")
+    source_relative = source.relative_to(root).as_posix()
+    chunk_root = output.parent / ".chunks" / output.stem
+    translated_chunks: list[TranslatedChunk] = []
+    responses: list[str] = []
+
+    for chunk in chunks:
+        prompt = _render_prompt(template, source_relative, chunk, accepted_glossary)
+        chunk_output = chunk_root / f"{chunk.index}.md"
+        result = run_model(model, prompt, root, chunk_output, timeout_seconds)
+        if _has_extra_outer_fence(chunk.text, result.response):
+            raise TranslationError(f"Chunk {chunk.index}: обнаружен лишний внешний Markdown fence")
+        responses.append(result.response)
+        translated_chunks.append(
+            TranslatedChunk(
+                index=chunk.index,
+                start_line=chunk.start_line,
+                end_line=chunk.end_line,
+                source_sha256=chunk.sha256,
+                response_sha256=result.response_sha256,
+                runtime_id=result.evidence.runtime_id,
+            )
+        )
+
+    draft = f"{TRANSLATION_NOTICE}\n\n{''.join(responses)}"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(draft, encoding="utf-8")
+    issues = validate_translation(source, output, terms)
+    if issues:
+        codes = ", ".join(sorted({issue.code for issue in issues}))
+        raise TranslationError(f"Draft не прошёл structural validation: {codes}")
+
+    return TranslationManifest(
+        source_path=source,
+        output_path=output,
+        model=model,
+        source_sha256=_sha256(source_text),
+        draft_sha256=_sha256(draft),
+        chunks=tuple(translated_chunks),
+    )
+
+
+def _build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description="Перевести pinned Markdown file")
+    parser.add_argument("--source", required=True, type=Path)
+    parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--glossary", required=True, type=Path)
+    parser.add_argument(
+        "--model",
+        required=True,
+        choices=("gpt-5.6-sol", "claude-opus-4-8"),
+    )
+    parser.add_argument("--max-chars", type=int, default=40_000)
+    parser.add_argument("--timeout-seconds", type=int, default=3_600)
+    return parser
+
+
+def main(argv: Sequence[str] | None = None) -> int:
+    arguments = _build_parser().parse_args(argv)
+    repo_root = Path(__file__).resolve().parents[1]
+    try:
+        manifest = translate_file(
+            cast(Path, arguments.source),
+            cast(Path, arguments.output),
+            cast(Path, arguments.glossary),
+            cast(ModelName, arguments.model),
+            repo_root,
+            cast(int, arguments.max_chars),
+            cast(int, arguments.timeout_seconds),
+        )
+    except (OSError, ValueError, TranslationError) as error:
+        print(f"translation-error: {error}", file=sys.stderr)
+        return 2
+    print(
+        f"translated {manifest.source_path} -> {manifest.output_path} "
+        f"with {len(manifest.chunks)} chunks"
+    )
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
