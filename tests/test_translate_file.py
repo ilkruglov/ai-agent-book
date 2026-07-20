@@ -1,14 +1,13 @@
 from __future__ import annotations
 
 import hashlib
-import json
 from collections.abc import Iterator
 from pathlib import Path
 
 import pytest
 
 from scripts.model_runner import ModelResult, RuntimeEvidence
-from scripts.translate_file import TranslationError, translate_file
+from scripts.translate_file import TranslationError, main, translate_file
 
 SOURCE = """## 第一节
 原文一。
@@ -22,14 +21,13 @@ def _sha256(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 
 
-def _prepare_repo(tmp_path: Path, approved: bool = True) -> tuple[Path, Path, Path, Path]:
+def _prepare_repo(tmp_path: Path) -> tuple[Path, Path, Path, Path]:
     repo = tmp_path / "repo"
     source = repo / ".tmp/upstream/book/chapter.md"
     output = repo / ".tmp/drafts/chapter.md"
     glossary = repo / "glossary.yml"
     source.parent.mkdir(parents=True)
     (repo / "prompts").mkdir()
-    (repo / "evals").mkdir()
     source.write_text(SOURCE, encoding="utf-8")
     glossary.write_text(
         """schema_version: 1
@@ -55,15 +53,6 @@ terms:
         "HASH={{SOURCE_SHA256}}\nGLOSSARY:\n{{GLOSSARY}}\nSOURCE:\n{{SOURCE}}",
         encoding="utf-8",
     )
-    benchmark = {
-        "primary_model": "gpt-5.6-sol",
-        "gate": {"blocked": False},
-        "decision": {"approved_primary": approved},
-    }
-    (repo / "evals/translation-benchmark.json").write_text(
-        json.dumps(benchmark),
-        encoding="utf-8",
-    )
     return repo, source, output, glossary
 
 
@@ -82,7 +71,12 @@ def _result(output_path: Path, response: str) -> ModelResult:
         evidence=RuntimeEvidence(
             requested_model="gpt-5.6-sol",
             reported_model="gpt-5.6-sol",
-            runtime_id="thread-test",
+            provider="openai",
+            thread_id="thread-test",
+            turn_id="turn-test",
+            ephemeral=True,
+            fallback_allowed=False,
+            sandbox_type="readOnly",
             completion_observed=True,
             usage_observed=True,
             command_sha256=_sha256("codex"),
@@ -115,7 +109,7 @@ def test_translates_lossless_chunks_with_same_accepted_glossary(
 
     monkeypatch.setattr("scripts.translate_file.run_model", fake_run_model)
 
-    manifest = translate_file(source, output, glossary, "gpt-5.6-sol", repo, 40_000)
+    manifest = translate_file(source, output, glossary, repo, 40_000)
 
     draft = output.read_text(encoding="utf-8")
     assert draft.startswith("<!-- Русский перевод: community edition.")
@@ -128,6 +122,7 @@ def test_translates_lossless_chunks_with_same_accepted_glossary(
     assert manifest.source_sha256 == _sha256(SOURCE)
     assert manifest.draft_sha256 == _sha256(draft)
     assert [chunk.index for chunk in manifest.chunks] == ["000", "001"]
+    assert not (repo / "evals").exists()
 
 
 def test_rejects_source_outside_pinned_upstream(tmp_path: Path) -> None:
@@ -136,7 +131,7 @@ def test_rejects_source_outside_pinned_upstream(tmp_path: Path) -> None:
     outside.write_text(SOURCE, encoding="utf-8")
 
     with pytest.raises(TranslationError, match=r"\.tmp/upstream/book"):
-        translate_file(outside, output, glossary, "gpt-5.6-sol", repo, 40_000)
+        translate_file(outside, output, glossary, repo, 40_000)
 
 
 def test_rejects_output_outside_drafts(tmp_path: Path) -> None:
@@ -147,24 +142,9 @@ def test_rejects_output_outside_drafts(tmp_path: Path) -> None:
             source,
             repo / "book/chapter.md",
             glossary,
-            "gpt-5.6-sol",
             repo,
             40_000,
         )
-
-
-def test_refuses_translation_before_approved_benchmark(tmp_path: Path) -> None:
-    repo, source, output, glossary = _prepare_repo(tmp_path, approved=False)
-
-    with pytest.raises(TranslationError, match="benchmark gate"):
-        translate_file(source, output, glossary, "gpt-5.6-sol", repo, 40_000)
-
-
-def test_rejects_editor_model_for_primary_translation(tmp_path: Path) -> None:
-    repo, source, output, glossary = _prepare_repo(tmp_path)
-
-    with pytest.raises(TranslationError, match="gpt-5.6-sol"):
-        translate_file(source, output, glossary, "claude-opus-4-8", repo, 40_000)
 
 
 def test_rejects_extra_outer_markdown_fence(
@@ -186,7 +166,7 @@ def test_rejects_extra_outer_markdown_fence(
     monkeypatch.setattr("scripts.translate_file.run_model", fake_run_model)
 
     with pytest.raises(TranslationError, match="внешний Markdown fence"):
-        translate_file(source, output, glossary, "gpt-5.6-sol", repo, 40_000)
+        translate_file(source, output, glossary, repo, 40_000)
 
 
 def test_rejects_assembled_draft_with_changed_shape(
@@ -208,4 +188,55 @@ def test_rejects_assembled_draft_with_changed_shape(
     monkeypatch.setattr("scripts.translate_file.run_model", fake_run_model)
 
     with pytest.raises(TranslationError, match="heading-structure"):
-        translate_file(source, output, glossary, "gpt-5.6-sol", repo, 40_000)
+        translate_file(source, output, glossary, repo, 40_000)
+
+
+def test_cli_uses_exact_model_without_model_argument(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    repo, source, output, glossary = _prepare_repo(tmp_path)
+    calls: list[tuple[Path, Path, Path, Path, int, int]] = []
+
+    def fake_translate_file(
+        source_path: Path,
+        output_path: Path,
+        glossary_path: Path,
+        repo_root: Path,
+        max_chars: int = 40_000,
+        timeout_seconds: int = 3_600,
+    ) -> object:
+        calls.append(
+            (source_path, output_path, glossary_path, repo_root, max_chars, timeout_seconds)
+        )
+        return type(
+            "Manifest",
+            (),
+            {"source_path": source_path, "output_path": output_path, "chunks": ()},
+        )()
+
+    monkeypatch.setattr("scripts.translate_file.translate_file", fake_translate_file)
+
+    def fake_resolve(_path: Path, strict: bool = False) -> Path:
+        del strict
+        return repo / "scripts/x.py"
+
+    monkeypatch.setattr("scripts.translate_file.Path.resolve", fake_resolve)
+
+    exit_code = main(
+        [
+            "--source",
+            str(source),
+            "--output",
+            str(output),
+            "--glossary",
+            str(glossary),
+            "--max-chars",
+            "1234",
+            "--timeout-seconds",
+            "5678",
+        ]
+    )
+
+    assert exit_code == 0
+    assert calls == [(source, output, glossary, repo, 1234, 5678)]

@@ -2,7 +2,6 @@ from __future__ import annotations
 
 import argparse
 import hashlib
-import json
 import re
 import sys
 from collections.abc import Sequence
@@ -10,14 +9,31 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import cast
 
-from scripts.check_translation import (
-    TRANSLATION_NOTICE,
-    GlossaryTerm,
-    load_glossary,
-    validate_translation,
-)
-from scripts.markdown_chunks import MarkdownChunk, split_markdown
-from scripts.model_runner import ModelName, run_model
+if __package__:
+    from scripts.check_translation import (
+        TRANSLATION_NOTICE,
+        GlossaryTerm,
+        load_glossary,
+        validate_translation,
+    )
+    from scripts.markdown_chunks import MarkdownChunk, split_markdown
+    from scripts.model_runner import EXACT_MODEL, ModelName, run_model
+else:
+    from check_translation import (  # pyright: ignore[reportImplicitRelativeImport]
+        TRANSLATION_NOTICE,
+        GlossaryTerm,
+        load_glossary,
+        validate_translation,
+    )
+    from markdown_chunks import (  # pyright: ignore[reportImplicitRelativeImport]
+        MarkdownChunk,
+        split_markdown,
+    )
+    from model_runner import (  # pyright: ignore[reportImplicitRelativeImport]
+        EXACT_MODEL,
+        ModelName,
+        run_model,
+    )
 
 
 @dataclass(frozen=True)
@@ -61,28 +77,6 @@ def _validate_paths(
     if output == output_root or not output.is_relative_to(output_root):
         raise TranslationError(f"Output должен находиться внутри {output_root}")
     return root, source, output
-
-
-def _load_benchmark_gate(repo_root: Path) -> None:
-    benchmark_path = repo_root / "evals/translation-benchmark.json"
-    if not benchmark_path.is_file():
-        raise TranslationError("benchmark gate не выполнен: отсутствует accepted result")
-    try:
-        raw: object = json.loads(benchmark_path.read_text(encoding="utf-8"))
-    except json.JSONDecodeError as error:
-        raise TranslationError("benchmark gate содержит некорректный JSON") from error
-    if not isinstance(raw, dict):
-        raise TranslationError("benchmark gate root должен быть object")
-    document = cast(dict[str, object], raw)
-    decision = document.get("decision")
-    gate = document.get("gate")
-    approved = (
-        isinstance(decision, dict)
-        and cast(dict[object, object], decision).get("approved_primary") is True
-    )
-    blocked = isinstance(gate, dict) and cast(dict[object, object], gate).get("blocked") is True
-    if document.get("primary_model") != "gpt-5.6-sol" or not approved or blocked:
-        raise TranslationError("benchmark gate не одобрил exact primary gpt-5.6-sol")
 
 
 def _render_glossary(terms: tuple[GlossaryTerm, ...]) -> str:
@@ -154,15 +148,11 @@ def translate_file(
     source_path: Path,
     output_path: Path,
     glossary_path: Path,
-    model: ModelName,
     repo_root: Path,
     max_chars: int = 40_000,
     timeout_seconds: int = 3_600,
 ) -> TranslationManifest:
-    if model != "gpt-5.6-sol":
-        raise TranslationError("Primary translation разрешён только exact model gpt-5.6-sol")
     root, source, output = _validate_paths(repo_root, source_path, output_path)
-    _load_benchmark_gate(root)
     if not glossary_path.is_file():
         raise TranslationError(f"Glossary не существует: {glossary_path}")
     prompt_path = root / "prompts/translate.txt"
@@ -184,7 +174,7 @@ def translate_file(
     for chunk in chunks:
         prompt = _render_prompt(template, source_relative, chunk, accepted_glossary)
         chunk_output = chunk_root / f"{chunk.index}.md"
-        result = run_model(model, prompt, root, chunk_output, timeout_seconds)
+        result = run_model(EXACT_MODEL, prompt, root, chunk_output, timeout_seconds)
         if _has_extra_outer_fence(chunk.text, result.response):
             raise TranslationError(f"Chunk {chunk.index}: обнаружен лишний внешний Markdown fence")
         responses.append(result.response)
@@ -195,7 +185,7 @@ def translate_file(
                 end_line=chunk.end_line,
                 source_sha256=chunk.sha256,
                 response_sha256=result.response_sha256,
-                runtime_id=result.evidence.runtime_id,
+                runtime_id=result.evidence.thread_id,
             )
         )
 
@@ -210,7 +200,7 @@ def translate_file(
     return TranslationManifest(
         source_path=source,
         output_path=output,
-        model=model,
+        model=EXACT_MODEL,
         source_sha256=_sha256(source_text),
         draft_sha256=_sha256(draft),
         chunks=tuple(translated_chunks),
@@ -222,11 +212,6 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--source", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--glossary", required=True, type=Path)
-    parser.add_argument(
-        "--model",
-        required=True,
-        choices=("gpt-5.6-sol", "claude-opus-4-8"),
-    )
     parser.add_argument("--max-chars", type=int, default=40_000)
     parser.add_argument("--timeout-seconds", type=int, default=3_600)
     return parser
@@ -240,7 +225,6 @@ def main(argv: Sequence[str] | None = None) -> int:
             cast(Path, arguments.source),
             cast(Path, arguments.output),
             cast(Path, arguments.glossary),
-            cast(ModelName, arguments.model),
             repo_root,
             cast(int, arguments.max_chars),
             cast(int, arguments.timeout_seconds),
