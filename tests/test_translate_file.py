@@ -87,6 +87,13 @@ def _result(output_path: Path, response: str) -> ModelResult:
     )
 
 
+def test_translation_prompt_requires_documented_cjk_allowlist() -> None:
+    prompt = Path("prompts/translate.txt").read_text(encoding="utf-8")
+
+    assert "cjk-allow" in prompt
+    assert "CJK-текст вне документированного allowlist" in prompt
+
+
 def test_translates_lossless_chunks_with_same_accepted_glossary(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
