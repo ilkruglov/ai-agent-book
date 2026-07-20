@@ -5,6 +5,7 @@ import json
 import shutil
 from collections.abc import Callable, Iterator, Mapping
 from pathlib import Path
+from typing import cast
 
 import pytest
 
@@ -63,6 +64,13 @@ def test_verification_schema_types_const_fields_for_structured_output() -> None:
         "type": "string",
         "const": "gpt-5.6-sol",
     }
+
+
+def test_verification_prompt_requires_russian_grammar_review() -> None:
+    prompt = (ROOT / "prompts/verify_translation.txt").read_text(encoding="utf-8")
+
+    assert "русскую грамматику" in prompt
+    assert "согласование подлежащего и сказуемого" in prompt
 
 
 def _sha256(text: str) -> str:
@@ -293,11 +301,10 @@ def _run_with_payloads(
         assert timeout_seconds == 60
         assert "Accepted glossary" in prompt
         assert output_schema is not None
-        issues = output_schema["properties"]
-        assert isinstance(issues, dict)
-        issue_schema = issues["issues"]
-        assert isinstance(issue_schema, dict)
-        assert issue_schema["items"]["type"] == "object"
+        properties = cast(Mapping[str, object], output_schema["properties"])
+        issue_schema = cast(Mapping[str, object], properties["issues"])
+        item_schema = cast(Mapping[str, object], issue_schema["items"])
+        assert item_schema["type"] == "object"
         response = next(responses)
         result = _result(output_path, response, ordinal)
         ordinal += 1
