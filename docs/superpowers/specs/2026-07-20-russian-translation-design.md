@@ -34,6 +34,7 @@
 - локализованные генераторы схем;
 - русская обложка и PDF-метаданные;
 - глоссарий;
+- manifest происхождения перевода;
 - проверки перевода, структуры, ссылок и изображений;
 - собранный PDF.
 
@@ -54,6 +55,7 @@ ai-agent-book-ru/
 ├── .gitignore
 ├── upstream.json
 ├── glossary.yml
+├── translation-manifest.json
 ├── book/
 │   ├── introduction.md
 │   ├── chapter1.md
@@ -78,12 +80,22 @@ ai-agent-book-ru/
 │   └── experiment_box.lua
 ├── scripts/
 │   ├── check_translation.py
-│   └── check_links.py
+│   ├── check_links.py
+│   ├── markdown_chunks.py
+│   ├── model_runner.py
+│   ├── translate_file.py
+│   └── verify_translation.py
+├── prompts/
+│   ├── translate.txt
+│   ├── verify_translation.txt
+│   └── verify_translation.schema.json
 ├── tests/
 │   ├── test_check_translation.py
-│   └── test_check_links.py
-├── evals/
-│   └── translation-benchmark.json
+│   ├── test_check_links.py
+│   ├── test_markdown_chunks.py
+│   ├── test_model_runner.py
+│   ├── test_translate_file.py
+│   └── test_verify_translation.py
 ├── dist/
 │   └── AI-Agents-in-Depth-RU-v1.2.pdf
 └── docs/superpowers/specs/
@@ -106,33 +118,34 @@ ai-agent-book-ru/
 
 Каждый Markdown-файл получает уведомление об изменении. Уведомление не должно мешать PDF-вёрстке.
 
-### 5.1. Модели и blind benchmark
+### 5.1. GPT-only pipeline
 
-- Основной переводчик: `gpt-5.6-sol`.
-- Независимый редактор: Claude Opus 4.8 (`claude-opus-4-8`) через доступный Claude Code surface; Fable 5 не используется.
-- Переводчик и редактор работают напрямую с китайским оригиналом и одним `glossary.yml`.
-- Opus не переписывает главу целиком: он отмечает смысловые ошибки, пропуски, неестественный русский и нарушения терминологии. Исправления принимаются только после повторной сверки с китайским исходником.
-- Общий Codex alias не считается подтверждением модели. До массового перевода фактический model ID должен быть подтверждён как `gpt-5.6-sol` доступным runtime/API-ответом.
-- При недоступности любой зафиксированной модели работа останавливается; автоматической замены моделью другого класса нет.
+- Единственная модель перевода и сверки: `gpt-5.6-sol`.
+- Модель запускается через Codex app-server по stdio JSON-RPC.
+- `thread/start` передаёт exact model ID, `allowProviderModelFallback=false`, read-only sandbox и `ephemeral=true`.
+- Успешный runtime обязан вернуть effective `model: gpt-5.6-sol`, provider `openai`, ephemeral thread ID, завершённый turn и token-usage evidence.
+- Общий alias, fallback и автоматическая замена модели запрещены. Отсутствующее или противоречивое runtime evidence останавливает работу.
+- До массового перевода выполняется только nonce smoke exact-модели; сравнительная оценка моделей и ручной gate не используются.
 
-До перевода всей книги выполняется blind benchmark на 20 репрезентативных фрагментах: определения, сложная техническая проза, формулы, таблицы, code blocks с учебными комментариями, callout-блоки и подписи к иллюстрациям. `gpt-5.6-sol` и `claude-opus-4-8` получают одинаковый китайский контекст, глоссарий и требования к формату; названия моделей скрываются при сравнении результатов.
+Каждый Markdown chunk проходит два последовательных вызова одной exact-модели:
 
-Каждый вариант оценивается по смысловой точности, отсутствию пропусков и добавлений, естественности русского языка, соблюдению глоссария и сохранению Markdown-структуры. Каждый критерий получает 0, 1 или 2 балла: максимум 10 баллов на фрагмент и 200 баллов за benchmark. Формат проверяется детерминированными скриптами; оба модельных участника независимо оценивают смысл и русский текст анонимных вариантов A/B. Пользователю передаётся таблица расхождений, поэтому ни одна модель не выбирает победителя единолично. Критической ошибкой считается инверсия смысла, выдуманный факт, потерянное утверждение либо изменение машинно значимого кода.
+1. Первый проход переводит китайский source напрямую на естественный технический русский и возвращает только Markdown.
+2. Второй проход получает тот же китайский source, черновой русский перевод и accepted glossary. Он возвращает strict JSON с source/draft hashes, перечнем подтверждённых ошибок и исправленным Markdown chunk. Черновик нельзя переписывать без связанной с source причины.
 
-Китайские benchmark-фрагменты находятся только в `.tmp/benchmark/`. `evals/translation-benchmark.json` хранит upstream-пути и hashes фрагментов, точные model IDs и настройки, анонимизированные русские варианты, оценки и решение пользователя; китайский текст в Git не добавляется.
+Второй проход называется GPT-сверкой. После обоих проходов детерминированные проверки сравнивают уровни заголовков, code fences, таблицы, image destinations, glossary и CJK allowlist. Только результат второго прохода, прошедший все проверки, может войти в `book/`.
 
-`gpt-5.6-sol` остаётся основным переводчиком. Benchmark блокирует массовый перевод, если у `gpt-5.6-sol` найдена хотя бы одна критическая ошибка, его итоговая оценка ниже `claude-opus-4-8` минимум на 10 баллов из 200 либо его оценка смысловой точности ниже минимум на пяти фрагментах из двадцати. Примеры и оценки передаются пользователю, после чего отдельно согласуются новые настройки или смена pipeline.
+`translation-manifest.json` хранит upstream path/range/hash, final translation hash, exact model ID, transport settings и runtime evidence обоих проходов. Китайский source, prompts, reasoning и временные model responses в manifest не записываются.
 
 ## 6. Процесс перевода
 
 1. Загрузить upstream-коммит в `.tmp/upstream/` и проверить его SHA.
 2. Сформировать `upstream.json` и базовый `glossary.yml`.
-3. Выполнить blind benchmark и зафиксировать результаты.
+3. Выполнить nonce smoke и подтвердить effective `gpt-5.6-sol` без fallback.
 4. Переводить последовательно: введение, главы 1–10, послесловие.
-5. Для каждой главы сохранить порядок разделов, таблиц, code fences, изображений и перекрёстных ссылок.
-6. Выполнить терминологическую и структурную проверку.
-7. Передать главу `claude-opus-4-8` для независимого редакторского review.
-8. Повторно сверить принятые исправления с китайским оригиналом абзац за абзацем.
+5. Для каждого chunk выполнить первый переводческий проход.
+6. Для каждого черновика выполнить GPT-сверку с тем же китайским source.
+7. Проверить структуру, терминологию, CJK allowlist, изображения и ссылки.
+8. Записать подтверждённые hashes и runtime evidence в `translation-manifest.json`.
 9. Зафиксировать завершённую главу отдельным explanatory commit.
 10. После текста локализовать генерируемые схемы и русскую обложку.
 11. Выполнить полный набор проверок и собрать итоговый PDF.
@@ -196,7 +209,9 @@ PDF-метаданные:
 
 Оба Python-скрипта реализуются по TDD: сначала добавляется минимальный падающий тест для каждого правила, затем реализация и полный прогон `pytest`. Тесты покрывают успешный сценарий и отдельные ошибки структуры, code fences, китайского текста, терминологии, ссылок и изображений.
 
-`scripts/check_translation.py` также принимает необязательный `--pdf-text` и проверяет извлечённый текст PDF: русский заголовок, заголовки всех глав и отсутствие символа замены Unicode.
+`scripts/model_runner.py` проверяет app-server JSON-RPC lifecycle, effective model ID, provider, ephemeral thread, completion и usage evidence. `scripts/translate_file.py` выполняет первый проход, а `scripts/verify_translation.py` проверяет strict JSON второго прохода, source/draft hashes и соответствие исправленного chunk исходной Markdown-структуре. Unit-тесты используют mock event streams; отдельный реальный nonce smoke запускается перед переводом книги.
+
+`scripts/check_translation.py` также принимает `--manifest translation-manifest.json` и сверяет upstream hashes, final file hashes, exact model ID и наличие runtime evidence обоих проходов. Необязательный `--pdf-text` проверяет извлечённый текст PDF: русский заголовок, заголовки всех глав и отсутствие символа замены Unicode.
 
 Полный verification-набор:
 
@@ -209,7 +224,7 @@ python scripts/check_links.py book
 bash book/build_pdf.sh
 pdfinfo dist/AI-Agents-in-Depth-RU-v1.2.pdf
 pdftotext dist/AI-Agents-in-Depth-RU-v1.2.pdf .tmp/book.txt
-python scripts/check_translation.py --source .tmp/upstream/book --target book --glossary glossary.yml --pdf-text .tmp/book.txt
+python scripts/check_translation.py --source .tmp/upstream/book --target book --glossary glossary.yml --manifest translation-manifest.json --pdf-text .tmp/book.txt
 ```
 
 Последняя команда проверяет русский заголовок, все главы и отсутствие повреждённой кириллицы.
@@ -217,7 +232,9 @@ python scripts/check_translation.py --source .tmp/upstream/book --target book --
 ## 10. Обработка ошибок
 
 - Несовпадение upstream SHA останавливает работу до начала перевода.
-- Неподтверждённый `gpt-5.6-sol` или недоступный `claude-opus-4-8` останавливает benchmark и массовый перевод.
+- Неподтверждённый effective `gpt-5.6-sol`, разрешённый provider fallback или неполный app-server event stream останавливает массовый перевод.
+- Timeout, runtime error, invalid second-pass JSON, несовпадающие source/draft hashes или отсутствующее completion/usage evidence считаются фатальными.
+- Частичный chunk не перезаписывается автоматически. Повторный запуск продолжает работу только с полностью проверенных chunks, чьи hashes совпадают с manifest во временном state.
 - Отсутствие source snapshot делает структурную проверку неуспешной; проверка не переходит в ослабленный режим.
 - Незакрытый code fence, потерянное изображение, неизвестный китайский фрагмент или нарушение глоссария завершают проверку ненулевым кодом.
 - Отсутствующая PDF-зависимость выводится по имени с инструкцией, но ничего не устанавливается автоматически.
@@ -228,13 +245,14 @@ python scripts/check_translation.py --source .tmp/upstream/book --target book --
 
 Релиз `v1.2-ru.1` готов, когда одновременно выполнены все условия:
 
-1. Фактический model ID `gpt-5.6-sol` подтверждён, blind benchmark выполнен и сохранён.
+1. Фактический model ID `gpt-5.6-sol` подтверждён app-server runtime-ответом, provider fallback отключён.
 2. Переведены введение, десять глав и послесловие.
-3. Каждая глава прошла независимый review `claude-opus-4-8` и повторно сверена с китайским оригиналом.
+3. Каждый chunk прошёл первый переводческий проход и второй GPT-проход сверки с китайским оригиналом.
 4. Глоссарий применяется последовательно во всей книге.
 5. Все генерируемые схемы локализованы; остальные изображения корректно подписаны.
 6. Структурные, терминологические и ссылочные проверки и их тесты проходят без ошибок.
 7. Python-проверки и генераторы проходят Ruff, включая правила аннотаций типов.
 8. PDF успешно собран и прошёл `pdfinfo`/`pdftotext` smoke-проверки.
 9. `README.md`, лицензия, уведомления об изменениях и атрибуция присутствуют.
-10. В Git нет `.tmp/`, китайских исходников или незапланированных экспериментальных каталогов.
+10. `translation-manifest.json` содержит source/final hashes и runtime evidence обоих GPT-проходов без китайского текста.
+11. В Git нет `.tmp/`, китайских исходников или незапланированных экспериментальных каталогов.
