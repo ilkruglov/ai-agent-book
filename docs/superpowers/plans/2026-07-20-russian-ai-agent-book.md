@@ -159,18 +159,18 @@ git commit -m "chore: bootstrap pinned Russian translation project" -m "Record t
 
 Использовать fixtures `tmp_path` с короткими парами source/target Markdown. Покрыть каждый случай независимо:
 
-- matching heading-level sequence passes although heading text differs;
-- missing or extra heading fails;
-- code fence count, marker and info-string mismatch fails;
-- image destination sequence mismatch fails while translated alt text passes;
-- table separator count mismatch fails;
-- missing exact translation notice fails;
+- совпадающая последовательность уровней заголовков проходит, хотя их текст различается;
+- отсутствующий или лишний заголовок приводит к ошибке;
+- несовпадение количества code fences, marker либо info-string приводит к ошибке;
+- несовпадение последовательности image destinations приводит к ошибке, а переведённый alt text допустим;
+- несовпадение числа разделителей таблиц приводит к ошибке;
+- отсутствие точного уведомления о переводе приводит к ошибке;
 - CJK в prose приводит к ошибке;
 - CJK внутри `<!-- cjk-allow: reason="..." -->` / `<!-- /cjk-allow -->` разрешён;
-- empty allow reason fails;
-- a forbidden accepted-glossary spelling fails;
-- a `status: candidate` entry is not enforced;
-- `--only chapter2.md` checks only that pair;
+- пустой allow reason приводит к ошибке;
+- запрещённое написание из accepted glossary приводит к ошибке;
+- запись `status: candidate` не применяется принудительно;
+- `--only chapter2.md` проверяет только эту пару;
 - PDF text без русского названия, любого H1 книги либо с `U+FFFD` приводит к ошибке.
 
 Запустить:
@@ -183,11 +183,11 @@ uv run pytest -q tests/test_check_translation.py
 
 - [ ] **Шаг 2: Реализовать typed parser and validator**
 
-Implement these public interfaces with explicit types:
+Реализовать следующие публичные интерфейсы с явными типами:
 
-- `MarkdownShape`: frozen dataclass with heading levels/text, fences, table count and image destinations;
-- `ValidationIssue`: frozen dataclass with `path`, `line`, `code`, `message`;
-- `CjkOccurrence`: frozen dataclass with `line`, `text`;
+- `MarkdownShape`: frozen dataclass с уровнями/текстом заголовков, fences, числом таблиц и image destinations;
+- `ValidationIssue`: frozen dataclass с `path`, `line`, `code`, `message`;
+- `CjkOccurrence`: frozen dataclass с `line`, `text`;
 - `find_cjk(text: str) -> list[CjkOccurrence]`;
 - `parse_markdown(text: str) -> MarkdownShape`;
 - `load_glossary(path: Path) -> tuple[GlossaryTerm, ...]`;
@@ -237,12 +237,12 @@ git commit -m "feat: validate translation structure and terminology" -m "Fail cl
 
 - [ ] **Шаг 1: Написать падающие tests**
 
-Cover local `.md` links, image paths, same-file anchors, cross-file anchors, duplicate GitHub-style anchor suffixes, percent-decoding, Cyrillic headings and links inside code fences. Assert that HTTP(S), `mailto:` and fragment-free external URLs are skipped without a network request. Assert that any `.tmp/upstream`, `book-zh`, or absolute filesystem link fails.
+Покрыть локальные `.md` links, image paths, anchors того же файла и других файлов, суффиксы повторяющихся GitHub-style anchors, percent-decoding, кириллические заголовки и ссылки внутри code fences. Проверить, что HTTP(S), `mailto:` и внешние URL без fragment пропускаются без network request. Любая ссылка на `.tmp/upstream`, `book-zh` либо абсолютный filesystem path должна приводить к ошибке.
 
 Add two modes:
 
 - строгий режим по умолчанию: каждый локальный destination и anchor должен существовать;
-- `--partial-manifest upstream.json`: links to one of the 12 declared but not-yet-translated Markdown files are reported as informational and do not fail; images and anchors in existing files remain strict.
+- `--partial-manifest upstream.json`: links на один из 12 заявленных, но ещё не переведённых Markdown-файлов выводятся как информационные и не приводят к ошибке; images и anchors существующих файлов остаются строгими.
 
 Запустить:
 
@@ -256,7 +256,7 @@ uv run pytest -q tests/test_check_links.py
 
 Публичные интерфейсы:
 
-- `LinkIssue`: frozen dataclass with `path`, `line`, `code`, `target`;
+- `LinkIssue`: frozen dataclass с `path`, `line`, `code`, `target`;
 - `github_anchor(text: str, occurrence: int) -> str` preserving Unicode letters and numbers;
 - `collect_anchors(markdown: str) -> set[str]`;
 - `check_book(root: Path, only: tuple[Path, ...], partial_manifest: Path | None) -> list[LinkIssue]`;
@@ -300,11 +300,11 @@ git commit -m "feat: validate Russian book links and assets" -m "Check local Mar
 
 Тесты должны доказать, что `split_markdown(text: str, max_chars: int) -> tuple[MarkdownChunk, ...]`:
 
-- rejoins byte-for-byte to the original text;
-- prefers H2 boundaries, then H3 boundaries;
-- never splits inside a fenced block, Markdown table or HTML comment;
-- assigns stable zero-padded indices and source line ranges;
-- raises a typed error when a single indivisible block exceeds `max_chars`.
+- повторное объединение byte-for-byte совпадает с исходным текстом;
+- сначала предпочитаются границы H2, затем H3;
+- разбиение не происходит внутри fenced block, Markdown table или HTML comment;
+- назначаются устойчивые zero-padded indices и source line ranges;
+- при превышении `max_chars` одним неделимым блоком возникает typed error.
 
 Запустить тест и зафиксировать ошибку импорта, затем реализовать frozen `MarkdownChunk(index, start_line, end_line, text, sha256)` и получить зелёный прогон.
 
@@ -331,18 +331,18 @@ Implement:
 - `build_command(model: ModelName, repo_root: Path, output_path: Path) -> tuple[str, ...]`;
 - `run_model(model: ModelName, prompt: str, repo_root: Path, output_path: Path, timeout_seconds: int) -> ModelResult`.
 
-`run_model` passes the prompt only through stdin, captures stderr/stdout, stores SHA-256 and runtime completion evidence, and never retries with another model. A nonzero exit, timeout, missing response, absent completion/usage evidence, or returned model metadata inconsistent with the requested exact ID is fatal.
+`run_model` передаёт prompt только через stdin, захватывает stderr/stdout, сохраняет SHA-256 и runtime completion evidence и никогда не повторяет запрос другой моделью. Ненулевой exit, timeout, отсутствующий response, отсутствие completion/usage evidence либо model metadata, не согласующиеся с запрошенным exact ID, считаются фатальными.
 
 - [ ] **Шаг 3: TDD для translation orchestration**
 
 Тесты с mock `run_model` должны доказать:
 
-- source is read from `.tmp/upstream/book/` only;
-- translation is assembled under `.tmp/drafts/` only;
-- every chunk receives the same accepted glossary plus its path/hash/line range;
-- model output wrapped in an extra outer code fence is rejected;
+- source читается только из `.tmp/upstream/book/`;
+- translation собирается только под `.tmp/drafts/`;
+- каждый chunk получает одинаковый accepted glossary, а также собственные path/hash/line range;
+- model output с лишним внешним code fence отклоняется;
 - собранный draft должен пройти shape-сравнение `parse_markdown` до успешного завершения;
-- full-book translation refuses to run until `evals/translation-benchmark.json` has `decision.approved_primary = true` and primary model `gpt-5.6-sol`.
+- full-book translation не запускается, пока `evals/translation-benchmark.json` не содержит `decision.approved_primary = true` и primary model `gpt-5.6-sol`.
 
 Использовать по умолчанию `max_chars=40000`, не разрывать блоки кода, таблиц и комментариев, а в тестах разрешить явное меньшее значение.
 
@@ -354,7 +354,7 @@ Implement:
 
 `prompts/translate.txt` требует прямой перевод с китайского на естественный технический русский, точную Markdown-структуру, неизменные code/machine identifiers, соблюдение glossary, отсутствие пропусков/добавлений, русские подписи и output только с переведённым chunk.
 
-`prompts/review.txt` explicitly forbids a whole-chapter rewrite. It asks for source-grounded issues with categories `semantic`, `omission`, `addition`, `russian`, `terminology`, `markdown`; severities `critical`, `major`, `minor`; source and target line ranges; concise evidence; and a proposed Russian replacement.
+`prompts/review.txt` явно запрещает переписывать главу целиком. Он требует issues, подтверждённые source, с категориями `semantic`, `omission`, `addition`, `russian`, `terminology`, `markdown`; severities `critical`, `major`, `minor`; source/target line ranges; кратким evidence и предложенной русской заменой.
 
 `prompts/review.schema.json` is strict JSON Schema: no additional properties, all fields required, and top-level fields `source_sha256`, `translation_sha256`, `model_id`, `issues`.
 
@@ -429,18 +429,18 @@ python scripts/benchmark.py finalize --work .tmp/benchmark --decision .tmp/bench
 Правила состояний:
 
 1. `prepare` извлекает source в `.tmp/benchmark/source/`, записывает SHA-256 и создаёт secret A/B mapping под `.tmp/`; повторный `prepare` не должен незаметно заменять существующие результаты.
-2. `smoke` sends a nonce request to each exact model. It records command, requested ID, runtime completion evidence and returned model metadata. Missing or inconsistent evidence fails.
-3. `run` translates each fragment with both models and then asks both models to score anonymous A/B variants independently. Prompts contain identical source and accepted glossary.
-4. Scores cover semantic accuracy, omissions/additions, Russian naturalness, glossary and Markdown structure. Every criterion is integer `0`, `1` or `2`.
+2. `smoke` отправляет nonce-запрос каждой exact model. Он записывает команду, requested ID, runtime completion evidence и возвращённые model metadata. Отсутствующий либо противоречивый evidence приводит к ошибке.
+3. `run` переводит каждый фрагмент обеими моделями, затем просит обе модели независимо оценить анонимные варианты A/B. Prompts содержат одинаковые source и accepted glossary.
+4. Scores покрывают смысловую точность, пропуски/добавления, естественность русского языка, glossary и Markdown-структуру. Каждый критерий — целое число `0`, `1` либо `2`.
 5. При расхождении двух judges по критерию final score остаётся unresolved; `decision.json` должен содержать итоговую целочисленную оценку пользователя. Максимум варианта остаётся `200`.
-6. `report` shows Russian A/B texts, deterministic shape findings, both judge scores, disagreements and critical-error evidence, but does not reveal identities until the final comparison section.
+6. `report` показывает русские тексты A/B, deterministic shape findings, оценки обоих judges, расхождения и critical-error evidence, но не раскрывает личности до финального раздела сравнения.
 7. `finalize` отклоняет unresolved scores и записывает source path/range/hash, русские варианты, exact model IDs/settings/evidence, final scores, critical flags, gate evaluation и user decision. Китайский source text не записывается.
 
 Gate блокирует primary при любом условии:
 
-- at least one critical error is assigned to the `gpt-5.6-sol` variant;
+- варианту `gpt-5.6-sol` назначена хотя бы одна critical error;
 - `gpt_total <= opus_total - 10`;
-- `gpt-5.6-sol` has a lower semantic score on at least five samples.
+- `gpt-5.6-sol` имеет более низкую semantic score минимум на пяти samples.
 
 - [ ] **Шаг 3: Проверить реализацию без вызовов моделей**
 
@@ -454,7 +454,7 @@ git diff --check
 
 - [ ] **Шаг 4: Выполнить реальный benchmark ограниченными batches**
 
-First inspect load and RAM using the common commands. Then:
+Сначала проверить load и RAM общими командами. Затем:
 
 ~~~bash
 uv run python scripts/benchmark.py prepare --upstream .tmp/upstream --work .tmp/benchmark
@@ -463,7 +463,7 @@ uv run python scripts/benchmark.py run --work .tmp/benchmark --batch-size 5
 uv run python scripts/benchmark.py report --work .tmp/benchmark --output .tmp/benchmark/report.md
 ~~~
 
-After each batch report completed samples, failures and remaining count. Stop immediately if either exact model is unavailable or runtime identity evidence is insufficient.
+После каждого batch сообщать число завершённых samples, failures и остаток. Немедленно остановиться, если любая exact model недоступна либо runtime identity evidence недостаточен.
 
 - [ ] **Шаг 5: СТОП — передать report пользователю**
 
@@ -586,7 +586,7 @@ git commit -m "docs(book): translate the introduction into Russian" -m "Translat
 
 - [ ] **Шаг 1: Подготовить терминологию главы**
 
-Check chapter-wide uses of `AI Agent`, agent paradigm, agent harness, model/training/inference concepts and system components. Accept one Russian form per concept before generation; do not enforce uncertain candidates.
+Проверить во всей главе употребление `AI Agent`, agent paradigm, agent harness, понятий model/training/inference и системных компонентов. До генерации принять один русский вариант для каждого понятия; неопределённые candidates принудительно не применять.
 
 - [ ] **Шаг 2: Получить draft и выполнить структурную red/green-проверку**
 
@@ -596,7 +596,7 @@ uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter1.md 
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/draft-book --glossary glossary.yml --only chapter1.md
 ~~~
 
-Add the complete checked draft to `book/chapter1.md` through `apply_patch`. Verify definitions, causal claims and every reference to `fig1-1` through `fig1-10` against the source.
+Добавить полный проверенный draft в `book/chapter1.md` через `apply_patch`. Сверить по source определения, причинно-следственные утверждения и каждую ссылку на `fig1-1`–`fig1-10`.
 
 - [ ] **Шаг 3: Независимый review и исправления**
 
@@ -604,7 +604,7 @@ Add the complete checked draft to `book/chapter1.md` through `apply_patch`. Veri
 uv run python scripts/review_file.py --source .tmp/upstream/book/chapter1.md --translation book/chapter1.md --glossary glossary.yml --output .tmp/reviews/chapter1.json --model claude-opus-4-8
 ~~~
 
-Resolve findings only after checking the cited Chinese lines. Re-review every changed chunk until no unresolved `critical` or `major` issue remains.
+Устранять findings только после проверки указанных китайских строк. Повторять review каждого изменённого chunk до отсутствия unresolved issues `critical` и `major`.
 
 - [ ] **Шаг 4: Проверка и коммит**
 
@@ -626,7 +626,7 @@ git commit -m "docs(book): translate chapter 1 into Russian" -m "Preserve the ch
 
 - [ ] **Шаг 1: Подготовить терминологию главы**
 
-Check and accept consistent forms for LLM API/context concepts, `prefill`, `decode`, `KV cache`, latency/throughput, context window and prompt injection. Preserve API names and protocol tokens exactly.
+Проверить и принять единообразные варианты для понятий LLM API/context, `prefill`, `decode`, `KV cache`, latency/throughput, context window и prompt injection. Имена API и protocol tokens сохранить без изменений.
 
 - [ ] **Шаг 2: Получить draft и выполнить структурную проверку**
 
@@ -636,7 +636,7 @@ uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter2.md 
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/draft-book --glossary glossary.yml --only chapter2.md
 ~~~
 
-Add the checked draft through `apply_patch`. Manually compare formulas, numeric examples, tables, security negations and references `fig2-1` through `fig2-11`.
+Добавить проверенный draft через `apply_patch`. Вручную сравнить формулы, числовые примеры, таблицы, security negations и ссылки `fig2-1`–`fig2-11`.
 
 - [ ] **Шаг 3: Независимый review**
 
@@ -644,7 +644,7 @@ Add the checked draft through `apply_patch`. Manually compare formulas, numeric 
 uv run python scripts/review_file.py --source .tmp/upstream/book/chapter2.md --translation book/chapter2.md --glossary glossary.yml --output .tmp/reviews/chapter2.json --model claude-opus-4-8
 ~~~
 
-Source-check every proposed correction and re-review changed chunks. Critical semantic inversions, lost constraints and changed machine strings block the commit.
+Каждое предложенное исправление сверить с source и повторно проверить изменённые chunks. Critical смысловые инверсии, потерянные ограничения и изменённые machine strings блокируют commit.
 
 - [ ] **Шаг 4: Проверка и коммит**
 
@@ -666,7 +666,7 @@ git commit -m "docs(book): translate chapter 2 into Russian" -m "Translate the L
 
 - [ ] **Шаг 1: Подготовить терминологию memory и retrieval**
 
-Check short-/long-term memory, retrieval, embedding, vector database, chunking and RAG terms across the whole source chapter. Preserve product/API identifiers.
+Проверить во всей source-главе термины short-/long-term memory, retrieval, embedding, vector database, chunking и RAG. Product/API identifiers сохранить.
 
 - [ ] **Шаг 2: Получить, проверить и добавить draft**
 
@@ -684,7 +684,7 @@ uv run python scripts/check_translation.py --source .tmp/upstream/book --target 
 uv run python scripts/review_file.py --source .tmp/upstream/book/chapter3.md --translation book/chapter3.md --glossary glossary.yml --output .tmp/reviews/chapter3.json --model claude-opus-4-8
 ~~~
 
-Resolve only source-supported findings and re-review changed chunks until no unresolved high-severity issue remains.
+Исправлять только подтверждённые source findings и повторять review изменённых chunks до устранения unresolved high-severity issues.
 
 - [ ] **Шаг 4: Проверка и коммит**
 
@@ -716,7 +716,7 @@ uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter4.md 
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/draft-book --glossary glossary.yml --only chapter4.md
 ~~~
 
-Check async ordering, error branches, code comments, schemas and `fig4-1` through `fig4-12`; add the complete Russian file with `apply_patch`.
+Проверить async ordering, error branches, code comments, schemas и `fig4-1`–`fig4-12`; добавить полный русский файл через `apply_patch`.
 
 - [ ] **Шаг 3: Независимый review**
 
@@ -746,7 +746,7 @@ git commit -m "docs(book): translate chapter 4 into Russian" -m "Translate tool 
 
 - [ ] **Шаг 1: Подготовить терминологию security и coding agents**
 
-Check sandbox, permission, trust boundary, prompt injection, file edit, patch, repository and coding-agent terms. Preserve paths, commands, identifiers and security modal verbs exactly in meaning.
+Проверить термины sandbox, permission, trust boundary, prompt injection, file edit, patch, repository и coding agent. Точно сохранить смысл путей, команд, identifiers и security modal verbs.
 
 - [ ] **Шаг 2: Получить, проверить и добавить draft**
 
@@ -796,7 +796,7 @@ uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter6.md 
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/draft-book --glossary glossary.yml --only chapter6.md
 ~~~
 
-Validate all denominators, percentages, statistical qualifiers, formula notation and tables against source; add the checked file through `apply_patch`.
+Сверить с source все знаменатели, проценты, статистические qualifiers, обозначения формул и таблицы; добавить проверенный файл через `apply_patch`.
 
 - [ ] **Шаг 3: Независимый review**
 
@@ -826,7 +826,7 @@ git commit -m "docs(book): translate chapter 6 into Russian" -m "Translate agent
 
 - [ ] **Шаг 1: Подготовить терминологию training**
 
-Check SFT, RL, policy, reward, trajectory, rollout, verifier, tool creation and training-data terminology. Preserve algorithm/model/dataset identifiers and mathematical notation.
+Проверить терминологию SFT, RL, policy, reward, trajectory, rollout, verifier, tool creation и training data. Сохранить algorithm/model/dataset identifiers и математические обозначения.
 
 - [ ] **Шаг 2: Получить, проверить и добавить draft**
 
@@ -836,7 +836,7 @@ uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter7.md 
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/draft-book --glossary glossary.yml --only chapter7.md
 ~~~
 
-Check the SFT/RL comparison, reward direction, tables, algorithms and code blocks line-by-line; add the complete target through `apply_patch`.
+Построчно проверить сравнение SFT/RL, направление reward, таблицы, алгоритмы и code blocks; добавить полный target через `apply_patch`.
 
 - [ ] **Шаг 3: Независимый review**
 
@@ -876,7 +876,7 @@ uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter8.md 
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/draft-book --glossary glossary.yml --only chapter8.md
 ~~~
 
-Check event order, latency budgets, voice interaction states and `fig8-1` through `fig8-7`; add the file through `apply_patch`.
+Проверить event order, latency budgets, состояния голосового взаимодействия и `fig8-1`–`fig8-7`; добавить файл через `apply_patch`.
 
 - [ ] **Шаг 3: Независимый review**
 
@@ -906,7 +906,7 @@ git commit -m "docs(book): translate chapter 8 into Russian" -m "Translate realt
 
 - [ ] **Шаг 1: Подготовить терминологию embodied agents и robotics**
 
-Check embodied agent, perception, planning, control, actuator, sensor, world model, simulation, policy and safety terms. Preserve hardware/model identifiers and units.
+Проверить термины embodied agent, perception, planning, control, actuator, sensor, world model, simulation, policy и safety. Сохранить hardware/model identifiers и единицы измерения.
 
 - [ ] **Шаг 2: Получить, проверить и добавить draft**
 
@@ -916,7 +916,7 @@ uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter9.md 
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/draft-book --glossary glossary.yml --only chapter9.md
 ~~~
 
-Check control-loop causality, physical units, safety constraints and `fig9-1` through `fig9-12`; add the complete file with `apply_patch`.
+Проверить причинность control loop, физические единицы, safety constraints и `fig9-1`–`fig9-12`; добавить полный файл через `apply_patch`.
 
 - [ ] **Шаг 3: Независимый review**
 
@@ -924,7 +924,7 @@ Check control-loop causality, physical units, safety constraints and `fig9-1` th
 uv run python scripts/review_file.py --source .tmp/upstream/book/chapter9.md --translation book/chapter9.md --glossary glossary.yml --output .tmp/reviews/chapter9.json --model claude-opus-4-8
 ~~~
 
-Source-check and re-review every corrected chunk; physical direction, unit or safety changes are critical.
+Каждый исправленный chunk сверить с source и повторно проверить; изменения физического направления, единиц или safety считаются critical.
 
 - [ ] **Шаг 4: Проверка и коммит**
 
@@ -946,7 +946,7 @@ git commit -m "docs(book): translate chapter 9 into Russian" -m "Preserve embodi
 
 - [ ] **Шаг 1: Подготовить multi-agent терминологию**
 
-Check multi-agent system, coordination, communication, protocol, role, delegation, consensus, competition, topology and shared state. Preserve protocol messages, identifiers and cited system names.
+Проверить термины multi-agent system, coordination, communication, protocol, role, delegation, consensus, competition, topology и shared state. Сохранить protocol messages, identifiers и названия упомянутых систем.
 
 - [ ] **Шаг 2: Получить, проверить и добавить draft**
 
@@ -956,7 +956,7 @@ uv run python scripts/translate_file.py --source .tmp/upstream/book/chapter10.md
 uv run python scripts/check_translation.py --source .tmp/upstream/book --target .tmp/draft-book --glossary glossary.yml --only chapter10.md
 ~~~
 
-Check agent roles, message direction, coordination failure modes, code and tables; add the checked target with `apply_patch`.
+Проверить роли agents, направления сообщений, coordination failure modes, код и таблицы; добавить проверенный target через `apply_patch`.
 
 - [ ] **Шаг 3: Независимый review**
 
@@ -964,7 +964,7 @@ Check agent roles, message direction, coordination failure modes, code and table
 uv run python scripts/review_file.py --source .tmp/upstream/book/chapter10.md --translation book/chapter10.md --glossary glossary.yml --output .tmp/reviews/chapter10.json --model claude-opus-4-8
 ~~~
 
-Resolve only source-supported issues and re-review changed chunks until no high-severity finding remains.
+Устранять только подтверждённые source issues и повторять review изменённых chunks до отсутствия high-severity findings.
 
 - [ ] **Шаг 4: Проверка и коммит**
 
@@ -1000,7 +1000,7 @@ uv run python scripts/check_translation.py --source .tmp/upstream/book --target 
 uv run python scripts/review_file.py --source .tmp/upstream/book/afterword.md --translation book/afterword.md --glossary glossary.yml --output .tmp/reviews/afterword.json --model claude-opus-4-8
 ~~~
 
-Apply only source-grounded corrections and clear every unresolved `critical` or `major` issue.
+Применять только подтверждённые source исправления и устранить каждую unresolved issue `critical` или `major`.
 
 - [ ] **Шаг 3: Выполнить строгие проверки всей книги**
 
@@ -1042,13 +1042,13 @@ git commit -m "docs(book): translate the afterword into Russian" -m "Complete th
 
 Тесты должны определить точный expected output set:
 
-- chapter 1: `fig1-1.svg` through `fig1-10.svg`;
-- chapter 2: `fig2-1.svg` through `fig2-11.svg`;
-- chapter 3: `fig3-1.svg` through `fig3-14.svg`;
-- chapter 4: `fig4-1.svg` through `fig4-12.svg`;
-- chapter 5: `fig5-1.svg` through `fig5-11.svg`;
-- chapter 8: `fig8-1.svg` through `fig8-7.svg`;
-- chapter 9: `fig9-1.svg` through `fig9-12.svg`.
+- глава 1: `fig1-1.svg`–`fig1-10.svg`;
+- глава 2: `fig2-1.svg`–`fig2-11.svg`;
+- глава 3: `fig3-1.svg`–`fig3-14.svg`;
+- глава 4: `fig4-1.svg`–`fig4-12.svg`;
+- глава 5: `fig5-1.svg`–`fig5-11.svg`;
+- глава 8: `fig8-1.svg`–`fig8-7.svg`;
+- глава 9: `fig9-1.svg`–`fig9-12.svg`.
 
 Suite требует ровно 77 outputs, CLI `--output-dir` в каждом генераторе, typed `generate_all(output_dir: Path) -> tuple[Path, ...]`, одинаковые bytes в двух запусках, корректные XML/SVG roots и отсутствие недокументированного CJK. `derived-files.json` для каждого рисунка фиксирует, должен ли он содержать кириллицу: английские identifiers и формулы не переводятся искусственно. Также тест проверяет, что `gen_cover.py` не зависит от сети/API и детерминированно создаёт русскую vector cover.
 
@@ -1150,14 +1150,14 @@ git commit -m "assets: localize generated diagrams for Russian readers" -m "Tran
 
 `tests/test_pdf_config.py` проверяет:
 
-- exact title, author, translator attribution and version `v1.2-ru.1`;
-- exact source order: introduction, chapters 1–10, afterword;
-- `set -euo pipefail` and repository-relative path resolution;
-- required-command preflight for `pandoc`, `xelatex`, `rsvg-convert`, `kpsewhich`, `pdfinfo`, `pdftotext`;
-- required-file and local-image preflight;
-- a unique build directory created under repository `.tmp/`, without `rm -rf`;
-- no dependency installation and no use of `book-en` text;
-- final promotion only after `pdfinfo`, `pdftotext` and `check_translation.py --pdf-text` succeed.
+- точные title, author, translator attribution и version `v1.2-ru.1`;
+- точный source order: introduction, главы 1–10, afterword;
+- `set -euo pipefail` и вычисление путей относительно repository;
+- preflight обязательных команд `pandoc`, `xelatex`, `rsvg-convert`, `kpsewhich`, `pdfinfo`, `pdftotext`;
+- preflight обязательных файлов и локальных изображений;
+- уникальный build directory под `.tmp/` репозитория без `rm -rf`;
+- отсутствие установки dependencies и использования текста `book-en`;
+- финальное продвижение только после успеха `pdfinfo`, `pdftotext` и `check_translation.py --pdf-text`.
 
 Запустить и зафиксировать падения на импортированных upstream build files.
 
@@ -1246,7 +1246,7 @@ git commit -m "build: add reproducible Russian PDF edition" -m "Build the twelve
 
 - [ ] **Шаг 2: Выполнить полную чистую verification matrix**
 
-First run `superpowers:verification-before-completion`. Then execute from repository root:
+Сначала применить `superpowers:verification-before-completion`. Затем выполнить из repository root:
 
 ~~~bash
 uv sync --frozen --dev
