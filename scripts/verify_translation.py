@@ -411,15 +411,22 @@ def _parse_response(
         and lines[-1].strip() == lines[0].strip()[:3]
     ):
         raise VerificationError("GPT-сверка добавила лишний внешний Markdown fence")
-    draft_boundaries = (
-        len(chunk.draft_text) - len(chunk.draft_text.lstrip("\n")),
-        len(chunk.draft_text) - len(chunk.draft_text.rstrip("\n")),
+    source_boundaries = (
+        len(chunk.source.text) - len(chunk.source.text.lstrip("\n")),
+        len(chunk.source.text) - len(chunk.source.text.rstrip("\n")),
     )
     corrected_boundaries = (
         len(corrected) - len(corrected.lstrip("\n")),
         len(corrected) - len(corrected.rstrip("\n")),
     )
-    if draft_boundaries != corrected_boundaries:
+    if any(
+        corrected_count > source_count
+        for corrected_count, source_count in zip(
+            corrected_boundaries,
+            source_boundaries,
+            strict=True,
+        )
+    ):
         raise VerificationError("GPT-сверка изменила newline boundary chunk")
     return corrected
 
@@ -509,7 +516,14 @@ def verify_file(
             glossary,
         )
         response_path = response_root / f"{chunk.source.index}.json"
-        result = run_model(EXACT_MODEL, prompt, root, response_path, timeout_seconds)
+        result = run_model(
+            EXACT_MODEL,
+            prompt,
+            root,
+            response_path,
+            timeout_seconds,
+            output_schema=schema,
+        )
         corrected = _parse_response(result.response, schema, chunk)
         restored_corrected = restore_missing_newline_boundaries(
             (chunk.source,),

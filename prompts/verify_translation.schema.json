@@ -21,6 +21,7 @@
       "pattern": "^[0-9a-f]{64}$"
     },
     "model_id": {
+      "type": "string",
       "const": "gpt-5.6-sol"
     },
     "issues": {

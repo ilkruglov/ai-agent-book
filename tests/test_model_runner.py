@@ -202,6 +202,34 @@ def test_runs_json_rpc_lifecycle_and_records_exact_evidence(
     assert stream.closed is True
 
 
+def test_passes_output_schema_to_turn_start(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    stream = FakeJsonRpcStream(_valid_messages(tmp_path, response='{"ok":true}'))
+    _patch_stream(monkeypatch, stream)
+    schema: JsonObject = {
+        "type": "object",
+        "additionalProperties": False,
+        "required": ["ok"],
+        "properties": {"ok": {"type": "boolean"}},
+    }
+
+    run_model(
+        "gpt-5.6-sol",
+        "Верни JSON",
+        tmp_path,
+        tmp_path / ".tmp/result.json",
+        60,
+        output_schema=schema,
+    )
+
+    turn_start = stream.sent[-1]
+    params = turn_start["params"]
+    assert isinstance(params, dict)
+    assert params["outputSchema"] == schema
+
+
 @pytest.mark.parametrize(
     ("path", "value", "message"),
     [

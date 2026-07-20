@@ -3,7 +3,7 @@ from __future__ import annotations
 import hashlib
 import json
 import shutil
-from collections.abc import Callable, Iterator
+from collections.abc import Callable, Iterator, Mapping
 from pathlib import Path
 
 import pytest
@@ -52,6 +52,17 @@ print("ok")
     """## Второй раздел
 Ещё русский текст.""",
 )
+
+
+def test_verification_schema_types_const_fields_for_structured_output() -> None:
+    schema = json.loads(
+        (ROOT / "prompts/verify_translation.schema.json").read_text(encoding="utf-8")
+    )
+
+    assert schema["properties"]["model_id"] == {
+        "type": "string",
+        "const": "gpt-5.6-sol",
+    }
 
 
 def _sha256(text: str) -> str:
@@ -274,12 +285,19 @@ def _run_with_payloads(
         repo_root: Path,
         output_path: Path,
         timeout_seconds: int,
+        output_schema: Mapping[str, object] | None = None,
     ) -> ModelResult:
         nonlocal ordinal
         assert model == "gpt-5.6-sol"
         assert repo_root == repo
         assert timeout_seconds == 60
         assert "Accepted glossary" in prompt
+        assert output_schema is not None
+        issues = output_schema["properties"]
+        assert isinstance(issues, dict)
+        issue_schema = issues["issues"]
+        assert isinstance(issue_schema, dict)
+        assert issue_schema["items"]["type"] == "object"
         response = next(responses)
         result = _result(output_path, response, ordinal)
         ordinal += 1
@@ -356,6 +374,24 @@ def test_verifier_binds_hashes_and_emits_two_pass_fragment(
     assert issues == []
 
 
+def test_verifier_accepts_source_newline_boundary_restored_by_gpt(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    def mutate(payload: dict[str, object], ordinal: int) -> None:
+        if ordinal == 0:
+            payload["corrected_translation"] = DRAFT_CHUNKS[0] + "\n\n"
+            payload["issues"] = [_issue()]
+
+    output, _, _ = _run_with_payloads(tmp_path, monkeypatch, mutate)
+
+    source_chunks = split_markdown(SOURCE, max_chars=40_000)
+    stitched_draft_chunks = restore_missing_newline_boundaries(source_chunks, DRAFT_CHUNKS)
+    assert output.read_text(encoding="utf-8") == (
+        f"{TRANSLATION_NOTICE}\n\n{''.join(stitched_draft_chunks)}"
+    )
+
+
 @pytest.mark.parametrize(
     ("field", "value", "message"),
     [
@@ -400,7 +436,7 @@ def test_rejects_unknown_second_pass_json_field(
         (DRAFT_CHUNKS[0].replace("|---|---|", "| A | B |"), "table-structure"),
         (DRAFT_CHUNKS[0].replace("images/a.svg", "images/b.svg"), "image-structure"),
         (DRAFT_CHUNKS[0].replace("Русский текст", "原文"), "cjk-unexpected"),
-        (DRAFT_CHUNKS[0] + "\n", "newline boundary"),
+        (DRAFT_CHUNKS[0] + "\n\n\n", "newline boundary"),
     ],
 )
 def test_rejects_invalid_corrected_markdown(

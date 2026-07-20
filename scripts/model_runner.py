@@ -254,8 +254,12 @@ def build_thread_start_request(repo_root: Path) -> JsonObject:
     }
 
 
-def _build_turn_start_request(thread_id: str, prompt: str) -> JsonObject:
-    return {
+def _build_turn_start_request(
+    thread_id: str,
+    prompt: str,
+    output_schema: Mapping[str, object] | None = None,
+) -> JsonObject:
+    request: JsonObject = {
         "id": 3,
         "method": "turn/start",
         "params": {
@@ -264,6 +268,10 @@ def _build_turn_start_request(thread_id: str, prompt: str) -> JsonObject:
             "input": [{"type": "text", "text": prompt, "text_elements": []}],
         },
     }
+    if output_schema is not None:
+        params = _as_mapping(request["params"], "turn/start params")
+        params["outputSchema"] = dict(output_schema)
+    return request
 
 
 def _remaining_seconds(deadline: float) -> float:
@@ -447,6 +455,8 @@ def run_model(
     repo_root: Path,
     output_path: Path,
     timeout_seconds: int,
+    *,
+    output_schema: Mapping[str, object] | None = None,
 ) -> ModelResult:
     if model != EXACT_MODEL:
         raise ValueError(f"Неподдерживаемая модель: {model}")
@@ -467,7 +477,13 @@ def run_model(
         thread_result, thread_notifications = _await_response(transport, 2, deadline)
         thread_evidence = _validate_thread_start(thread_result, root)
 
-        transport.send(_build_turn_start_request(thread_evidence.thread_id, prompt))
+        transport.send(
+            _build_turn_start_request(
+                thread_evidence.thread_id,
+                prompt,
+                output_schema,
+            )
+        )
         turn_result, turn_notifications = _await_response(transport, 3, deadline)
         turn_id = _turn_id(turn_result)
         state = _collect_turn(
