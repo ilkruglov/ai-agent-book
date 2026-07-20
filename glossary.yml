@@ -1,0 +1,149 @@
+schema_version: 1
+attribution: "Русский перевод: community edition"
+terms:
+  - id: ai_agent
+    source: ["AI Agent", "AI agent"]
+    preferred: "AI-агент"
+    status: accepted
+    rule: "В заголовке и при первом упоминании использовать «AI-агент», далее — «агент»."
+    forbidden: ["ИИ-агент", "ИИ агент", "AI агент"]
+
+  - id: llm
+    source: ["LLM", "Large Language Model"]
+    preferred: "LLM"
+    status: candidate
+    rule: "Сохранять общепринятую латинскую аббревиатуру; полную форму уточнить по контексту."
+    forbidden: []
+
+  - id: prompt
+    source: ["prompt"]
+    preferred: "промпт"
+    status: candidate
+    rule: "Проверить различие между prompt как инструкцией и пользовательским запросом."
+    forbidden: []
+
+  - id: token
+    source: ["token"]
+    preferred: "токен"
+    status: candidate
+    rule: "Не переводить программные идентификаторы и названия полей."
+    forbidden: []
+
+  - id: context
+    source: ["context"]
+    preferred: "контекст"
+    status: candidate
+    rule: "Отличать контекст модели от контекста выполнения программы."
+    forbidden: []
+
+  - id: context_window
+    source: ["context window"]
+    preferred: "контекстное окно"
+    status: candidate
+    rule: "Использовать единообразно для предела контекста модели."
+    forbidden: []
+
+  - id: tool
+    source: ["tool"]
+    preferred: "инструмент"
+    status: candidate
+    rule: "Имена конкретных tools и API сохранять в исходном виде."
+    forbidden: []
+
+  - id: tool_call
+    source: ["tool call"]
+    preferred: "вызов инструмента"
+    status: candidate
+    rule: "Названия protocol events и JSON fields не переводить."
+    forbidden: []
+
+  - id: memory
+    source: ["memory"]
+    preferred: "память"
+    status: candidate
+    rule: "Уточнять кратковременную, долговременную и системную память по контексту."
+    forbidden: []
+
+  - id: rag
+    source: ["RAG", "Retrieval-Augmented Generation"]
+    preferred: "RAG"
+    status: candidate
+    rule: "Аббревиатуру сохранять; русскую расшифровку согласовать при первом упоминании."
+    forbidden: []
+
+  - id: mcp
+    source: ["MCP", "Model Context Protocol"]
+    preferred: "MCP"
+    status: candidate
+    rule: "Название протокола и аббревиатуру сохранять."
+    forbidden: []
+
+  - id: agent_loop
+    source: ["agent loop"]
+    preferred: "цикл агента"
+    status: candidate
+    rule: "Не смешивать с event loop среды выполнения."
+    forbidden: []
+
+  - id: inference
+    source: ["inference"]
+    preferred: "инференс"
+    status: candidate
+    rule: "Согласовать вариант с контекстами выполнения модели и логического вывода."
+    forbidden: []
+
+  - id: fine_tuning
+    source: ["fine-tuning", "finetuning"]
+    preferred: "дообучение"
+    status: candidate
+    rule: "Названия методов и API сохранять."
+    forbidden: []
+
+  - id: reinforcement_learning
+    source: ["reinforcement learning", "RL"]
+    preferred: "обучение с подкреплением"
+    status: candidate
+    rule: "Аббревиатуру RL сохранять после первого раскрытия."
+    forbidden: []
+
+  - id: reward
+    source: ["reward"]
+    preferred: "вознаграждение"
+    status: candidate
+    rule: "Сохранять направление оптимизации и математические обозначения."
+    forbidden: []
+
+  - id: benchmark
+    source: ["benchmark"]
+    preferred: "бенчмарк"
+    status: candidate
+    rule: "Различать набор заданий, процедуру оценки и результат."
+    forbidden: []
+
+  - id: latency
+    source: ["latency"]
+    preferred: "задержка"
+    status: candidate
+    rule: "Сохранять единицы и тип измеряемой задержки."
+    forbidden: []
+
+  - id: throughput
+    source: ["throughput"]
+    preferred: "пропускная способность"
+    status: candidate
+    rule: "Сохранять единицы и знаменатель метрики."
+    forbidden: []
+
+  - id: kv_cache
+    source: ["KV cache", "key-value cache"]
+    preferred: "KV-кэш"
+    status: candidate
+    rule: "Латинскую аббревиатуру KV сохранять."
+    forbidden: []
+
+  - id: prompt_injection
+    source: ["prompt injection"]
+    preferred: "инъекция в промпт"
+    status: candidate
+    rule: "Не ослаблять security qualifiers и условия атаки."
+    forbidden: []

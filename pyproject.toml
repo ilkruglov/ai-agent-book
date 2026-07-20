@@ -1,0 +1,36 @@
+[project]
+name = "ai-agent-book-ru-tools"
+version = "0.1.0"
+description = "Проверки и сборочные инструменты русского community-издания книги об AI-агентах"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "PyYAML>=6.0.2,<7",
+    "jsonschema>=4.25,<5",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4,<9",
+    "ruff>=0.12,<1",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ANN"]
+
+[tool.pyright]
+pythonVersion = "3.12"
+typeCheckingMode = "strict"
+include = [
+    "scripts",
+    "tests",
+    "book/gen_*_figs.py",
+    "book/gen_cover.py",
+    "book/svg_lib.py",
+]
