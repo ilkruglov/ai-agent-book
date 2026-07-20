@@ -27,6 +27,8 @@ select = ["E", "F", "I", "UP", "B", "ANN"]
 [tool.pyright]
 pythonVersion = "3.12"
 typeCheckingMode = "strict"
+venvPath = "."
+venv = ".venv"
 include = [
     "scripts",
     "tests",
