@@ -39,7 +39,7 @@ terms:
   - id: context_window
     source: ["context window"]
     preferred: "контекстное окно"
-    status: candidate
+    status: accepted
     rule: "Использовать единообразно для предела контекста модели."
     forbidden: []
 
@@ -123,7 +123,7 @@ terms:
   - id: latency
     source: ["latency"]
     preferred: "задержка"
-    status: candidate
+    status: accepted
     rule: "Сохранять единицы и тип измеряемой задержки."
     forbidden: []
 
