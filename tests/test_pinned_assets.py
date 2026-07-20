@@ -52,5 +52,11 @@ def test_pinned_generators_and_pdf_support_are_imported_byte_for_byte() -> None:
         _assert_blob(destination, entry["blob_sha1"])
 
 
-def test_import_does_not_copy_upstream_markdown() -> None:
-    assert list((ROOT / "book").glob("*.md")) == []
+def test_book_markdown_is_not_a_byte_for_byte_upstream_copy() -> None:
+    upstream_markdown = {entry["path"]: entry["blob_sha1"] for entry in _manifest()["markdown"]}
+    translated_markdown = sorted((ROOT / "book").glob("*.md"))
+
+    for path in translated_markdown:
+        relative_path = path.relative_to(ROOT).as_posix()
+        assert relative_path in upstream_markdown
+        assert _git_blob_sha1(path) != upstream_markdown[relative_path]

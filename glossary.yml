@@ -11,28 +11,28 @@ terms:
   - id: llm
     source: ["LLM", "Large Language Model"]
     preferred: "LLM"
-    status: candidate
+    status: accepted
     rule: "Сохранять общепринятую латинскую аббревиатуру; полную форму уточнить по контексту."
     forbidden: []
 
   - id: prompt
     source: ["prompt"]
     preferred: "промпт"
-    status: candidate
+    status: accepted
     rule: "Проверить различие между prompt как инструкцией и пользовательским запросом."
     forbidden: []
 
   - id: token
     source: ["token"]
     preferred: "токен"
-    status: candidate
+    status: accepted
     rule: "Не переводить программные идентификаторы и названия полей."
     forbidden: []
 
   - id: context
     source: ["context"]
     preferred: "контекст"
-    status: candidate
+    status: accepted
     rule: "Отличать контекст модели от контекста выполнения программы."
     forbidden: []
 
@@ -46,35 +46,35 @@ terms:
   - id: tool
     source: ["tool"]
     preferred: "инструмент"
-    status: candidate
+    status: accepted
     rule: "Имена конкретных tools и API сохранять в исходном виде."
     forbidden: []
 
   - id: tool_call
     source: ["tool call"]
     preferred: "вызов инструмента"
-    status: candidate
+    status: accepted
     rule: "Названия protocol events и JSON fields не переводить."
     forbidden: []
 
   - id: memory
     source: ["memory"]
     preferred: "память"
-    status: candidate
+    status: accepted
     rule: "Уточнять кратковременную, долговременную и системную память по контексту."
     forbidden: []
 
   - id: rag
     source: ["RAG", "Retrieval-Augmented Generation"]
     preferred: "RAG"
-    status: candidate
+    status: accepted
     rule: "Аббревиатуру сохранять; русскую расшифровку согласовать при первом упоминании."
     forbidden: []
 
   - id: mcp
     source: ["MCP", "Model Context Protocol"]
     preferred: "MCP"
-    status: candidate
+    status: accepted
     rule: "Название протокола и аббревиатуру сохранять."
     forbidden: []
 
@@ -95,28 +95,28 @@ terms:
   - id: fine_tuning
     source: ["fine-tuning", "finetuning"]
     preferred: "дообучение"
-    status: candidate
+    status: accepted
     rule: "Названия методов и API сохранять."
     forbidden: []
 
   - id: reinforcement_learning
     source: ["reinforcement learning", "RL"]
     preferred: "обучение с подкреплением"
-    status: candidate
+    status: accepted
     rule: "Аббревиатуру RL сохранять после первого раскрытия."
     forbidden: []
 
   - id: reward
     source: ["reward"]
     preferred: "вознаграждение"
-    status: candidate
+    status: accepted
     rule: "Сохранять направление оптимизации и математические обозначения."
     forbidden: []
 
   - id: benchmark
     source: ["benchmark"]
     preferred: "бенчмарк"
-    status: candidate
+    status: accepted
     rule: "Различать набор заданий, процедуру оценки и результат."
     forbidden: []
 
@@ -137,13 +137,13 @@ terms:
   - id: kv_cache
     source: ["KV cache", "key-value cache"]
     preferred: "KV-кэш"
-    status: candidate
+    status: accepted
     rule: "Латинскую аббревиатуру KV сохранять."
     forbidden: []
 
   - id: prompt_injection
     source: ["prompt injection"]
     preferred: "инъекция в промпт"
-    status: candidate
+    status: accepted
     rule: "Не ослаблять security qualifiers и условия атаки."
     forbidden: []

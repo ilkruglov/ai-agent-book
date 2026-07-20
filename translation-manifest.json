@@ -8,5 +8,257 @@
     "sandbox": "read-only",
     "ephemeral": true
   },
-  "files": []
+  "files": [
+    {
+      "path": "introduction.md",
+      "source": {
+        "path": "book/introduction.md",
+        "blob_sha1": "edfd6ed34b3d14760cac5114cfb3622745a30969",
+        "sha256": "80348f15e2a087e530fe08733e997757b0d013dd524cb05e1431a0d600037f89"
+      },
+      "final_sha256": "8b24d8b8c09e80df5b7bf49e0a36967396b909b9d50dea8c8a15a3d8b70eb609",
+      "chunks": [
+        {
+          "index": "000",
+          "start_line": 1,
+          "end_line": 36,
+          "source_start": 0,
+          "source_end": 3298,
+          "final_start": 0,
+          "final_end": 10616,
+          "source_sha256": "c8944034109b5472c7e454c94eff9e3a1ef78da792d7231778d081cb898f4df3",
+          "draft_sha256": "7818fe0ef6361cbf4b69af866abb18673dc708bcfd9934b798edce21a342abe0",
+          "final_sha256": "cf13b58c3472e9c720a3b10b4bff2398b20bede49d1133174d4e89a16cff4fc1",
+          "passes": {
+            "translation": {
+              "requested_model": "gpt-5.6-sol",
+              "reported_model": "gpt-5.6-sol",
+              "provider": "openai",
+              "thread_id": "019f80da-5b02-71c0-ae13-0bbe4e4ebc35",
+              "turn_id": "019f80da-617c-7440-bcb4-2717ea92a39e",
+              "ephemeral": true,
+              "fallback_allowed": false,
+              "sandbox_type": "readOnly",
+              "completion_observed": true,
+              "usage_observed": true,
+              "command_sha256": "326a0701f8d70a87fabf90543a2ff0f37b8d792d34688bd81479bb381ff6dadf",
+              "prompt_sha256": "70d0a6725139e4dd7660ad6cef54d41b4382d1da7bb89a251862246d13a6d804",
+              "response_sha256": "7818fe0ef6361cbf4b69af866abb18673dc708bcfd9934b798edce21a342abe0",
+              "stdout_sha256": "5d29f1f970b1fa90ec8b538c2234474b8cd8df2b93ca657d4fbf3634eb92f6e4",
+              "stderr_sha256": "9e02bf9da26bf3aedfe375e0db96aa2323e8f5ba2a58d492cff3df54fc3e3d35"
+            },
+            "source_verification": {
+              "requested_model": "gpt-5.6-sol",
+              "reported_model": "gpt-5.6-sol",
+              "provider": "openai",
+              "thread_id": "019f8105-e90f-7051-bb3c-a1d1d605aaf0",
+              "turn_id": "019f8105-efaa-7e32-aae8-c6a14a8a321d",
+              "ephemeral": true,
+              "fallback_allowed": false,
+              "sandbox_type": "readOnly",
+              "completion_observed": true,
+              "usage_observed": true,
+              "command_sha256": "326a0701f8d70a87fabf90543a2ff0f37b8d792d34688bd81479bb381ff6dadf",
+              "prompt_sha256": "9d10e1ae2dc474b15386fef59f61c14ead10b25363c05f9fc4df119f4d9b6e32",
+              "response_sha256": "07d442c6f8016245ba414dc7ed03b416cdb8743cbd74021f54d6d862a0a4fcf3",
+              "stdout_sha256": "5942c59f5a925237ecf832b191d95294c96437606b9fe0c136b643082ff9f0f5",
+              "stderr_sha256": "e1d1c3b75329a4247ef1a9e733cec046c3fce59a741c53f40bc34984181cf92e"
+            }
+          }
+        },
+        {
+          "index": "001",
+          "start_line": 37,
+          "end_line": 55,
+          "source_start": 3298,
+          "source_end": 5555,
+          "final_start": 10616,
+          "final_end": 17760,
+          "source_sha256": "83e1d7454d8400e9660012de3760446c336052e81b9f1db14fcf913b4a3a00cc",
+          "draft_sha256": "258cb5f7f4b736771e84f522370b18660b5922866c7a504bc813667874c74efe",
+          "final_sha256": "e7c12aa99906ed91f63c174e807811befe1c2c29f00ba9a7b12ae47220f861b2",
+          "passes": {
+            "translation": {
+              "requested_model": "gpt-5.6-sol",
+              "reported_model": "gpt-5.6-sol",
+              "provider": "openai",
+              "thread_id": "019f80dd-c19a-7890-9c3a-fa5356e45809",
+              "turn_id": "019f80dd-c7e3-74c1-af37-9ee0f06b06f1",
+              "ephemeral": true,
+              "fallback_allowed": false,
+              "sandbox_type": "readOnly",
+              "completion_observed": true,
+              "usage_observed": true,
+              "command_sha256": "326a0701f8d70a87fabf90543a2ff0f37b8d792d34688bd81479bb381ff6dadf",
+              "prompt_sha256": "68d15454c68e63ad9ccba7fd5259be4fd7d88c6531690a81cf53b6fe162facf1",
+              "response_sha256": "258cb5f7f4b736771e84f522370b18660b5922866c7a504bc813667874c74efe",
+              "stdout_sha256": "350b0111f514a85501bafc1dd652f8b238f477cdf03d79d9270bc22b7fd2cf3a",
+              "stderr_sha256": "a7315e8a1176098cb7b999dd7fcf6e5472b12d832b4f7258f5947b2abedb0acc"
+            },
+            "source_verification": {
+              "requested_model": "gpt-5.6-sol",
+              "reported_model": "gpt-5.6-sol",
+              "provider": "openai",
+              "thread_id": "019f810d-62a3-7a51-8ebc-cdca5571669d",
+              "turn_id": "019f810d-6999-7323-a570-e283cdb917ba",
+              "ephemeral": true,
+              "fallback_allowed": false,
+              "sandbox_type": "readOnly",
+              "completion_observed": true,
+              "usage_observed": true,
+              "command_sha256": "326a0701f8d70a87fabf90543a2ff0f37b8d792d34688bd81479bb381ff6dadf",
+              "prompt_sha256": "8053ed24666a72c0e116b4a0facb5d07fdb024163763fb001830dc972e28bc03",
+              "response_sha256": "53065bb7c46c9476980d00592d7a600d9e863de71d38189b1cfeb90881e26572",
+              "stdout_sha256": "0319b25579554ae34fd8da29b4bbed95c5e5b3f85187482a4ad1261d30ddf4ed",
+              "stderr_sha256": "619d24bf223f4d898431bdb9f1856bc7489a3e3d2624686ad390d52e53ccc4c1"
+            }
+          }
+        },
+        {
+          "index": "002",
+          "start_line": 56,
+          "end_line": 71,
+          "source_start": 5555,
+          "source_end": 6706,
+          "final_start": 17760,
+          "final_end": 21690,
+          "source_sha256": "39273a20ed1340676decebf6c9278733bbe471ee362a4fd9af72c78c97bfc74a",
+          "draft_sha256": "c05e96830f064a14b1579e81f17fd6cba13fa39a1c7f4c540b3c140197fe2e22",
+          "final_sha256": "60693e1bad9169a02c77a98fc32735c384a9f5b6eee0db7e33155af41c3f4c46",
+          "passes": {
+            "translation": {
+              "requested_model": "gpt-5.6-sol",
+              "reported_model": "gpt-5.6-sol",
+              "provider": "openai",
+              "thread_id": "019f80e0-818c-78e0-8edc-dabe9ba68d2c",
+              "turn_id": "019f80e0-8967-7e52-a400-e692f17e8f39",
+              "ephemeral": true,
+              "fallback_allowed": false,
+              "sandbox_type": "readOnly",
+              "completion_observed": true,
+              "usage_observed": true,
+              "command_sha256": "326a0701f8d70a87fabf90543a2ff0f37b8d792d34688bd81479bb381ff6dadf",
+              "prompt_sha256": "b15e98fc738d62ad0f7f712914a3e8455f7c47a6d5b9f64322cc3c12a66213e1",
+              "response_sha256": "c05e96830f064a14b1579e81f17fd6cba13fa39a1c7f4c540b3c140197fe2e22",
+              "stdout_sha256": "136afeb2601078b2a9bfe23b699ca1bb1724520e3c45120dbe62926f9ab52edc",
+              "stderr_sha256": "33f912014a6dbac6b8f7c01d78783951682160006bbdc87dbd8bb495d1b594e6"
+            },
+            "source_verification": {
+              "requested_model": "gpt-5.6-sol",
+              "reported_model": "gpt-5.6-sol",
+              "provider": "openai",
+              "thread_id": "019f8113-f998-7c40-8239-bbd552b4b8b4",
+              "turn_id": "019f8114-00dd-7643-815b-57c13a6700fe",
+              "ephemeral": true,
+              "fallback_allowed": false,
+              "sandbox_type": "readOnly",
+              "completion_observed": true,
+              "usage_observed": true,
+              "command_sha256": "326a0701f8d70a87fabf90543a2ff0f37b8d792d34688bd81479bb381ff6dadf",
+              "prompt_sha256": "8c7371189a7c1776199385c7dadd0719ea4c3b2f0695ac76a403d98d43f4e586",
+              "response_sha256": "90bdb32c5c86e5ee14df617cbba04061f0f056f1fe7cbfd4cac5347642f178c9",
+              "stdout_sha256": "8be5f36f1fec517c06ba9f8ec4514dcb036d1d2d39c7a36acafb8cf3ffe5b26c",
+              "stderr_sha256": "6282c6112ee390abb9732175f9c77440e7ece3c3503c6183c37c2e45188b5931"
+            }
+          }
+        },
+        {
+          "index": "003",
+          "start_line": 72,
+          "end_line": 93,
+          "source_start": 6706,
+          "source_end": 7984,
+          "final_start": 21690,
+          "final_end": 25822,
+          "source_sha256": "0524035bec8c24e349d15b12b012de89106d3298923627622738547fd88f17d0",
+          "draft_sha256": "8f5ca11cb36fc90d08b53696ccf873cc109914041e11b63c84528ea46f9ee5de",
+          "final_sha256": "e3da07111cc3db9fb5df17c6d879636b153c5e9d4132d931ea10345a505a51f2",
+          "passes": {
+            "translation": {
+              "requested_model": "gpt-5.6-sol",
+              "reported_model": "gpt-5.6-sol",
+              "provider": "openai",
+              "thread_id": "019f80e2-4101-7472-a41d-55cbd3857362",
+              "turn_id": "019f80e2-479c-70f2-9a68-f54201eb3e89",
+              "ephemeral": true,
+              "fallback_allowed": false,
+              "sandbox_type": "readOnly",
+              "completion_observed": true,
+              "usage_observed": true,
+              "command_sha256": "326a0701f8d70a87fabf90543a2ff0f37b8d792d34688bd81479bb381ff6dadf",
+              "prompt_sha256": "87d1e3cf548e0ed143dee231381282b9ee3a3dfacc0e6fef349e2620616eb548",
+              "response_sha256": "8f5ca11cb36fc90d08b53696ccf873cc109914041e11b63c84528ea46f9ee5de",
+              "stdout_sha256": "48df19e94427ed5ba82f2e27475ad7a69b2ad225a397f6e683cb8a6da83932a4",
+              "stderr_sha256": "ec27effb8f4b6d56f28b9dd671b28feb29e68f14eabef62a75bd0b93c5d36239"
+            },
+            "source_verification": {
+              "requested_model": "gpt-5.6-sol",
+              "reported_model": "gpt-5.6-sol",
+              "provider": "openai",
+              "thread_id": "019f811c-25d1-7e11-9504-deb14cc710fe",
+              "turn_id": "019f811c-2cda-7753-98c7-ad0046314ef6",
+              "ephemeral": true,
+              "fallback_allowed": false,
+              "sandbox_type": "readOnly",
+              "completion_observed": true,
+              "usage_observed": true,
+              "command_sha256": "326a0701f8d70a87fabf90543a2ff0f37b8d792d34688bd81479bb381ff6dadf",
+              "prompt_sha256": "09572ade7df10b0481cfce8153848eb93fee2da5c85eedceea3fa7bf532f4910",
+              "response_sha256": "65d9ddae8c2ec3ef6f793f7cd0ad456af130155d947e914fd8c67dcdcc6f48be",
+              "stdout_sha256": "4912ff3212b7b48719ddedc78891c2d1601778a7bb55df87e542f46499a2a232",
+              "stderr_sha256": "8f5db7a8138285444abd0bc919a2c7a2da6a0f38072321bf92e0160095648c2c"
+            }
+          }
+        },
+        {
+          "index": "004",
+          "start_line": 94,
+          "end_line": 102,
+          "source_start": 7984,
+          "source_end": 8430,
+          "final_start": 25822,
+          "final_end": 27147,
+          "source_sha256": "574a815cd14eec7f9e6be4cc4469dd654af7930f717205ede270d7fcd430376d",
+          "draft_sha256": "07e987b13ae47bbfa17cde7991badfc696a2422249711979953ac1cdc1710b7a",
+          "final_sha256": "ab423845992a341829e1f1ece8cb1262520a30117e248064219b0b7adcaa9fe1",
+          "passes": {
+            "translation": {
+              "requested_model": "gpt-5.6-sol",
+              "reported_model": "gpt-5.6-sol",
+              "provider": "openai",
+              "thread_id": "019f80e3-437f-79d2-9454-9ef352a316be",
+              "turn_id": "019f80e3-49ca-7673-b641-39df3e5afc68",
+              "ephemeral": true,
+              "fallback_allowed": false,
+              "sandbox_type": "readOnly",
+              "completion_observed": true,
+              "usage_observed": true,
+              "command_sha256": "326a0701f8d70a87fabf90543a2ff0f37b8d792d34688bd81479bb381ff6dadf",
+              "prompt_sha256": "4fd0e06af4fd5029e7f51be97961e168b13e953ffa83ba338709d9b4acbaeb62",
+              "response_sha256": "07e987b13ae47bbfa17cde7991badfc696a2422249711979953ac1cdc1710b7a",
+              "stdout_sha256": "34623bfa4fedd606a092a7a6eb45921b8d74bc1e791bd32f75f1f239aea3b5ab",
+              "stderr_sha256": "062d2b279c6118d644c04c9b8988ab4734e87c083941fc78f27026a9abe51eeb"
+            },
+            "source_verification": {
+              "requested_model": "gpt-5.6-sol",
+              "reported_model": "gpt-5.6-sol",
+              "provider": "openai",
+              "thread_id": "019f811e-08cb-7123-9010-569cb1e5ab00",
+              "turn_id": "019f811e-0fd1-7611-8f79-bedfdbd88eca",
+              "ephemeral": true,
+              "fallback_allowed": false,
+              "sandbox_type": "readOnly",
+              "completion_observed": true,
+              "usage_observed": true,
+              "command_sha256": "326a0701f8d70a87fabf90543a2ff0f37b8d792d34688bd81479bb381ff6dadf",
+              "prompt_sha256": "6fb9b2e9a2a1204101d7e5ae73cc33e2140ae9508a8be15cf0eba94186312c45",
+              "response_sha256": "ea2c459d5618cbb6caecb56ff670ae8ad4b29fc43d33886f53ca7598d94f0dca",
+              "stdout_sha256": "812abf4b63cc5da764ce7d0d42cc258b1649a34862b86bace5de56cc5a1f5100",
+              "stderr_sha256": "d3f37c5881235b750e9b2dc0913dbe5205caf8304bde67e0b280649a8430ddb4"
+            }
+          }
+        }
+      ]
+    }
+  ]
 }
