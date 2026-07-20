@@ -74,6 +74,13 @@ def test_verification_prompt_requires_russian_grammar_review() -> None:
     assert "согласование подлежащего и сказуемого" in prompt
 
 
+def test_verification_prompt_requires_documented_cjk_allowlist() -> None:
+    prompt = (ROOT / "prompts/verify_translation.txt").read_text(encoding="utf-8")
+
+    assert "cjk-allow" in prompt
+    assert "CJK-текст вне документированного allowlist" in prompt
+
+
 def _sha256(text: str) -> str:
     return hashlib.sha256(text.encode("utf-8")).hexdigest()
 

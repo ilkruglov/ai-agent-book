@@ -302,6 +302,55 @@ def test_rejects_failed_turn(
         run_model("gpt-5.6-sol", "nonce", tmp_path, tmp_path / ".tmp/out.txt", 60)
 
 
+def test_continues_after_transient_reconnect_notification(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    messages = _valid_messages(tmp_path)
+    messages.insert(
+        3,
+        {
+            "method": "error",
+            "params": {"error": {"message": "Reconnecting... 2/5"}},
+        },
+    )
+    _patch_stream(monkeypatch, FakeJsonRpcStream(messages))
+
+    result = run_model(
+        "gpt-5.6-sol",
+        "nonce",
+        tmp_path,
+        tmp_path / ".tmp/out.txt",
+        60,
+    )
+
+    assert result.response == "Русский текст"
+
+
+def test_rejects_nontransient_error_notification(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    messages = _valid_messages(tmp_path)
+    messages.insert(
+        3,
+        {
+            "method": "error",
+            "params": {"error": {"message": "provider unavailable"}},
+        },
+    )
+    _patch_stream(monkeypatch, FakeJsonRpcStream(messages))
+
+    with pytest.raises(ModelRunError, match="provider unavailable"):
+        run_model(
+            "gpt-5.6-sol",
+            "nonce",
+            tmp_path,
+            tmp_path / ".tmp/out.txt",
+            60,
+        )
+
+
 def test_rejects_timeout_unknown_model_and_unsafe_outputs(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,

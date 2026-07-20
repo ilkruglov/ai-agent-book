@@ -4,6 +4,7 @@ import argparse
 import hashlib
 import json
 import queue
+import re
 import secrets
 import subprocess
 import sys
@@ -21,6 +22,7 @@ type ModelName = Literal["gpt-5.6-sol"]
 EXACT_MODEL: ModelName = "gpt-5.6-sol"
 EXPECTED_PROVIDER = "openai"
 READ_ONLY_PROFILE = ":read-only"
+TRANSIENT_RECONNECT_RE = re.compile(r"Reconnecting\.\.\. [1-5]/5")
 
 
 @dataclass(frozen=True)
@@ -419,7 +421,10 @@ def _consume_notification(
         state.completion_observed = True
         return
     if method == "error":
-        raise ModelRunError(f"app-server error notification: {_error_message(params.get('error'))}")
+        detail = _error_message(params.get("error"))
+        if TRANSIENT_RECONNECT_RE.fullmatch(detail) is not None:
+            return
+        raise ModelRunError(f"app-server error notification: {detail}")
 
 
 def _collect_turn(
