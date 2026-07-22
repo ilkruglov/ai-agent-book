@@ -1,7 +1,9 @@
 from __future__ import annotations
 
 import hashlib
+import html
 import json
+import re
 from pathlib import Path
 from typing import Any
 
@@ -19,6 +21,30 @@ GENERATED_SVGS = {
     *(f"book/images/fig10-{index}.svg" for index in range(4, 12)),
     "book/images/fig10-13.svg",
 }
+STATIC_LOCALIZED_SVGS = {
+    "book/images/fig0-1.svg",
+    "book/images/fig0-2.svg",
+    *(
+        f"book/images/fig1-wf-{name}.svg"
+        for name in (
+            "chaining",
+            "evaluator",
+            "orchestrator",
+            "parallel",
+            "routing",
+        )
+    ),
+    "book/images/fig10-3.svg",
+    "book/images/fig10-12.svg",
+    *(f"book/images/fig2-{index}.svg" for index in range(12, 18)),
+    "book/images/fig3-15.svg",
+    *(f"book/images/fig6-{index}.svg" for index in range(1, 10)),
+    *(f"book/images/fig7-{index}.svg" for index in range(1, 22)),
+    *(f"book/images/fig9-{index}.svg" for index in (*range(1, 7), *range(8, 11), 12, 13)),
+    "book/images/fig9-7.svg",
+}
+LOCALIZED_SVGS = GENERATED_SVGS | STATIC_LOCALIZED_SVGS
+CJK_RE = re.compile(r"[㐀-䶿一-鿿豈-﫿]")
 
 
 def _manifest() -> dict[str, Any]:
@@ -52,7 +78,7 @@ def test_all_133_images_preserve_the_pinned_inventory() -> None:
     assert len(entries) == 133
     assert actual == expected
     for entry in entries:
-        if entry["path"] in GENERATED_SVGS:
+        if entry["path"] in LOCALIZED_SVGS:
             continue
         _assert_blob(entry["path"], entry["blob_sha1"])
 
@@ -67,6 +93,24 @@ def test_localized_generated_images_differ_from_upstream() -> None:
         assert _git_blob_sha1(ROOT / relative_path) != upstream_images[relative_path]
 
 
+def test_all_static_svg_labels_are_localized_and_differ_from_upstream() -> None:
+    upstream_images = {
+        entry["path"]: entry["blob_sha1"] for entry in _manifest()["images"]["files"]
+    }
+
+    assert len(STATIC_LOCALIZED_SVGS) == 58
+    for relative_path in STATIC_LOCALIZED_SVGS:
+        svg = (ROOT / relative_path).read_text(encoding="utf-8")
+        assert CJK_RE.search(svg) is None, relative_path
+        assert _git_blob_sha1(ROOT / relative_path) != upstream_images[relative_path]
+
+
+def test_all_svg_assets_contain_no_cjk() -> None:
+    for path in sorted((ROOT / "book/images").glob("*.svg")):
+        svg = html.unescape(path.read_text(encoding="utf-8"))
+        assert CJK_RE.search(svg) is None, path.relative_to(ROOT).as_posix()
+
+
 def test_localized_generators_differ_from_upstream() -> None:
     manifest = _manifest()
 
@@ -77,12 +121,15 @@ def test_localized_generators_differ_from_upstream() -> None:
         assert _git_blob_sha1(path) != entry["blob_sha1"], entry["path"]
 
 
-def test_pdf_support_remains_pinned() -> None:
+def test_localized_pdf_support_differs_from_upstream() -> None:
     manifest = _manifest()
 
     for entry in manifest["build_support"]:
         destination = f"book/{Path(entry['path']).name}"
-        _assert_blob(destination, entry["blob_sha1"])
+        path = ROOT / destination
+        assert path.is_file(), destination
+        assert not path.is_symlink(), destination
+        assert _git_blob_sha1(path) != entry["blob_sha1"], destination
 
 
 def test_book_markdown_is_not_a_byte_for_byte_upstream_copy() -> None:
