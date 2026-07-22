@@ -1,128 +1,134 @@
--- crossref.lua — internal cross-reference links for the book (English edition).
---
--- Keeps the existing manual numbering (Figure N-M, Chapter N) but turns every
--- in-text reference into a clickable internal link, and drops a \label anchor
--- on each figure and chapter. Uses raw LaTeX \label / \hyperref so it does not
--- depend on LaTeX counters (the displayed text is the manual number verbatim).
---
--- Unlike the Chinese edition (where 图N-M is a single Str token), English
--- references span two inline elements: Str("Figure") Space Str("2-6").
--- So matching happens at the Inlines level, pairing the keyword token with the
--- following number token.
---
--- Topdown traversal: Image/Figure return `false` to skip their own captions,
--- so figure captions are anchored but NOT self-linkified.
+-- Внутренние ссылки на рисунки и главы русского издания.
+-- Ручная нумерация сохраняется, а подписи и упоминания получают PDF-ссылки.
 
-local chap = 0
+local chapter = 0
 
-local function fig_label(n, m) return 'fig:' .. n .. '-' .. m end
-local function chap_label(n) return 'chap:' .. n end
+local figure_words = {
+  'Рисунок', 'рисунок', 'рисунке', 'рисунка', 'рисунку', 'рисунком',
+  'рисунки', 'рисунков', 'Рис.', 'рис.'
+}
+local chapter_words = {
+  'Глава', 'Главы', 'глава', 'главы', 'главе', 'главу', 'главой', 'главах'
+}
 
--- Byte-level ASCII alphanumeric test (Lua's %w is locale-dependent and may
--- misclassify UTF-8 continuation bytes of curly quotes / em dashes).
-local function is_ascii_alnum(b)
-  return (b >= 48 and b <= 57) or (b >= 65 and b <= 90) or (b >= 97 and b <= 122)
+local function figure_label(n, m) return 'fig:' .. n .. '-' .. m end
+local function chapter_label(n) return 'chap:' .. n end
+
+local function is_ascii_alnum(byte)
+  return (byte >= 48 and byte <= 57)
+      or (byte >= 65 and byte <= 90)
+      or (byte >= 97 and byte <= 122)
 end
 
--- Str suffixes we allow after the number: anything not starting with a letter,
--- digit, or hyphen (punctuation, em dashes, "'s", closing quotes/parens…).
-local function ok_suffix(s)
-  if s == '' then return true end
-  local b = s:byte(1)
-  return not (is_ascii_alnum(b) or b == 45)  -- 45 = '-'
+local function ok_suffix(text)
+  if text == '' then return true end
+  local byte = text:byte(1)
+  return not (is_ascii_alnum(byte) or byte == 45)
 end
 
--- Split "…Figure" / "…Chapter" tokens: the keyword may carry glued leading
--- punctuation, ASCII or multi-byte (e.g. "(Figure", "basics—Chapter").
--- Returns the prefix, or nil if the token does not end with the keyword or
--- the prefix ends in a letter/digit (e.g. "subChapter").
-local function split_kw(text, kw)
-  local pre = text:match('^(.-)' .. kw .. '$')
-  if not pre then return nil end
-  if pre ~= '' and is_ascii_alnum(pre:byte(#pre)) then return nil end
-  return pre
+local function split_keyword(text, words)
+  for _, word in ipairs(words) do
+    local prefix = text:match('^(.-)' .. word .. '$')
+    if prefix then
+      if prefix == '' or not is_ascii_alnum(prefix:byte(#prefix)) then
+        return prefix, word
+      end
+    end
+  end
+  return nil, nil
 end
 
 return {
   {
     traverse = 'topdown',
 
-    Header = function(el)
-      if el.level == 1 and not el.classes:includes('unnumbered') then
-        chap = chap + 1
-        el.content:insert(pandoc.RawInline('latex', '\\label{' .. chap_label(chap) .. '}'))
+    Header = function(element)
+      if element.level == 1 and not element.classes:includes('unnumbered') then
+        chapter = chapter + 1
+        element.content:insert(pandoc.RawInline(
+          'latex', '\\label{' .. chapter_label(chapter) .. '}'
+        ))
       end
-      return el
+      return element
     end,
 
-    -- pandoc 3.x: a standalone image is a Figure block carrying the caption.
-    Figure = function(el)
-      local cap = pandoc.utils.stringify(el.caption.long)
-      local n, m = cap:match('Figure%s*(%d+)%-(%d+)')
+    Figure = function(element)
+      local caption = pandoc.utils.stringify(element.caption.long)
+      local n, m = caption:match('Рисунок%s*(%d+)%-(%d+)')
       if n and m then
-        el.identifier = fig_label(n, m)  -- LaTeX writer emits \label{fig:N-M}
+        element.identifier = figure_label(n, m)
       end
-      return el, false  -- do not descend into caption (no self-links)
+      return element, false
     end,
 
-    -- Fallback for any inline image that still carries its own caption.
-    Image = function(el)
-      local cap = pandoc.utils.stringify(el.caption)
-      local n, m = cap:match('Figure%s*(%d+)%-(%d+)')
-      if n and m and el.identifier == '' then
-        el.identifier = fig_label(n, m)
+    Image = function(element)
+      local caption = pandoc.utils.stringify(element.caption)
+      local n, m = caption:match('Рисунок%s*(%d+)%-(%d+)')
+      if n and m and element.identifier == '' then
+        element.identifier = figure_label(n, m)
       end
-      return el, false
+      return element, false
     end,
 
     Inlines = function(inlines)
-      local out = pandoc.Inlines{}
-      local i = 1
-      local n = #inlines
+      local output = pandoc.Inlines{}
+      local index = 1
+      local count = #inlines
       local changed = false
-      while i <= n do
-        local el = inlines[i]
+
+      while index <= count do
+        local element = inlines[index]
         local linked = false
-        if el.t == 'Str' and i + 2 <= n
-            and inlines[i + 1].t == 'Space' and inlines[i + 2].t == 'Str' then
-          local kind = 'Figure'
-          local pre = split_kw(el.text, 'Figure')
-          if not pre then
-            kind = 'Chapter'
-            pre = split_kw(el.text, 'Chapter')
+        if element.t == 'Str' and index + 2 <= count
+            and inlines[index + 1].t == 'Space'
+            and inlines[index + 2].t == 'Str' then
+          local prefix, keyword = split_keyword(element.text, figure_words)
+          local kind = 'figure'
+          if not prefix then
+            prefix, keyword = split_keyword(element.text, chapter_words)
+            kind = 'chapter'
           end
-          if pre then
-            local numtext = inlines[i + 2].text
-            if kind == 'Figure' then
-              local a, b, suffix = numtext:match('^(%d+)%-(%d+)(.*)$')
-              if a and ok_suffix(suffix) then
-                if pre ~= '' then out:insert(pandoc.Str(pre)) end
-                out:insert(pandoc.RawInline('latex',
-                  '\\crossreflink{' .. fig_label(a, b) .. '}{Figure ' .. a .. '-' .. b .. '}'))
-                if suffix ~= '' then out:insert(pandoc.Str(suffix)) end
+
+          if prefix and keyword then
+            local number_text = inlines[index + 2].text
+            if kind == 'figure' then
+              local first, second, suffix = number_text:match('^(%d+)%-(%d+)(.*)$')
+              if first and ok_suffix(suffix) then
+                if prefix ~= '' then output:insert(pandoc.Str(prefix)) end
+                output:insert(pandoc.RawInline(
+                  'latex',
+                  '\\crossreflink{' .. figure_label(first, second) .. '}{'
+                      .. keyword .. ' ' .. first .. '-' .. second .. '}'
+                ))
+                if suffix ~= '' then output:insert(pandoc.Str(suffix)) end
                 linked = true
               end
             else
-              local a, suffix = numtext:match('^(%d+)(.*)$')
-              if a and ok_suffix(suffix) then
-                if pre ~= '' then out:insert(pandoc.Str(pre)) end
-                out:insert(pandoc.RawInline('latex',
-                  '\\crossreflink{' .. chap_label(a) .. '}{Chapter ' .. a .. '}'))
-                if suffix ~= '' then out:insert(pandoc.Str(suffix)) end
+              local number, suffix = number_text:match('^(%d+)(.*)$')
+              if number and ok_suffix(suffix) then
+                if prefix ~= '' then output:insert(pandoc.Str(prefix)) end
+                output:insert(pandoc.RawInline(
+                  'latex',
+                  '\\crossreflink{' .. chapter_label(number) .. '}{'
+                      .. keyword .. ' ' .. number .. '}'
+                ))
+                if suffix ~= '' then output:insert(pandoc.Str(suffix)) end
                 linked = true
               end
             end
           end
         end
+
         if linked then
-          i = i + 3
+          index = index + 3
           changed = true
         else
-          out:insert(el)
-          i = i + 1
+          output:insert(element)
+          index = index + 1
         end
       end
-      if changed then return out end
+
+      if changed then return output end
     end,
   }
 }

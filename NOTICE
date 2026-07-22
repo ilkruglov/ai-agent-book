@@ -13,3 +13,9 @@ Source version: v1.2
 Это независимое community-издание не заявляет об официальном одобрении автора.
 
 Лицензия: Apache License 2.0. Полный текст находится в файле LICENSE.
+
+Для воспроизводимой PDF-сборки включён неизменённый класс ElegantBook v4.5
+из https://github.com/ElegantLaTeX/ElegantBook (commit
+f9f002a586eb7432c17076071743451611b7f858). Он распространяется по лицензии
+LaTeX Project Public License 1.3c; её текст находится в
+book/vendor/elegantbook/LICENSE.

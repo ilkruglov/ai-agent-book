@@ -34,6 +34,7 @@ EXPECTED_FILES = (
 
 CJK_RE = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]")
 HEADING_RE = re.compile(r"^(#{1,6})[ \t]+(.+?)\s*$")
+HEADING_ATTRIBUTE_SUFFIX_RE = re.compile(r"\s+\{[^{}]*\}\s*$")
 FENCE_OPEN_RE = re.compile(r"^\s*(`{3,}|~{3,})(.*)$")
 FENCE_CLOSE_RE = re.compile(r"^\s*([`~]{3,})\s*$")
 IMAGE_RE = re.compile(r"!\[[^\]]*\]\(\s*(?:<([^>]+)>|([^\s)]+))")
@@ -744,7 +745,8 @@ def validate_pdf_text(
     expected_h1: tuple[str, ...],
 ) -> list[ValidationIssue]:
     issues: list[ValidationIssue] = []
-    if BOOK_TITLE not in pdf_text:
+    normalized_pdf_text = " ".join(pdf_text.split())
+    if BOOK_TITLE not in normalized_pdf_text:
         issues.append(
             ValidationIssue(
                 path="<pdf-text>",
@@ -754,13 +756,15 @@ def validate_pdf_text(
             )
         )
     for heading in expected_h1:
-        if heading not in pdf_text:
+        visible_heading = HEADING_ATTRIBUTE_SUFFIX_RE.sub("", heading).strip()
+        normalized_heading = " ".join(visible_heading.split())
+        if normalized_heading not in normalized_pdf_text:
             issues.append(
                 ValidationIssue(
                     path="<pdf-text>",
                     line=0,
                     code="pdf-heading",
-                    message=f"PDF не содержит заголовок {heading!r}",
+                    message=f"PDF не содержит заголовок {visible_heading!r}",
                 )
             )
     if "\ufffd" in pdf_text:
@@ -770,6 +774,15 @@ def validate_pdf_text(
                 line=0,
                 code="pdf-replacement-character",
                 message="PDF text содержит Unicode replacement character U+FFFD",
+            )
+        )
+    if CJK_RE.search(pdf_text) is not None:
+        issues.append(
+            ValidationIssue(
+                path="<pdf-text>",
+                line=0,
+                code="pdf-cjk-unexpected",
+                message="PDF text содержит непереведённые символы CJK",
             )
         )
     return issues

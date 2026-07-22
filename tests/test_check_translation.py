@@ -468,6 +468,7 @@ def test_cli_returns_two_when_source_snapshot_is_missing(tmp_path: Path) -> None
         ("Введение\nГлава 1", "pdf-title"),
         (f"{BOOK_TITLE}\nВведение", "pdf-heading"),
         (f"{BOOK_TITLE}\nВведение\nГлава 1\n�", "pdf-replacement-character"),
+        (f"{BOOK_TITLE}\nВведение\nГлава 1\n残留中文", "pdf-cjk-unexpected"),
     ],
 )
 def test_pdf_text_validation_detects_required_content(
@@ -483,3 +484,20 @@ def test_valid_pdf_text_passes() -> None:
     pdf_text = f"{BOOK_TITLE}\nВведение\nГлава 1\n"
 
     assert validate_pdf_text(pdf_text, ("Введение", "Глава 1")) == []
+
+
+def test_pdf_text_validation_normalizes_layout_and_markdown_heading_attributes() -> None:
+    pdf_text = (
+        "AI-агенты изнутри:\n"
+        "принципы проектирования и инженерная практика\n"
+        "Введение\n"
+        "Послесловие: возвращаясь к формуле\n"
+        "«AI-агент = LLM + контекст + инструменты»\n"
+    )
+    expected_h1 = (
+        "Введение {.unnumbered}",
+        "Послесловие: возвращаясь к формуле «AI-агент = LLM + контекст + инструменты» "
+        "{.unnumbered}",
+    )
+
+    assert validate_pdf_text(pdf_text, expected_h1) == []
