@@ -6,6 +6,7 @@ import math
 import os
 import re
 import subprocess
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -125,6 +126,74 @@ def test_table_width_filter_preserves_minimum_width_in_six_column_tables() -> No
 
     assert math.isclose(sum(widths), 1.0)
     assert min(widths) >= 0.14
+
+
+def test_six_column_algorithm_table_has_no_overfull_hboxes() -> None:
+    chapter = (ROOT / "book/chapter7.md").read_text(encoding="utf-8")
+    table_match = re.search(
+        r"^\| Метод \| Тип \| Основная идея .*?(?=\n\n)",
+        chapter,
+        re.MULTILINE | re.DOTALL,
+    )
+    assert table_match is not None
+
+    build_root = ROOT / ".tmp"
+    build_root.mkdir(exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="table-overflow-", dir=build_root) as directory:
+        work_dir = Path(directory)
+        tex_path = work_dir / "table.tex"
+        pandoc_result = subprocess.run(
+            [
+                "pandoc",
+                "--from",
+                "markdown",
+                "--to",
+                "latex",
+                "--standalone",
+                "-V",
+                "documentclass=elegantbook",
+                "-V",
+                "classoption=lang=en",
+                "-V",
+                "classoption=device=normal",
+                "-V",
+                "lang=ru-RU",
+                "-H",
+                str(ROOT / "book/preamble.tex"),
+                f"--lua-filter={TABLE_WIDTH_FILTER}",
+                "--output",
+                str(tex_path),
+            ],
+            input=f"{table_match.group(0)}\n\n```python\npass\n```\n",
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        assert pandoc_result.returncode == 0, pandoc_result.stderr
+
+        env = {
+            **os.environ,
+            "TEXINPUTS": f"{ROOT / 'book/vendor/elegantbook'}:{os.environ.get('TEXINPUTS', '')}",
+        }
+        xelatex_result = subprocess.run(
+            [
+                "xelatex",
+                "-interaction=nonstopmode",
+                "-halt-on-error",
+                "-no-pdf",
+                tex_path.name,
+            ],
+            cwd=work_dir,
+            env=env,
+            check=False,
+            capture_output=True,
+            text=True,
+        )
+        assert xelatex_result.returncode == 0, xelatex_result.stdout
+
+        log = tex_path.with_suffix(".log").read_text(encoding="utf-8", errors="replace")
+        overfull_boxes = re.findall(r"Overfull \\hbox .*? too wide", log)
+        assert overfull_boxes == []
 
 
 def test_table_width_filter_adds_latex_break_after_slash() -> None:
