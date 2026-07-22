@@ -5,6 +5,7 @@ import math
 import re
 import subprocess
 import sys
+import tempfile
 import xml.etree.ElementTree as ET
 from collections.abc import Sequence
 from concurrent.futures import ThreadPoolExecutor
@@ -12,6 +13,7 @@ from pathlib import Path
 
 PIXEL_SIZE_RE = re.compile(r"\s*(\d+(?:\.\d+)?)\s*")
 RENDER_TIMEOUT_SECONDS = 60
+MAX_RENDER_ATTEMPTS = 2
 
 
 class SvgRenderError(RuntimeError):
@@ -84,28 +86,53 @@ def render_svg(
     scale: int,
 ) -> None:
     width, height = parse_svg_size(source)
+    output.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.NamedTemporaryFile(
+        dir=output.parent,
+        prefix=f".{output.stem}.",
+        suffix=".png",
+        delete=False,
+    ) as temporary_file:
+        temporary_output = Path(temporary_file.name)
     try:
-        result = subprocess.run(
-            build_chrome_command(
-                chrome=chrome,
-                source=source,
-                output=output,
-                width=width,
-                height=height,
-                scale=scale,
-            ),
-            check=False,
-            capture_output=True,
-            text=True,
-            timeout=RENDER_TIMEOUT_SECONDS,
-        )
-    except subprocess.TimeoutExpired as error:
-        raise SvgRenderError(
-            f"Chrome не завершил рендер {source.name} за {RENDER_TIMEOUT_SECONDS} с"
-        ) from error
-    if result.returncode != 0 or not output.is_file() or output.stat().st_size == 0:
-        detail = result.stderr.strip() or result.stdout.strip() or "без diagnostics"
-        raise SvgRenderError(f"Chrome не отрендерил {source.name}: {detail}")
+        for attempt in range(1, MAX_RENDER_ATTEMPTS + 1):
+            temporary_output.unlink(missing_ok=True)
+            try:
+                result = subprocess.run(
+                    build_chrome_command(
+                        chrome=chrome,
+                        source=source,
+                        output=temporary_output,
+                        width=width,
+                        height=height,
+                        scale=scale,
+                    ),
+                    check=False,
+                    capture_output=True,
+                    text=True,
+                    timeout=RENDER_TIMEOUT_SECONDS,
+                )
+            except subprocess.TimeoutExpired as error:
+                if attempt == MAX_RENDER_ATTEMPTS:
+                    raise SvgRenderError(
+                        f"Chrome не завершил рендер {source.name} за "
+                        f"{RENDER_TIMEOUT_SECONDS} с после {attempt} попыток"
+                    ) from error
+                continue
+            if (
+                result.returncode == 0
+                and temporary_output.is_file()
+                and temporary_output.stat().st_size > 0
+            ):
+                temporary_output.replace(output)
+                return
+            if attempt == MAX_RENDER_ATTEMPTS:
+                detail = result.stderr.strip() or result.stdout.strip() or "без diagnostics"
+                raise SvgRenderError(
+                    f"Chrome не отрендерил {source.name} после {attempt} попыток: {detail}"
+                )
+    finally:
+        temporary_output.unlink(missing_ok=True)
 
 
 def render_directory(

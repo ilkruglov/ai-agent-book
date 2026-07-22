@@ -10,6 +10,7 @@ DIST_DIR="$ROOT_DIR/dist"
 OUT_NAME="AI-Agents-in-Depth-RU-v1.2.pdf"
 WORK_PDF="$BUILD_DIR/$OUT_NAME"
 DIST_PDF="$DIST_DIR/$OUT_NAME"
+PROVENANCE_PATH="$BUILD_DIR/pdf-provenance.json"
 ELEGANTBOOK_DIR="$SCRIPT_DIR/vendor/elegantbook"
 ELEGANTBOOK_CLASS="$ELEGANTBOOK_DIR/elegantbook.cls"
 SVG_RENDER_DIR="$BUILD_DIR/svg-png"
@@ -117,6 +118,19 @@ info = Path(sys.argv[1]).read_text(encoding="utf-8", errors="replace")
 text = Path(sys.argv[2]).read_text(encoding="utf-8", errors="replace")
 normalized = " ".join(text.split())
 
+expected_metadata = {
+    "Title": "AI-агенты изнутри: принципы проектирования и инженерная практика",
+    "Author": "Bojie Li; Русский перевод: community edition",
+    "Subject": "Русский перевод: community edition, версия v1.2-ru.1",
+}
+for field, expected in expected_metadata.items():
+    match = re.search(rf"^{re.escape(field)}:\s*(.*)$", info, re.MULTILINE)
+    actual = match.group(1).strip() if match is not None else None
+    if actual != expected:
+        raise SystemExit(
+            f"PDF smoke-check: неверное поле {field}: {actual!r}, ожидалось {expected!r}"
+        )
+
 pages_match = re.search(r"^Pages:\s+(\d+)$", info, re.MULTILINE)
 if pages_match is None or int(pages_match.group(1)) < 1:
     raise SystemExit("PDF smoke-check: pdfinfo не вернул корректное число страниц")
@@ -127,6 +141,7 @@ required_fragments = (
     "Контекстная инженерия",
     "Совместная работа нескольких AI-агентов",
     "Послесловие",
+    "Версия v1.2-ru.1",
 )
 for fragment in required_fragments:
     if fragment not in normalized:
@@ -134,8 +149,15 @@ for fragment in required_fragments:
 
 if "\ufffd" in text:
     raise SystemExit("PDF smoke-check: в извлечённом тексте найден U+FFFD")
-if re.search(r"[㐀-䶿一-鿿豈-﫿]", text):
-    raise SystemExit("PDF smoke-check: в извлечённом тексте найден CJK")
+if re.search(
+    "["
+    "\u1100-\u11ff\u2e80-\u303f\u3040-\u31ff\u3400-\u4dbf"
+    "\u4e00-\u9fff\uac00-\ud7af\uf900-\ufaff\ufe30-\ufe4f\uff00-\uffef"
+    "\U0001b000-\U0001b16f\U00020000-\U0002fa1f\U00030000-\U000323af"
+    "]",
+    text,
+):
+    raise SystemExit("PDF smoke-check: в извлечённом тексте найден East Asian Unicode")
 if len(normalized) < 100_000:
     raise SystemExit("PDF smoke-check: извлечённый текст подозрительно короткий")
 
@@ -153,9 +175,24 @@ if [[ "${1:-}" == "--promote" ]]; then
     check_dependencies
     check_tex_support
     mkdir -p -- "$BUILD_DIR"
+    python3 "$ROOT_DIR/scripts/pdf_provenance.py" verify \
+        --root "$ROOT_DIR" \
+        --pdf "$WORK_PDF" \
+        --provenance "$PROVENANCE_PATH"
     smoke_test_pdf "$WORK_PDF"
     mkdir -p -- "$DIST_DIR"
-    cp -- "$WORK_PDF" "$DIST_PDF"
+    temporary_dist="$(mktemp "$DIST_DIR/.${OUT_NAME}.XXXXXX")"
+    cleanup_promotion() {
+        if [[ -n "${temporary_dist:-}" && -e "$temporary_dist" ]]; then
+            rm -f -- "$temporary_dist"
+        fi
+    }
+    trap cleanup_promotion EXIT
+    cp -- "$WORK_PDF" "$temporary_dist"
+    chmod --reference="$WORK_PDF" "$temporary_dist"
+    mv -- "$temporary_dist" "$DIST_PDF"
+    temporary_dist=""
+    trap - EXIT
     echo "Опубликован проверенный PDF: $DIST_PDF"
     exit 0
 fi
@@ -205,6 +242,7 @@ pandoc "${CHAPTERS[@]}" \
     -V author="Bojie Li" \
     --metadata title-meta="AI-агенты изнутри: принципы проектирования и инженерная практика" \
     --metadata author-meta="Bojie Li; Русский перевод: community edition" \
+    --metadata subject="Русский перевод: community edition, версия v1.2-ru.1" \
     --metadata version-meta="v1.2-ru.1" \
     -H preamble.tex \
     --include-before-body=cover.tex \
@@ -212,5 +250,9 @@ pandoc "${CHAPTERS[@]}" \
     --columns=80
 
 smoke_test_pdf "$WORK_PDF"
+python3 "$ROOT_DIR/scripts/pdf_provenance.py" record \
+    --root "$ROOT_DIR" \
+    --pdf "$WORK_PDF" \
+    --provenance "$PROVENANCE_PATH"
 echo "Проверенный PDF готов к дополнительной проверке: $WORK_PDF"
 echo "Для публикации после всех проверок: bash book/build_pdf.sh --promote"

@@ -32,7 +32,22 @@ EXPECTED_FILES = (
     "afterword.md",
 )
 
-CJK_RE = re.compile(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]")
+CJK_RE = re.compile(
+    "["
+    "\u1100-\u11ff"
+    "\u2e80-\u303f"
+    "\u3040-\u31ff"
+    "\u3400-\u4dbf"
+    "\u4e00-\u9fff"
+    "\uac00-\ud7af"
+    "\uf900-\ufaff"
+    "\ufe30-\ufe4f"
+    "\uff00-\uffef"
+    "\U0001b000-\U0001b16f"
+    "\U00020000-\U0002fa1f"
+    "\U00030000-\U000323af"
+    "]"
+)
 HEADING_RE = re.compile(r"^(#{1,6})[ \t]+(.+?)\s*$")
 HEADING_ATTRIBUTE_SUFFIX_RE = re.compile(r"\s+\{[^{}]*\}\s*$")
 FENCE_OPEN_RE = re.compile(r"^\s*(`{3,}|~{3,})(.*)$")

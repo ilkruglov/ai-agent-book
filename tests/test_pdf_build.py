@@ -181,11 +181,25 @@ def test_dependency_preflight_reports_every_missing_command(tmp_path: Path) -> N
 def test_pdf_is_smoke_tested_before_dist_promotion() -> None:
     script = _build_script_text()
 
+    provenance = script.index('"$ROOT_DIR/scripts/pdf_provenance.py" verify')
     smoke = script.index('smoke_test_pdf "$WORK_PDF"')
-    promote = script.index('cp -- "$WORK_PDF" "$DIST_PDF"')
-    assert smoke < promote
+    promote = script.index('mv -- "$temporary_dist" "$DIST_PDF"')
+    assert provenance < smoke < promote
     assert '"$BUILD_DIR/book.txt"' in script
     assert "U+FFFD" in script
+    assert '"Title": "AI-агенты изнутри: принципы проектирования и инженерная практика"' in script
+    assert '"Author": "Bojie Li; Русский перевод: community edition"' in script
+    assert '"Subject": "Русский перевод: community edition, версия v1.2-ru.1"' in script
+    assert 'mktemp "$DIST_DIR/.${OUT_NAME}.XXXXXX"' in script
+    assert 'chmod --reference="$WORK_PDF" "$temporary_dist"' in script
+
+
+def test_successful_build_records_pdf_provenance() -> None:
+    script = _build_script_text()
+
+    smoke = script.rindex('smoke_test_pdf "$WORK_PDF"')
+    record = script.index('"$ROOT_DIR/scripts/pdf_provenance.py" record')
+    assert smoke < record
 
 
 def test_pdf_support_is_localized_for_russian() -> None:

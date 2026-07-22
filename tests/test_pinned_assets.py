@@ -3,9 +3,10 @@ from __future__ import annotations
 import hashlib
 import html
 import json
-import re
 from pathlib import Path
 from typing import Any
+
+from scripts.check_translation import CJK_RE
 
 ROOT = Path(__file__).resolve().parents[1]
 GENERATED_SVGS = {
@@ -44,7 +45,6 @@ STATIC_LOCALIZED_SVGS = {
     "book/images/fig9-7.svg",
 }
 LOCALIZED_SVGS = GENERATED_SVGS | STATIC_LOCALIZED_SVGS
-CJK_RE = re.compile(r"[㐀-䶿一-鿿豈-﫿]")
 
 
 def _manifest() -> dict[str, Any]:

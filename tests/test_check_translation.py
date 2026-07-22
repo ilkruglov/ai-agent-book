@@ -344,6 +344,13 @@ def test_cjk_in_prose_fails_and_find_cjk_reports_line(tmp_path: Path) -> None:
     assert find_cjk(changed)[0].line == 5
 
 
+@pytest.mark.parametrize("unexpected", ["かな", "한글", "。", "："])
+def test_find_cjk_detects_all_east_asian_scripts_and_fullwidth_forms(
+    unexpected: str,
+) -> None:
+    assert find_cjk(f"Русский текст {unexpected}") != []
+
+
 def test_cjk_with_documented_allow_reason_passes(tmp_path: Path) -> None:
     allowed = TARGET.replace(
         "## Первый раздел",
