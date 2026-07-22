@@ -24,6 +24,9 @@ line-length = 100
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B", "ANN"]
 
+[tool.ruff.lint.extend-per-file-ignores]
+"book/gen_*_figs.py" = ["E501"] # Длинные строки являются видимыми подписями SVG.
+
 [tool.pyright]
 pythonVersion = "3.12"
 typeCheckingMode = "strict"

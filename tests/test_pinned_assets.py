@@ -6,6 +6,19 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
+GENERATED_SVGS = {
+    *(f"book/images/fig1-{index}.svg" for index in range(1, 11)),
+    *(f"book/images/fig2-{index}.svg" for index in range(1, 12)),
+    *(f"book/images/fig3-{index}.svg" for index in range(1, 15)),
+    *(f"book/images/fig4-{index}.svg" for index in range(1, 8)),
+    *(f"book/images/fig5-{index}.svg" for index in range(1, 12)),
+    *(f"book/images/fig8-{index}.svg" for index in range(1, 8)),
+    "book/images/fig9-11.svg",
+    "book/images/fig10-1.svg",
+    "book/images/fig10-2.svg",
+    *(f"book/images/fig10-{index}.svg" for index in range(4, 12)),
+    "book/images/fig10-13.svg",
+}
 
 
 def _manifest() -> dict[str, Any]:
@@ -25,7 +38,7 @@ def _assert_blob(relative_path: str, expected_sha1: str) -> None:
     assert _git_blob_sha1(path) == expected_sha1, relative_path
 
 
-def test_all_133_pinned_images_are_imported_byte_for_byte() -> None:
+def test_all_133_images_preserve_the_pinned_inventory() -> None:
     images = _manifest()["images"]
     entries = images["files"]
     expected = {entry["path"] for entry in entries}
@@ -39,14 +52,34 @@ def test_all_133_pinned_images_are_imported_byte_for_byte() -> None:
     assert len(entries) == 133
     assert actual == expected
     for entry in entries:
+        if entry["path"] in GENERATED_SVGS:
+            continue
         _assert_blob(entry["path"], entry["blob_sha1"])
 
 
-def test_pinned_generators_and_pdf_support_are_imported_byte_for_byte() -> None:
+def test_localized_generated_images_differ_from_upstream() -> None:
+    upstream_images = {
+        entry["path"]: entry["blob_sha1"] for entry in _manifest()["images"]["files"]
+    }
+
+    assert len(GENERATED_SVGS) == 72
+    for relative_path in GENERATED_SVGS:
+        assert _git_blob_sha1(ROOT / relative_path) != upstream_images[relative_path]
+
+
+def test_localized_generators_differ_from_upstream() -> None:
     manifest = _manifest()
 
     for entry in manifest["generators"]:
-        _assert_blob(entry["path"], entry["blob_sha1"])
+        path = ROOT / entry["path"]
+        assert path.is_file(), entry["path"]
+        assert not path.is_symlink(), entry["path"]
+        assert _git_blob_sha1(path) != entry["blob_sha1"], entry["path"]
+
+
+def test_pdf_support_remains_pinned() -> None:
+    manifest = _manifest()
+
     for entry in manifest["build_support"]:
         destination = f"book/{Path(entry['path']).name}"
         _assert_blob(destination, entry["blob_sha1"])
