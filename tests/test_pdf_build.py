@@ -12,6 +12,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BUILD_SCRIPT = ROOT / "book/build_pdf.sh"
 TABLE_WIDTH_FILTER = ROOT / "book/table_widths.lua"
+SIX_COLUMN_TABLE_FIXTURE = ROOT / "tests/fixtures/six-column-algorithms.txt"
 EXPECTED_CHAPTERS = [
     "introduction.md",
     "chapter1.md",
@@ -25,6 +26,7 @@ EXPECTED_CHAPTERS = [
     "chapter9.md",
     "chapter10.md",
     "afterword.md",
+    "reference-answers.md",
 ]
 REQUIRED_COMMANDS = (
     "pandoc",
@@ -42,21 +44,62 @@ def _build_script_text() -> str:
     return BUILD_SCRIPT.read_text(encoding="utf-8")
 
 
-def test_build_uses_ordered_twelve_file_input_and_russian_metadata() -> None:
+def test_build_uses_ordered_thirteen_file_input_and_russian_metadata() -> None:
     script = _build_script_text()
     chapter_block = re.search(r"CHAPTERS=\(\n(?P<body>.*?)\n\)", script, re.DOTALL)
 
     assert chapter_block is not None
-    assert re.findall(r"^\s+([a-z0-9.]+)$", chapter_block["body"], re.MULTILINE) == (
+    assert re.findall(r"^\s+([a-z0-9.-]+)$", chapter_block["body"], re.MULTILINE) == (
         EXPECTED_CHAPTERS
     )
-    assert 'OUT_NAME="AI-Agents-in-Depth-RU-v1.2.pdf"' in script
-    assert 'BUILD_DIR="$ROOT_DIR/.tmp/pdf-build"' in script
+    assert 'OUT_NAME="AI-Agents-in-Depth-RU-v2.0.pdf"' in script
+    assert 'BUILD_DIR="$ROOT_DIR/.tmp/pdf-build-v2.0"' in script
     assert '--metadata title-meta="AI-агенты изнутри: принципы проектирования' in script
     assert '--metadata author-meta="Bojie Li; Русский перевод: community edition"' in script
     assert 'SVG_RENDER_SCALE="4"' in script
     assert "--jobs 1" in script
     assert "--lua-filter=rasterize_svg.lua" in script
+
+
+def test_reference_answers_is_unnumbered_without_changing_markdown() -> None:
+    markdown = (
+        "# Введение {.unnumbered}\n\n"
+        + "".join(f"# Глава {number}\n\n" for number in range(1, 11))
+        + "## Обычный раздел\n\n"
+        + "# Послесловие {.unnumbered}\n\n"
+        + "# Справочные ответы на вопросы для размышления\n\n"
+        + "## Глава 1. Введение в AI-агентов\n\n"
+        + "### Подробный ответ\n"
+    )
+    result = subprocess.run(
+        [
+            "pandoc",
+            "--from",
+            "markdown",
+            "--to",
+            "latex",
+            "--standalone",
+            "--number-sections",
+            "-V",
+            "documentclass=elegantbook",
+            f"--lua-filter={ROOT / 'book/crossref.lua'}",
+        ],
+        input=markdown,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+
+    assert result.returncode == 0, result.stderr
+    assert r"\label{chap:10}" in result.stdout
+    assert re.search(
+        r"\\chapter\*\{Справочные ответы на вопросы для\s+размышления\}",
+        result.stdout,
+    )
+    assert r"\label{chap:11}" not in result.stdout
+    assert re.search(r"\\section\{Обычный\s+раздел\}", result.stdout)
+    assert r"\section*{" in result.stdout
+    assert re.search(r"\\subsection\*\{Подробный\s+ответ\}", result.stdout)
 
 
 def test_table_width_filter_rebalances_columns_for_russian_content() -> None:
@@ -102,7 +145,7 @@ def test_table_width_filter_preserves_minimum_width_in_six_column_tables() -> No
     result = subprocess.run(
         [
             "pandoc",
-            str(ROOT / "book/chapter7.md"),
+            str(SIX_COLUMN_TABLE_FIXTURE),
             "--from",
             "markdown",
             "--to",
@@ -128,14 +171,8 @@ def test_table_width_filter_preserves_minimum_width_in_six_column_tables() -> No
     assert min(widths) >= 0.14
 
 
-def test_six_column_algorithm_table_has_no_overfull_hboxes() -> None:
-    chapter = (ROOT / "book/chapter7.md").read_text(encoding="utf-8")
-    table_match = re.search(
-        r"^\| Метод \| Тип \| Основная идея .*?(?=\n\n)",
-        chapter,
-        re.MULTILINE | re.DOTALL,
-    )
-    assert table_match is not None
+def test_six_column_algorithm_fixture_has_no_overfull_hboxes() -> None:
+    table_text = SIX_COLUMN_TABLE_FIXTURE.read_text(encoding="utf-8")
 
     build_root = ROOT / ".tmp"
     build_root.mkdir(exist_ok=True)
@@ -164,7 +201,7 @@ def test_six_column_algorithm_table_has_no_overfull_hboxes() -> None:
                 "--output",
                 str(tex_path),
             ],
-            input=f"{table_match.group(0)}\n\n```python\npass\n```\n",
+            input=f"{table_text}\n```python\npass\n```\n",
             check=False,
             capture_output=True,
             text=True,
@@ -258,7 +295,7 @@ def test_pdf_is_smoke_tested_before_dist_promotion() -> None:
     assert "U+FFFD" in script
     assert '"Title": "AI-агенты изнутри: принципы проектирования и инженерная практика"' in script
     assert '"Author": "Bojie Li; Русский перевод: community edition"' in script
-    assert '"Subject": "Русский перевод: community edition, версия v1.2-ru.1"' in script
+    assert '"Subject": "Русский перевод: community edition, версия v2.0-ru.1"' in script
     assert 'mktemp "$DIST_DIR/.${OUT_NAME}.XXXXXX"' in script
     assert 'chmod --reference="$WORK_PDF" "$temporary_dist"' in script
 

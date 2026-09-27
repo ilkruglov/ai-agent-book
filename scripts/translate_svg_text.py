@@ -6,6 +6,7 @@ import html
 import json
 import re
 import sys
+import xml.etree.ElementTree as ET
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from pathlib import Path
@@ -37,6 +38,7 @@ CONTENT_RE = re.compile(
     r"|(?P<comment><!--(?P<comment_body>.*?)-->)",
     re.DOTALL,
 )
+METADATA_RE = re.compile(r"<(?P<tag>title|desc)\b[^>]*>(?P<text_body>.*?)</(?P=tag)>", re.DOTALL)
 
 
 @dataclass(frozen=True)
@@ -58,6 +60,8 @@ def _sha256(text: str) -> str:
 def extract_records(
     source_dir: Path,
     file_pattern: re.Pattern[str],
+    *,
+    metadata_only: bool = False,
 ) -> tuple[SvgTextRecord, ...]:
     if not source_dir.is_dir():
         raise SvgTranslationError(f"Каталог SVG не существует: {source_dir}")
@@ -68,15 +72,28 @@ def extract_records(
             continue
         index = 0
         text = path.read_text(encoding="utf-8")
-        for match in CONTENT_RE.finditer(text):
-            body = match.group("text_body") or match.group("comment_body") or ""
+        for match in (METADATA_RE if metadata_only else CONTENT_RE).finditer(text):
+            body = (
+                match.group("text_body")
+                or ("" if metadata_only else match.group("comment_body"))
+                or ""
+            )
             source = html.unescape(body.strip())
+            if (metadata_only or match.group("text") is not None) and "<" in body:
+                try:
+                    source = "".join(ET.fromstring(f"<text>{body}</text>").itertext()).strip()
+                except ET.ParseError as error:
+                    raise SvgTranslationError(
+                        f"Некорректная вложенная SVG-подпись: {path.name}"
+                    ) from error
             if CJK_RE.search(source) is None:
                 continue
-            kind: RecordKind = "text" if match.group("text") is not None else "comment"
+            kind: RecordKind = (
+                "text" if metadata_only or match.group("text") is not None else "comment"
+            )
             records.append(
                 SvgTextRecord(
-                    id=f"{path.name}:{index:04d}",
+                    id=f"{path.name}:{'metadata:' if metadata_only else ''}{index:04d}",
                     path=path.name,
                     kind=kind,
                     source=source,
@@ -141,7 +158,23 @@ def _replace_content(
             return f"{original[:body_start]}{replacement_body}{original[body_end:]}"
         return f"<!--{replacement_body}-->"
 
-    return CONTENT_RE.sub(replace, text)
+    translated = CONTENT_RE.sub(replace, text)
+    metadata_index = 0
+
+    def replace_metadata(match: re.Match[str]) -> str:
+        nonlocal metadata_index
+        if CJK_RE.search(html.unescape(match.group("text_body"))) is None:
+            return match.group(0)
+        record_id = f"{path_name}:metadata:{metadata_index:04d}"
+        metadata_index += 1
+        if record_id not in mapping:
+            return match.group(0)
+        original = match.group(0)
+        start = match.start("text_body") - match.start()
+        end = match.end("text_body") - match.start()
+        return original[:start] + html.escape(mapping[record_id], quote=False) + original[end:]
+
+    return METADATA_RE.sub(replace_metadata, translated)
 
 
 def apply_mapping(
@@ -259,8 +292,9 @@ def _model_pass(
     evidence_path: Path,
     timeout_seconds: int,
     draft_mapping_path: Path | None,
+    metadata_only: bool = False,
 ) -> None:
-    records = extract_records(source_dir, file_pattern)
+    records = extract_records(source_dir, file_pattern, metadata_only=metadata_only)
     draft_mapping: dict[str, str] | None = None
     if draft_mapping_path is not None:
         draft_mapping = validate_mapping(records, _load_json_mapping(draft_mapping_path))
@@ -295,6 +329,7 @@ def _model_pass(
         "source_directory": source_dir.relative_to(repo_root).as_posix(),
         "file_pattern": file_pattern.pattern,
         "record_count": len(records),
+        "metadata_only": metadata_only,
         "source_records_sha256": _sha256(
             json.dumps(record_payload, ensure_ascii=False, separators=(",", ":"))
         ),
@@ -322,6 +357,7 @@ def _parser() -> argparse.ArgumentParser:
         subparser.add_argument("--mapping", required=True, type=Path)
         subparser.add_argument("--evidence", required=True, type=Path)
         subparser.add_argument("--timeout-seconds", type=int, default=3600)
+        subparser.add_argument("--metadata-only", action="store_true")
         if name == "review":
             subparser.add_argument("--draft-mapping", required=True, type=Path)
 
@@ -330,6 +366,7 @@ def _parser() -> argparse.ArgumentParser:
     apply_parser.add_argument("--file-pattern", required=True)
     apply_parser.add_argument("--mapping", required=True, type=Path)
     apply_parser.add_argument("--output-dir", required=True, type=Path)
+    apply_parser.add_argument("--metadata-mapping", type=Path)
     return parser
 
 
@@ -342,11 +379,19 @@ def main(argv: Sequence[str] | None = None) -> int:
     try:
         if arguments.command == "apply":
             records = extract_records(source_dir, file_pattern)
+            mapping = _load_json_mapping(cast(Path, arguments.mapping).resolve())
+            if arguments.metadata_mapping is not None:
+                metadata = extract_records(source_dir, file_pattern, metadata_only=True)
+                metadata_mapping = validate_mapping(
+                    metadata, _load_json_mapping(arguments.metadata_mapping)
+                )
+                records = (*records, *metadata)
+                mapping.update(metadata_mapping)
             apply_mapping(
                 source_dir,
                 cast(Path, arguments.output_dir).resolve(),
                 records,
-                _load_json_mapping(cast(Path, arguments.mapping).resolve()),
+                mapping,
             )
         else:
             draft_mapping = (
@@ -363,6 +408,7 @@ def main(argv: Sequence[str] | None = None) -> int:
                 evidence_path=cast(Path, arguments.evidence).resolve(),
                 timeout_seconds=cast(int, arguments.timeout_seconds),
                 draft_mapping_path=draft_mapping,
+                metadata_only=arguments.metadata_only,
             )
     except (OSError, ValueError, json.JSONDecodeError, SvgTranslationError) as error:
         print(f"svg-translation-error: {error}", file=sys.stderr)

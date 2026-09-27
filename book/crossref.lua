@@ -2,6 +2,7 @@
 -- Ручная нумерация сохраняется, а подписи и упоминания получают PDF-ссылки.
 
 local chapter = 0
+local in_reference_answers = false
 
 local figure_words = {
   'Рисунок', 'рисунок', 'рисунке', 'рисунка', 'рисунку', 'рисунком',
@@ -43,6 +44,13 @@ return {
     traverse = 'topdown',
 
     Header = function(element)
+      if element.level == 1 then
+        in_reference_answers = pandoc.utils.stringify(element.content)
+            == 'Справочные ответы на вопросы для размышления'
+      end
+      if in_reference_answers and not element.classes:includes('unnumbered') then
+        element.classes:insert('unnumbered')
+      end
       if element.level == 1 and not element.classes:includes('unnumbered') then
         chapter = chapter + 1
         element.content:insert(pandoc.RawInline(

@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import sys
 from collections.abc import Sequence
@@ -105,7 +106,7 @@ def _validate_paths(
         raise TranslationError(f"Output должен находиться внутри {output_root}")
     if evidence == evidence_root or not evidence.is_relative_to(evidence_root):
         raise TranslationError(f"Evidence должен находиться внутри {evidence_root}")
-    for artifact in (output, evidence):
+    for artifact in (output, evidence, evidence.with_suffix(".failed.json")):
         if artifact.exists():
             raise TranslationError(f"Partial artifact уже существует: {artifact}")
     return root, source, output, evidence
@@ -273,10 +274,6 @@ def translate_file(
     draft = f"{TRANSLATION_NOTICE}\n\n{''.join(restored_responses)}"
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(draft, encoding="utf-8")
-    issues = validate_translation(source, output, terms)
-    if issues:
-        codes = ", ".join(sorted({issue.code for issue in issues}))
-        raise TranslationError(f"Draft не прошёл structural validation: {codes}")
 
     evidence_document: dict[str, object] = {
         "schema_version": 1,
@@ -302,9 +299,18 @@ def translate_file(
         ],
     }
     evidence.parent.mkdir(parents=True, exist_ok=True)
-    with evidence.open("x", encoding="utf-8", newline="") as evidence_file:
+    failed_evidence = evidence.with_suffix(".failed.json")
+    with failed_evidence.open("x", encoding="utf-8", newline="") as evidence_file:
         json.dump(evidence_document, evidence_file, ensure_ascii=False, indent=2)
         evidence_file.write("\n")
+    issues = validate_translation(source, output, terms)
+    if issues:
+        codes = ", ".join(sorted({issue.code for issue in issues}))
+        raise TranslationError(f"Draft не прошёл structural validation: {codes}")
+    # Both paths share a directory: hard-link publication is atomic and cannot
+    # overwrite an evidence file created by another process after preflight.
+    os.link(failed_evidence, evidence)
+    failed_evidence.unlink()
 
     return TranslationManifest(
         source_path=source,

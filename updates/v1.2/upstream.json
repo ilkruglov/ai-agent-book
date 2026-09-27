@@ -1,0 +1,821 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/bojieli/ai-agent-book",
+  "branch": "main",
+  "commit": "97de455e9aa44cf9f93441ce0c771c9aa9643d92",
+  "version": "v1.2",
+  "source_directory": "book",
+  "license": {
+    "path": "LICENSE",
+    "blob_sha1": "bd3e071f150cf46f86c91d3341d36644f16e11cb",
+    "size": 11338
+  },
+  "markdown": [
+    {
+      "path": "book/introduction.md",
+      "blob_sha1": "edfd6ed34b3d14760cac5114cfb3622745a30969",
+      "size": 20731
+    },
+    {
+      "path": "book/chapter1.md",
+      "blob_sha1": "fc40590687d38b2b330bd3035a3ea1cba30ea037",
+      "size": 66344
+    },
+    {
+      "path": "book/chapter2.md",
+      "blob_sha1": "50db6e6945cb54a40de703795491f1a58eebaa12",
+      "size": 134173
+    },
+    {
+      "path": "book/chapter3.md",
+      "blob_sha1": "8472fef633914e90be30b9b67b4dcdc15c576efc",
+      "size": 106898
+    },
+    {
+      "path": "book/chapter4.md",
+      "blob_sha1": "d145d863e9106cd0ad69b543d64849eda50ef7ca",
+      "size": 92542
+    },
+    {
+      "path": "book/chapter5.md",
+      "blob_sha1": "fe2c17b954d8165b1d490b0fde35d7ea76f1b6ed",
+      "size": 113297
+    },
+    {
+      "path": "book/chapter6.md",
+      "blob_sha1": "2ea2974b75b8430e83a6b947ca59da111604b3c6",
+      "size": 100135
+    },
+    {
+      "path": "book/chapter7.md",
+      "blob_sha1": "5e8421aec0a98672991dc693b0cc2ee604a65c43",
+      "size": 136396
+    },
+    {
+      "path": "book/chapter8.md",
+      "blob_sha1": "0aa3a04b24ef65bfc3082ddb0e12ecadfcb4f104",
+      "size": 67878
+    },
+    {
+      "path": "book/chapter9.md",
+      "blob_sha1": "9109acb6ac1a240e9a25fdb5ecf989f8bfbd02c2",
+      "size": 91363
+    },
+    {
+      "path": "book/chapter10.md",
+      "blob_sha1": "0f608bcfcd12a6a73d392a0b44fe89acdae2c03b",
+      "size": 98472
+    },
+    {
+      "path": "book/afterword.md",
+      "blob_sha1": "90dafce3240e7b1a6f1e2fefbc59bd54efe2c34f",
+      "size": 11121
+    }
+  ],
+  "images": {
+    "path": "book/images",
+    "tree_sha1": "b0d9cbe7700caa4a8d5eff9fe9cc929d03756cfd",
+    "file_count": 133,
+    "files": [
+      {
+        "path": "book/images/attention-visualization.png",
+        "blob_sha1": "3cbb27b4a689af0c2c0f8e21965875ef26d02ee0",
+        "size": 2578612
+      },
+      {
+        "path": "book/images/fig0-1.svg",
+        "blob_sha1": "bcf45d26754a79671c4ea5861e96be223aa65f10",
+        "size": 7350
+      },
+      {
+        "path": "book/images/fig0-2.svg",
+        "blob_sha1": "3d1b6dedaacba2296e6267183f740728b0c4219f",
+        "size": 7742
+      },
+      {
+        "path": "book/images/fig1-1.svg",
+        "blob_sha1": "728b3e7752807da4261c1e1cddefd9173aac1d24",
+        "size": 8356
+      },
+      {
+        "path": "book/images/fig1-10.svg",
+        "blob_sha1": "a31a2bbca3f94a5e9418b3a9cbe7790e9414ee3f",
+        "size": 6445
+      },
+      {
+        "path": "book/images/fig1-2.svg",
+        "blob_sha1": "8a4c062619d2bbddeee7577dde94e293cee606f6",
+        "size": 12655
+      },
+      {
+        "path": "book/images/fig1-3.svg",
+        "blob_sha1": "dc52a1b907c67029d53ab5097432b88a5cf8e64c",
+        "size": 8609
+      },
+      {
+        "path": "book/images/fig1-4.svg",
+        "blob_sha1": "8d0fa91212c0ec4dbe592b1c653bf55b9e98fb2a",
+        "size": 8732
+      },
+      {
+        "path": "book/images/fig1-5.svg",
+        "blob_sha1": "eb8d883f33105491ae98410b42352d3270c7f872",
+        "size": 6210
+      },
+      {
+        "path": "book/images/fig1-6.svg",
+        "blob_sha1": "2e4108c75eb72e7a2d3cd0cf2792b7364e17b939",
+        "size": 5640
+      },
+      {
+        "path": "book/images/fig1-7.svg",
+        "blob_sha1": "c91f97a0ea19c80b94974f9fdfc1ce82594a7483",
+        "size": 5988
+      },
+      {
+        "path": "book/images/fig1-8.svg",
+        "blob_sha1": "eeba2422cda78f64a50b6bf82ea0f2fe39a29c2d",
+        "size": 5705
+      },
+      {
+        "path": "book/images/fig1-9.svg",
+        "blob_sha1": "4b0cb87ca5c392570f66b2695555588288087963",
+        "size": 5004
+      },
+      {
+        "path": "book/images/fig1-wf-chaining.svg",
+        "blob_sha1": "d1826914bc6c5daeaf94ba9d12bc9be406ba8f5c",
+        "size": 4424
+      },
+      {
+        "path": "book/images/fig1-wf-evaluator.svg",
+        "blob_sha1": "4b0cb87ca5c392570f66b2695555588288087963",
+        "size": 5004
+      },
+      {
+        "path": "book/images/fig1-wf-orchestrator.svg",
+        "blob_sha1": "b0735178b4934944d8e96f2cae25e2b1610f781c",
+        "size": 5705
+      },
+      {
+        "path": "book/images/fig1-wf-parallel.svg",
+        "blob_sha1": "c91f97a0ea19c80b94974f9fdfc1ce82594a7483",
+        "size": 5988
+      },
+      {
+        "path": "book/images/fig1-wf-routing.svg",
+        "blob_sha1": "2e4108c75eb72e7a2d3cd0cf2792b7364e17b939",
+        "size": 5640
+      },
+      {
+        "path": "book/images/fig10-1.svg",
+        "blob_sha1": "68ca323678f65df985c88af36f51aba638145d4a",
+        "size": 9472
+      },
+      {
+        "path": "book/images/fig10-10.svg",
+        "blob_sha1": "78a6674a2e9921bee39214435df2c5c895ae2735",
+        "size": 11026
+      },
+      {
+        "path": "book/images/fig10-11.svg",
+        "blob_sha1": "dbb729e314827e5200a2f98063ad263925b0994f",
+        "size": 13908
+      },
+      {
+        "path": "book/images/fig10-12.svg",
+        "blob_sha1": "015333cb890660b5f98999c6a1290246fb23a6ff",
+        "size": 12215
+      },
+      {
+        "path": "book/images/fig10-13.svg",
+        "blob_sha1": "5a29ebf57a1333bc63b2dee72a2e5c1ea6cb2c10",
+        "size": 13899
+      },
+      {
+        "path": "book/images/fig10-2.svg",
+        "blob_sha1": "cd9853100acc4b05c098ebcee0f58ffc6c2cdc0e",
+        "size": 10081
+      },
+      {
+        "path": "book/images/fig10-3.svg",
+        "blob_sha1": "abe2fec17acf8715c9175dc2aebca7ea5cf0905b",
+        "size": 10796
+      },
+      {
+        "path": "book/images/fig10-4.svg",
+        "blob_sha1": "675ae2549360cfea9dcfd5e9b16d4da68471d36a",
+        "size": 10179
+      },
+      {
+        "path": "book/images/fig10-5.svg",
+        "blob_sha1": "05efd28e9b558a68887275d5bc6d42cb0aad4c1e",
+        "size": 8383
+      },
+      {
+        "path": "book/images/fig10-6.svg",
+        "blob_sha1": "8a62bbcd8c90ab190147864bd3d325ea88c35ca1",
+        "size": 10499
+      },
+      {
+        "path": "book/images/fig10-7.svg",
+        "blob_sha1": "e5bb643586566ad5428ee7b8c8c28a210579aee4",
+        "size": 8547
+      },
+      {
+        "path": "book/images/fig10-8.svg",
+        "blob_sha1": "9b4e2019e02602c9a7736ced45e74fd6df410854",
+        "size": 10081
+      },
+      {
+        "path": "book/images/fig10-9.svg",
+        "blob_sha1": "8eedd365a6f31a7fd1e30d444f417c05b67602a1",
+        "size": 12890
+      },
+      {
+        "path": "book/images/fig2-1.svg",
+        "blob_sha1": "340929e9d1c6963ca5b8f2b22d350be8d1edc603",
+        "size": 5735
+      },
+      {
+        "path": "book/images/fig2-10.svg",
+        "blob_sha1": "0b82d74e760e0a055d44209ded34bd6b109ee742",
+        "size": 7316
+      },
+      {
+        "path": "book/images/fig2-11.svg",
+        "blob_sha1": "2f766de9ab1062d10090d887bc4eb6c5cb1e788b",
+        "size": 6759
+      },
+      {
+        "path": "book/images/fig2-12.svg",
+        "blob_sha1": "7a82e21d24519bbb649017d1792f4f2bb2c11fd7",
+        "size": 9308
+      },
+      {
+        "path": "book/images/fig2-13.svg",
+        "blob_sha1": "8ea1bf62cd104c662362fded8ae43808d572e921",
+        "size": 18472
+      },
+      {
+        "path": "book/images/fig2-14.svg",
+        "blob_sha1": "4d3a84b099ad16701306c82d1f2a740a9688d057",
+        "size": 11600
+      },
+      {
+        "path": "book/images/fig2-15.svg",
+        "blob_sha1": "2a89e710de5feb2ccd7b52135c116236596fb6e9",
+        "size": 6342
+      },
+      {
+        "path": "book/images/fig2-16.svg",
+        "blob_sha1": "96a94ef9d25ad2b814d8d9de05a7bf5c5ee2f5a5",
+        "size": 10412
+      },
+      {
+        "path": "book/images/fig2-17.svg",
+        "blob_sha1": "93022e4ee6dfdfea1748941acf28b0caf5e7f6e0",
+        "size": 10309
+      },
+      {
+        "path": "book/images/fig2-2.svg",
+        "blob_sha1": "9a8c737c37acc4e165d42527efdd9e7f066a9c76",
+        "size": 3757
+      },
+      {
+        "path": "book/images/fig2-3.svg",
+        "blob_sha1": "95dccb581ba67e89578a699dda53e9262ddc74d7",
+        "size": 5727
+      },
+      {
+        "path": "book/images/fig2-4.svg",
+        "blob_sha1": "726de269f5e039547868d32a712b3a21d18c0007",
+        "size": 4284
+      },
+      {
+        "path": "book/images/fig2-5.svg",
+        "blob_sha1": "fa449e3c7d1970e4e71d13ee64088869beb8bb95",
+        "size": 3754
+      },
+      {
+        "path": "book/images/fig2-6.svg",
+        "blob_sha1": "e52e21a3470ef8a8e3845f1955e7a786056f5556",
+        "size": 9918
+      },
+      {
+        "path": "book/images/fig2-7.png",
+        "blob_sha1": "3cbb27b4a689af0c2c0f8e21965875ef26d02ee0",
+        "size": 2578612
+      },
+      {
+        "path": "book/images/fig2-7.svg",
+        "blob_sha1": "91032f959d2e0feaa8bb0c67b19f2ac85571e4af",
+        "size": 10308
+      },
+      {
+        "path": "book/images/fig2-8.svg",
+        "blob_sha1": "fdc3e55d4973b13be53161334dd8c8699b4e9413",
+        "size": 4310
+      },
+      {
+        "path": "book/images/fig2-9.svg",
+        "blob_sha1": "1505d6e926f0129214e3dbfd6126942a582f2190",
+        "size": 5490
+      },
+      {
+        "path": "book/images/fig3-1.svg",
+        "blob_sha1": "0e1fa0ffa181cf744d1114f7d4d434e5296ebfba",
+        "size": 5143
+      },
+      {
+        "path": "book/images/fig3-10.svg",
+        "blob_sha1": "32ce70db244a126473648bfd1ae24a891532361c",
+        "size": 6973
+      },
+      {
+        "path": "book/images/fig3-11.svg",
+        "blob_sha1": "fc671816fb3192ce6af9191f7023a1b3a665d21d",
+        "size": 5671
+      },
+      {
+        "path": "book/images/fig3-12.svg",
+        "blob_sha1": "90a510031a8af4e2eda55659cc9266478a958629",
+        "size": 5213
+      },
+      {
+        "path": "book/images/fig3-13.svg",
+        "blob_sha1": "d7b2ea55226d004c3b14fa8ba8829297e74663c7",
+        "size": 7003
+      },
+      {
+        "path": "book/images/fig3-14.svg",
+        "blob_sha1": "f73807952bc3a9b1359d6265675a8743199debaf",
+        "size": 6288
+      },
+      {
+        "path": "book/images/fig3-15.svg",
+        "blob_sha1": "217686e6ecae9d521f94bec307c7998b2e8bba50",
+        "size": 7577
+      },
+      {
+        "path": "book/images/fig3-2.svg",
+        "blob_sha1": "e0e797e86f6cd566b76706da77dbf67601fe95e7",
+        "size": 8136
+      },
+      {
+        "path": "book/images/fig3-3.svg",
+        "blob_sha1": "246a3a467238561732d24dce29d1649094183e23",
+        "size": 6900
+      },
+      {
+        "path": "book/images/fig3-4.svg",
+        "blob_sha1": "f9d1a80e4ec83b722163c3d5d86a385c7e50b8e0",
+        "size": 5400
+      },
+      {
+        "path": "book/images/fig3-5.svg",
+        "blob_sha1": "82e298c158878e2f067edcdac79f68aa5ae2dd1d",
+        "size": 6506
+      },
+      {
+        "path": "book/images/fig3-6.svg",
+        "blob_sha1": "b2976d52aba87c5cae18112bc47c538016efd668",
+        "size": 9731
+      },
+      {
+        "path": "book/images/fig3-7.svg",
+        "blob_sha1": "78cb209029bb517f7713ae317daa1844bfb42b37",
+        "size": 6360
+      },
+      {
+        "path": "book/images/fig3-8.svg",
+        "blob_sha1": "74af4a4543d1628b4798c60328fb6c86de96f4b5",
+        "size": 5645
+      },
+      {
+        "path": "book/images/fig3-9.svg",
+        "blob_sha1": "55e3b998d1effa6291bbfb2ad78a6621694c0a22",
+        "size": 7172
+      },
+      {
+        "path": "book/images/fig4-1.svg",
+        "blob_sha1": "2031ace8336d36f0895f72412af6b93717e0da5d",
+        "size": 7335
+      },
+      {
+        "path": "book/images/fig4-2.svg",
+        "blob_sha1": "27fbfcc84a3d60813a22bbed5f12158fac61100d",
+        "size": 9844
+      },
+      {
+        "path": "book/images/fig4-3.svg",
+        "blob_sha1": "10dc4276e53dfe81c2cfa522edb873b262cb63cc",
+        "size": 11565
+      },
+      {
+        "path": "book/images/fig4-4.svg",
+        "blob_sha1": "63b65dca3fa8b47f6b1b2eb181aa5aa267355464",
+        "size": 9347
+      },
+      {
+        "path": "book/images/fig4-5.svg",
+        "blob_sha1": "2ad1ea4d7946821e5ef81ea89101ced5b3df8bf4",
+        "size": 12723
+      },
+      {
+        "path": "book/images/fig4-6.svg",
+        "blob_sha1": "7ae57953aaef1af479a9845a38310e554b94cd58",
+        "size": 9873
+      },
+      {
+        "path": "book/images/fig4-7.svg",
+        "blob_sha1": "02dd31c4d48f698b90dc6cfa17d58623af33a4db",
+        "size": 6760
+      },
+      {
+        "path": "book/images/fig5-1.svg",
+        "blob_sha1": "f4ce62e1c897c3318fb1a53313c96eea5cdadfd2",
+        "size": 13405
+      },
+      {
+        "path": "book/images/fig5-10.svg",
+        "blob_sha1": "d18e08024a1a097b33630b4e349a201ebd372ac9",
+        "size": 11450
+      },
+      {
+        "path": "book/images/fig5-11.svg",
+        "blob_sha1": "1781e32bb440e4eade19332237dca637024dcc67",
+        "size": 11779
+      },
+      {
+        "path": "book/images/fig5-2.svg",
+        "blob_sha1": "4e183ea342341f50a6c9be1f3760536f50088f13",
+        "size": 14996
+      },
+      {
+        "path": "book/images/fig5-3.svg",
+        "blob_sha1": "059ec71b1a28fd0ea1e25f18fe61a6c3c1fc4d6d",
+        "size": 9124
+      },
+      {
+        "path": "book/images/fig5-4.svg",
+        "blob_sha1": "642d5bb4202ba16ce28072f52bba44039f241631",
+        "size": 13659
+      },
+      {
+        "path": "book/images/fig5-5.svg",
+        "blob_sha1": "0394d4e48fec914be437ed123cc090efe5be70d8",
+        "size": 9841
+      },
+      {
+        "path": "book/images/fig5-6.svg",
+        "blob_sha1": "1f27cd633097ff847438bdb759a27848b1635122",
+        "size": 13723
+      },
+      {
+        "path": "book/images/fig5-7.svg",
+        "blob_sha1": "9108f42abb874acad7bd6d753d8daaad862b3ccc",
+        "size": 12118
+      },
+      {
+        "path": "book/images/fig5-8.svg",
+        "blob_sha1": "f1493a8a1ac77a001af3f21849257a3defd1f848",
+        "size": 10546
+      },
+      {
+        "path": "book/images/fig5-9.svg",
+        "blob_sha1": "2152092ba67654779a9e33fbe146d8c32ce990c9",
+        "size": 12282
+      },
+      {
+        "path": "book/images/fig6-1.svg",
+        "blob_sha1": "28ef606273cece0d49d337fa25488a3c576cc99e",
+        "size": 3673
+      },
+      {
+        "path": "book/images/fig6-2.svg",
+        "blob_sha1": "5c91380683466e34bb7a1ae6acdc65f7e555a15c",
+        "size": 8125
+      },
+      {
+        "path": "book/images/fig6-3.svg",
+        "blob_sha1": "1bf32ce84ee1ac7a652fbb2a2b0d510a5ac267ba",
+        "size": 11349
+      },
+      {
+        "path": "book/images/fig6-4.svg",
+        "blob_sha1": "ed01ea3cc9689ac27fb3b33d588af2f39d79412b",
+        "size": 9011
+      },
+      {
+        "path": "book/images/fig6-5.svg",
+        "blob_sha1": "49f7a658f2e45c590d6ca8e160c5268bf871b97e",
+        "size": 11083
+      },
+      {
+        "path": "book/images/fig6-6.svg",
+        "blob_sha1": "d7ee9fb9d7cc37b1ce8391e8dcab9d601be161a2",
+        "size": 9032
+      },
+      {
+        "path": "book/images/fig6-7.svg",
+        "blob_sha1": "ad6e2738cbc038a9044826b35726115b15cf06bd",
+        "size": 10180
+      },
+      {
+        "path": "book/images/fig6-8.svg",
+        "blob_sha1": "b3637d609cb716568b746dffa74cea550557682d",
+        "size": 7876
+      },
+      {
+        "path": "book/images/fig6-9.svg",
+        "blob_sha1": "ba0e820ef328f89b11029c5e17b47070dfdd1483",
+        "size": 12338
+      },
+      {
+        "path": "book/images/fig7-1.svg",
+        "blob_sha1": "92be2d0860e539c195b6edd5006c5ea9433b56d1",
+        "size": 8526
+      },
+      {
+        "path": "book/images/fig7-10.svg",
+        "blob_sha1": "19f4e6eaea0b8a467089ef4e1b24d5b361a62af5",
+        "size": 7929
+      },
+      {
+        "path": "book/images/fig7-11.svg",
+        "blob_sha1": "aff6de30b34ecfef8638903919e8d769789be3b6",
+        "size": 5449
+      },
+      {
+        "path": "book/images/fig7-12.svg",
+        "blob_sha1": "d5bc5359b44d5273b071c1e861e260199c8b3c41",
+        "size": 10605
+      },
+      {
+        "path": "book/images/fig7-13.svg",
+        "blob_sha1": "b3f22713321b0de2ffd564d59200ca2c60d58954",
+        "size": 5562
+      },
+      {
+        "path": "book/images/fig7-14.svg",
+        "blob_sha1": "5f9570b386fb3bfb6c1e10688f9eac1ce7d32ddb",
+        "size": 7235
+      },
+      {
+        "path": "book/images/fig7-15.svg",
+        "blob_sha1": "0c6a2995b1cea91a35b3f357999a24d8ebed2b24",
+        "size": 8502
+      },
+      {
+        "path": "book/images/fig7-16.svg",
+        "blob_sha1": "93e6d6bd9bbe6f976d488067736f7edc53ccf4bd",
+        "size": 53190
+      },
+      {
+        "path": "book/images/fig7-17.svg",
+        "blob_sha1": "8130c873a1161e6a767f00f013dc180ea446bc28",
+        "size": 9369
+      },
+      {
+        "path": "book/images/fig7-18.svg",
+        "blob_sha1": "9e886dcc1d0bc81173930522dea29464b8ae0a68",
+        "size": 5905
+      },
+      {
+        "path": "book/images/fig7-19.svg",
+        "blob_sha1": "b2efc3b0ed2c34840763284a84b1785225f57da1",
+        "size": 9965
+      },
+      {
+        "path": "book/images/fig7-2.svg",
+        "blob_sha1": "03bec1f52affed25dbd376fddd4a895eb90f1ac5",
+        "size": 4889
+      },
+      {
+        "path": "book/images/fig7-20.svg",
+        "blob_sha1": "151e8c50978f068130e5afbf6c1fafc019129282",
+        "size": 14875
+      },
+      {
+        "path": "book/images/fig7-21.svg",
+        "blob_sha1": "9dbdff19e8b4529e79861ff85f9d72e373c6bf37",
+        "size": 7469
+      },
+      {
+        "path": "book/images/fig7-3.svg",
+        "blob_sha1": "828ede227fdb5e5b26bc0895d9b03a19afa206f4",
+        "size": 17802
+      },
+      {
+        "path": "book/images/fig7-4.svg",
+        "blob_sha1": "49a885fb9ff2648674621d357362fdec673c60f2",
+        "size": 5980
+      },
+      {
+        "path": "book/images/fig7-5.svg",
+        "blob_sha1": "a75bc8c8ce034fdb2e0843b68e68025d99db46b8",
+        "size": 7819
+      },
+      {
+        "path": "book/images/fig7-6.svg",
+        "blob_sha1": "ddb168ee4bef7214472eb821d8b7a5bfb8b2e5c9",
+        "size": 5005
+      },
+      {
+        "path": "book/images/fig7-7.svg",
+        "blob_sha1": "9d8200336b711af0e3906686dd9b9fd45f41b4c3",
+        "size": 9953
+      },
+      {
+        "path": "book/images/fig7-8.svg",
+        "blob_sha1": "bd097f90da03b5aa1908ef37943725b0a6cdbee8",
+        "size": 6806
+      },
+      {
+        "path": "book/images/fig7-9.svg",
+        "blob_sha1": "1ea2c7167dac1ca59de4e9d5aaa19c271307368b",
+        "size": 7940
+      },
+      {
+        "path": "book/images/fig8-1.svg",
+        "blob_sha1": "0f7ba2312ccc8822e2fb3d5912de0c953c264723",
+        "size": 3716
+      },
+      {
+        "path": "book/images/fig8-2.svg",
+        "blob_sha1": "619a663481b73c4e37d85cb4548dd3c7920b4cf1",
+        "size": 3699
+      },
+      {
+        "path": "book/images/fig8-3.svg",
+        "blob_sha1": "671006cf7fdb7ef5a2875c8d809c8f932ca3e610",
+        "size": 3246
+      },
+      {
+        "path": "book/images/fig8-4.svg",
+        "blob_sha1": "a866b69530271edf99aa6f798963411f6e730776",
+        "size": 3386
+      },
+      {
+        "path": "book/images/fig8-5.svg",
+        "blob_sha1": "9a4891d87a96c66f281ea8c67a1e86a3f78f08b0",
+        "size": 3739
+      },
+      {
+        "path": "book/images/fig8-6.svg",
+        "blob_sha1": "c59544ccb9b4ae909323db7743adf7d5b7b9df68",
+        "size": 3047
+      },
+      {
+        "path": "book/images/fig8-7.svg",
+        "blob_sha1": "5864f714d407fbdf3e011744e0fb34d8ded43f1f",
+        "size": 4377
+      },
+      {
+        "path": "book/images/fig9-1.svg",
+        "blob_sha1": "60f7fae279e9484c53bf56da99f6e4760c59e5c2",
+        "size": 7701
+      },
+      {
+        "path": "book/images/fig9-10.svg",
+        "blob_sha1": "4f3b20feb48a7a8aa4cea0e419613650e357e306",
+        "size": 6132
+      },
+      {
+        "path": "book/images/fig9-11.svg",
+        "blob_sha1": "39c90b773e8a1f17d208c66826e5a6e6e27ab218",
+        "size": 12820
+      },
+      {
+        "path": "book/images/fig9-12.svg",
+        "blob_sha1": "34d5b18411b8444002f0c3586087c4a7d8282bf1",
+        "size": 8385
+      },
+      {
+        "path": "book/images/fig9-13.svg",
+        "blob_sha1": "ca5ca1ce136137410b0e79c7080f428d8d443cc1",
+        "size": 13049
+      },
+      {
+        "path": "book/images/fig9-2.svg",
+        "blob_sha1": "db208494b50ac65ae847676bdf902909479d6cfa",
+        "size": 6674
+      },
+      {
+        "path": "book/images/fig9-3.svg",
+        "blob_sha1": "00c9c0bd32fd25bff6d2161e7151acddabaf66b1",
+        "size": 9483
+      },
+      {
+        "path": "book/images/fig9-4.svg",
+        "blob_sha1": "4ae872e59143418cde2abbb3eb8f2816240afe1b",
+        "size": 12941
+      },
+      {
+        "path": "book/images/fig9-5.svg",
+        "blob_sha1": "03bace01d5d2d64521da1566b65e44ae18b4a82f",
+        "size": 7812
+      },
+      {
+        "path": "book/images/fig9-6.svg",
+        "blob_sha1": "932e3fbbc03d6fe585ae7133bc75b3bac11d7fcc",
+        "size": 11934
+      },
+      {
+        "path": "book/images/fig9-7.svg",
+        "blob_sha1": "eea29b24520838e1f8185eb2f35441efa6324428",
+        "size": 7343
+      },
+      {
+        "path": "book/images/fig9-8.svg",
+        "blob_sha1": "186a232e7730468fddf27d9f07b7cb849eccde23",
+        "size": 10475
+      },
+      {
+        "path": "book/images/fig9-9.svg",
+        "blob_sha1": "b0d1ec9de8af4df0a3f7400dea162af8dc964722",
+        "size": 9787
+      },
+      {
+        "path": "book/images/n8n-workflow.png",
+        "blob_sha1": "58c32989c47c7f8261f93b9c5d68de57cd38ae33",
+        "size": 162795
+      }
+    ]
+  },
+  "generators": [
+    {
+      "path": "book/gen_ch1_figs.py",
+      "blob_sha1": "d47f6d6f6f292d09dea2477364c12df470699572",
+      "size": 20972
+    },
+    {
+      "path": "book/gen_ch2_figs.py",
+      "blob_sha1": "b9edb1fddbff677596f8ea1d7deece130586fe62",
+      "size": 39765
+    },
+    {
+      "path": "book/gen_ch3_figs.py",
+      "blob_sha1": "d0fbdbe822a3d0092a96e8a07c28248deeefe836",
+      "size": 35819
+    },
+    {
+      "path": "book/gen_ch4_figs.py",
+      "blob_sha1": "4e35c4b43422bfcc05f361e6ff704f5e971ab4ae",
+      "size": 40647
+    },
+    {
+      "path": "book/gen_ch5_figs.py",
+      "blob_sha1": "26af824c9f096274bad896f09cec6ca4e94dbd05",
+      "size": 45623
+    },
+    {
+      "path": "book/gen_ch8_figs.py",
+      "blob_sha1": "e8af34384125f381fea6f15ac5e3f1c0601ef974",
+      "size": 5724
+    },
+    {
+      "path": "book/gen_ch9_figs.py",
+      "blob_sha1": "c1cdd07879422a2b3f35203aa2fa30a7f8830eb2",
+      "size": 48239
+    },
+    {
+      "path": "book/gen_cover.py",
+      "blob_sha1": "664c34d4d5e10e357bfca18cf1fcdb2a5abf3687",
+      "size": 4143
+    },
+    {
+      "path": "book/svg_lib.py",
+      "blob_sha1": "d9e9ebaada8d4f63ed5d0db24d217c3a5d57e3ef",
+      "size": 15301
+    }
+  ],
+  "build_support": [
+    {
+      "path": "book-en/build_pdf.sh",
+      "blob_sha1": "d82a71b142f489e3288d8bf815855dfc6d892b55",
+      "size": 3006
+    },
+    {
+      "path": "book-en/cover.tex",
+      "blob_sha1": "4238db6e6b6e663da0faa64e5edb911a5665e6f4",
+      "size": 4335
+    },
+    {
+      "path": "book-en/crossref.lua",
+      "blob_sha1": "cad72b3ae96f1b2efed129161240b7325f365a86",
+      "size": 4812
+    },
+    {
+      "path": "book-en/experiment_box.lua",
+      "blob_sha1": "20ccbee4753a4e4cce947b4499e3d2c29df96485",
+      "size": 1710
+    },
+    {
+      "path": "book-en/preamble.tex",
+      "blob_sha1": "13c9035930b3c9814ae8dbc4adde15ce7ef9e2c0",
+      "size": 10084
+    }
+  ]
+}

@@ -103,7 +103,8 @@ def test_generator_inventory_contains_exactly_77_svg_outputs() -> None:
 
 
 def test_derived_files_manifest_matches_promoted_outputs() -> None:
-    manifest_path = ROOT / "derived-files.json"
+    # These generators reproduce the preserved v1.2 edition, not v2 figure numbers.
+    manifest_path = ROOT / "updates/v1.2/derived-files.json"
     manifest: dict[str, Any] = json.loads(manifest_path.read_text(encoding="utf-8"))
 
     assert {key: value for key, value in manifest.items() if key != "outputs"} == {
@@ -126,13 +127,26 @@ def test_derived_files_manifest_matches_promoted_outputs() -> None:
             "command",
             "status",
         }
-        output_path = ROOT / record["path"]
         generator_path = ROOT / record["generator"]
-        assert output_path.is_file()
         assert generator_path.is_file()
         assert SHA256_RE.fullmatch(record["sha256"])
         assert SHA256_RE.fullmatch(record["generator_sha256"])
-        assert record["sha256"] == _sha256(output_path)
+        baseline = ROOT / "updates/v1.2/images" / Path(record["path"]).name
+        assert record["sha256"] == _sha256(baseline)
         assert record["generator_sha256"] == _sha256(generator_path)
         assert record["command"].endswith("--output-dir .tmp/generated-images")
         assert record["status"] == "generated"
+
+
+def test_current_derived_manifest_covers_only_current_assets() -> None:
+    manifest = json.loads((ROOT / "derived-files.json").read_text())
+    assert manifest["schema_version"] == 2
+    assert manifest["upstream_commit"] == "c3352738f4b6fe42fe34e3cf6a79bcb424a133b8"
+    assert len(manifest["outputs"]) == 114
+    for record in manifest["outputs"]:
+        assert record["sha256"] == _sha256(ROOT / record["path"])
+        assert record["status"] in {
+            "baseline-reuse",
+            "gpt-translation",
+            "upstream-technical-labels",
+        }

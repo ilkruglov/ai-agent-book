@@ -30,6 +30,7 @@ EXPECTED_FILES = (
     "chapter9.md",
     "chapter10.md",
     "afterword.md",
+    "reference-answers.md",
 )
 
 CJK_RE = re.compile(

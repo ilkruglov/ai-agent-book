@@ -5,9 +5,9 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd -- "${BASH_SOURCE[0]%/*}" && pwd -P)"
 ROOT_DIR="$(cd -- "$SCRIPT_DIR/.." && pwd -P)"
-BUILD_DIR="$ROOT_DIR/.tmp/pdf-build"
+BUILD_DIR="$ROOT_DIR/.tmp/pdf-build-v2.0"
 DIST_DIR="$ROOT_DIR/dist"
-OUT_NAME="AI-Agents-in-Depth-RU-v1.2.pdf"
+OUT_NAME="AI-Agents-in-Depth-RU-v2.0.pdf"
 WORK_PDF="$BUILD_DIR/$OUT_NAME"
 DIST_PDF="$DIST_DIR/$OUT_NAME"
 PROVENANCE_PATH="$BUILD_DIR/pdf-provenance.json"
@@ -30,6 +30,7 @@ CHAPTERS=(
     chapter9.md
     chapter10.md
     afterword.md
+    reference-answers.md
 )
 
 REQUIRED_COMMANDS=(
@@ -71,7 +72,7 @@ check_tex_support() {
         missing=1
     fi
 
-    for resource in biblatex.sty TeXGyreTermesX-Regular.otf bbding.sty adforn.sty ragged2e.sty; do
+    for resource in biblatex.sty TeXGyreTermesX-Regular.otf bbding.sty adforn.sty ragged2e.sty xurl.sty; do
         if resource_path="$(kpsewhich "$resource" 2>/dev/null)" && [[ -n "$resource_path" ]]; then
             echo "OK: $resource ($resource_path)"
         else
@@ -121,7 +122,7 @@ normalized = " ".join(text.split())
 expected_metadata = {
     "Title": "AI-агенты изнутри: принципы проектирования и инженерная практика",
     "Author": "Bojie Li; Русский перевод: community edition",
-    "Subject": "Русский перевод: community edition, версия v1.2-ru.1",
+    "Subject": "Русский перевод: community edition, версия v2.0-ru.1",
 }
 for field, expected in expected_metadata.items():
     match = re.search(rf"^{re.escape(field)}:\s*(.*)$", info, re.MULTILINE)
@@ -137,11 +138,12 @@ if pages_match is None or int(pages_match.group(1)) < 1:
 
 required_fragments = (
     "AI-агенты изнутри",
-    "Основы AI-агентов",
-    "Контекстная инженерия",
+    "Введение в AI-агентов",
+    "Инженерия контекста",
     "Совместная работа нескольких AI-агентов",
     "Послесловие",
-    "Версия v1.2-ru.1",
+    "Справочные ответы на вопросы для размышления",
+    "Версия v2.0-ru.1",
 )
 for fragment in required_fragments:
     if fragment not in normalized:
@@ -225,7 +227,7 @@ cd -- "$SCRIPT_DIR"
 
 pandoc "${CHAPTERS[@]}" \
     -o "$WORK_PDF" \
-    --from markdown+lists_without_preceding_blankline \
+    --from markdown+lists_without_preceding_blankline+autolink_bare_uris \
     --pdf-engine=xelatex \
     --lua-filter=rasterize_svg.lua \
     --lua-filter=table_widths.lua \
@@ -242,8 +244,8 @@ pandoc "${CHAPTERS[@]}" \
     -V author="Bojie Li" \
     --metadata title-meta="AI-агенты изнутри: принципы проектирования и инженерная практика" \
     --metadata author-meta="Bojie Li; Русский перевод: community edition" \
-    --metadata subject="Русский перевод: community edition, версия v1.2-ru.1" \
-    --metadata version-meta="v1.2-ru.1" \
+    --metadata subject="Русский перевод: community edition, версия v2.0-ru.1" \
+    --metadata version-meta="v2.0-ru.1" \
     -H preamble.tex \
     --include-before-body=cover.tex \
     --highlight-style=kate \

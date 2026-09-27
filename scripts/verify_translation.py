@@ -14,10 +14,12 @@ from typing import cast
 from jsonschema import Draft202012Validator, SchemaError, ValidationError
 
 if __package__:
+    from scripts.check_links import github_anchor
     from scripts.check_translation import (
         TRANSLATION_NOTICE,
         GlossaryTerm,
         load_glossary,
+        parse_markdown,
         validate_translation,
     )
     from scripts.markdown_chunks import (
@@ -28,10 +30,12 @@ if __package__:
     from scripts.model_runner import EXACT_MODEL, run_model
     from scripts.translate_file import runtime_record
 else:
+    from check_links import github_anchor  # pyright: ignore[reportImplicitRelativeImport]
     from check_translation import (  # pyright: ignore[reportImplicitRelativeImport]
         TRANSLATION_NOTICE,
         GlossaryTerm,
         load_glossary,
+        parse_markdown,
         validate_translation,
     )
     from markdown_chunks import (  # pyright: ignore[reportImplicitRelativeImport]
@@ -358,6 +362,34 @@ def _render_glossary(terms: tuple[GlossaryTerm, ...]) -> str:
     return "\n".join(lines) if lines else "(accepted entries отсутствуют)"
 
 
+def heading_context(source: str, draft: str) -> str:
+    """Give every verification chunk the same cross-chunk heading targets."""
+    source_shape, draft_shape = parse_markdown(source), parse_markdown(draft)
+    if source_shape.heading_levels != draft_shape.heading_levels:
+        return ""
+    occurrences: dict[str, int] = {}
+    records: list[dict[str, str]] = []
+    for original, translated in zip(source_shape.headings, draft_shape.headings, strict=True):
+        title = re.sub(r"\s+\{[^{}]*\}\s*$", "", translated)
+        base = github_anchor(translated, 0)
+        occurrence = occurrences.get(base, 0)
+        occurrences[base] = occurrence + 1
+        records.append(
+            {
+                "source_heading": original,
+                "russian_heading": title,
+                "target": "#" + github_anchor(translated, occurrence),
+            }
+        )
+    return (
+        "\n\nЗаголовки всей главы, включая части вне текущего chunk:\n"
+        "Для внутренних ссылок используй точные target из этой таблицы, а не свой вариант "
+        "перевода заголовка. Сохраняй корректные русские заголовки таблицы дословно; "
+        "если заголовок действительно ошибочен по source, явно укажи исправление в issues.\n"
+        + json.dumps(records, ensure_ascii=False)
+    )
+
+
 def _render_prompt(
     template: str,
     source_relative: str,
@@ -674,6 +706,7 @@ def verify_file(
         tuple(chunk.source for chunk in chunks), tuple(chunk.draft_text for chunk in chunks)
     )
     draft_text = f"{TRANSLATION_NOTICE}\n\n{''.join(draft_parts)}"
+    headings = heading_context(source_text, draft_text)
     source_relative, blob_sha1 = _source_identity(root, source, upstream_manifest)
     terms = load_glossary(glossary_path)
     glossary = _render_glossary(terms)
@@ -701,11 +734,14 @@ def verify_file(
     def run_chunk(
         chunk: TranslationChunkEvidence,
     ) -> tuple[str, str, JsonObject]:
-        prompt = _render_prompt(
-            template,
-            source.relative_to(root).as_posix(),
-            chunk,
-            glossary,
+        prompt = (
+            _render_prompt(
+                template,
+                source.relative_to(root).as_posix(),
+                chunk,
+                glossary,
+            )
+            + headings
         )
         previous = reused_chunks.get(chunk.source.index)
         if previous is not None:

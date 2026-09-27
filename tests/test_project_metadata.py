@@ -7,23 +7,13 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-UPSTREAM_COMMIT = "97de455e9aa44cf9f93441ce0c771c9aa9643d92"
+UPSTREAM_COMMIT = "c3352738f4b6fe42fe34e3cf6a79bcb424a133b8"
 ATTRIBUTION = "Русский перевод: community edition"
 SHA1_RE = re.compile(r"^[0-9a-f]{40}$")
 
 EXPECTED_MARKDOWN = {
-    "book/introduction.md": ("edfd6ed34b3d14760cac5114cfb3622745a30969", 20_731),
-    "book/chapter1.md": ("fc40590687d38b2b330bd3035a3ea1cba30ea037", 66_344),
-    "book/chapter2.md": ("50db6e6945cb54a40de703795491f1a58eebaa12", 134_173),
-    "book/chapter3.md": ("8472fef633914e90be30b9b67b4dcdc15c576efc", 106_898),
-    "book/chapter4.md": ("d145d863e9106cd0ad69b543d64849eda50ef7ca", 92_542),
-    "book/chapter5.md": ("fe2c17b954d8165b1d490b0fde35d7ea76f1b6ed", 113_297),
-    "book/chapter6.md": ("2ea2974b75b8430e83a6b947ca59da111604b3c6", 100_135),
-    "book/chapter7.md": ("5e8421aec0a98672991dc693b0cc2ee604a65c43", 136_396),
-    "book/chapter8.md": ("0aa3a04b24ef65bfc3082ddb0e12ecadfcb4f104", 67_878),
-    "book/chapter9.md": ("9109acb6ac1a240e9a25fdb5ecf989f8bfbd02c2", 91_363),
-    "book/chapter10.md": ("0f608bcfcd12a6a73d392a0b44fe89acdae2c03b", 98_472),
-    "book/afterword.md": ("90dafce3240e7b1a6f1e2fefbc59bd54efe2c34f", 11_121),
+    entry["path"]: (entry["blob_sha1"], entry["size"])
+    for entry in json.loads((ROOT / "updates/v2.0/upstream.json").read_text())["markdown"]
 }
 
 EXPECTED_GENERATORS = {
@@ -69,7 +59,7 @@ def test_upstream_metadata_is_pinned() -> None:
     assert manifest["repository"] == "https://github.com/bojieli/ai-agent-book"
     assert manifest["branch"] == "main"
     assert manifest["commit"] == UPSTREAM_COMMIT
-    assert manifest["version"] == "v1.2"
+    assert manifest["version"] == "v2.0"
     assert manifest["source_directory"] == "book"
     assert manifest["license"] == {
         "path": "LICENSE",
@@ -91,9 +81,10 @@ def test_asset_manifest_has_complete_shape() -> None:
     files = images["files"]
 
     assert images["path"] == "book/images"
-    assert images["tree_sha1"] == "b0d9cbe7700caa4a8d5eff9fe9cc929d03756cfd"
-    assert images["file_count"] == 133
-    assert len(files) == 133
+    assert images["tree_sha1"] == "d61026dc6768434b0dcf28849152add3f4af1c8d"
+    assert images["file_count"] == 135
+    assert len(files) == 135
+    assert len(images["included_files"]) == 114
     assert [item["path"] for item in files] == sorted(item["path"] for item in files)
     for item in files:
         assert item["path"].startswith("book/images/")
@@ -107,6 +98,7 @@ def test_support_file_manifests_are_complete() -> None:
     build_support = manifest["build_support"]
 
     assert {item["path"] for item in generators} == EXPECTED_GENERATORS
+    assert manifest["generator_source_commit"] == "97de455e9aa44cf9f93441ce0c771c9aa9643d92"
     assert {item["path"] for item in build_support} == EXPECTED_BUILD_SUPPORT
     for item in [*generators, *build_support]:
         assert SHA1_RE.fullmatch(item["blob_sha1"])

@@ -8,6 +8,7 @@ from threading import Barrier
 
 import pytest
 
+from scripts.check_translation import GlossaryTerm, ValidationIssue, validate_translation
 from scripts.model_runner import ModelResult, RuntimeEvidence
 from scripts.translate_file import TranslationError, main, translate_file
 from scripts.translation_baseline import BaselinePair
@@ -146,6 +147,7 @@ def test_translates_lossless_chunks_with_same_accepted_glossary(
         "thread-test",
     ]
     assert "source_text" not in evidence.read_text(encoding="utf-8")
+    assert not evidence.with_suffix(".failed.json").exists()
 
 
 def test_runs_translation_chunks_in_parallel_and_preserves_order(
@@ -258,12 +260,14 @@ def test_rejects_extra_outer_markdown_fence(
         translate_file(source, output, glossary, evidence, repo, 40_000)
 
 
-def test_rejects_assembled_draft_with_changed_shape(
+def test_cjk_validation_failure_preserves_runtime_in_failed_evidence(
     tmp_path: Path,
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
     repo, source, output, evidence, glossary = _prepare_repo(tmp_path)
-    responses: Iterator[str] = iter(["Без заголовка.\n", "Тоже без заголовка.\n"])
+    responses: Iterator[str] = iter(
+        ["## 第一节\nРусский текст.\n", "## Второй раздел\nЕщё текст.\n"]
+    )
 
     def fake_run_model(
         model: str,
@@ -276,8 +280,66 @@ def test_rejects_assembled_draft_with_changed_shape(
 
     monkeypatch.setattr("scripts.translate_file.run_model", fake_run_model)
 
-    with pytest.raises(TranslationError, match="heading-structure"):
+    with pytest.raises(TranslationError, match="cjk-unexpected"):
         translate_file(source, output, glossary, evidence, repo, 40_000)
+
+    failed_evidence = evidence.with_suffix(".failed.json")
+    assert output.is_file()
+    assert not evidence.exists()
+    stored = json.loads(failed_evidence.read_text(encoding="utf-8"))
+    assert stored["draft_sha256"] == _sha256(output.read_text(encoding="utf-8"))
+    assert [chunk["runtime"]["thread_id"] for chunk in stored["chunks"]] == [
+        "thread-test",
+        "thread-test",
+    ]
+    assert [chunk["response_path"] for chunk in stored["chunks"]] == [
+        ".tmp/drafts/.chunks/chapter/000.md",
+        ".tmp/drafts/.chunks/chapter/001.md",
+    ]
+
+
+def test_concurrent_evidence_writer_is_not_overwritten(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    repo, source, output, evidence, glossary = _prepare_repo(tmp_path)
+    responses: Iterator[str] = iter(
+        ["## Первый раздел\nРусский текст.\n", "## Второй раздел\nЕщё текст.\n"]
+    )
+
+    def fake_run_model(
+        model: str,
+        prompt: str,
+        repo_root: Path,
+        output_path: Path,
+        timeout_seconds: int,
+    ) -> ModelResult:
+        return _result(output_path, next(responses))
+
+    foreign_evidence = '{"owner":"other-run"}\n'
+
+    def validate_after_concurrent_write(
+        source_path: Path,
+        target_path: Path,
+        terms: tuple[GlossaryTerm, ...],
+    ) -> list[ValidationIssue]:
+        issues = validate_translation(source_path, target_path, terms)
+        evidence.write_text(foreign_evidence, encoding="utf-8")
+        return issues
+
+    monkeypatch.setattr("scripts.translate_file.run_model", fake_run_model)
+    monkeypatch.setattr(
+        "scripts.translate_file.validate_translation", validate_after_concurrent_write
+    )
+
+    with pytest.raises(FileExistsError):
+        translate_file(source, output, glossary, evidence, repo)
+
+    assert evidence.read_text(encoding="utf-8") == foreign_evidence
+    failed_evidence = evidence.with_suffix(".failed.json")
+    stored = json.loads(failed_evidence.read_text(encoding="utf-8"))
+    assert stored["draft_sha256"] == _sha256(output.read_text(encoding="utf-8"))
+    assert len(stored["chunks"]) == 2
 
 
 def test_cli_uses_exact_model_without_model_argument(
@@ -356,5 +418,10 @@ def test_rejects_evidence_outside_tmp_and_existing_partial_artifacts(tmp_path: P
 
     evidence.parent.mkdir(parents=True)
     evidence.write_text("partial", encoding="utf-8")
+    with pytest.raises(TranslationError, match="уже существует"):
+        translate_file(source, output, glossary, evidence, repo, 40_000)
+
+    evidence.unlink()
+    evidence.with_suffix(".failed.json").write_text("partial", encoding="utf-8")
     with pytest.raises(TranslationError, match="уже существует"):
         translate_file(source, output, glossary, evidence, repo, 40_000)

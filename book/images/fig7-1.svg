@@ -1,44 +1,62 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 40 780 440" width="780" height="440" style="background:#ffffff">
-<defs><marker id="ah" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto"><polygon points="0 0, 12 4, 0 8" fill="#333333"/></marker><marker id="ah-light" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto"><polygon points="0 0, 12 4, 0 8" fill="#999999"/></marker></defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 27 880 1048.5" width="880" height="1048.5" style="background:#ffffff">
+<defs>
+<marker id="ah" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0, 12 4, 0 8" fill="#333333"/></marker>
+<marker id="ah-s" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><polygon points="0 0, 10 3.5, 0 7" fill="#666666"/></marker>
+</defs>
+<style>
+.t{font-family:Arial,'Helvetica Neue',Helvetica,'PingFang SC','Microsoft YaHei',sans-serif;fill:#333333;text-anchor:middle;dominant-baseline:central}
+.h{font-size:19px;font-weight:bold}
+.s{font-size:15px;fill:#666666}
+.m{font-size:15px}
+.n{font-size:13px;fill:#666666}
+</style>
 
-<rect x="80" y="120" width="260" height="130" rx="6" fill="#d0d0d0" stroke="#333333" stroke-width="2"/>
-<text x="210" y="145" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="156.67" lengthAdjust="spacingAndGlyphs">AI-агент (исследователь)</text>
-<text x="210" y="175" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="147.94" lengthAdjust="spacingAndGlyphs">Политика π: наблюдение состояния →</text>
-<text x="210" y="198" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="200.89" lengthAdjust="spacingAndGlyphs">выбор действия (двигаться/подобрать/атаковать)</text>
-<text x="210" y="225" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="180.52" lengthAdjust="spacingAndGlyphs">ε-жадная: 90% оптимальное, 10% случайное</text>
-<rect x="440" y="120" width="260" height="130" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2"/>
-<text x="570" y="145" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="160.00" lengthAdjust="spacingAndGlyphs">Среда (мир-лабиринт)</text>
-<text x="570" y="175" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="164.45" lengthAdjust="spacingAndGlyphs">5 комнат · ключ/дверь/страж</text>
-<text x="570" y="198" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="205.62" lengthAdjust="spacingAndGlyphs">Переход: P(кладовая|холл,восток)=1.0</text>
-<text x="570" y="225" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="178.75" lengthAdjust="spacingAndGlyphs">R(победа над стражем)=+50, R(перемещение)=0</text>
-<line x1="342" y1="150" x2="438" y2="150" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
-<text x="390.0" y="136" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="161.39" lengthAdjust="spacingAndGlyphs">Действие A(t) = "идти на восток"</text>
-<line x1="438" y1="235" x2="342" y2="235" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
-<text x="390.0" y="253" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="182.81" lengthAdjust="spacingAndGlyphs">Состояние S(t+1) + вознаграждение R(t+1)</text>
-<text x="390" y="300" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="372.98" lengthAdjust="spacingAndGlyphs">Траектория: S(0), A(0), R(1), S(1), A(1), R(2), ...</text>
-<rect x="35.0" y="340" width="134.0" height="70" rx="4" fill="#f5f5f5" stroke="#333333" stroke-width="2"/>
-<text x="102.0" y="357" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="90.23" lengthAdjust="spacingAndGlyphs">S(0): входной холл</text>
-<text x="102.0" y="375" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="62.23" lengthAdjust="spacingAndGlyphs">A(0): на восток</text>
-<text x="102.0" y="393" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">R(1): 0</text>
-<line x1="171.0" y1="373" x2="181.0" y2="373" stroke="#999999" stroke-width="2" marker-end="url(#ah-light)"/>
-<rect x="179.0" y="340" width="134.0" height="70" rx="4" fill="#f5f5f5" stroke="#333333" stroke-width="2"/>
-<text x="246.0" y="357" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="76.23" lengthAdjust="spacingAndGlyphs">S(1): кладовая</text>
-<text x="246.0" y="375" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="76.23" lengthAdjust="spacingAndGlyphs">A(1): взять ключ</text>
-<text x="246.0" y="393" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">R(2): +5</text>
-<line x1="315.0" y1="373" x2="325.0" y2="373" stroke="#999999" stroke-width="2" marker-end="url(#ah-light)"/>
-<rect x="323.0" y="340" width="134.0" height="70" rx="4" fill="#f5f5f5" stroke="#333333" stroke-width="2"/>
-<text x="390.0" y="357" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="76.23" lengthAdjust="spacingAndGlyphs">S(2): кладовая</text>
-<text x="390.0" y="375" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="62.23" lengthAdjust="spacingAndGlyphs">A(2): на север</text>
-<text x="390.0" y="393" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">R(3): 0</text>
-<line x1="459.0" y1="373" x2="469.0" y2="373" stroke="#999999" stroke-width="2" marker-end="url(#ah-light)"/>
-<rect x="467.0" y="340" width="134.0" height="70" rx="4" fill="#f5f5f5" stroke="#333333" stroke-width="2"/>
-<text x="534.0" y="357" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="76.23" lengthAdjust="spacingAndGlyphs">S(3): комната стража</text>
-<text x="534.0" y="375" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="90.23" lengthAdjust="spacingAndGlyphs">A(3): создать серебряный меч</text>
-<text x="534.0" y="393" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">R(4): +10</text>
-<line x1="603.0" y1="373" x2="613.0" y2="373" stroke="#999999" stroke-width="2" marker-end="url(#ah-light)"/>
-<rect x="611.0" y="340" width="134.0" height="70" rx="4" fill="#f5f5f5" stroke="#333333" stroke-width="2"/>
-<text x="678.0" y="357" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="76.23" lengthAdjust="spacingAndGlyphs">S(4): комната стража</text>
-<text x="678.0" y="375" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="62.23" lengthAdjust="spacingAndGlyphs">A(4): атаковать</text>
-<text x="678.0" y="393" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">R(5): +50</text>
-<text x="390" y="460" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="458.31" lengthAdjust="spacingAndGlyphs">Цель: максимизировать суммарное вознаграждение G = R(1) + γR(2) + γ²R(3) + ... (γ=0.99)</text>
-</svg>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<g transform="scale(1 2.25)"><rect x="100" y="20" width="690" height="56" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2"/><text class="t h" x="445" y="40" transform="translate(445 40) scale(1 0.4444444444444444) translate(-445 -40)" style="font-family: Arial, sans-serif;"><tspan x="445" y="40">① Определение успеха</tspan></text><text class="t s" x="445" y="61" transform="translate(445 61) scale(1 0.4444444444444444) translate(-445 -61)" style="font-family: Arial, sans-serif;"><tspan x="445" y="61">Pass@k измеряет предел возможностей · Pass^k — рабочую надёжность</tspan></text><line x1="445" y1="76" x2="445" y2="94" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/><rect x="100" y="96" width="690" height="102" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2"/><text class="t h" x="445" y="116" transform="translate(445 116) scale(1 0.4444444444444444) translate(-445 -116)" style="font-family: Arial, sans-serif;"><tspan x="445" y="116">② Источники задач</tspan></text><rect x="116" y="130" width="206" height="54" rx="5" fill="#ffffff" stroke="#666666" stroke-width="1.5"/><text class="t m" x="219" y="147" transform="translate(219 147) scale(1 0.4444444444444444) translate(-219 -147)" style="font-family: Arial, sans-serif;"><tspan x="219" y="147">Публичные бенчмарки</tspan></text><text class="t n" x="219" y="167" transform="translate(219 167) scale(1 0.4444444444444444) translate(-219 -167)" style="font-family: Arial, sans-serif;"><tspan x="219" y="159.2">Заимствование методов · </tspan><tspan x="219" y="174.79999999999998">первичный отбор</tspan></text><rect x="342" y="130" width="206" height="54" rx="5" fill="#ffffff" stroke="#666666" stroke-width="1.5"/><text class="t m" x="445" y="147" transform="translate(445 147) scale(1 0.4444444444444444) translate(-445 -147)" style="font-family: Arial, sans-serif;"><tspan x="445" y="138">Собственный рабочий </tspan><tspan x="445" y="156">набор</tspan></text><text class="t n" x="445" y="167" transform="translate(445 167) scale(1 0.4444444444444444) translate(-445 -167)" style="font-family: Arial, sans-serif;"><tspan x="445" y="159.2">Реальное распределение </tspan><tspan x="445" y="174.79999999999998">задач</tspan></text><rect x="568" y="130" width="206" height="54" rx="5" fill="#ffffff" stroke="#666666" stroke-width="1.5"/><text class="t m" x="671" y="147" transform="translate(671 147) scale(1 0.4444444444444444) translate(-671 -147)" style="font-family: Arial, sans-serif;"><tspan x="671" y="129">Возврат </tspan><tspan x="671" y="147">производственных </tspan><tspan x="671" y="165">траекторий</tspan></text><text class="t n" x="671" y="167" transform="translate(671 167) scale(1 0.4444444444444444) translate(-671 -167)" style="font-family: Arial, sans-serif;"><tspan x="671" y="159.2">Результат анализа причин </tspan><tspan x="671" y="174.79999999999998">сбоев</tspan></text><line x1="445" y1="198" x2="445" y2="216" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/><rect x="100" y="218" width="690" height="106" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2"/><text class="t h" x="445" y="238" transform="translate(445 238) scale(1 0.4444444444444444) translate(-445 -238)" style="font-family: Arial, sans-serif;"><tspan x="445" y="238">③ Способ проверки</tspan></text><text class="t n" x="445" y="257" transform="translate(445 257) scale(1 0.4444444444444444) translate(-445 -257)" style="font-family: Arial, sans-serif;"><tspan x="445" y="257">← По степени автоматической проверяемости задачи →</tspan></text><rect x="116" y="268" width="142" height="44" rx="5" fill="#ffffff" stroke="#666666" stroke-width="1.5"/><text class="t m" x="187" y="282" transform="translate(187 282) scale(1 0.4444444444444444) translate(-187 -282)" style="font-family: Arial, sans-serif; font-size: 13.0065px;"><tspan x="187" y="274.19612903225806">Детерминированный </tspan><tspan x="187" y="289.80387096774194">верификатор</tspan></text><text class="t n" x="187" y="300" transform="translate(187 300) scale(1 0.4444444444444444) translate(-187 -300)" style="font-family: Arial, sans-serif;"><tspan x="187" y="300">SWE-bench</tspan></text><line x1="262" y1="290" x2="284" y2="290" stroke="#666666" stroke-width="1.5" marker-end="url(#ah-s)"/><rect x="288" y="268" width="142" height="44" rx="5" fill="#ffffff" stroke="#666666" stroke-width="1.5"/><text class="t m" x="359" y="282" transform="translate(359 282) scale(1 0.4444444444444444) translate(-359 -282)" style="font-family: Arial, sans-serif;"><tspan x="359" y="282">Чек-лист</tspan></text><text class="t n" x="359" y="300" transform="translate(359 300) scale(1 0.4444444444444444) translate(-359 -300)" style="font-family: Arial, sans-serif;"><tspan x="359" y="300">τ²-bench</tspan></text><line x1="434" y1="290" x2="456" y2="290" stroke="#666666" stroke-width="1.5" marker-end="url(#ah-s)"/><rect x="460" y="268" width="142" height="44" rx="5" fill="#ffffff" stroke="#666666" stroke-width="1.5"/><text class="t m" x="531" y="282" transform="translate(531 282) scale(1 0.4444444444444444) translate(-531 -282)" style="font-family: Arial, sans-serif;"><tspan x="531" y="273">Rubric + оценка </tspan><tspan x="531" y="291">LLM</tspan></text><text class="t n" x="531" y="300" transform="translate(531 300) scale(1 0.4444444444444444) translate(-531 -300)" style="font-family: Arial, sans-serif;"><tspan x="531" y="300">Открытые задачи</tspan></text><line x1="606" y1="290" x2="628" y2="290" stroke="#666666" stroke-width="1.5" marker-end="url(#ah-s)"/><rect x="632" y="268" width="142" height="44" rx="5" fill="#ffffff" stroke="#666666" stroke-width="1.5"/><text class="t m" x="703" y="282" transform="translate(703 282) scale(1 0.4444444444444444) translate(-703 -282)" style="font-family: Arial, sans-serif;"><tspan x="703" y="273">Попарное </tspan><tspan x="703" y="291">сравнение</tspan></text><text class="t n" x="703" y="300" transform="translate(703 300) scale(1 0.4444444444444444) translate(-703 -300)" style="font-family: Arial, sans-serif;"><tspan x="703" y="300">Chatbot Arena</tspan></text><line x1="445" y1="324" x2="445" y2="342" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/><rect x="100" y="344" width="690" height="62" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2"/><text class="t h" x="445" y="364" transform="translate(445 364) scale(1 0.4444444444444444) translate(-445 -364)" style="font-family: Arial, sans-serif;"><tspan x="445" y="364">④ Применение результатов</tspan></text><text class="t s" x="445" y="388" transform="translate(445 388) scale(1 0.4444444444444444) translate(-445 -388)" style="font-family: Arial, sans-serif;"><tspan x="445" y="388">Статзначимость → причины сбоев → регрессии → выбор модели и развитие Harness</tspan></text><path d="M100 375 L52 375 L52 147 L96 147" fill="none" stroke="#333333" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ah)"/><text class="t n" x="52" y="262" transform="rotate(-90 52 262)">Регрессии становятся новыми кейсами</text><rect x="100" y="424" width="690" height="46" rx="6" fill="#f3f0e8" stroke="#333333" stroke-width="2"/><text class="t m" x="445" y="440" font-weight="bold" transform="translate(445 440) scale(1 0.4444444444444444) translate(-445 -440)" style="font-family: Arial, sans-serif;"><tspan x="445" y="440">Инфраструктура</tspan></text><text class="t n" x="445" y="458" transform="translate(445 458) scale(1 0.4444444444444444) translate(-445 -458)" style="font-family: Arial, sans-serif;"><tspan x="445" y="458">Наблюдаемость (траектории) · внутренняя оценка (абляции / A/B / флаги) · симуляция (к главе 8)</tspan></text></g></svg>

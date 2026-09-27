@@ -1,73 +1,75 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 40 820 420" width="820" height="420" style="background:#ffffff">
-<defs>
-<marker id="ah" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#333333"/></marker>
-<marker id="ah-g" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#999999"/></marker>
-</defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 13.30000114440918 900 796.4000244140625" width="900" height="796.4000244140625" style="background:#ffffff">
+  <defs>
+    <marker id="arrow" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#666666"/>
+    </marker>
+  </defs>
+  
+<g transform="scale(1 1.45)"><g font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" fill="#2f2f2f">
+    <text x="450" y="34" text-anchor="middle" font-size="20" font-weight="bold" transform="translate(450 34) scale(1 0.6896551724137931) translate(-450 -34)" style="font-family: Arial, sans-serif;"><tspan x="450" y="34">Структура книги</tspan></text>
 
+    <!-- Part I: Build an Agent -->
+    <rect x="24" y="58" width="852" height="238" rx="12" fill="#fafafa" stroke="#777777" stroke-width="1.7"/>
+    <rect x="54" y="46" width="224" height="27" rx="13.5" fill="#505050"/>
+    <text x="166" y="65" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff" transform="translate(166 65) scale(1 0.6896551724137931) translate(-166 -65)" style="font-family: Arial, sans-serif;"><tspan x="166" y="65">Часть I. Как создать AI-агента</tspan></text>
 
+    <rect x="48" y="92" width="242" height="72" rx="8" fill="#d9d9d9" stroke="#3f3f3f" stroke-width="1.7"/>
+    <text x="169" y="118" text-anchor="middle" font-size="15" font-weight="bold" transform="translate(169 118) scale(1 0.6896551724137931) translate(-169 -118)" style="font-family: Arial, sans-serif;"><tspan x="169" y="109">Глава 1. Введение в </tspan><tspan x="169" y="127">AI-агенты</tspan></text>
+    <text x="169" y="143" text-anchor="middle" font-size="11.5" fill="#626262" transform="translate(169 143) scale(1 0.6896551724137931) translate(-169 -143)" style="font-family: Arial, sans-serif;"><tspan x="169" y="143">Концептуальная модель · ReAct · Harness</tspan></text>
 
-<!-- Chapter 1: Intro -->
-<rect x="300" y="55" width="220" height="50" rx="8" fill="#e0e0e0" stroke="#333333" stroke-width="2"/>
-<text x="410" y="75" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" font-weight="bold" textLength="179.56" lengthAdjust="spacingAndGlyphs">Глава 1: Основы AI-агентов</text>
-<text x="410" y="95" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666666" text-anchor="middle" textLength="185.37" lengthAdjust="spacingAndGlyphs">Три опоры AI-агента · Паттерны · ReAct</text>
+    <line x1="290" y1="128" x2="319" y2="128" stroke="#666666" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <rect x="323" y="92" width="242" height="72" rx="8" fill="#e7e7e7" stroke="#444444" stroke-width="1.6"/>
+    <text x="444" y="118" text-anchor="middle" font-size="15" font-weight="bold" transform="translate(444 118) scale(1 0.6896551724137931) translate(-444 -118)" style="font-family: Arial, sans-serif;"><tspan x="444" y="118">Глава 2. Инженерия контекста</tspan></text>
+    <text x="444" y="143" text-anchor="middle" font-size="11.5" fill="#626262" transform="translate(444 143) scale(1 0.6896551724137931) translate(-444 -143)" style="font-family: Arial, sans-serif;"><tspan x="444" y="143">Состояние задачи · промпт · сжатие</tspan></text>
 
-<!-- Down arrows from Ch1 -->
-<line x1="285" y1="80" x2="155" y2="138" stroke="#999999" stroke-width="1.5" marker-end="url(#ah-g)"/>
-<line x1="410" y1="105" x2="410" y2="138" stroke="#999999" stroke-width="1.5" marker-end="url(#ah-g)"/>
-<line x1="535" y1="80" x2="665" y2="138" stroke="#999999" stroke-width="1.5" marker-end="url(#ah-g)"/>
+    <line x1="565" y1="128" x2="594" y2="128" stroke="#666666" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <rect x="598" y="92" width="254" height="72" rx="8" fill="#e7e7e7" stroke="#444444" stroke-width="1.6"/>
+    <text x="725" y="118" text-anchor="middle" font-size="15" font-weight="bold" transform="translate(725 118) scale(1 0.6896551724137931) translate(-725 -118)" style="font-family: Arial, sans-serif;"><tspan x="725" y="109">Глава 3. Память пользователя </tspan><tspan x="725" y="127">и база знаний</tspan></text>
+    <text x="725" y="143" text-anchor="middle" font-size="11.5" fill="#626262" transform="translate(725 143) scale(1 0.6896551724137931) translate(-725 -143)" style="font-family: Arial, sans-serif;"><tspan x="725" y="136.1">Межсессионная память · RAG · </tspan><tspan x="725" y="149.9">организация знаний</tspan></text>
 
-<!-- Group labels -->
-<text x="155" y="152" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#555555" text-anchor="middle" font-weight="bold" textLength="98.00" lengthAdjust="spacingAndGlyphs">Контекст (ядро)</text>
-<text x="410" y="152" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#555555" text-anchor="middle" font-weight="bold" textLength="28.00" lengthAdjust="spacingAndGlyphs">Инструменты</text>
-<text x="665" y="152" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#555555" text-anchor="middle" font-weight="bold" textLength="28.00" lengthAdjust="spacingAndGlyphs">Модели</text>
+    <rect x="48" y="194" width="242" height="72" rx="8" fill="#e7e7e7" stroke="#444444" stroke-width="1.6"/>
+    <text x="169" y="220" text-anchor="middle" font-size="15" font-weight="bold" transform="translate(169 220) scale(1 0.6896551724137931) translate(-169 -220)" style="font-family: Arial, sans-serif;"><tspan x="169" y="220">Глава 4. Инструменты</tspan></text>
+    <text x="169" y="245" text-anchor="middle" font-size="11.5" fill="#626262" transform="translate(169 245) scale(1 0.6896551724137931) translate(-169 -245)" style="font-family: Arial, sans-serif;"><tspan x="169" y="238.1">MCP · восприятие и выполнение · </tspan><tspan x="169" y="251.9">безопасность</tspan></text>
 
-<!-- Context group -->
-<rect x="30" y="165" width="248" height="55" rx="6" fill="#d8d8d8" stroke="#333333" stroke-width="2"/>
-<text x="154" y="186" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#333333" text-anchor="middle" font-weight="bold" textLength="136.69" lengthAdjust="spacingAndGlyphs">Глава 2: Инженерия контекста</text>
-<text x="154" y="207" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#666666" text-anchor="middle" textLength="213.30" lengthAdjust="spacingAndGlyphs">Промпт-инжиниринг · KV-кэш · Сжатие · Skills · Панель состояния</text>
+    <line x1="290" y1="230" x2="319" y2="230" stroke="#666666" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <rect x="323" y="194" width="242" height="72" rx="8" fill="#e7e7e7" stroke="#444444" stroke-width="1.6"/>
+    <text x="444" y="220" text-anchor="middle" font-size="15" font-weight="bold" transform="translate(444 220) scale(1 0.6896551724137931) translate(-444 -220)" style="font-family: Arial, sans-serif;"><tspan x="444" y="220">Глава 5. AI-агент для кода</tspan></text>
+    <text x="444" y="245" text-anchor="middle" font-size="11.5" fill="#626262" transform="translate(444 245) scale(1 0.6896551724137931) translate(-444 -245)" style="font-family: Arial, sans-serif;"><tspan x="444" y="238.1">Генерация кода · общие возможности · </tspan><tspan x="444" y="251.9">самозагрузка</tspan></text>
 
-<rect x="30" y="230" width="248" height="55" rx="6" fill="#e8e8e8" stroke="#333333" stroke-width="2"/>
-<text x="154" y="251" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#333333" text-anchor="middle" font-weight="bold" textLength="181.69" lengthAdjust="spacingAndGlyphs">Глава 3: Память пользователя и база знаний</text>
-<text x="154" y="272" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#666666" text-anchor="middle" textLength="215.75" lengthAdjust="spacingAndGlyphs">Память пользователя · RAG · Структурированный индекс · Agentic RAG</text>
+    <line x1="565" y1="230" x2="594" y2="230" stroke="#666666" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <rect x="598" y="194" width="254" height="72" rx="8" fill="#d9d9d9" stroke="#3f3f3f" stroke-width="1.7"/>
+    <text x="725" y="220" text-anchor="middle" font-size="15" font-weight="bold" transform="translate(725 220) scale(1 0.6896551724137931) translate(-725 -220)" style="font-family: Arial, sans-serif;"><tspan x="725" y="220">Глава 6. Взаимодействие</tspan></text>
+    <text x="725" y="245" text-anchor="middle" font-size="11.5" fill="#626262" transform="translate(725 245) scale(1 0.6896551724137931) translate(-725 -245)" style="font-family: Arial, sans-serif;"><tspan x="725" y="238.1">Расширение пространства наблюдений и </tspan><tspan x="725" y="251.9">действий</tspan></text>
 
-<!-- Tools group -->
-<rect x="286" y="165" width="248" height="55" rx="6" fill="#e8e8e8" stroke="#333333" stroke-width="2"/>
-<text x="410" y="186" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#333333" text-anchor="middle" font-weight="bold" textLength="91.69" lengthAdjust="spacingAndGlyphs">Глава 4: Инструменты</text>
-<text x="410" y="207" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#666666" text-anchor="middle" textLength="153.80" lengthAdjust="spacingAndGlyphs">MCP · Безопасность инструментов · Асинхронная событийная архитектура</text>
+    <line x1="450" y1="296" x2="450" y2="332" stroke="#555555" stroke-width="1.8" marker-end="url(#arrow)"/>
 
-<rect x="286" y="230" width="248" height="55" rx="6" fill="#e8e8e8" stroke="#333333" stroke-width="2"/>
-<text x="410" y="251" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" font-weight="bold" textLength="222.70" lengthAdjust="spacingAndGlyphs">Глава 5: Coding-агенты и генерация кода</text>
-<text x="410" y="272" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#666666" text-anchor="middle" textLength="194.42" lengthAdjust="spacingAndGlyphs">Coding-агент · Код как мышление · Бутстрэппинг AI-агента</text>
+    <!-- Part II: Improve Agent capabilities -->
+    <rect x="24" y="335" width="852" height="211" rx="12" fill="#fafafa" stroke="#666666" stroke-width="1.8"/>
+    <rect x="54" y="323" width="245" height="27" rx="13.5" fill="#424242"/>
+    <text x="176.5" y="336.5" text-anchor="middle" font-size="14" font-weight="bold" fill="#ffffff" transform="translate(176.5 336.5) scale(1 0.6896551724137931) translate(-176.5 -336.5)" style="font-family: Arial, sans-serif;"><tspan x="176.5" y="328.1">Часть II. Как расширить </tspan><tspan x="176.5" y="344.90000000000003">возможности AI-агента</tspan></text>
 
-<!-- Model group -->
-<rect x="542" y="165" width="248" height="55" rx="6" fill="#e8e8e8" stroke="#333333" stroke-width="2"/>
-<text x="666" y="186" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#333333" text-anchor="middle" font-weight="bold" textLength="91.69" lengthAdjust="spacingAndGlyphs">Глава 6: Оценка</text>
-<text x="666" y="207" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#666666" text-anchor="middle" textLength="189.50" lengthAdjust="spacingAndGlyphs">Бенчмарк · LLM-as-Judge · Выбор модели</text>
+    <rect x="43" y="382" width="190" height="112" rx="8" fill="#e8e8e8" stroke="#444444" stroke-width="1.6"/>
+    <text x="138" y="412" text-anchor="middle" font-size="15" font-weight="bold" transform="translate(138 412) scale(1 0.6896551724137931) translate(-138 -412)" style="font-family: Arial, sans-serif;"><tspan x="138" y="403">Глава 7. Оценка </tspan><tspan x="138" y="421">AI-агента</tspan></text>
+    <text x="138" y="440" text-anchor="middle" font-size="11.5" fill="#626262" transform="translate(138 440) scale(1 0.6896551724137931) translate(-138 -440)" style="font-family: Arial, sans-serif;"><tspan x="138" y="440">Среда · метрики · статистика</tspan></text>
+    <text x="138" y="466" text-anchor="middle" font-size="11.5" fill="#626262" transform="translate(138 466) scale(1 0.6896551724137931) translate(-138 -466)" style="font-family: Arial, sans-serif;"><tspan x="138" y="466">Измеримая обратная связь</tspan></text>
 
-<rect x="542" y="230" width="248" height="55" rx="6" fill="#e8e8e8" stroke="#333333" stroke-width="2"/>
-<text x="666" y="251" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#333333" text-anchor="middle" font-weight="bold" textLength="136.69" lengthAdjust="spacingAndGlyphs">Глава 7: Постобучение моделей</text>
-<text x="666" y="272" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#666666" text-anchor="middle" textLength="181.94" lengthAdjust="spacingAndGlyphs">SFT · Обучение с подкреплением · LoRA · Обучение с подкреплением для вызовов инструментов</text>
+    <line x1="233" y1="438" x2="246" y2="438" stroke="#666666" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <rect x="250" y="382" width="190" height="112" rx="8" fill="#e2e2e2" stroke="#444444" stroke-width="1.6"/>
+    <text x="345" y="412" text-anchor="middle" font-size="15" font-weight="bold" transform="translate(345 412) scale(1 0.6896551724137931) translate(-345 -412)" style="font-family: Arial, sans-serif;"><tspan x="345" y="403">Глава 8. Постобучение </tspan><tspan x="345" y="421">модели</tspan></text>
+    <text x="345" y="440" text-anchor="middle" font-size="11.5" fill="#626262" transform="translate(345 440) scale(1 0.6896551724137931) translate(-345 -440)" style="font-family: Arial, sans-serif;"><tspan x="345" y="433.1">SFT · RL · проектирование </tspan><tspan x="345" y="446.90000000000003">вознаграждения</tspan></text>
+    <text x="345" y="466" text-anchor="middle" font-size="11.5" fill="#626262" transform="translate(345 466) scale(1 0.6896551724137931) translate(-345 -466)" style="font-family: Arial, sans-serif;"><tspan x="345" y="459.1">Расширение возможностей </tspan><tspan x="345" y="472.90000000000003">модели через параметры</tspan></text>
 
-<!-- Down arrows to bottom row -->
-<line x1="154" y1="285" x2="154" y2="340" stroke="#999999" stroke-width="1.5" marker-end="url(#ah-g)"/>
-<line x1="410" y1="285" x2="410" y2="340" stroke="#999999" stroke-width="1.5" marker-end="url(#ah-g)"/>
-<line x1="666" y1="285" x2="666" y2="340" stroke="#999999" stroke-width="1.5" marker-end="url(#ah-g)"/>
+    <line x1="440" y1="438" x2="453" y2="438" stroke="#666666" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <rect x="457" y="382" width="190" height="112" rx="8" fill="#d9d9d9" stroke="#3f3f3f" stroke-width="1.7"/>
+    <text x="552" y="412" text-anchor="middle" font-size="15" font-weight="bold" transform="translate(552 412) scale(1 0.6896551724137931) translate(-552 -412)" style="font-family: Arial, sans-serif;"><tspan x="552" y="403">Глава 9. Непрерывная </tspan><tspan x="552" y="421">эволюция</tspan></text>
+    <text x="552" y="440" text-anchor="middle" font-size="11.5" fill="#626262" transform="translate(552 440) scale(1 0.6896551724137931) translate(-552 -440)" style="font-family: Arial, sans-serif;"><tspan x="552" y="433.1">Опыт · обновление · выпуск и </tspan><tspan x="552" y="446.90000000000003">откат</tspan></text>
+    <text x="552" y="466" text-anchor="middle" font-size="11.5" fill="#626262" transform="translate(552 466) scale(1 0.6896551724137931) translate(-552 -466)" style="font-family: Arial, sans-serif;"><tspan x="552" y="459.1">Расширение возможностей </tspan><tspan x="552" y="472.90000000000003">отдельной системы</tspan></text>
 
-<!-- Bottom label -->
-<text x="410" y="335" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#555555" text-anchor="middle" font-weight="bold" textLength="70.00" lengthAdjust="spacingAndGlyphs">Продвинутые темы и применение</text>
+    <line x1="647" y1="438" x2="660" y2="438" stroke="#666666" stroke-width="1.5" marker-end="url(#arrow)"/>
+    <rect x="664" y="382" width="193" height="112" rx="8" fill="#cecece" stroke="#333333" stroke-width="1.8"/>
+    <text x="760.5" y="412" text-anchor="middle" font-size="15" font-weight="bold" transform="translate(760.5 412) scale(1 0.6896551724137931) translate(-760.5 -412)" style="font-family: Arial, sans-serif;"><tspan x="760.5" y="403">Глава 10. Совместная </tspan><tspan x="760.5" y="421">работа AI-агентов</tspan></text>
+    <text x="760.5" y="440" text-anchor="middle" font-size="11.5" fill="#5d5d5d" transform="translate(760.5 440) scale(1 0.6896551724137931) translate(-760.5 -440)" style="font-family: Arial, sans-serif;"><tspan x="760.5" y="433.1">Разделение труда · </tspan><tspan x="760.5" y="446.90000000000003">коммуникация · координация</tspan></text>
+    <text x="760.5" y="466" text-anchor="middle" font-size="11.5" fill="#5d5d5d" transform="translate(760.5 466) scale(1 0.6896551724137931) translate(-760.5 -466)" style="font-family: Arial, sans-serif;"><tspan x="760.5" y="459.1">Расширение возможностей </tspan><tspan x="760.5" y="472.90000000000003">коллективной системы</tspan></text>
 
-<!-- Ch8, Ch9, Ch10 in parallel -->
-<rect x="30" y="350" width="248" height="55" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2" stroke-dasharray="6,3"/>
-<text x="154" y="371" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#333333" text-anchor="middle" font-weight="bold" textLength="168.34" lengthAdjust="spacingAndGlyphs">Глава 8: Самоэволюция AI-агента</text>
-<text x="154" y="392" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#666666" text-anchor="middle" textLength="184.56" lengthAdjust="spacingAndGlyphs">Парадигмы обучения · Обучение на опыте · Поиск и создание инструментов</text>
-
-<rect x="286" y="350" width="248" height="55" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2" stroke-dasharray="6,3"/>
-<text x="410" y="371" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#333333" text-anchor="middle" font-weight="bold" textLength="181.69" lengthAdjust="spacingAndGlyphs">Глава 9: Мультимодальность и взаимодействие в реальном времени</text>
-<text x="410" y="392" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#666666" text-anchor="middle" textLength="168.72" lengthAdjust="spacingAndGlyphs">Речь · Computer Use · VLA-роботы</text>
-
-<rect x="542" y="350" width="248" height="55" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2" stroke-dasharray="6,3"/>
-<text x="666" y="371" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#333333" text-anchor="middle" font-weight="bold" textLength="165.86" lengthAdjust="spacingAndGlyphs">Глава 10: Взаимодействие AI-агентов</text>
-<text x="666" y="392" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#666666" text-anchor="middle" textLength="151.56" lengthAdjust="spacingAndGlyphs">Общий контекст · Менеджер · Децентрализация</text>
-
-</svg>
+    <text x="450" y="527" text-anchor="middle" font-size="12" fill="#666666" transform="translate(450 527) scale(1 0.6896551724137931) translate(-450 -527)" style="font-family: Arial, sans-serif;"><tspan x="450" y="527">Оценка даёт обратную связь, а постобучение, эволюция и совместная работа расширяют возможности</tspan></text>
+  </g></g></svg>

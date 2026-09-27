@@ -26,6 +26,28 @@ from scripts.verify_translation import (
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def test_verification_heading_context_resolves_targets_outside_current_chunk() -> None:
+    from scripts.verify_translation import heading_context
+
+    context = heading_context(
+        "# 原文\n\n## 蒸馏\n\n## 算法\n",
+        "# Текст\n\n## Дистилляция: выборка и обучение\n\n## Алгоритм\n",
+    )
+    assert "蒸馏" in context
+    assert "#дистилляция-выборка-и-обучение" in context
+    assert "Алгоритм" in context
+
+
+def test_heading_context_matches_link_checker_for_pandoc_attributes() -> None:
+    from scripts.check_links import collect_anchors
+    from scripts.verify_translation import heading_context
+
+    translated = "## Предварительные знания {.unnumbered}\n"
+    context = heading_context("## 基础 {.unnumbered}\n", translated)
+    for anchor in collect_anchors(translated):
+        assert f'"target": "#{anchor}"' in context
+
+
 def test_loads_versioned_draft_chunks_with_baseline_metadata(tmp_path: Path) -> None:
     repo, source, draft, evidence, *_ = _prepare_repo(tmp_path)
     versioned = draft.parent / "v2.0" / draft.name
@@ -92,7 +114,10 @@ def test_verifies_against_explicit_new_edition_manifest(
         timeout_seconds: int,
         output_schema: Mapping[str, object] | None = None,
     ) -> ModelResult:
-        del model, prompt, repo_root, timeout_seconds, output_schema
+        del model, repo_root, timeout_seconds, output_schema
+        assert "Заголовки всей главы" in prompt
+        assert '"target": "#первый-раздел"' in prompt
+        assert '"target": "#второй-раздел"' in prompt
         return _result(output_path, next(responses), int(output_path.stem))
 
     monkeypatch.setattr("scripts.verify_translation.run_model", fake_run_model)

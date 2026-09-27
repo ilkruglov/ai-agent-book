@@ -86,6 +86,22 @@ def _codes(tmp_path: Path, target_text: str) -> set[str]:
     return {issue.code for issue in issues}
 
 
+def test_default_book_validation_requires_reference_answers(tmp_path: Path) -> None:
+    _, _, glossary = _write_pair(tmp_path)
+    source, target = tmp_path / "source", tmp_path / "target"
+    source.mkdir()
+    target.mkdir()
+    names = ["introduction.md", *(f"chapter{i}.md" for i in range(1, 11)), "afterword.md"]
+    for name in [*names, "reference-answers.md"]:
+        (source / name).write_text(SOURCE, encoding="utf-8")
+    for name in names:
+        (target / name).write_text(TARGET, encoding="utf-8")
+    arguments = ["--source", str(source), "--target", str(target), "--glossary", str(glossary)]
+    assert main(arguments) == 2
+    (target / "reference-answers.md").write_text(TARGET, encoding="utf-8")
+    assert main(arguments) == 0
+
+
 def _git_blob_sha1(data: bytes) -> str:
     header = f"blob {len(data)}\0".encode()
     return hashlib.sha1(header + data).hexdigest()  # noqa: S324 - Git object identity

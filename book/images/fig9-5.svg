@@ -1,39 +1,48 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 40 780 430" width="780" height="430" style="background:#ffffff">
-<defs><marker id="ah" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto"><polygon points="0 0, 12 4, 0 8" fill="#333333"/></marker><marker id="ah-light" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto"><polygon points="0 0, 12 4, 0 8" fill="#999999"/></marker></defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 620" width="1000" height="620" style="background:#ffffff">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto"><path d="M0,0 L10,4 L0,8 Z" fill="#33434d"/></marker>
+    <style>
+      .t{font-family:Arial,'PingFang SC','Microsoft YaHei',sans-serif;fill:#26343c}
+      .h{font-size:20px;font-weight:700}
+      .s{font-size:15px;fill:#52636d}
+      .box{fill:#f5f7f8;stroke:#33434d;stroke-width:2}
+      .accent{fill:#e8f1f5;stroke:#2f617a;stroke-width:2}
+      .line{fill:none;stroke:#33434d;stroke-width:2;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <text x="500" y="25" text-anchor="middle" class="t h" dominant-baseline="central"><tspan x="500" y="25">Онлайн-работа и офлайн-эволюция: рабочая версия не меняется во время выполнения</tspan></text>
 
-<rect x="30" y="60" width="140" height="50" rx="6" fill="#d0d0d0" stroke="#333333" stroke-width="2"/>
-<text x="100" y="78" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="64.00" lengthAdjust="spacingAndGlyphs">Запрос пользователя</text>
-<text x="100" y="98" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="87.76" lengthAdjust="spacingAndGlyphs">«Какой тариф выбрать?»</text>
-<line x1="172" y1="78" x2="218" y2="78" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="220" y="55" width="250" height="130" rx="8" fill="#ffffff" stroke="#333333" stroke-width="2" stroke-dasharray="8,4"/>
-<text x="232" y="73" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="bold" textLength="64.00" lengthAdjust="spacingAndGlyphs">Параллельное рассуждение</text>
-<rect x="235" y="80" width="220" height="42" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2"/>
-<text x="345" y="95" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="207.61" lengthAdjust="spacingAndGlyphs">Быстрое ~500ms (рассуждение выключено)</text>
-<text x="345" y="110" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="135.97" lengthAdjust="spacingAndGlyphs">«Цена хорошая, рекомендую купить»</text>
-<rect x="235" y="130" width="220" height="42" rx="6" fill="#e8e8e8" stroke="#333333" stroke-width="2"/>
-<text x="345" y="145" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="175.59" lengthAdjust="spacingAndGlyphs">Медленное ~8s (рассуждение включено)</text>
-<text x="345" y="160" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="163.97" lengthAdjust="spacingAndGlyphs">«Нет международного роуминга, не подходит»</text>
-<line x1="457" y1="95" x2="503" y2="95" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
-<line x1="457" y1="150" x2="503" y2="150" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="505" y="60" width="240" height="130" rx="4" fill="#f5f5f5" stroke="#333333" stroke-width="2"/>
-<text x="625" y="80" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="80.00" lengthAdjust="spacingAndGlyphs">Опыт пользователя</text>
-<text x="625" y="102" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="170.21" lengthAdjust="spacingAndGlyphs">0.5s: «Цена хорошая, рекомендую купить»</text>
-<text x="625" y="120" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="184.21" lengthAdjust="spacingAndGlyphs">8.0s: «Нет международного роуминга, не подходит»</text>
-<text x="625" y="145" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="100.45" lengthAdjust="spacingAndGlyphs">→ Противоречие!</text>
-<text x="625" y="168" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="116.45" lengthAdjust="spacingAndGlyphs">→ Пользователь теряет доверие</text>
-<rect x="30" y="210" width="720" height="90" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2"/>
-<text x="390" y="230" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="80.00" lengthAdjust="spacingAndGlyphs">Две основные проблемы</text>
-<text x="200" y="258" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="192.00" lengthAdjust="spacingAndGlyphs">Проблема 1: лишние рассуждения над простым вопросом</text>
-<text x="200" y="278" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="280.63" lengthAdjust="spacingAndGlyphs">«Какой сегодня день недели?» → быстрый ответ верен → медленное рассуждение всё равно длится 8s</text>
-<text x="580" y="258" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="144.00" lengthAdjust="spacingAndGlyphs">Проблема 2: быстрый и медленный ответы расходятся</text>
-<text x="580" y="278" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="210.00" lengthAdjust="spacingAndGlyphs">Независимые цепочки могут исходить из разных предпосылок</text>
-<rect x="30" y="355" width="340" height="100" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2"/>
-<text x="200" y="376" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="239.17" lengthAdjust="spacingAndGlyphs">Улучшение: медленное рассуждение — скрытый «советник»</text>
-<text x="200" y="400" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="225.05" lengthAdjust="spacingAndGlyphs">Медленное → строка состояния AI-агента → быстрое</text>
-<text x="200" y="420" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="195.00" lengthAdjust="spacingAndGlyphs">Нет прямого конфликта, но связь косвенная и нечёткая</text>
-<rect x="410" y="355" width="340" height="100" rx="6" fill="#e8e8e8" stroke="#333333" stroke-width="2"/>
-<text x="580" y="376" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="96.00" lengthAdjust="spacingAndGlyphs">Ключевые ограничения остаются</text>
-<text x="580" y="398" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="280.66" lengthAdjust="spacingAndGlyphs">Быстрое рассуждение может неверно понять строку состояния («проверить цену» →</text>
-<text x="580" y="416" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="201.31" lengthAdjust="spacingAndGlyphs">«уточнить у пользователя», а не «пересчитать»)</text>
-<text x="580" y="434" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="205.66" lengthAdjust="spacingAndGlyphs">Нельзя естественно «говорить, одновременно думая»</text>
+  <rect x="28" y="80" width="944" height="150" rx="10" fill="#fafbfb" stroke="#7d8d96" stroke-width="1.5"/>
+  <text x="55" y="107" class="t h" dominant-baseline="central"><tspan x="55" y="107">Цикл онлайн-работы</tspan></text>
+  <rect x="200" y="135" width="190" height="70" rx="7" class="box"/>
+  <rect x="405" y="135" width="190" height="70" rx="7" class="box"/>
+  <rect x="610" y="135" width="190" height="70" rx="7" class="box"/>
+  <text x="295" y="170" text-anchor="middle" class="t s" dominant-baseline="central"><tspan x="295" y="160.85">Стабильная версия </tspan><tspan x="295" y="179.15">агента</tspan></text>
+  <text x="500" y="170" text-anchor="middle" class="t s" dominant-baseline="central"><tspan x="500" y="160.85">Решение реальных </tspan><tspan x="500" y="179.15">задач</tspan></text>
+  <text x="705" y="170" text-anchor="middle" class="t s" dominant-baseline="central"><tspan x="705" y="160.85">Запись траекторий и </tspan><tspan x="705" y="179.15">обратной связи</tspan></text>
+  <path d="M390 170 H403" class="line"/><path d="M595 170 H608" class="line"/>
+
+  <rect x="28" y="300" width="944" height="240" rx="10" fill="#f5f8fa" stroke="#2f617a" stroke-width="1.5"/>
+  <text x="55" y="328" class="t h" dominant-baseline="central"><tspan x="55" y="328">Цикл офлайн-эволюции</tspan></text>
+  <rect x="87" y="350" width="190" height="155" rx="7" class="accent"/>
+  <rect x="297" y="350" width="190" height="155" rx="7" class="accent"/>
+  <rect x="507" y="350" width="190" height="155" rx="7" class="accent"/>
+  <rect x="717" y="350" width="190" height="155" rx="7" class="accent"/>
+  <text x="182" y="391" text-anchor="middle" class="t s" dominant-baseline="central"><tspan x="182" y="391">Агрегация и диагностика</tspan></text><text x="182" y="453" text-anchor="middle" class="t s" dominant-baseline="central"><tspan x="182" y="443.85">Поиск общих </tspan><tspan x="182" y="462.15">первопричин</tspan></text>
+  <text x="392" y="391" text-anchor="middle" class="t s" dominant-baseline="central"><tspan x="392" y="381.85">Предлагаемые </tspan><tspan x="392" y="400.15">изменения</tspan></text><text x="392" y="453" text-anchor="middle" class="t s" dominant-baseline="central"><tspan x="392" y="443.85">Знания · инструкции · </tspan><tspan x="392" y="462.15">программы · параметры</tspan></text>
+  <text x="602" y="391" text-anchor="middle" class="t s" dominant-baseline="central"><tspan x="602" y="372.7">Регрессионная проверка </tspan><tspan x="602" y="391">и проверка </tspan><tspan x="602" y="409.3">безопасности</tspan></text><text x="602" y="453" text-anchor="middle" class="t s" dominant-baseline="central"><tspan x="602" y="443.85">Сохранение прежних </tspan><tspan x="602" y="462.15">возможностей</tspan></text>
+  <text x="812" y="391" text-anchor="middle" class="t s" dominant-baseline="central"><tspan x="812" y="381.85">Канареечный выпуск, </tspan><tspan x="812" y="400.15">мониторинг и откат</tspan></text><text x="812" y="453" text-anchor="middle" class="t s" dominant-baseline="central"><tspan x="812" y="443.85">Продвижение в новую </tspan><tspan x="812" y="462.15">стабильную версию</tspan></text>
+  <path d="M277 425 H295" class="line"/><path d="M487 425 H505" class="line"/><path d="M697 425 H715" class="line"/>
+
+  <!-- Траектории поступают вниз в офлайн-диагностику по отдельному каналу между уровнями. -->
+  <path d="M705 205 V265 H40 V425 H85" class="line" stroke-dasharray="7 5"/>
+  <rect x="284" y="250" width="320" height="30" rx="4" fill="#ffffff"/>
+  <text x="444" y="265" text-anchor="middle" class="t s" dominant-baseline="central"><tspan x="444" y="265">Версионируемый журнал опыта</tspan></text>
+
+  <!-- Новая версия возвращается к стабильному агенту по внешнему контуру справа, не пересекая канал траекторий. -->
+  <path d="M907 425 H986 V60 H295 V133" class="line" stroke-dasharray="7 5"/>
+  <rect x="490" y="45" width="320" height="30" rx="4" fill="#ffffff"/>
+  <text x="650" y="60" text-anchor="middle" class="t s" dominant-baseline="central"><tspan x="650" y="60">Новая версия, прошедшая проверку</tspan></text>
+
+  <text x="500" y="588" text-anchor="middle" class="t s" dominant-baseline="central"><tspan x="500" y="588">Корень доверия: обычная эволюция не меняет права, аудит, проверку и откат</tspan></text>
 </svg>

@@ -7,8 +7,8 @@
 ## Зафиксированный источник
 
 - Репозиторий: <https://github.com/bojieli/ai-agent-book>
-- Версия: `v1.2`
-- Коммит: `97de455e9aa44cf9f93441ce0c771c9aa9643d92`
+- Версия: `v2.0`
+- Коммит: `c3352738f4b6fe42fe34e3cf6a79bcb424a133b8`
 - Исходный каталог: `book/`
 - Лицензия: Apache License 2.0
 
@@ -16,9 +16,11 @@
 
 ## Статус
 
-PDF издания `v1.2-ru.1` находится в [dist/AI-Agents-in-Depth-RU-v1.2.pdf](dist/AI-Agents-in-Depth-RU-v1.2.pdf).
+Готово издание `v2.0-ru.1`: [PDF, 543 страницы](dist/AI-Agents-in-Depth-RU-v2.0.pdf).
 
-Идёт обновление до `v2.0-ru.1` по upstream-коммиту `c3352738f4b6fe42fe34e3cf6a79bcb424a133b8`. Проверенные промежуточные тексты и их provenance сохраняются отдельно в [updates/v2.0/](updates/v2.0/); готовность каждого этапа указана в [status.json](updates/v2.0/status.json). Это ещё не готовое издание: перенос иллюстраций, проверка всех ссылок и новая PDF-сборка не завершены. Корневой каталог `book/` и PDF версии 1.2 пока сохраняются без изменений.
+Переведены и сверены введение, 10 глав, послесловие и справочные ответы на вопросы для размышления: 13 файлов, 111 фрагментов. В книге 114 иллюстраций; 39 изменённых SVG заново подготовлены для вёрстки. Проверены ссылки, 34 таблицы и границы текста на всех страницах PDF. Проверенные тексты и сведения об их происхождении находятся в [updates/v2.0/](updates/v2.0/), результаты проверок — в [status.json](updates/v2.0/status.json).
+
+Предыдущее издание сохранено: [PDF 1.2](dist/AI-Agents-in-Depth-RU-v1.2.pdf). Его иллюстрации и манифесты находятся в [updates/v1.2/](updates/v1.2/); исходное состояние русского перевода — в коммите `ed2ae516d45dfe26e934cb390b80f105ca780b1f`.
 
 При обновлении прежний русский перевод используется как редакционная опора, а новый китайский оригинал остаётся источником содержания. Каждый фрагмент переводится и затем сверяется с китайским оригиналом двумя последовательными вызовами exact-модели `gpt-5.6-sol` через Codex app-server. Provider fallback и автоматическая замена модели запрещены.
 
@@ -28,8 +30,8 @@ PDF издания `v1.2-ru.1` находится в [dist/AI-Agents-in-Depth-RU
 uv sync --frozen --dev
 mkdir -p .tmp
 git clone --filter=blob:none --no-checkout https://github.com/bojieli/ai-agent-book.git .tmp/upstream
-git -C .tmp/upstream fetch --depth=1 origin 97de455e9aa44cf9f93441ce0c771c9aa9643d92
-git -C .tmp/upstream checkout --detach 97de455e9aa44cf9f93441ce0c771c9aa9643d92
+git -C .tmp/upstream fetch --depth=1 origin c3352738f4b6fe42fe34e3cf6a79bcb424a133b8
+git -C .tmp/upstream checkout --detach c3352738f4b6fe42fe34e3cf6a79bcb424a133b8
 ~~~
 
 ## Проверки
@@ -41,7 +43,19 @@ uv run ruff check scripts tests
 pyright scripts tests
 ~~~
 
-Проверки структуры, ссылок, терминологии и извлечённого PDF-текста находятся в `scripts/`. Промежуточные материалы 2.0 не включаются в обычную сборку, пока перенос не завершён.
+Проверки структуры, ссылок, терминологии и извлечённого PDF-текста находятся в `scripts/`.
+
+~~~bash
+uv run python scripts/check_translation.py --source .tmp/upstream/book --target book --glossary glossary.yml --manifest translation-manifest.json
+uv run python scripts/check_links.py book
+bash book/build_pdf.sh
+# После проверки PDF из .tmp/pdf-build-v2.0/:
+bash book/build_pdf.sh --promote
+~~~
+
+Сборка проверяет наличие Pandoc, XeLaTeX, Chrome, Poppler и необходимых TeX-пакетов, включая `xurl` для переноса длинных ссылок. Команда `--promote` сверяет контрольные суммы исходников и PDF перед копированием в `dist/`.
+
+Генераторы `book/gen_*_figs.py` сохранены для версии 1.2. Не запускайте их поверх иллюстраций 2.0: новая сборка использует локализованные SVG из `book/images/`, зафиксированные в `asset-translation-manifest.json`.
 
 ## Атрибуция и лицензия
 
