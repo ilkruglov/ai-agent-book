@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "repository": "https://github.com/bojieli/ai-agent-book",
+  "commit": "c3352738f4b6fe42fe34e3cf6a79bcb424a133b8",
+  "version": "v2.0",
+  "markdown": [
+    {"path": "book/introduction.md", "blob_sha1": "60e23cf161727f4b942a2978da67d8b5d7a044c9", "size": 19439},
+    {"path": "book/chapter1.md", "blob_sha1": "5f96e46aa46ffce552ef7835c091e4eed4dc8b54", "size": 82813},
+    {"path": "book/chapter2.md", "blob_sha1": "357ea48e12beeab2b918a44fff9fe6f34cf544aa", "size": 130806},
+    {"path": "book/chapter3.md", "blob_sha1": "b3d88e68e098c0e473fe28a76887a8a741ff49ae", "size": 100023},
+    {"path": "book/chapter4.md", "blob_sha1": "6c9463bd692fa4bc9ccd48758fd5ad0a4f6bb6b5", "size": 71664},
+    {"path": "book/chapter5.md", "blob_sha1": "2a9e1eab2b34448ce1717908dc589f9b85b9be73", "size": 113700},
+    {"path": "book/chapter6.md", "blob_sha1": "7fb87731d7669c924b16686cdf92e845a2cd636a", "size": 93559},
+    {"path": "book/chapter7.md", "blob_sha1": "f5948edc30c3086687e6c61adbdb616cc0b35bd2", "size": 109424},
+    {"path": "book/chapter8.md", "blob_sha1": "38eb64bf45b9e844b6bdbcbedfc61b9dcc12244b", "size": 136717},
+    {"path": "book/chapter9.md", "blob_sha1": "323e7aa3c670beab1452658605822a237855c225", "size": 62756},
+    {"path": "book/chapter10.md", "blob_sha1": "3b0f3cdfe078cb3c83ba8769d7309d99cb938036", "size": 101683},
+    {"path": "book/afterword.md", "blob_sha1": "01d19e17a3f065c4b0545311440d739d542d3ef1", "size": 10495},
+    {"path": "book/reference-answers.md", "blob_sha1": "c3804bbdb305c070af32aeeb2af8aaa1c821ce68", "size": 69703}
+  ]
+}

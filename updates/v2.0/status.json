@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "edition": "v2.0-ru.1",
+  "status": "in_progress",
+  "source_commit": "c3352738f4b6fe42fe34e3cf6a79bcb424a133b8",
+  "previous_source_commit": "97de455e9aa44cf9f93441ce0c771c9aa9643d92",
+  "previous_russian_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
+  "translation_model": "gpt-5.6-sol",
+  "verification_model": "gpt-5.6-sol",
+  "provider_fallback": false,
+  "text_verified": ["introduction.md", "chapter1.md", "chapter2.md", "reference-answers.md"],
+  "verified_chunks": 32,
+  "pending_text": ["chapter3.md", "chapter4.md", "chapter5.md", "chapter6.md", "chapter7.md", "chapter8.md", "chapter9.md", "chapter10.md", "afterword.md"],
+  "images_verified": false,
+  "links_verified": false,
+  "pdf_built": false,
+  "notes": [
+    "Промежуточная контрольная точка обновления, не готовое издание.",
+    "Каждый файл в book/ прошёл свежие переводческий и проверочный GPT-проходы и структурные проверки относительно нового китайского оригинала.",
+    "Происхождение и контрольные суммы каждого готового текста записаны в manifests/<имя>.manifest.json.",
+    "Иллюстрации и ссылки на ещё не перенесённые главы здесь пока не подготовлены.",
+    "Корневой book/ и опубликованный PDF v1.2 сохранены без изменений. Сборка v2.0 начнётся только после завершения переноса всех текстов и иллюстраций."
+  ]
+}
