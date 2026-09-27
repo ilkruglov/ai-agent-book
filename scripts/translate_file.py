@@ -24,6 +24,12 @@ if __package__:
         split_markdown,
     )
     from scripts.model_runner import EXACT_MODEL, ModelName, ModelResult, run_model
+    from scripts.translation_baseline import (
+        BaselinePair,
+        load_baseline,
+        render_baseline,
+        select_baseline,
+    )
 else:
     from check_translation import (  # pyright: ignore[reportImplicitRelativeImport]
         TRANSLATION_NOTICE,
@@ -41,6 +47,12 @@ else:
         ModelName,
         ModelResult,
         run_model,
+    )
+    from translation_baseline import (  # pyright: ignore[reportImplicitRelativeImport]
+        BaselinePair,
+        load_baseline,
+        render_baseline,
+        select_baseline,
     )
 
 
@@ -194,6 +206,7 @@ def translate_file(
     max_chars: int = 40_000,
     timeout_seconds: int = 3_600,
     jobs: int = 1,
+    baseline_pairs: tuple[BaselinePair, ...] = (),
 ) -> TranslationManifest:
     if jobs <= 0:
         raise ValueError("jobs должен быть положительным")
@@ -224,6 +237,7 @@ def translate_file(
 
     def run_chunk(chunk: MarkdownChunk) -> tuple[MarkdownChunk, ModelResult]:
         prompt = _render_prompt(template, source_relative, chunk, accepted_glossary)
+        prompt += render_baseline(select_baseline(chunk.text, baseline_pairs))
         chunk_output = chunk_root / f"{chunk.index}.md"
         result = run_model(EXACT_MODEL, prompt, root, chunk_output, timeout_seconds)
         if _has_extra_outer_fence(chunk.text, result.response):
@@ -273,6 +287,7 @@ def translate_file(
         "source_sha256": _sha256(source_text),
         "draft_sha256": _sha256(draft),
         "max_chars": max_chars,
+        "baseline_source_paths": sorted({pair.path for pair in baseline_pairs}),
         "chunks": [
             {
                 "index": chunk.index,
@@ -311,6 +326,9 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--max-chars", type=int, default=40_000)
     parser.add_argument("--timeout-seconds", type=int, default=3_600)
     parser.add_argument("--jobs", type=int, default=4)
+    parser.add_argument("--baseline-source", type=Path)
+    parser.add_argument("--baseline-translation", type=Path)
+    parser.add_argument("--baseline-manifest", type=Path)
     return parser
 
 
@@ -318,6 +336,16 @@ def main(argv: Sequence[str] | None = None) -> int:
     arguments = _build_parser().parse_args(argv)
     repo_root = Path(__file__).resolve().parents[1]
     try:
+        baseline_source = cast(Path | None, arguments.baseline_source)
+        baseline_translation = cast(Path | None, arguments.baseline_translation)
+        baseline_manifest = cast(Path | None, arguments.baseline_manifest)
+        baseline_pairs: tuple[BaselinePair, ...] = ()
+        if any(
+            item is not None for item in (baseline_source, baseline_translation, baseline_manifest)
+        ):
+            if baseline_source is None or baseline_translation is None or baseline_manifest is None:
+                raise TranslationError("Все три --baseline-* параметра обязательны вместе")
+            baseline_pairs = load_baseline(baseline_source, baseline_translation, baseline_manifest)
         manifest = translate_file(
             cast(Path, arguments.source),
             cast(Path, arguments.output),
@@ -327,6 +355,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             cast(int, arguments.max_chars),
             cast(int, arguments.timeout_seconds),
             cast(int, arguments.jobs),
+            baseline_pairs=baseline_pairs,
         )
     except (OSError, ValueError, TranslationError) as error:
         print(f"translation-error: {error}", file=sys.stderr)

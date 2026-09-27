@@ -246,8 +246,14 @@ def _load_translation_chunks(
         "max_chars",
         "chunks",
     }
-    if set(document) != expected_keys:
+    if set(document) not in (expected_keys, expected_keys | {"baseline_source_paths"}):
         raise VerificationError("translation evidence fields не совпали с contract")
+    baseline_paths = document.get("baseline_source_paths", [])
+    if not isinstance(baseline_paths, list) or any(
+        not isinstance(path, str) or Path(path).name != path or not path.endswith(".md")
+        for path in cast(list[object], baseline_paths)
+    ):
+        raise VerificationError("translation evidence baseline_source_paths некорректны")
     if (
         document.get("schema_version") != 1
         or document.get("pass") != "translation"
@@ -279,7 +285,7 @@ def _load_translation_chunks(
 
     result: list[TranslationChunkEvidence] = []
     draft_parts: list[str] = []
-    response_root = (root / ".tmp/drafts/.chunks").resolve()
+    response_root = (draft.parent / ".chunks" / draft.stem).resolve()
     for ordinal, (source_chunk, raw_chunk) in enumerate(
         zip(source_chunks, raw_chunk_items, strict=True)
     ):
@@ -312,7 +318,7 @@ def _load_translation_chunks(
         response_relative = _string(chunk, "response_path", context)
         response_path = (root / response_relative).resolve()
         if not response_path.is_relative_to(response_root) or not response_path.is_file():
-            raise VerificationError(f"{context}: response_path вне .tmp/drafts/.chunks")
+            raise VerificationError(f"{context}: response_path вне chunk-каталога данного draft")
         draft_chunk = response_path.read_text(encoding="utf-8")
         draft_sha256 = _sha256(draft_chunk)
         if chunk.get("draft_sha256") != draft_sha256:
@@ -443,11 +449,13 @@ def _parse_response(
     return corrected
 
 
-def _source_identity(root: Path, source: Path) -> tuple[str, str]:
+def _source_identity(
+    root: Path, source: Path, upstream_manifest: Path | None = None
+) -> tuple[str, str]:
     source_relative = source.relative_to(root / ".tmp/upstream").as_posix()
     data = source.read_bytes()
     blob_sha1 = _git_blob_sha1(data)
-    upstream = _load_json(root / "upstream.json", "upstream manifest")
+    upstream = _load_json(upstream_manifest or root / "upstream.json", "upstream manifest")
     raw_markdown = upstream.get("markdown")
     if not isinstance(raw_markdown, list):
         raise VerificationError("upstream manifest markdown должен быть list")
@@ -616,6 +624,7 @@ def verify_file(
     reuse_run: Path | None = None,
     rerun_chunks: frozenset[str] = frozenset(),
     review_notes: Mapping[str, str] | None = None,
+    upstream_manifest: Path | None = None,
 ) -> VerificationManifest:
     if timeout_seconds <= 0:
         raise ValueError("timeout_seconds должен быть положительным")
@@ -660,6 +669,12 @@ def verify_file(
         raise VerificationError("Verification prompt/schema отсутствуют")
 
     chunks = _load_translation_chunks(root, source, draft, translation_evidence)
+    source_text = "".join(chunk.source.text for chunk in chunks)
+    draft_parts = restore_missing_newline_boundaries(
+        tuple(chunk.source for chunk in chunks), tuple(chunk.draft_text for chunk in chunks)
+    )
+    draft_text = f"{TRANSLATION_NOTICE}\n\n{''.join(draft_parts)}"
+    source_relative, blob_sha1 = _source_identity(root, source, upstream_manifest)
     terms = load_glossary(glossary_path)
     glossary = _render_glossary(terms)
     template = prompt_path.read_text(encoding="utf-8")
@@ -770,6 +785,12 @@ def verify_file(
             raise AssertionError("Пустой corrected chunk прошёл schema")
 
     final_text = f"{TRANSLATION_NOTICE}\n\n{''.join(corrected_parts)}"
+    if source.read_text(encoding="utf-8") != source_text:
+        raise VerificationError("Source изменился во время GPT-сверки")
+    if draft.read_text(encoding="utf-8") != draft_text:
+        raise VerificationError("Draft изменился во время GPT-сверки")
+    if _source_identity(root, source, upstream_manifest) != (source_relative, blob_sha1):
+        raise VerificationError("Pinned source изменился во время GPT-сверки")
     candidate = output.parent / ".candidates" / output.name
     if candidate.exists():
         raise VerificationError(f"Partial candidate уже существует: {candidate}")
@@ -787,12 +808,9 @@ def verify_file(
         raise VerificationError(f"Partial artifact уже существует: {output}") from error
     candidate.unlink()
 
-    source_text = source.read_text(encoding="utf-8")
-    draft_text = draft.read_text(encoding="utf-8")
     source_sha256 = _sha256(source_text)
     draft_sha256 = _sha256(draft_text)
     final_sha256 = _sha256(final_text)
-    source_relative, blob_sha1 = _source_identity(root, source)
 
     evidence_document: dict[str, object] = {
         "schema_version": 1,
@@ -878,6 +896,7 @@ def _build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--reuse-run", type=Path)
     parser.add_argument("--rerun-chunk", action="append", default=[])
     parser.add_argument("--review-note", action="append", default=[])
+    parser.add_argument("--upstream-manifest", type=Path)
     return parser
 
 
@@ -911,6 +930,7 @@ def main(argv: Sequence[str] | None = None) -> int:
             cast(Path | None, arguments.reuse_run),
             frozenset(cast(list[str], arguments.rerun_chunk)),
             _parse_review_notes(cast(list[str], arguments.review_note)),
+            upstream_manifest=cast(Path | None, arguments.upstream_manifest),
         )
     except (OSError, ValueError, VerificationError) as error:
         print(f"verification-error: {error}", file=sys.stderr)

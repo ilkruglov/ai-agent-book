@@ -17,9 +17,131 @@ from scripts.check_translation import (
 )
 from scripts.markdown_chunks import restore_missing_newline_boundaries, split_markdown
 from scripts.model_runner import ModelResult, RuntimeEvidence
-from scripts.verify_translation import VerificationError, verify_file
+from scripts.verify_translation import (
+    VerificationError,
+    _load_translation_chunks,  # pyright: ignore[reportPrivateUsage]
+    verify_file,
+)
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def test_loads_versioned_draft_chunks_with_baseline_metadata(tmp_path: Path) -> None:
+    repo, source, draft, evidence, *_ = _prepare_repo(tmp_path)
+    versioned = draft.parent / "v2.0" / draft.name
+    versioned.parent.mkdir()
+    draft.rename(versioned)
+    chunks = draft.parent / ".chunks" / draft.stem
+    destination = versioned.parent / ".chunks" / draft.stem
+    destination.parent.mkdir()
+    chunks.rename(destination)
+    data = json.loads(evidence.read_text())
+    data["draft_path"] = versioned.relative_to(repo).as_posix()
+    data["baseline_source_paths"] = ["chapter.md"]
+    for chunk in data["chunks"]:
+        chunk["response_path"] = (
+            (destination / Path(chunk["response_path"]).name).relative_to(repo).as_posix()
+        )
+    evidence.write_text(json.dumps(data))
+    loaded = _load_translation_chunks(repo, source, versioned, evidence)
+    assert tuple(chunk.draft_text for chunk in loaded) == DRAFT_CHUNKS
+
+
+def test_rejects_chunk_from_another_draft_run(tmp_path: Path) -> None:
+    repo, source, draft, evidence, *_ = _prepare_repo(tmp_path)
+    foreign = draft.parent / ".chunks/other/000.md"
+    foreign.parent.mkdir()
+    foreign.write_text(DRAFT_CHUNKS[0])
+    data = json.loads(evidence.read_text())
+    data["chunks"][0]["response_path"] = foreign.relative_to(repo).as_posix()
+    evidence.write_text(json.dumps(data))
+    with pytest.raises(VerificationError, match="response_path"):
+        _load_translation_chunks(repo, source, draft, evidence)
+
+
+def test_checks_pinned_source_before_spending_model_calls(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    repo, source, draft, translation, output, evidence, fragment, glossary = _prepare_repo(tmp_path)
+    pin = json.loads((repo / "upstream.json").read_text())
+    pin["markdown"][0]["blob_sha1"] = "0" * 40
+    (repo / "upstream.json").write_text(json.dumps(pin))
+
+    def unexpected_call(*args: object, **kwargs: object) -> None:
+        pytest.fail("Model called before pinned source validation")
+
+    monkeypatch.setattr("scripts.verify_translation.run_model", unexpected_call)
+    with pytest.raises(VerificationError, match="Pinned source"):
+        verify_file(source, draft, translation, output, evidence, fragment, glossary, repo)
+    assert not output.exists()
+
+
+def test_verifies_against_explicit_new_edition_manifest(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    repo, source, draft, translation, output, evidence, fragment, glossary = _prepare_repo(tmp_path)
+    new_pin = repo / ".tmp/upstream-v2.json"
+    (repo / "upstream.json").rename(new_pin)
+    responses = _payloads()
+
+    def fake_run_model(
+        model: str,
+        prompt: str,
+        repo_root: Path,
+        output_path: Path,
+        timeout_seconds: int,
+        output_schema: Mapping[str, object] | None = None,
+    ) -> ModelResult:
+        del model, prompt, repo_root, timeout_seconds, output_schema
+        return _result(output_path, next(responses), int(output_path.stem))
+
+    monkeypatch.setattr("scripts.verify_translation.run_model", fake_run_model)
+    verify_file(
+        source,
+        draft,
+        translation,
+        output,
+        evidence,
+        fragment,
+        glossary,
+        repo,
+        upstream_manifest=new_pin,
+    )
+    assert output.read_text() == draft.read_text()
+    assert json.loads(fragment.read_text())["source"]["path"] == "book/chapter.md"
+
+
+@pytest.mark.parametrize("mutated_input", ["source", "draft"])
+def test_rejects_input_changed_during_model_call(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, mutated_input: str
+) -> None:
+    repo, source, draft, translation, output, evidence, fragment, glossary = _prepare_repo(tmp_path)
+    responses = _payloads()
+
+    def fake_run_model(
+        model: str,
+        prompt: str,
+        repo_root: Path,
+        output_path: Path,
+        timeout_seconds: int,
+        output_schema: Mapping[str, object] | None = None,
+    ) -> ModelResult:
+        del model, prompt, repo_root, timeout_seconds, output_schema
+        changed = source if mutated_input == "source" else draft
+        changed.write_text(
+            changed.read_text()
+            .replace("原文一", "修改一")
+            .replace("Русский текст", "Изменённый текст")
+        )
+        return _result(output_path, next(responses), int(output_path.stem))
+
+    monkeypatch.setattr("scripts.verify_translation.run_model", fake_run_model)
+    with pytest.raises(VerificationError, match="изменил"):
+        verify_file(source, draft, translation, output, evidence, fragment, glossary, repo)
+    assert not output.exists()
+    assert not evidence.exists()
+    assert not fragment.exists()
+
 
 SOURCE = """## 第一节
 原文一。

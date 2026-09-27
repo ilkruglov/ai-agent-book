@@ -10,6 +10,7 @@ import pytest
 
 from scripts.model_runner import ModelResult, RuntimeEvidence
 from scripts.translate_file import TranslationError, main, translate_file
+from scripts.translation_baseline import BaselinePair
 
 SOURCE = """## 第一节
 原文一。
@@ -188,6 +189,39 @@ def test_rejects_source_outside_pinned_upstream(tmp_path: Path) -> None:
         translate_file(outside, output, glossary, evidence, repo, 40_000)
 
 
+def test_update_uses_old_translation_as_context_without_replacing_new_source(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    repo, source, output, evidence, glossary = _prepare_repo(tmp_path)
+    prompts: list[str] = []
+    pairs = (
+        BaselinePair(
+            "chapter.md", "## 第一节\n原文一。\n\n", "## Первый раздел\nНаш текст.\n\n", {}
+        ),
+    )
+
+    def fake_run_model(
+        model: str, prompt: str, repo_root: Path, output_path: Path, timeout_seconds: int
+    ) -> ModelResult:
+        del model, repo_root, timeout_seconds
+        prompts.append(prompt)
+        text = (
+            "## Первый раздел\nНаш текст.\n\n"
+            if output_path.stem == "000"
+            else "## Второй раздел\nНовый текст.\n"
+        )
+        return _result(output_path, text)
+
+    monkeypatch.setattr("scripts.translate_file.run_model", fake_run_model)
+    translate_file(source, output, glossary, evidence, repo, baseline_pairs=pairs)
+    assert "Наш текст." in prompts[0]
+    assert "原文一。" in prompts[0]
+    assert "Наш текст." not in prompts[1]
+    assert "Новый текст." in output.read_text()
+    stored = json.loads(evidence.read_text())
+    assert stored["baseline_source_paths"] == ["chapter.md"]
+
+
 def test_rejects_output_outside_drafts(tmp_path: Path) -> None:
     repo, source, _, evidence, glossary = _prepare_repo(tmp_path)
 
@@ -262,7 +296,9 @@ def test_cli_uses_exact_model_without_model_argument(
         max_chars: int = 40_000,
         timeout_seconds: int = 3_600,
         jobs: int = 1,
+        baseline_pairs: tuple[BaselinePair, ...] = (),
     ) -> object:
+        assert baseline_pairs == ()
         calls.append(
             (
                 source_path,
