@@ -1,0 +1,74 @@
+{
+  "pdf_sha256": "061dadc3f3fface3e57ffbecce2259f874ea7de445779d5080961098e92654a1",
+  "pages": 550,
+  "word_count": 200860,
+  "words_outside_media_box": [],
+  "stress_pages": {
+    "Структурированные роли": [
+      100
+    ],
+    "src/components": [
+      227
+    ],
+    "Несрочные события": [
+      273
+    ],
+    "Thinking Machines Lab называет": [
+      288
+    ],
+    "Защита симулятора": [
+      315
+    ],
+    "Зрелые продукты": [
+      360
+    ],
+    "Превращение заявления": [
+      480
+    ],
+    "transfer_to_": [
+      447,
+      472,
+      473
+    ]
+  },
+  "font_report": [
+    "name                                 type              encoding         emb sub uni object ID",
+    "------------------------------------ ----------------- ---------------- --- --- --- ---------",
+    "KPEZKZ+PTSerif-Bold                  CID TrueType      Identity-H       yes yes yes     42  0",
+    "OUDJFM+DejaVuSans                    CID TrueType      Identity-H       yes yes yes     44  0",
+    "VPUFGB+PTSerif-Regular               CID TrueType      Identity-H       yes yes yes     51  0",
+    "KXAIVB+DejaVuSansMono                CID TrueType      Identity-H       yes yes yes    516  0",
+    "HPOPAC+DejaVuSans-Bold               CID TrueType      Identity-H       yes yes yes    733  0",
+    "KBYFZC+DejaVuSansMono-Bold           CID TrueType      Identity-H       yes yes yes    764  0",
+    "LDKTDD+TeXGyrePagellaMath-Regular-Identity-H CID Type 0C       Identity-H       yes yes yes    854  0",
+    "URYDYI+PTSerif-Italic                CID TrueType      Identity-H       yes yes yes    865  0"
+  ],
+  "body_font": "PT Serif",
+  "body_size_pt": 11,
+  "body_leading_pt": 15,
+  "standalone_tables_checked": 34,
+  "standalone_table_overfull_boxes": 0,
+  "tests_passed": 190,
+  "source_baseline_commit": "be50f5386dd4d2e0160879b89d8bff592bee5682",
+  "manuscripts_and_illustrations_unchanged": true,
+  "visual_review_pages": [
+    100,
+    227,
+    273,
+    288,
+    315,
+    360,
+    472,
+    480,
+    550
+  ],
+  "full_layout_overfull_boxes": 0,
+  "full_layout_missing_characters": 0,
+  "layout_reference_warnings": [
+    "fig:9-1",
+    "fig:9-5",
+    "fig:10-2"
+  ],
+  "reference_warning_scope": "Reference targets were not changed or repaired in this typography-only update.",
+  "visual_review_scope": "Selected pages, not a page-by-page review of all 550 pages. All 34 tables were additionally compiled in an isolated layout audit."
+}

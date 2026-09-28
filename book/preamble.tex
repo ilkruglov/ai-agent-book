@@ -3,13 +3,22 @@
 
 % ── Шрифты с полной поддержкой кириллицы ─────────────────────────
 \usepackage{unicode-math}
-\setmainfont{DejaVu Serif}
+\setmainfont{PT Serif}
+\usepackage{etoolbox}
+\linespread{1}
+\apptocmd{\normalsize}{\fontsize{11}{15}\selectfont}{}{}
+\AtBeginDocument{\normalsize}
+% Allow looser spacing only when normal paragraph breaking would overflow.
+\setlength{\emergencystretch}{8em}
 \setsansfont{DejaVu Sans}[Scale=0.9]
 \setmathfont{texgyrepagella-math}[Extension = .otf]
 
 % ── Unicode glyph fallback (the text/mono fonts lack these) ──────
 \usepackage{newunicodechar}
 \newfontfamily\fallbackfont{DejaVu Sans}
+\newunicodechar{→}{{\fallbackfont →}}
+\newunicodechar{↔}{{\fallbackfont ↔}}
+\newunicodechar{Σ}{{\fallbackfont Σ}}
 \newunicodechar{★}{{\fallbackfont ★}}
 \newunicodechar{✓}{{\fallbackfont ✓}}
 \newunicodechar{✗}{{\fallbackfont ✗}}

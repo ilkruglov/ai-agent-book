@@ -19,3 +19,6 @@ Source version: v2.0
 f9f002a586eb7432c17076071743451611b7f858). Он распространяется по лицензии
 LaTeX Project Public License 1.3c; её текст находится в
 book/vendor/elegantbook/LICENSE.
+
+Основной текст PDF набран PT Serif (ParaType, 2009). Лицензия шрифта
+разрешает встраивание в документы; её текст: licenses/PT-Serif-fonts.txt.

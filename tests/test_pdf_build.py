@@ -9,6 +9,8 @@ import subprocess
 import tempfile
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 BUILD_SCRIPT = ROOT / "book/build_pdf.sh"
 TABLE_WIDTH_FILTER = ROOT / "book/table_widths.lua"
@@ -38,6 +40,71 @@ REQUIRED_COMMANDS = (
     "kpsewhich",
 )
 ELEGANTBOOK_SHA256 = "9791679f528b3886e8f736f0ca13fad43fd42cf44187df28d9b3f326d9a4c753"
+
+
+def test_body_pdf_uses_pt_serif_at_11pt_with_15pt_leading() -> None:
+    """Catch class/font overrides that silently change the final body typography."""
+    markdown = r"""
+Обычный русский текст с буквой ё. Стрелки → ↔ и сумма Σ.
+
+**Полужирный текст** и *курсив*, ***полужирный курсив***.
+
+```{=latex}
+\makeatletter
+\typeout{BODY-SIZE=\f@size}
+\typeout{BODY-LEADING=\the\baselineskip}
+\makeatother
+```
+
+```python
+pass
+```
+"""
+    build_root = ROOT / ".tmp"
+    build_root.mkdir(exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="pt-serif-test-", dir=build_root) as directory:
+        work = Path(directory)
+        result = subprocess.run(
+            [
+                "pandoc",
+                "--from=markdown",
+                "--to=latex",
+                "--standalone",
+                "-V",
+                "documentclass=elegantbook",
+                "-V",
+                "classoption=lang=en",
+                "-V",
+                "classoption=device=normal",
+                "-V",
+                "lang=ru-RU",
+                "-H",
+                str(ROOT / "book/preamble.tex"),
+                "-o",
+                str(work / "probe.tex"),
+            ],
+            input=markdown,
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        assert result.returncode == 0, result.stderr
+        result = subprocess.run(
+            ["xelatex", "-interaction=nonstopmode", "-halt-on-error", "probe.tex"],
+            cwd=work,
+            env={**os.environ, "TEXINPUTS": f"{ROOT / 'book/vendor/elegantbook'}:"},
+            capture_output=True,
+            text=True,
+            check=False,
+        )
+        assert result.returncode == 0, result.stdout
+        log = (work / "probe.log").read_text(encoding="utf-8")
+        assert "Missing character:" not in log
+        assert re.search(r"BODY-SIZE=11(?:\.0)?\s", log), log
+        assert "BODY-LEADING=15.0pt" in log
+        fonts = subprocess.check_output(["pdffonts", str(work / "probe.pdf")], text=True)
+        for face in ("Regular", "Bold", "Italic", "BoldItalic"):
+            assert f"PTSerif-{face}" in fonts, fonts
 
 
 def _build_script_text() -> str:
@@ -171,8 +238,11 @@ def test_table_width_filter_preserves_minimum_width_in_six_column_tables() -> No
     assert min(widths) >= 0.14
 
 
-def test_six_column_algorithm_fixture_has_no_overfull_hboxes() -> None:
-    table_text = SIX_COLUMN_TABLE_FIXTURE.read_text(encoding="utf-8")
+@pytest.mark.parametrize(
+    "fixture_name", ["six-column-algorithms.txt", "role-switching.txt", "pt-serif-paragraphs.txt"]
+)
+def test_latex_fixture_has_no_overfull_hboxes(fixture_name: str) -> None:
+    table_text = (ROOT / "tests/fixtures" / fixture_name).read_text(encoding="utf-8")
 
     build_root = ROOT / ".tmp"
     build_root.mkdir(exist_ok=True)
@@ -314,7 +384,6 @@ def test_pdf_support_is_localized_for_russian() -> None:
     crossref = (ROOT / "book/crossref.lua").read_text(encoding="utf-8")
     boxes = (ROOT / "book/experiment_box.lua").read_text(encoding="utf-8")
 
-    assert "DejaVu Serif" in preamble
     assert "DejaVu Sans" in preamble
     assert r"\usepackage{ragged2e}" in preamble
     assert r"\AtBeginEnvironment{longtable}{\let\raggedright\RaggedRight\sloppy}" in preamble

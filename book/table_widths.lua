@@ -33,8 +33,32 @@ local function add_break_after_delimiter(element)
   return inlines
 end
 
+local function add_break_to_code(element)
+  if not element.text:find("_", 1, true) then
+    return nil
+  end
+  local inlines = pandoc.Inlines({})
+  local start = 1
+  while true do
+    local delimiter = element.text:find("_", start, true)
+    if not delimiter then
+      if start <= #element.text then
+        inlines:insert(pandoc.Code(element.text:sub(start), element.attr))
+      end
+      break
+    end
+    inlines:insert(pandoc.Code(element.text:sub(start, delimiter), element.attr))
+    inlines:insert(pandoc.RawInline("latex", "\\allowbreak{}"))
+    start = delimiter + 1
+  end
+  return inlines
+end
+
 local function prepare_cell_for_latex(cell)
-  cell.contents = cell.contents:walk({ Str = add_break_after_delimiter })
+  cell.contents = cell.contents:walk({
+    Str = add_break_after_delimiter,
+    Code = add_break_to_code,
+  })
   for _, block in ipairs(cell.contents) do
     if block.t == "Plain" or block.t == "Para" then
       block.content:insert(1, pandoc.RawInline("latex", "\\hspace{0pt}"))
