@@ -6,8 +6,6 @@
 
 [Скачать книгу в PDF — 550 страниц](https://raw.githubusercontent.com/ilkruglov/ai-agent-book/main/dist/AI-Agents-in-Depth-RU-v2.0.pdf)
 
-Основной текст набран PT Serif: 11 pt с межстрочным интервалом 15 pt.
-
 ## Читать онлайн
 
 - [Введение](book/introduction.md)
