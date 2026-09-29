@@ -190,7 +190,8 @@
       "source_blob_sha1": "459373875f58fe374bb28019fddbaa90c782bd08",
       "source_sha256": "65a3738026b729ced0293eb966c2d3748e543f91ce340a58a74e9fbfaa8d4348",
       "raw_sha256": "ac19ca5aac12c65bbb98798bbd392ef9b162c682cf5c42d199ebf839826cb162",
-      "final_sha256": "a56a93095fb5fa3097797ccef578b1e4cd3e40fa879d10e582af39908fa4183f",
+      "final_sha256": "a1feb91e797f8b2535fc5187830aa81d3ab514b172838c3b3c53a0d6967085fb",
+      "editorial_correction": "2026-09-30: последствия удаления рассуждений зависят от восстановимости информации; согласовано с текстом главы.",
       "origin": "gpt-translation",
       "groups": [
         "A"
@@ -201,8 +202,9 @@
       "source_blob_sha1": "dc52a1b907c67029d53ab5097432b88a5cf8e64c",
       "source_sha256": "c4134dde7b1dc097c6425ef96238e2c30bbf2f87ab4e03bfb87a3c96e00a683b",
       "raw_sha256": "15e601720b2462dcce6eee856dac3a0c7b44f9fcc0c6c881cbeaa8e2dc1b1503",
-      "final_sha256": "15e601720b2462dcce6eee856dac3a0c7b44f9fcc0c6c881cbeaa8e2dc1b1503",
-      "origin": "baseline-reuse",
+      "final_sha256": "dd5bb5e7a2d4bdb76eb08066775bef1003e9f6233a3e375b3a9ed6f0f97b0037",
+      "origin": "editorial-correction",
+      "editorial_correction": "2026-09-30: ошибочно повторно использованная схема заменена траекторией расчёта доходов по тексту главы; исходный baseline ниже сохранён для атрибуции.",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig1-3.svg",
       "baseline_sha256": "15e601720b2462dcce6eee856dac3a0c7b44f9fcc0c6c881cbeaa8e2dc1b1503"

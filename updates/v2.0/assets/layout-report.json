@@ -1,12 +1,12 @@
 {
-  "geometry_scope": "Geometry checks cover the 39 changed SVGs. The 75 reused baseline assets are preserved unchanged; text/metadata preservation and raw/final hashes cover all 114 assets.",
-  "normalization_policy": "Compare text after collapsing whitespace and mapping fullwidth ASCII punctuation to its ASCII equivalent; no other textual edits are permitted.",
+  "geometry_scope": "Geometry checks cover the 40 changed SVGs. The 74 reused baseline assets are preserved unchanged. fig1-3.svg and fig1-4.svg were rechecked with browser text bounding boxes after authorized editorial corrections; no text lies outside their viewBox. Other audit records are unchanged.",
+  "normalization_policy": "Original layout pass compared text after collapsing whitespace and normalizing fullwidth ASCII punctuation. Subsequent authorized editorial corrections to fig1-3.svg and fig1-4.svg are documented in asset-translation-manifest.json; raw hashes preserve their pre-correction provenance.",
   "punctuation_normalized_files": ["fig1-5.svg", "fig2-3.svg", "fig4-1.svg", "fig4-4.svg", "fig7-7.svg"],
   "asset_count": 114,
   "svg_count": 112,
   "png_count": 2,
-  "changed_svg_count": 39,
-  "reused_asset_count": 75,
+  "changed_svg_count": 40,
+  "reused_asset_count": 74,
   "fit_basis_pt": {
     "max_width": 450,
     "max_height": 640
@@ -98,40 +98,40 @@
       "kind": "svg",
       "changed": true,
       "raw_sha256": "ac19ca5aac12c65bbb98798bbd392ef9b162c682cf5c42d199ebf839826cb162",
-      "final_sha256": "a56a93095fb5fa3097797ccef578b1e4cd3e40fa879d10e582af39908fa4183f",
+      "final_sha256": "a1feb91e797f8b2535fc5187830aa81d3ab514b172838c3b3c53a0d6967085fb",
       "flags": [],
-      "text_count": 41,
+      "text_count": 43,
       "title_count": 0,
       "desc_count": 0,
       "viewBox": {
-        "width": 1137.71875,
-        "height": 416,
-        "height_to_width": 0.366
+        "width": 1187.71875,
+        "height": 486,
+        "height_to_width": 0.409
       },
-      "fit_scale_pt_per_px": 0.3955,
-      "min_text_pt": 5.93,
-      "median_text_pt": 7.91,
+      "fit_scale_pt_per_px": 0.3789,
+      "min_text_pt": 5.68,
+      "median_text_pt": 7.58,
       "layout_flags": 0
     },
     {
       "file": "fig1-4.svg",
       "kind": "svg",
-      "changed": false,
+      "changed": true,
       "raw_sha256": "15e601720b2462dcce6eee856dac3a0c7b44f9fcc0c6c881cbeaa8e2dc1b1503",
-      "final_sha256": "15e601720b2462dcce6eee856dac3a0c7b44f9fcc0c6c881cbeaa8e2dc1b1503",
+      "final_sha256": "dd5bb5e7a2d4bdb76eb08066775bef1003e9f6233a3e375b3a9ed6f0f97b0037",
       "flags": [],
-      "text_count": 29,
-      "title_count": 0,
-      "desc_count": 0,
+      "text_count": 22,
+      "title_count": 1,
+      "desc_count": 1,
       "viewBox": {
-        "width": 820,
-        "height": 500,
-        "height_to_width": 0.61
+        "width": 900,
+        "height": 900,
+        "height_to_width": 1.0
       },
-      "fit_scale_pt_per_px": 0.5488,
-      "min_text_pt": 6.59,
-      "median_text_pt": 7.68,
-      "layout_flags": null
+      "fit_scale_pt_per_px": 0.5,
+      "min_text_pt": 8.0,
+      "median_text_pt": 10.0,
+      "layout_flags": 0
     },
     {
       "file": "fig1-5.svg",

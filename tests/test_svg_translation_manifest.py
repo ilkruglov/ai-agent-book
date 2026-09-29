@@ -139,9 +139,10 @@ def test_v2_assets_have_complete_two_pass_or_baseline_provenance() -> None:
         for item in json.loads((ROOT / "updates/v1.2/upstream.json").read_text())["images"]["files"]
     }
     assert len(records) == 114
-    assert sum(r["origin"] == "baseline-reuse" for r in records) == 75
+    assert sum(r["origin"] == "baseline-reuse" for r in records) == 74
     assert sum(r["origin"] == "gpt-translation" for r in records) == 38
     assert sum(r["origin"] == "upstream-technical-labels" for r in records) == 1
+    assert sum(r["origin"] == "editorial-correction" for r in records) == 1
     for record in records:
         assert _sha256(ROOT / record["path"]) == record["final_sha256"]
         if record["origin"] == "baseline-reuse":
@@ -151,6 +152,12 @@ def test_v2_assets_have_complete_two_pass_or_baseline_provenance() -> None:
             assert record["source_blob_sha1"] == baseline_sources[record["baseline_path"]]
         elif record["origin"] == "gpt-translation":
             assert record["groups"] and set(record["groups"]) <= set(groups)
+        elif record["origin"] == "editorial-correction":
+            baseline = ROOT / "updates/v1.2/images" / Path(record["baseline_path"]).name
+            assert record["editorial_correction"]
+            assert _sha256(baseline) == record["baseline_sha256"]
+            assert record["raw_sha256"] == record["baseline_sha256"]
+            assert record["final_sha256"] != record["baseline_sha256"]
         else:
             assert record["raw_sha256"] == record["source_sha256"]
 

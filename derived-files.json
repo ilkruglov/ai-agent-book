@@ -26,13 +26,13 @@
     },
     {
       "path": "book/images/fig1-3.svg",
-      "sha256": "a56a93095fb5fa3097797ccef578b1e4cd3e40fa879d10e582af39908fa4183f",
+      "sha256": "a1feb91e797f8b2535fc5187830aa81d3ab514b172838c3b3c53a0d6967085fb",
       "status": "gpt-translation"
     },
     {
       "path": "book/images/fig1-4.svg",
-      "sha256": "15e601720b2462dcce6eee856dac3a0c7b44f9fcc0c6c881cbeaa8e2dc1b1503",
-      "status": "baseline-reuse"
+      "sha256": "dd5bb5e7a2d4bdb76eb08066775bef1003e9f6233a3e375b3a9ed6f0f97b0037",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig1-5.svg",

@@ -149,4 +149,5 @@ def test_current_derived_manifest_covers_only_current_assets() -> None:
             "baseline-reuse",
             "gpt-translation",
             "upstream-technical-labels",
+            "editorial-correction",
         }

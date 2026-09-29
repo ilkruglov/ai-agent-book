@@ -1,0 +1,10 @@
+{
+  "pdf_sha256": "b08c0abe7551ba2c007f452a84e8726b3fabd2ed1fb5dda910703e991cfeb248",
+  "pages": 550,
+  "scope": "Chapter 1 retention terminology, conditional reasoning ablation, and currency trajectory illustration.",
+  "rendered_pdf_pages_reviewed": [32, 34],
+  "visual_review": "No text clipping or overlap found on the two changed figure pages; independently reviewed.",
+  "source_checks": "Currency sum, rounded average, iteration and tool-call counts agree with chapter1.md. Figure and PDF hashes verified against manifests.",
+  "book_tests_passed": 190,
+  "historical_typography_report": "pdf-typography.json describes the preceding PDF hash and was not recertified as a full table/font audit of this PDF."
+}
