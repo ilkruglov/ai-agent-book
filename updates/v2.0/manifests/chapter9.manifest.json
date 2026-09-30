@@ -1,4 +1,10 @@
 {
+  "post_translation_editorial_revision": {
+    "date": "2026-09-30",
+    "current_sha256": "d25ec34b8298d5eb39646e9b762102cca5184c43137458c20d41e6d6bec07407",
+    "review": "../editorial-annotations.json",
+    "historical_receipts_preserved": true
+  },
   "path": "chapter9.md",
   "source": {
     "path": "book/chapter9.md",

@@ -1,4 +1,6 @@
 {
+  "historical_report": true,
+  "current_pdf_verification": "editorial-verification.json",
   "pdf_sha256": "061dadc3f3fface3e57ffbecce2259f874ea7de445779d5080961098e92654a1",
   "pages": 550,
   "word_count": 200860,

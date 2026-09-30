@@ -1,4 +1,7 @@
 {
+  "historical_report": true,
+  "current_pdf_verification": "editorial-verification.json",
+  "historical_metadata_warning": "The inherited page count and PDF hash refer to different earlier states; this record is not evidence for the current PDF.",
   "pdf_sha256": "b08c0abe7551ba2c007f452a84e8726b3fabd2ed1fb5dda910703e991cfeb248",
   "pages": 550,
   "scope": "Chapter 1 retention terminology, conditional reasoning ablation, and currency trajectory illustration.",

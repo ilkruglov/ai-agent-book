@@ -1,4 +1,10 @@
 {
+  "post_translation_editorial_revision": {
+    "date": "2026-09-30",
+    "current_sha256": "80a0bafa87e71a5c390c190c494e573639404302c0c83860e3d53f674c705e3b",
+    "review": "../editorial-annotations.json",
+    "historical_receipts_preserved": true
+  },
   "path": "afterword.md",
   "source": {
     "path": "book/afterword.md",

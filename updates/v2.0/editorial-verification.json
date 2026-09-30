@@ -1,0 +1,239 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-30",
+  "scope": "Editorial annotation release; all 287 changed lines classified in editorial-annotations.json",
+  "provenance": {
+    "schema_version": 1,
+    "source_sha256": "0f184ef6eac830fea3d18a534de812e9084b9621da0d3fbbfc2b00a7eca3e12d",
+    "pdf_sha256": "a02faf47f36e8472d9c17e43f18aa2fd20da2837b858476b85eb722a3f3ed375"
+  },
+  "pdf_sha256": "a02faf47f36e8472d9c17e43f18aa2fd20da2837b858476b85eb722a3f3ed375",
+  "pages": 586,
+  "annotations_in_pdf": 235,
+  "words_outside_media_box": [],
+  "fonts": [
+    "name                                 type              encoding         emb sub uni object ID",
+    "------------------------------------ ----------------- ---------------- --- --- --- ---------",
+    "AUGTJC+PTSerif-Bold                  CID TrueType      Identity-H       yes yes yes     42  0",
+    "NVGCKF+DejaVuSans                    CID TrueType      Identity-H       yes yes yes     44  0",
+    "KOUEYF+PTSerif-Regular               CID TrueType      Identity-H       yes yes yes     51  0",
+    "UKMSCC+DejaVuSansMono                CID TrueType      Identity-H       yes yes yes    516  0",
+    "YJLNUV+DejaVuSans-Bold               CID TrueType      Identity-H       yes yes yes    733  0",
+    "XWINSL+DejaVuSansMono-Bold           CID TrueType      Identity-H       yes yes yes    764  0",
+    "LKHFWF+TeXGyrePagellaMath-Regular-Identity-H CID Type 0C       Identity-H       yes yes yes    857  0",
+    "CEQSKG+PTSerif-Italic                CID TrueType      Identity-H       yes yes yes    865  0",
+    "RYXVNT+DejaVuSans-Oblique            CID TrueType      Identity-H       yes yes yes   1715  0"
+  ],
+  "markdown_structure": {
+    "book/afterword.md": {
+      "before": {
+        "BulletList": 1
+      },
+      "after": {
+        "BulletList": 1
+      }
+    },
+    "book/chapter1.md": {
+      "before": {
+        "BulletList": 3,
+        "Table": 5,
+        "CodeBlock": 4,
+        "OrderedList": 3
+      },
+      "after": {
+        "BulletList": 3,
+        "Table": 5,
+        "CodeBlock": 4,
+        "OrderedList": 3
+      }
+    },
+    "book/chapter10.md": {
+      "before": {
+        "BulletList": 14,
+        "Table": 4,
+        "CodeBlock": 5,
+        "OrderedList": 5
+      },
+      "after": {
+        "BulletList": 14,
+        "Table": 4,
+        "CodeBlock": 5,
+        "OrderedList": 5
+      }
+    },
+    "book/chapter2.md": {
+      "before": {
+        "BulletList": 11,
+        "CodeBlock": 15,
+        "OrderedList": 9,
+        "Table": 1
+      },
+      "after": {
+        "BulletList": 11,
+        "CodeBlock": 15,
+        "OrderedList": 9,
+        "Table": 1
+      }
+    },
+    "book/chapter3.md": {
+      "before": {
+        "CodeBlock": 9,
+        "BulletList": 4,
+        "Table": 3,
+        "OrderedList": 8
+      },
+      "after": {
+        "CodeBlock": 9,
+        "BulletList": 4,
+        "Table": 3,
+        "OrderedList": 8
+      }
+    },
+    "book/chapter4.md": {
+      "before": {
+        "Table": 2,
+        "BulletList": 11,
+        "OrderedList": 2
+      },
+      "after": {
+        "Table": 2,
+        "BulletList": 11,
+        "OrderedList": 2
+      }
+    },
+    "book/chapter5.md": {
+      "before": {
+        "OrderedList": 9,
+        "CodeBlock": 3,
+        "BulletList": 10,
+        "Table": 1
+      },
+      "after": {
+        "OrderedList": 9,
+        "CodeBlock": 3,
+        "BulletList": 10,
+        "Table": 1
+      }
+    },
+    "book/chapter6.md": {
+      "before": {
+        "BulletList": 11,
+        "Table": 5,
+        "CodeBlock": 9,
+        "OrderedList": 8
+      },
+      "after": {
+        "BulletList": 11,
+        "Table": 5,
+        "CodeBlock": 9,
+        "OrderedList": 8
+      }
+    },
+    "book/chapter7.md": {
+      "before": {
+        "BulletList": 3,
+        "CodeBlock": 5,
+        "Table": 6,
+        "OrderedList": 2
+      },
+      "after": {
+        "BulletList": 3,
+        "CodeBlock": 5,
+        "Table": 6,
+        "OrderedList": 2
+      }
+    },
+    "book/chapter8.md": {
+      "before": {
+        "OrderedList": 6,
+        "BulletList": 14,
+        "Table": 6,
+        "CodeBlock": 5
+      },
+      "after": {
+        "OrderedList": 6,
+        "BulletList": 14,
+        "Table": 6,
+        "CodeBlock": 5
+      }
+    },
+    "book/chapter9.md": {
+      "before": {
+        "Table": 3,
+        "OrderedList": 3,
+        "BulletList": 3
+      },
+      "after": {
+        "Table": 3,
+        "OrderedList": 3,
+        "BulletList": 3
+      }
+    },
+    "book/introduction.md": {
+      "before": {
+        "BulletList": 5,
+        "CodeBlock": 1
+      },
+      "after": {
+        "BulletList": 5,
+        "CodeBlock": 1
+      }
+    },
+    "book/reference-answers.md": {
+      "before": {
+        "OrderedList": 1
+      },
+      "after": {
+        "OrderedList": 1
+      }
+    }
+  },
+  "limitations": [
+    "Media-box checks do not prove absence of text collisions inside the page; representative pages are checked visually separately.",
+    "Historical table-specific TeX audits were not rerun; current Markdown table structures are unchanged."
+  ],
+  "restored_author_paragraphs": 24,
+  "restorations_match_baseline": true,
+  "bundled_manuscripts_match": true,
+  "rendered_pdf_pages_reviewed": [
+    152,
+    378,
+    381,
+    507,
+    546,
+    560
+  ],
+  "visual_review": "No clipping or overlapping text observed on the six listed pages; includes table, code, block quote and footnote annotations.",
+  "tests": {
+    "command": ".venv/bin/python -m pytest -q",
+    "result": "239 passed in 11.92s"
+  },
+  "lint": {
+    "scope": [
+      "tests/test_chapter3_editorial.py",
+      "tests/test_chapter5_editorial.py",
+      "tests/test_chapter6_editorial.py",
+      "tests/test_chapter7_editorial.py"
+    ],
+    "result": "All checks passed"
+  },
+  "independent_review": {
+    "agent": "editorial_final_review",
+    "scope": "Selective independent CN/EN comparison, mechanical note placement and changed-line coverage",
+    "fixed": [
+      "Removed unsupported always from two ch8 quotes",
+      "Restored chapter-order and usually recommendations",
+      "Restored 20-30x estimate",
+      "Restored 70-80 percent conditional on equal parameter count",
+      "Restored already hypothetical provider motives",
+      "Restored conditional prerequisite recommendation"
+    ],
+    "declined_to_judge": [
+      "Reviewer did not exhaustively check every citation or external source; main source audit and report retain this limitation",
+      "Reviewer did not check final PDF/artifacts or run tests; executor verifies these directly"
+    ],
+    "deferred_minors": []
+  },
+  "audiobook_changed": false,
+  "skill_changed": false
+}

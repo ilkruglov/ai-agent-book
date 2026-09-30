@@ -1,11 +1,20 @@
-from pathlib import Path
 import re
 from datetime import datetime, timedelta
+from pathlib import Path
 from types import SimpleNamespace
 
 import pytest
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def chapter_text() -> str:
+    """Check the edited narrative, not quoted author claims in editorial notes."""
+    return "\n".join(
+        line
+        for line in (ROOT / "book/chapter5.md").read_text().splitlines()
+        if "*Уточнение русского издания:" not in line
+    )
 
 
 def test_diagrams_preserve_code_review_and_policy_constraints() -> None:
@@ -23,14 +32,14 @@ def test_diagrams_preserve_code_review_and_policy_constraints() -> None:
 
 
 def test_code_and_rollback_are_not_unconditional_proofs() -> None:
-    text = (ROOT / "book/chapter5.md").read_text()
+    text = chapter_text()
     assert "сам по себе служит доказательством логической непротиворечивости" not in text
     assert "гарантируют обратимость любой ошибки" not in text
     assert "не повредит хосту" not in text
 
 
 def test_retry_identity_preserves_intent_and_effect_state() -> None:
-    text = (ROOT / "book/chapter5.md").read_text()
+    text = chapter_text()
     assert "однозначно указывает на цикл без прогресса" not in text
     assert "сохраняются только имя и параметры" not in text
     assert "неопределённый исход" in text
@@ -38,21 +47,21 @@ def test_retry_identity_preserves_intent_and_effect_state() -> None:
 
 
 def test_current_search_capabilities_are_not_denied() -> None:
-    text = (ROOT / "book/chapter5.md").read_text()
+    text = chapter_text()
     assert "Cursor и другие IDE также перешли на поиск на месте" not in text
     assert "Современные распространённые Coding-агенты этот метод не используют" not in text
     assert "LSP" in text
 
 
 def test_step_is_not_parametric_history_or_machine_instructions() -> None:
-    text = (ROOT / "book/chapter5.md").read_text()
+    text = chapter_text()
     assert "Файл STEP хранит дерево конструктивных элементов" not in text
     assert "непосредственно управлять обработкой на станке" not in text
     assert "CAM" in text
 
 
 def test_airline_example_does_not_invent_post_purchase_insurance() -> None:
-    text = (ROOT / "book/chapter5.md").read_text()
+    text = chapter_text()
     assert "можно приобрести страховку и затем выполнить отмену" not in text
     assert "учебный" in text
 
@@ -70,7 +79,7 @@ def test_airline_example_does_not_invent_post_purchase_insurance() -> None:
 def test_cancellation_example_checks_insurance_coverage(
     insured: bool, reason: str, used: bool, hours: int, expected: bool
 ) -> None:
-    text = (ROOT / "book/chapter5.md").read_text()
+    text = chapter_text()
     code = re.search(r"```python\n(.*?)\n```", text, re.S)
     assert code is not None
     now = datetime(2026, 9, 30)

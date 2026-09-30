@@ -1,4 +1,10 @@
 {
+  "post_translation_editorial_revision": {
+    "date": "2026-09-30",
+    "current_sha256": "28ed5bae10c7d7a38ca001b06984fa50f50c6cc7819d37e41822669942dcf993",
+    "review": "../editorial-annotations.json",
+    "historical_receipts_preserved": true
+  },
   "path": "reference-answers.md",
   "source": {
     "path": "book/reference-answers.md",
