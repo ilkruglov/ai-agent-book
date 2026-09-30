@@ -3,7 +3,7 @@
   "synthetic_voice": true,
   "voice": "Artem Lebedev — Captivating and Engaging",
   "model": "eleven_v4",
-  "total_duration_seconds": 100923.87265300001,
+  "total_duration_seconds": 100902.060408,
   "files": [
     {
       "file": "00-Introduction.mp3",
@@ -56,16 +56,16 @@
     },
     {
       "file": "07-Evaluation.mp3",
-      "bytes": 161632313,
-      "duration_seconds": 10101.96898,
-      "sha256": "8c78ae94755b37fabb516d99c4e6217500de5c04afd76acca19c6138cc75ecfa",
+      "bytes": 161768149,
+      "duration_seconds": 10110.458776,
+      "sha256": "25610e0e0337980517f6ae00144c4d6b7dd12c01f73f4763bfe33cbd42533f4d",
       "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/07-Evaluation.mp3"
     },
     {
       "file": "08-Post-Training.mp3",
-      "bytes": 213715463,
-      "duration_seconds": 13357.165714,
-      "sha256": "34154baa79dfe984e59186f043d378f1a85dd823a264904f9ae5ffb14324d1b3",
+      "bytes": 213840014,
+      "duration_seconds": 13364.950204,
+      "sha256": "068e41d0d8ee8d7c7e2ccfcb5e0920beb9b746fc3d15d6d39d0ff49a2baef294",
       "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/08-Post-Training.mp3"
     },
     {
@@ -84,16 +84,16 @@
     },
     {
       "file": "11-Afterword.mp3",
-      "bytes": 16040010,
-      "duration_seconds": 1002.44898,
-      "sha256": "c74ef326a8a8640538ee0b0bb6a352b8ffcfed288a87ea97357bc0ce69a03c4e",
+      "bytes": 15998214,
+      "duration_seconds": 999.836735,
+      "sha256": "623295f31e57d2e58089e6e8ba890d6b21e7b5c5342396e0a0d2f8e658b2cd7f",
       "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/11-Afterword.mp3"
     },
     {
       "file": "12-Reference-Answers.mp3",
-      "bytes": 117784258,
-      "duration_seconds": 7361.462857,
-      "sha256": "d661c9c4686fe3a3ae8cf0d595b1e7ebac2eeb9d5e721e998f0485273ff481c0",
+      "bytes": 117216670,
+      "duration_seconds": 7325.988571,
+      "sha256": "fd198c49a8575cc43c82a21ef5104e35fda5debe477aadeec4d741e62c44daf0",
       "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/12-Reference-Answers.mp3"
     }
   ]

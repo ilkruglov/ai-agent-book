@@ -1,0 +1,269 @@
+{
+  "schema_version": 1,
+  "source_commit": "e10bb46b19710153a4a5a19630bcefdfe983723c",
+  "status": "published_github",
+  "release_url": "https://github.com/ilkruglov/ai-agent-book/releases/tag/audiobook-v2.0",
+  "scope": "23 semantic restorations in 20 chunks; no global pronunciation changes",
+  "voice_id": "rQOBu7YxCDxGiFdTm28w",
+  "model_id": "eleven_v4",
+  "synthesized_characters": 52842,
+  "validation": {
+    "full_episode_decode_errors": 0,
+    "asr_chunks_reviewed": 20,
+    "boundaries_checked_for_long_silence": 30,
+    "maximum_detected_boundary_silence_seconds": 0.277,
+    "limitations": "ASR comparison and technical checks, not a complete listening review; pronunciation variations were intentionally not normalized."
+  },
+  "episodes": [
+    {
+      "chapter": "chapter7",
+      "file": "audiobook/revisions/editorial-e10bb46b/07-Evaluation.mp3",
+      "sha256": "25610e0e0337980517f6ae00144c4d6b7dd12c01f73f4763bfe33cbd42533f4d",
+      "bytes": 161768149,
+      "duration_seconds": 10110.458776,
+      "previous_sha256": "8c78ae94755b37fabb516d99c4e6217500de5c04afd76acca19c6138cc75ecfa",
+      "previous_file_preserved": true,
+      "total_chunks": 54,
+      "previous_corrections_preserved": [
+        24,
+        26,
+        32,
+        36
+      ],
+      "script_sha256": "55df49f25c43978d0a6eb356c8422d6269b92d444c6fb1d5b2919a0ba17af6d2",
+      "synthesized_chunks": [
+        {
+          "index": 46,
+          "text_sha256": "4f4ae091b4b5f49efb7ba68b0bad14795793bfa7845c67a651eda9eefe404c9b",
+          "original_text_sha256": "2b244a1857656fb6c12a1cd0369965f6586470d77cdcf715a474d20d95ceee3c",
+          "audio_sha256": "581bd94d0193cdb6d0287cd5b613127a178dc7b4e11455c3870739e5ce6d1033",
+          "characters": 2810,
+          "duration_seconds": 193.149388,
+          "asr_word_sequence_match_ratio": 0.9781659388646288
+        },
+        {
+          "index": 48,
+          "text_sha256": "fbf7ad44807926059830476af6ecc56ebe63e746686a670d069bddf22a6c4fd2",
+          "original_text_sha256": "d0bfda0a8ce22f76669d2fdb4b2d62a7b994cf7edace5b78b3beee3b09b3b547",
+          "audio_sha256": "1297f2603c89af784b22b418c7e56d419574aa3030ead740be530a6e4bfe237c",
+          "characters": 2882,
+          "duration_seconds": 194.76898,
+          "asr_word_sequence_match_ratio": 0.9719887955182073
+        }
+      ]
+    },
+    {
+      "chapter": "chapter8",
+      "file": "audiobook/revisions/editorial-e10bb46b/08-Post-Training.mp3",
+      "sha256": "068e41d0d8ee8d7c7e2ccfcb5e0920beb9b746fc3d15d6d39d0ff49a2baef294",
+      "bytes": 213840014,
+      "duration_seconds": 13364.950204,
+      "previous_sha256": "34154baa79dfe984e59186f043d378f1a85dd823a264904f9ae5ffb14324d1b3",
+      "previous_file_preserved": true,
+      "total_chunks": 73,
+      "previous_corrections_preserved": [
+        11,
+        12,
+        21,
+        30,
+        34,
+        40,
+        71,
+        73
+      ],
+      "script_sha256": "536558e8a9cbd4561566b0ec4612128f45e6311f11ec8f60779d63d59f1c359b",
+      "synthesized_chunks": [
+        {
+          "index": 1,
+          "text_sha256": "a8908e613543c2de261239e91e9ef8e1a8312d758a9f79a92ab58259ef22e8e8",
+          "original_text_sha256": "02a995ec033ac6fd2670c2b9ecfd26775f00fc501cc9c4ef7b5b37650c95b13a",
+          "audio_sha256": "e112a01a83a2f40160563c90302cdbb68474408c88466c4a4a68c217bcfe53a0",
+          "characters": 1688,
+          "duration_seconds": 120.764082,
+          "asr_word_sequence_match_ratio": 0.906832298136646
+        },
+        {
+          "index": 2,
+          "text_sha256": "1e38354ef70b628d871ef06e96b003dcdd27a034a11dfdf9c3b6644d6c60ddd0",
+          "original_text_sha256": "1f78ae9ce7d3eabc0b0689546c898e6c3d88625ceaa2d085ece278b1b23c7f03",
+          "audio_sha256": "04ec8046e6822b2467d0dc4cd7f8d2917509f07e7c8f5d68ce850a7f0c83a58a",
+          "characters": 2845,
+          "duration_seconds": 198.112653,
+          "asr_word_sequence_match_ratio": 0.9462068965517242
+        },
+        {
+          "index": 26,
+          "text_sha256": "f042cedb8c405a8cf5a7b8af637761e531ea882c3dc40a3f00ba5ffb45da037a",
+          "original_text_sha256": "1ac2f304e7ccead468b92f8c4ac41be83e76c73ed706df557c143b549e23f8d8",
+          "audio_sha256": "4b43fdf97c44cdbd5e7a3e04632593386be9a8cb629cf5eb182b4b296b1de723",
+          "characters": 2644,
+          "duration_seconds": 180.349388,
+          "asr_word_sequence_match_ratio": 0.9451476793248945
+        },
+        {
+          "index": 32,
+          "text_sha256": "c5e589177ad2a54263417e8de75aff6e401c14035260cd769fb37b9699ca9418",
+          "original_text_sha256": "86e16e7d13af81ec338746c093deb8994dd1a982e61cda798855cb1cc4cfbe4a",
+          "audio_sha256": "5219bfdf4247c3ad6bbebe252ec31d58c910635687ea745b5c004b9675605cb8",
+          "characters": 2800,
+          "duration_seconds": 191.164082,
+          "asr_word_sequence_match_ratio": 0.9506346967559943
+        },
+        {
+          "index": 33,
+          "text_sha256": "8a91e173a0046636b0667318c6a37ea17c831e7e5101b0cdf90a10e040a1db82",
+          "original_text_sha256": "690fe45ccb4a3a6004a52ccb3dca5612f6ef1beaa1f46d77c71d4ca5d97b66c2",
+          "audio_sha256": "4594d8f9de8a7303ec30a1124aa79e470c0814603e7212b47e74bd8890396fbd",
+          "characters": 3057,
+          "duration_seconds": 203.650612,
+          "asr_word_sequence_match_ratio": 0.9423558897243107
+        },
+        {
+          "index": 60,
+          "text_sha256": "adc59f904466663136f2aeb342a361c46a98b1362f4c01429f690fa94ab5935f",
+          "original_text_sha256": "50b18b051afd72d9cd9f779ac92b602dc325f2a5b4ac4f500a96b9e23d96c3f1",
+          "audio_sha256": "a0f8e98af55fc6f3f2f411be3b0ab5198976abc6d15858b9787ed66609129454",
+          "characters": 3035,
+          "duration_seconds": 204.355918,
+          "asr_word_sequence_match_ratio": 0.9712858926342073
+        },
+        {
+          "index": 61,
+          "text_sha256": "ad3a40934cf8ef5a072ac271d4ecd90af38cc601bed512c24353407139b53a67",
+          "original_text_sha256": "2f9d57411a3777726d6f9238f4f7f54333650b02ea0e25b1b495768f86b4b0bd",
+          "audio_sha256": "b1112519a7026c2d49915c4c964e3cb2634159d4d24c1ebd22316282719159fa",
+          "characters": 2297,
+          "duration_seconds": 159.007347,
+          "asr_word_sequence_match_ratio": 0.9413793103448276
+        },
+        {
+          "index": 68,
+          "text_sha256": "2ef0473503ee964f292a79e1201fb70e558e2d719b32e37529054ee86a9a01bd",
+          "original_text_sha256": "e2744058f74e1fea060b33111840f493fd0f1ed9f154044eb3a17ac049ac5601",
+          "audio_sha256": "e7ba1c8333c323e7e1ae7533b71f1003bbbd06b64d917c0bf509888033f26703",
+          "characters": 2937,
+          "duration_seconds": 210.834286,
+          "asr_word_sequence_match_ratio": 0.8411910669975186
+        },
+        {
+          "index": 69,
+          "text_sha256": "fc35fdc00a39b0ef62fc6c86e4b80fb6c2903c5259bcb6ec5111f343188e88c7",
+          "original_text_sha256": "c1d3d8a4814fc7b41f8826817f5d5435add2bd5de689ca6e0b6dd2bda332ea48",
+          "audio_sha256": "8cbfb46de83add4836009c2bb98b71d74a5c28d3c3aebb53925e241bb21bb1d7",
+          "characters": 2848,
+          "duration_seconds": 197.32898,
+          "asr_word_sequence_match_ratio": 0.8910614525139665
+        }
+      ]
+    },
+    {
+      "chapter": "afterword",
+      "file": "audiobook/revisions/editorial-e10bb46b/11-Afterword.mp3",
+      "sha256": "623295f31e57d2e58089e6e8ba890d6b21e7b5c5342396e0a0d2f8e658b2cd7f",
+      "bytes": 15998214,
+      "duration_seconds": 999.836735,
+      "previous_sha256": "c74ef326a8a8640538ee0b0bb6a352b8ffcfed288a87ea97357bc0ce69a03c4e",
+      "previous_file_preserved": true,
+      "total_chunks": 6,
+      "previous_corrections_preserved": [],
+      "script_sha256": "bb7d46ab8077b9006cd84ce74c6f38ea9cc22789b058debc3e24d7c1d8e0d4d9",
+      "synthesized_chunks": [
+        {
+          "index": 3,
+          "text_sha256": "35eb51511883a2ad571f6b4212df7abc9be0eb748d2eb8e4d87c7c6d11dc08a2",
+          "original_text_sha256": "6d869ab41a95e355f679f1cc8f97a46c1327bb0764d8040608c8489e6c3e935c",
+          "audio_sha256": "1969d7bc0f09e23ec6653e2a920af6445e95199caca36c348fd8c9a847ee46b2",
+          "characters": 1679,
+          "duration_seconds": 110.994286,
+          "asr_word_sequence_match_ratio": 0.9803063457330415
+        },
+        {
+          "index": 4,
+          "text_sha256": "b8e576deb0a9ae1458fb54e7d1776c439aab906bca1f32518b4068efbb3c8628",
+          "original_text_sha256": "c9819302e0c15e573549f1751ec4d4adffe128761e76be9d69c328bb79a3b94e",
+          "audio_sha256": "10ab8e9eccb6e979a80dd3892c3c44c751e0fcc3fc05962820f7d52d04fe9393",
+          "characters": 2649,
+          "duration_seconds": 185.887347,
+          "asr_word_sequence_match_ratio": 0.9770114942528736
+        }
+      ]
+    },
+    {
+      "chapter": "reference-answers",
+      "file": "audiobook/revisions/editorial-e10bb46b/12-Reference-Answers.mp3",
+      "sha256": "fd198c49a8575cc43c82a21ef5104e35fda5debe477aadeec4d741e62c44daf0",
+      "bytes": 117216670,
+      "duration_seconds": 7325.988571,
+      "previous_sha256": "d661c9c4686fe3a3ae8cf0d595b1e7ebac2eeb9d5e721e998f0485273ff481c0",
+      "previous_file_preserved": true,
+      "total_chunks": 40,
+      "previous_corrections_preserved": [],
+      "script_sha256": "eb2c00f3b2014ddf3648834f34f8e891b688727689d3a0cde7391135fd02c505",
+      "synthesized_chunks": [
+        {
+          "index": 6,
+          "text_sha256": "4c5be90e77f084079b961b8e62dd9d8fc4c67bbbc52524e185e79ca05729f11f",
+          "original_text_sha256": "74de036bc6bea224b996acf02e9e1b227b4c24f992bd11eba0bc0cc331499718",
+          "audio_sha256": "26a3b8cb4a19942568caaaa0ecf996a7c97a9917435ef37c68f649b8fc91ce0d",
+          "characters": 2828,
+          "duration_seconds": 198.269388,
+          "asr_word_sequence_match_ratio": 0.9466292134831461
+        },
+        {
+          "index": 7,
+          "text_sha256": "25907165f10018172eabba246a47434d4dd64ec7eeb0aa456765ea5fc92b9293",
+          "original_text_sha256": "8fd65fae4c914d0fd5dfbf67bdaf6fc40283295484670824e3240a4d7865980e",
+          "audio_sha256": "21bcb78e6cbbf45654e68d88c858ee23fab6820b554f28c7a5fbd51670248340",
+          "characters": 2837,
+          "duration_seconds": 199.079184,
+          "asr_word_sequence_match_ratio": 0.9721448467966574
+        },
+        {
+          "index": 8,
+          "text_sha256": "af897dc9ffce2746b35d9c240d72adb315542db937d70efa2c3ae3ec72b647a1",
+          "original_text_sha256": "10cd2f66c5231f9ebb10578dae2dc4e8be5bd710bbe5fab7fb2c1b7a5206bd97",
+          "audio_sha256": "f18666b6869ee5471a7f46d717dc54e4b3e803e6da60d140b130ef42caa1d99b",
+          "characters": 2822,
+          "duration_seconds": 192.757551,
+          "asr_word_sequence_match_ratio": 0.9672830725462305
+        },
+        {
+          "index": 19,
+          "text_sha256": "3a3384d403c0b0833fe50a4929e8dc97a7305dcb50fa496dee092a308063ac70",
+          "original_text_sha256": "e9d37ab304bad48c40b90c8f01041d4486e696bdc28712e4d48479a52aacdc66",
+          "audio_sha256": "38cbe530882f41fccb5df7d9a0405d28011c513bbad4aa524a22fb397d2b5725",
+          "characters": 2368,
+          "duration_seconds": 155.010612,
+          "asr_word_sequence_match_ratio": 0.9210526315789473
+        },
+        {
+          "index": 20,
+          "text_sha256": "0ee9234d70d8fef2b71a73bc464bd3e7fe669a56437356fd6e3f8fb5b13cdcc1",
+          "original_text_sha256": "0f08c5347a26101a5b94b6eaf974b7bc35e9764503cc9cc91cccb456b8fdd957",
+          "audio_sha256": "215a58b55b86a2a66a1347cb8a099f7da30906d44e21ddd2240a1e4ab3dee4c9",
+          "characters": 2423,
+          "duration_seconds": 170.370612,
+          "asr_word_sequence_match_ratio": 0.9060402684563759
+        },
+        {
+          "index": 21,
+          "text_sha256": "d0113558c1ccf83fbf7c65e077ad4e6963b82b72226133337ab5486c43ec4d14",
+          "original_text_sha256": "a70f4192248ab563965db570891cc8f8981016fc749809877de61be406352baf",
+          "audio_sha256": "ce2a0ddf69f3d129c6a59b8e9a64b6c79c45b68523c793c70aa66bd5695195bc",
+          "characters": 2980,
+          "duration_seconds": 198.347755,
+          "asr_word_sequence_match_ratio": 0.9284750337381916
+        },
+        {
+          "index": 37,
+          "text_sha256": "a08ffe8d6d29fd1ad8988d2c44dda04025dd5225ae6f70003dedefd523dedb5c",
+          "original_text_sha256": "6645767a63b79081990e80b214bdfe37424479a96896cbcec244b0b9029c8858",
+          "audio_sha256": "4bc2db3dcab36c855cc2f53763bd716d031de049f25d287a5d03afa726d2f4b4",
+          "characters": 2413,
+          "duration_seconds": 165.799184,
+          "asr_word_sequence_match_ratio": 0.9688581314878892
+        }
+      ]
+    }
+  ]
+}

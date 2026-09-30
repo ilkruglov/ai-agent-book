@@ -207,8 +207,8 @@
   {
     "chapter": "chapter7",
     "source_sha256": "cf778fdb5df987311de2fb6ca7e317605d58fbdceb9f8c347b3bad9e175433b0",
-    "script_sha256": "0377c5a181038857543f607dee662a240cb14b2ed0fb98594104f9da99f6eb35",
-    "characters": 146892,
+    "script_sha256": "55df49f25c43978d0a6eb356c8422d6269b92d444c6fb1d5b2919a0ba17af6d2",
+    "characters": 146983,
     "code_blocks_adapted": 5,
     "tables_adapted": 6,
     "images_accounted_for": [
@@ -225,13 +225,19 @@
     ],
     "notes_accounted_for": [
       "re-bench-2025"
-    ]
+    ],
+    "editorial_sync": {
+      "source_commit": "e10bb46b19710153a4a5a19630bcefdfe983723c",
+      "restored_paragraphs": 4,
+      "scope": "Partial semantic restoration on top of the original audio adaptation; no global pronunciation changes",
+      "source_sha256": "2f1e180d446bcfae7a97905752ee4018e5d92377885be7f96cdff78e47490c75"
+    }
   },
   {
     "chapter": "chapter8",
     "source_sha256": "0e11152e1fafb02feba419f5d3e7d62f03628bc07ca37b4e6f9f074bf2eccd79",
-    "script_sha256": "fd143cefa26d06dc83e836d05f93845f820f379b789416c2790433de259770af",
-    "characters": 192614,
+    "script_sha256": "536558e8a9cbd4561566b0ec4612128f45e6311f11ec8f60779d63d59f1c359b",
+    "characters": 193114,
     "code_blocks_adapted": 5,
     "tables_adapted": 6,
     "images_accounted_for": [
@@ -298,7 +304,13 @@
       40,
       71,
       73
-    ]
+    ],
+    "editorial_sync": {
+      "source_commit": "e10bb46b19710153a4a5a19630bcefdfe983723c",
+      "restored_paragraphs": 10,
+      "scope": "Partial semantic restoration on top of the original audio adaptation; no global pronunciation changes",
+      "source_sha256": "bf6d8370a2f1daae466c4bb792cfb4e619ee4a85364b6769f3186fdd9f9e8af9"
+    }
   },
   {
     "chapter": "chapter9",
@@ -384,24 +396,36 @@
   {
     "chapter": "afterword",
     "source_sha256": "73ae03f233a129d93eb08bb716fd8f7f9f9d584307f43feb42c239bcfa721aac",
-    "script_sha256": "bf7ab0e9dc6d650d1012ba875cbfbfc64ee2642f00164883439a0a8995e63977",
-    "characters": 14750,
+    "script_sha256": "bb7d46ab8077b9006cd84ce74c6f38ea9cc22789b058debc3e24d7c1d8e0d4d9",
+    "characters": 14603,
     "code_blocks_adapted": 0,
     "tables_adapted": 0,
     "images_accounted_for": [],
     "notes_accounted_for": [
       "mimo",
       "taalas"
-    ]
+    ],
+    "editorial_sync": {
+      "source_commit": "e10bb46b19710153a4a5a19630bcefdfe983723c",
+      "restored_paragraphs": 2,
+      "scope": "Partial semantic restoration on top of the original audio adaptation; no global pronunciation changes",
+      "source_sha256": "80a0bafa87e71a5c390c190c494e573639404302c0c83860e3d53f674c705e3b"
+    }
   },
   {
     "chapter": "reference-answers",
     "source_sha256": "7c40d460c35fd7ed5a8ca79b4b942303146870c58bb87f7eac9a70ed0e324c09",
-    "script_sha256": "12854c75335b113444804c80ff6f4035142e5b4b08e5c2021b99e4fa05a6daf4",
-    "characters": 108123,
+    "script_sha256": "eb2c00f3b2014ddf3648834f34f8e891b688727689d3a0cde7391135fd02c505",
+    "characters": 107554,
     "code_blocks_adapted": 0,
     "tables_adapted": 0,
     "images_accounted_for": [],
-    "notes_accounted_for": []
+    "notes_accounted_for": [],
+    "editorial_sync": {
+      "source_commit": "e10bb46b19710153a4a5a19630bcefdfe983723c",
+      "restored_paragraphs": 7,
+      "scope": "Partial semantic restoration on top of the original audio adaptation; no global pronunciation changes",
+      "source_sha256": "28ed5bae10c7d7a38ca001b06984fa50f50c6cc7819d37e41822669942dcf993"
+    }
   }
 ]
