@@ -249,55 +249,60 @@
       "source_blob_sha1": "015333cb890660b5f98999c6a1290246fb23a6ff",
       "source_sha256": "ce3f25fc7a5604678d691258b5d72f6d0b47ccee1a0ef5aec680d7c1102d2ccd",
       "raw_sha256": "cea780840cbbf48b45a3a752df22c8054bc8e2ad27840f0e05795bdb8f69b4b4",
-      "final_sha256": "cea780840cbbf48b45a3a752df22c8054bc8e2ad27840f0e05795bdb8f69b4b4",
-      "origin": "baseline-reuse",
+      "final_sha256": "aea3f50658c2d0970458726c00a70b5bd0f1301760410a099088a5a6249a531d",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig10-12.svg",
-      "baseline_sha256": "cea780840cbbf48b45a3a752df22c8054bc8e2ad27840f0e05795bdb8f69b4b4"
+      "baseline_sha256": "cea780840cbbf48b45a3a752df22c8054bc8e2ad27840f0e05795bdb8f69b4b4",
+      "editorial_correction": "Readable natural-width vector layout; scoped resource isolation, context, concurrency and social-simulation claims. Visually inspected after browser render; no text/text overlaps or clipping detected."
     },
     {
       "path": "book/images/fig10-11.svg",
       "source_blob_sha1": "5a29ebf57a1333bc63b2dee72a2e5c1ea6cb2c10",
       "source_sha256": "8cb2dd83f93e3dcf8d5be87321e37b0d71822bc384ec748422fb488f1e200b8e",
       "raw_sha256": "066bfa1436e08bff6911f06740b9d9c1c9f8c4ae8c77894c2e80df667500a82e",
-      "final_sha256": "066bfa1436e08bff6911f06740b9d9c1c9f8c4ae8c77894c2e80df667500a82e",
-      "origin": "baseline-reuse",
+      "final_sha256": "546d3a2e854c2a25dd2d2eb3eecfc574f918da8842e7a0cab1278140b308e41b",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig10-13.svg",
-      "baseline_sha256": "066bfa1436e08bff6911f06740b9d9c1c9f8c4ae8c77894c2e80df667500a82e"
+      "baseline_sha256": "066bfa1436e08bff6911f06740b9d9c1c9f8c4ae8c77894c2e80df667500a82e",
+      "editorial_correction": "Readable natural-width vector layout; scoped resource isolation, context, concurrency and social-simulation claims. Visually inspected after browser render; no text/text overlaps or clipping detected."
     },
     {
       "path": "book/images/fig10-2.svg",
       "source_blob_sha1": "abe2fec17acf8715c9175dc2aebca7ea5cf0905b",
       "source_sha256": "552725dbd73d41e91fa92d1d78d115d8a8ded3bc75b56526750e976659efb8f8",
       "raw_sha256": "aa70f624de7dec046f36dc2f46664b50016d8f09e359dabccd26ef927f5328a7",
-      "final_sha256": "aa70f624de7dec046f36dc2f46664b50016d8f09e359dabccd26ef927f5328a7",
-      "origin": "baseline-reuse",
+      "final_sha256": "eb94cbbbcdd0dd83e2fb69092dc06d51bb82e851e59b6b2e4b5ccca0ae08f43a",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig10-3.svg",
-      "baseline_sha256": "aa70f624de7dec046f36dc2f46664b50016d8f09e359dabccd26ef927f5328a7"
+      "baseline_sha256": "aa70f624de7dec046f36dc2f46664b50016d8f09e359dabccd26ef927f5328a7",
+      "editorial_correction": "Readable natural-width vector layout; scoped resource isolation, context, concurrency and social-simulation claims. Visually inspected after browser render; no text/text overlaps or clipping detected."
     },
     {
       "path": "book/images/fig10-3.svg",
       "source_blob_sha1": "675ae2549360cfea9dcfd5e9b16d4da68471d36a",
       "source_sha256": "0653f6e91b27ed9184f918eb90a2ace438f8791e867f528eb398dcd6e0c6f67c",
       "raw_sha256": "4cb32406209a7c4a677c2fa460e218514febcf102c7308684bfc54a1c8c1d6ae",
-      "final_sha256": "4cb32406209a7c4a677c2fa460e218514febcf102c7308684bfc54a1c8c1d6ae",
-      "origin": "baseline-reuse",
+      "final_sha256": "c47d1364ca0e76ddb483782b6d2dcabf190804df14cc01a42076bb73931a685e",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig10-4.svg",
-      "baseline_sha256": "4cb32406209a7c4a677c2fa460e218514febcf102c7308684bfc54a1c8c1d6ae"
+      "baseline_sha256": "4cb32406209a7c4a677c2fa460e218514febcf102c7308684bfc54a1c8c1d6ae",
+      "editorial_correction": "Readable natural-width vector layout; scoped resource isolation, context, concurrency and social-simulation claims. Visually inspected after browser render; no text/text overlaps or clipping detected."
     },
     {
       "path": "book/images/fig10-4.svg",
       "source_blob_sha1": "05efd28e9b558a68887275d5bc6d42cb0aad4c1e",
       "source_sha256": "8bbd758c19c1cc4c08dad6991d8ef4dc74e550177128ff938c289a233b5d25ea",
       "raw_sha256": "4558e38b7382545ae5ef39e1b3ffe77fb2815f93fed2d0d7883efb29f1ef1c9a",
-      "final_sha256": "4558e38b7382545ae5ef39e1b3ffe77fb2815f93fed2d0d7883efb29f1ef1c9a",
-      "origin": "baseline-reuse",
+      "final_sha256": "37f5f392a599f6cb27db8220cb54860382d7818e21580d036d1768056dc29565",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig10-5.svg",
-      "baseline_sha256": "4558e38b7382545ae5ef39e1b3ffe77fb2815f93fed2d0d7883efb29f1ef1c9a"
+      "baseline_sha256": "4558e38b7382545ae5ef39e1b3ffe77fb2815f93fed2d0d7883efb29f1ef1c9a",
+      "editorial_correction": "Readable natural-width vector layout; scoped resource isolation, context, concurrency and social-simulation claims. Visually inspected after browser render; no text/text overlaps or clipping detected."
     },
     {
       "path": "book/images/fig10-5.svg",
@@ -315,33 +320,36 @@
       "source_blob_sha1": "e5bb643586566ad5428ee7b8c8c28a210579aee4",
       "source_sha256": "3f5fa40d72ded8ba56ce3ec8fd03c7cbf2e4148c66a81d8d184a32e3b3728eb0",
       "raw_sha256": "ebd147d8c7446831d349287c0057fb8c51495abafa99ce5356188b227d63e130",
-      "final_sha256": "ebd147d8c7446831d349287c0057fb8c51495abafa99ce5356188b227d63e130",
-      "origin": "baseline-reuse",
+      "final_sha256": "1a722a8b2af1f60134a0ff7acfcb644015153744a109fc6fcb17cd479c687a2a",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig10-7.svg",
-      "baseline_sha256": "ebd147d8c7446831d349287c0057fb8c51495abafa99ce5356188b227d63e130"
+      "baseline_sha256": "ebd147d8c7446831d349287c0057fb8c51495abafa99ce5356188b227d63e130",
+      "editorial_correction": "Readable natural-width vector layout; scoped resource isolation, context, concurrency and social-simulation claims. Visually inspected after browser render; no text/text overlaps or clipping detected."
     },
     {
       "path": "book/images/fig10-7.svg",
       "source_blob_sha1": "9b4e2019e02602c9a7736ced45e74fd6df410854",
       "source_sha256": "8fcdd54e1b9c4a0e4aa282c74d239592fa575b31317cce73a549ff345e14d143",
       "raw_sha256": "2897f976607892bc98af03b054d0f7c15f0af825d3507252af72bf407d49b839",
-      "final_sha256": "2897f976607892bc98af03b054d0f7c15f0af825d3507252af72bf407d49b839",
-      "origin": "baseline-reuse",
+      "final_sha256": "2dac7990d76d4b68357a3d8bed288cf6b492d71c93f2645e48790269f694cd13",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig10-8.svg",
-      "baseline_sha256": "2897f976607892bc98af03b054d0f7c15f0af825d3507252af72bf407d49b839"
+      "baseline_sha256": "2897f976607892bc98af03b054d0f7c15f0af825d3507252af72bf407d49b839",
+      "editorial_correction": "Readable natural-width vector layout; scoped resource isolation, context, concurrency and social-simulation claims. Visually inspected after browser render; no text/text overlaps or clipping detected."
     },
     {
       "path": "book/images/fig10-8.svg",
       "source_blob_sha1": "8eedd365a6f31a7fd1e30d444f417c05b67602a1",
       "source_sha256": "29ab975995d1df0bfe74b891913be171479fa54872ff1e37c6ee0ac3c12d49d1",
       "raw_sha256": "f20e06b4d21a68d15221abe0ad79095a35e1f4ae2fc6ebb0ab339db875553a76",
-      "final_sha256": "f20e06b4d21a68d15221abe0ad79095a35e1f4ae2fc6ebb0ab339db875553a76",
-      "origin": "baseline-reuse",
+      "final_sha256": "70aa385cf7a5f9dd9840f80560c8cf35481a843a718fc81f92563dd0fd5f2a7a",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig10-9.svg",
-      "baseline_sha256": "f20e06b4d21a68d15221abe0ad79095a35e1f4ae2fc6ebb0ab339db875553a76"
+      "baseline_sha256": "f20e06b4d21a68d15221abe0ad79095a35e1f4ae2fc6ebb0ab339db875553a76",
+      "editorial_correction": "Natural-width typography; verify identity and completeness before atomic winner selection and cancellation. Illustrative times are not benchmark measurements. Render visually checked and browser bounds/overlap checks passed."
     },
     {
       "path": "book/images/fig10-9.svg",
@@ -382,11 +390,12 @@
       "source_blob_sha1": "2f766de9ab1062d10090d887bc4eb6c5cb1e788b",
       "source_sha256": "99e068253102c3267319771149f8603f0c15fe67b8be55608c40cecb96b8d48b",
       "raw_sha256": "2838c359d321c9b437e9d3b4f88145d922e256b7998fc5b3fa5b43cb678a9f98",
-      "final_sha256": "2838c359d321c9b437e9d3b4f88145d922e256b7998fc5b3fa5b43cb678a9f98",
-      "origin": "baseline-reuse",
+      "final_sha256": "7673d2177d5e1be2f6a7318cdc1071917c3346d990e3fdb17f1c30a3bef80b73",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig2-11.svg",
-      "baseline_sha256": "2838c359d321c9b437e9d3b4f88145d922e256b7998fc5b3fa5b43cb678a9f98"
+      "baseline_sha256": "2838c359d321c9b437e9d3b4f88145d922e256b7998fc5b3fa5b43cb678a9f98",
+      "editorial_correction": "2026-09-30: неверное переиспользование схем v1.2 исправлено по исходнику v2.0; условия кэша уточнены; вёрстка проверена в браузере."
     },
     {
       "path": "book/images/fig2-12.svg",
@@ -404,11 +413,12 @@
       "source_blob_sha1": "8ea1bf62cd104c662362fded8ae43808d572e921",
       "source_sha256": "552e802c8f557c4152d0c2338793a94eaa63be01fd85bd2f8494ef0ace42015f",
       "raw_sha256": "f7c05b6b74e57b8be1f704f8c2a08a0ab2f60f5d2000ed4787e8ae92576f9df0",
-      "final_sha256": "f7c05b6b74e57b8be1f704f8c2a08a0ab2f60f5d2000ed4787e8ae92576f9df0",
-      "origin": "baseline-reuse",
+      "final_sha256": "06939ecac64678c740c04e0ca93844bf53ae2de66ae525bc422b7d923ef5cdb2",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig2-13.svg",
-      "baseline_sha256": "f7c05b6b74e57b8be1f704f8c2a08a0ab2f60f5d2000ed4787e8ae92576f9df0"
+      "baseline_sha256": "f7c05b6b74e57b8be1f704f8c2a08a0ab2f60f5d2000ed4787e8ae92576f9df0",
+      "editorial_correction": "2026-09-30: неверное переиспользование схем v1.2 исправлено по исходнику v2.0; условия кэша уточнены; вёрстка проверена в браузере."
     },
     {
       "path": "book/images/fig2-14.svg",
@@ -459,11 +469,12 @@
       "source_blob_sha1": "9a8c737c37acc4e165d42527efdd9e7f066a9c76",
       "source_sha256": "b96ab46bd981f285705407eaa8d1b8e708df417c519ef9b166b7f9ce3e1e34ea",
       "raw_sha256": "f18b45b3009c6318a65625125f8d45694b4d04693650bbeffb022ca48ffe6aa1",
-      "final_sha256": "f18b45b3009c6318a65625125f8d45694b4d04693650bbeffb022ca48ffe6aa1",
-      "origin": "baseline-reuse",
+      "final_sha256": "4f50982b74e6bae84979bd76936582d8505816b19bb1b0afb02b2e5e81906ff1",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig2-2.svg",
-      "baseline_sha256": "f18b45b3009c6318a65625125f8d45694b4d04693650bbeffb022ca48ffe6aa1"
+      "baseline_sha256": "f18b45b3009c6318a65625125f8d45694b4d04693650bbeffb022ca48ffe6aa1",
+      "editorial_correction": "2026-09-30: неверное переиспользование схем v1.2 исправлено по исходнику v2.0; условия кэша уточнены; вёрстка проверена в браузере."
     },
     {
       "path": "book/images/fig2-3.svg",
@@ -481,22 +492,24 @@
       "source_blob_sha1": "726de269f5e039547868d32a712b3a21d18c0007",
       "source_sha256": "804d7f9c0de15d917386f106c0615d356591ce88f5555d1021add1f54dbbdbf2",
       "raw_sha256": "0ed2234921221c99a994e03ec109873c85ed651bf88c35a559d4b5c27cddf18c",
-      "final_sha256": "0ed2234921221c99a994e03ec109873c85ed651bf88c35a559d4b5c27cddf18c",
-      "origin": "baseline-reuse",
+      "final_sha256": "79d418da17c07bab877f23bd7c9ec668b28eaed6487f7e085b0e7e485c32cb77",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig2-4.svg",
-      "baseline_sha256": "0ed2234921221c99a994e03ec109873c85ed651bf88c35a559d4b5c27cddf18c"
+      "baseline_sha256": "0ed2234921221c99a994e03ec109873c85ed651bf88c35a559d4b5c27cddf18c",
+      "editorial_correction": "2026-09-30: неверное переиспользование схем v1.2 исправлено по исходнику v2.0; условия кэша уточнены; вёрстка проверена в браузере."
     },
     {
       "path": "book/images/fig2-5.svg",
       "source_blob_sha1": "fa449e3c7d1970e4e71d13ee64088869beb8bb95",
       "source_sha256": "f31f825bf178c82bbfbb30cdd4df9f129bd24d346e582ee2023737e4255eda61",
       "raw_sha256": "a1490261687d2d2a3a53396ff6480006b1e18ae911a38dc81c52dbd75222274b",
-      "final_sha256": "a1490261687d2d2a3a53396ff6480006b1e18ae911a38dc81c52dbd75222274b",
-      "origin": "baseline-reuse",
+      "final_sha256": "82a4d9f124cf42b96d0dddc07bebec33a911524facb5e147b99f5470e5f1a54e",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig2-5.svg",
-      "baseline_sha256": "a1490261687d2d2a3a53396ff6480006b1e18ae911a38dc81c52dbd75222274b"
+      "baseline_sha256": "a1490261687d2d2a3a53396ff6480006b1e18ae911a38dc81c52dbd75222274b",
+      "editorial_correction": "2026-09-30: неверное переиспользование схем v1.2 исправлено по исходнику v2.0; условия кэша уточнены; вёрстка проверена в браузере."
     },
     {
       "path": "book/images/fig2-6.svg",
@@ -525,88 +538,96 @@
       "source_blob_sha1": "fdc3e55d4973b13be53161334dd8c8699b4e9413",
       "source_sha256": "8d9a17bc4a0eb446e5a46b8c838d8504a4d5bcff101daa347dc1bd23c2e691ec",
       "raw_sha256": "82a0bf9e95c7a9dfd0933a2f4b201d20b1621d40d6bb314f09408bd89f109d63",
-      "final_sha256": "82a0bf9e95c7a9dfd0933a2f4b201d20b1621d40d6bb314f09408bd89f109d63",
-      "origin": "baseline-reuse",
+      "final_sha256": "025743ab987d7e3f9fa745983b4fd141e275bc569549dca563ea1f85bc5e9443",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig2-8.svg",
-      "baseline_sha256": "82a0bf9e95c7a9dfd0933a2f4b201d20b1621d40d6bb314f09408bd89f109d63"
+      "baseline_sha256": "82a0bf9e95c7a9dfd0933a2f4b201d20b1621d40d6bb314f09408bd89f109d63",
+      "editorial_correction": "2026-09-30: неверное переиспользование схем v1.2 исправлено по исходнику v2.0; условия кэша уточнены; вёрстка проверена в браузере."
     },
     {
       "path": "book/images/fig2-9.svg",
       "source_blob_sha1": "1505d6e926f0129214e3dbfd6126942a582f2190",
       "source_sha256": "d330fe1c4842ab2e088202b8adf54531533a195e8c1b915d470d4977d5d99149",
       "raw_sha256": "152d32d385bfbb260ab9604de82881dd2d20100049bce74a2ea3b31b2aa8ddcd",
-      "final_sha256": "152d32d385bfbb260ab9604de82881dd2d20100049bce74a2ea3b31b2aa8ddcd",
-      "origin": "baseline-reuse",
+      "final_sha256": "768926c3bbeee402854ace8799800ea3b16d0264ff7fbbaf9eb7ff8c7d6c2b18",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig2-9.svg",
-      "baseline_sha256": "152d32d385bfbb260ab9604de82881dd2d20100049bce74a2ea3b31b2aa8ddcd"
+      "baseline_sha256": "152d32d385bfbb260ab9604de82881dd2d20100049bce74a2ea3b31b2aa8ddcd",
+      "editorial_correction": "2026-09-30: неверное переиспользование схем v1.2 исправлено по исходнику v2.0; условия кэша уточнены; вёрстка проверена в браузере."
     },
     {
       "path": "book/images/fig3-1.svg",
       "source_blob_sha1": "0e1fa0ffa181cf744d1114f7d4d434e5296ebfba",
       "source_sha256": "60fef30b83708dad85bcedd9ddce08991b413ccfc05ba8f8a9d8241fbcaac9fe",
       "raw_sha256": "5ab3e6202e8c9580b459d55c02c6378f42e178ca217e765873021d410d348ec7",
-      "final_sha256": "5ab3e6202e8c9580b459d55c02c6378f42e178ca217e765873021d410d348ec7",
-      "origin": "baseline-reuse",
+      "final_sha256": "1121a866494f9994d95ef3a180d729fbe01b8a127b0f5f085d284838ca794cb6",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig3-1.svg",
-      "baseline_sha256": "5ab3e6202e8c9580b459d55c02c6378f42e178ca217e765873021d410d348ec7"
+      "baseline_sha256": "5ab3e6202e8c9580b459d55c02c6378f42e178ca217e765873021d410d348ec7",
+      "editorial_correction": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-10.svg",
       "source_blob_sha1": "32ce70db244a126473648bfd1ae24a891532361c",
       "source_sha256": "63dd6b763f01b89e73fc71a84b502ec94837fe239947d9f53768d22789bfe606",
       "raw_sha256": "7bb4d360617a1a547e0a1cb7898a6f0d5c5ab87885c11ea53d1e9b8346a78554",
-      "final_sha256": "7bb4d360617a1a547e0a1cb7898a6f0d5c5ab87885c11ea53d1e9b8346a78554",
-      "origin": "baseline-reuse",
+      "final_sha256": "4d8d60bae92b62d6fb7a716b96b21b5a7ad60faa54bbcf2cab71a04e5991f86a",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig3-10.svg",
-      "baseline_sha256": "7bb4d360617a1a547e0a1cb7898a6f0d5c5ab87885c11ea53d1e9b8346a78554"
+      "baseline_sha256": "7bb4d360617a1a547e0a1cb7898a6f0d5c5ab87885c11ea53d1e9b8346a78554",
+      "editorial_correction": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-11.svg",
       "source_blob_sha1": "fc671816fb3192ce6af9191f7023a1b3a665d21d",
       "source_sha256": "2ef20242011ad704d69a99b3c65b61117a421e3324d67797cebb5f4a16af038b",
       "raw_sha256": "9fa5d14ef338bd7f92bd213649f5c2764b2d827dca62d7f52fd089f210c56ed4",
-      "final_sha256": "9fa5d14ef338bd7f92bd213649f5c2764b2d827dca62d7f52fd089f210c56ed4",
-      "origin": "baseline-reuse",
+      "final_sha256": "7553d7230fb1182a28c8dc5173a6e7d8b4353a0e99c547d96391ade6681844fb",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig3-11.svg",
-      "baseline_sha256": "9fa5d14ef338bd7f92bd213649f5c2764b2d827dca62d7f52fd089f210c56ed4"
+      "baseline_sha256": "9fa5d14ef338bd7f92bd213649f5c2764b2d827dca62d7f52fd089f210c56ed4",
+      "editorial_correction": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-12.svg",
       "source_blob_sha1": "90a510031a8af4e2eda55659cc9266478a958629",
       "source_sha256": "667686b3db3666eb81e99eeb47e8a0a022bfcd506c5e36e69a8c79c074947e10",
       "raw_sha256": "e3deac38cede5bc4f5afcde4fae92f1e338b94b797dd411f49e0f79aa3ab3b99",
-      "final_sha256": "e3deac38cede5bc4f5afcde4fae92f1e338b94b797dd411f49e0f79aa3ab3b99",
-      "origin": "baseline-reuse",
+      "final_sha256": "675d3f9fcc559181e49796dc24d9578d005482e9aaa042fd5ef02b3d88a08626",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig3-12.svg",
-      "baseline_sha256": "e3deac38cede5bc4f5afcde4fae92f1e338b94b797dd411f49e0f79aa3ab3b99"
+      "baseline_sha256": "e3deac38cede5bc4f5afcde4fae92f1e338b94b797dd411f49e0f79aa3ab3b99",
+      "editorial_correction": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-13.svg",
       "source_blob_sha1": "d7b2ea55226d004c3b14fa8ba8829297e74663c7",
       "source_sha256": "3f4e41deb2cdc6188ebbf92c6811638a372d2e788e70e6bad645cc8f5120cb9e",
       "raw_sha256": "af8bc49bb364849990d83ddef91ba0d3bdaf5d7d7f647267482e76be2533c504",
-      "final_sha256": "af8bc49bb364849990d83ddef91ba0d3bdaf5d7d7f647267482e76be2533c504",
-      "origin": "baseline-reuse",
+      "final_sha256": "0cb72db5b5b1d463b7f5fa7dc35406d85468857ae63b235fb07098edf5006055",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig3-13.svg",
-      "baseline_sha256": "af8bc49bb364849990d83ddef91ba0d3bdaf5d7d7f647267482e76be2533c504"
+      "baseline_sha256": "af8bc49bb364849990d83ddef91ba0d3bdaf5d7d7f647267482e76be2533c504",
+      "editorial_correction": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-14.svg",
       "source_blob_sha1": "f73807952bc3a9b1359d6265675a8743199debaf",
       "source_sha256": "cdfd4f8b410225347e538a4b0946861c7fa7312d41b1feff6fe45668d55a0f6e",
       "raw_sha256": "77526f532224d7496dcacd62cade2ff4db1a281d48a0820a394f6db97cf73393",
-      "final_sha256": "77526f532224d7496dcacd62cade2ff4db1a281d48a0820a394f6db97cf73393",
-      "origin": "baseline-reuse",
+      "final_sha256": "2630d16197e4725d4370d78263edc9c13e9eb1486a86a1165c09b3502acbe978",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig3-14.svg",
-      "baseline_sha256": "77526f532224d7496dcacd62cade2ff4db1a281d48a0820a394f6db97cf73393"
+      "baseline_sha256": "77526f532224d7496dcacd62cade2ff4db1a281d48a0820a394f6db97cf73393",
+      "editorial_correction": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-15.svg",
@@ -624,11 +645,12 @@
       "source_blob_sha1": "e0e797e86f6cd566b76706da77dbf67601fe95e7",
       "source_sha256": "48de534a410d1fb45da56f53369e287e8ce9e7620917c28cad018d1161c0c7c7",
       "raw_sha256": "838d0cf4d72cf8584e30ab7cd78c21f2bd5b8a71d3237cead954540d917dfef5",
-      "final_sha256": "838d0cf4d72cf8584e30ab7cd78c21f2bd5b8a71d3237cead954540d917dfef5",
-      "origin": "baseline-reuse",
+      "final_sha256": "87052b39381e1764792b8f90cb0f24ec15e10d5ee910a2ef3ac0a32d55cbf7a8",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig3-2.svg",
-      "baseline_sha256": "838d0cf4d72cf8584e30ab7cd78c21f2bd5b8a71d3237cead954540d917dfef5"
+      "baseline_sha256": "838d0cf4d72cf8584e30ab7cd78c21f2bd5b8a71d3237cead954540d917dfef5",
+      "editorial_correction": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-3.svg",
@@ -643,44 +665,48 @@
       "source_blob_sha1": "f9d1a80e4ec83b722163c3d5d86a385c7e50b8e0",
       "source_sha256": "dc321592bd5d2f6aaea735597a69c294b03c351fce139d54436a970ad33d8394",
       "raw_sha256": "63903ef9ee673dd62aade9413c0a912d7d5c0519e7680f6711dffd771b5524d7",
-      "final_sha256": "63903ef9ee673dd62aade9413c0a912d7d5c0519e7680f6711dffd771b5524d7",
-      "origin": "baseline-reuse",
+      "final_sha256": "d322664c6489bd4c0126e374ef25309ef936f58e2363a24a4b6565a38551493b",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig3-4.svg",
-      "baseline_sha256": "63903ef9ee673dd62aade9413c0a912d7d5c0519e7680f6711dffd771b5524d7"
+      "baseline_sha256": "63903ef9ee673dd62aade9413c0a912d7d5c0519e7680f6711dffd771b5524d7",
+      "editorial_correction": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-5.svg",
       "source_blob_sha1": "82e298c158878e2f067edcdac79f68aa5ae2dd1d",
       "source_sha256": "02bfac562b062530f829100dc591c5d44ced2c2abb0b764e29458aafe0440a59",
       "raw_sha256": "4d582f958ebd8fe2f486eecc7859922957544a13c47808f3bd9cdd73d9402163",
-      "final_sha256": "4d582f958ebd8fe2f486eecc7859922957544a13c47808f3bd9cdd73d9402163",
-      "origin": "baseline-reuse",
+      "final_sha256": "be91a7dfd94962efd7964eca71c26cf454317f66af84640c446bfe2daf9abd45",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig3-5.svg",
-      "baseline_sha256": "4d582f958ebd8fe2f486eecc7859922957544a13c47808f3bd9cdd73d9402163"
+      "baseline_sha256": "4d582f958ebd8fe2f486eecc7859922957544a13c47808f3bd9cdd73d9402163",
+      "editorial_correction": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-6.svg",
       "source_blob_sha1": "b2976d52aba87c5cae18112bc47c538016efd668",
       "source_sha256": "46ae6278d2c152fdacb29543b8e18ace25b750a66accb460906f666f4eab87c8",
       "raw_sha256": "8616edd94e885b7100e80fb1e2d70ed8ed035eb9376059873bd9d3445f6fd053",
-      "final_sha256": "8616edd94e885b7100e80fb1e2d70ed8ed035eb9376059873bd9d3445f6fd053",
-      "origin": "baseline-reuse",
+      "final_sha256": "a754dd2cf21c42a57bc8da7db38a71300fb8faade131f66067634ce827626afe",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig3-6.svg",
-      "baseline_sha256": "8616edd94e885b7100e80fb1e2d70ed8ed035eb9376059873bd9d3445f6fd053"
+      "baseline_sha256": "8616edd94e885b7100e80fb1e2d70ed8ed035eb9376059873bd9d3445f6fd053",
+      "editorial_correction": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-7.svg",
       "source_blob_sha1": "78cb209029bb517f7713ae317daa1844bfb42b37",
       "source_sha256": "f0a9a3bc3ad333e5d78c9dddf26ada29bf5f1c3274579114a75dbb0a200a3314",
       "raw_sha256": "65494339b4e45411ebdb18ad45c44a1dd16b3fbd7869acaef91cf458b2e0f454",
-      "final_sha256": "65494339b4e45411ebdb18ad45c44a1dd16b3fbd7869acaef91cf458b2e0f454",
-      "origin": "baseline-reuse",
+      "final_sha256": "1bafac1f68378ceea800d41c64bb1cf8778c85ec34c535a5b0ab41bd28e71727",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig3-7.svg",
-      "baseline_sha256": "65494339b4e45411ebdb18ad45c44a1dd16b3fbd7869acaef91cf458b2e0f454"
+      "baseline_sha256": "65494339b4e45411ebdb18ad45c44a1dd16b3fbd7869acaef91cf458b2e0f454",
+      "editorial_correction": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-8.svg",
@@ -698,11 +724,12 @@
       "source_blob_sha1": "55e3b998d1effa6291bbfb2ad78a6621694c0a22",
       "source_sha256": "cc5113e19f22fc79741ae8dd7c05749dc39e26bb85b91c85c337ff269f0ab6bf",
       "raw_sha256": "1c92b28b673677e9133085f511747b3cbf62b09be104b70c5cba72645fb0cf42",
-      "final_sha256": "1c92b28b673677e9133085f511747b3cbf62b09be104b70c5cba72645fb0cf42",
-      "origin": "baseline-reuse",
+      "final_sha256": "98c904ef6a2b10658833bec638da452b879f431d327aa6fb53a1755aba2ae283",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig3-9.svg",
-      "baseline_sha256": "1c92b28b673677e9133085f511747b3cbf62b09be104b70c5cba72645fb0cf42"
+      "baseline_sha256": "1c92b28b673677e9133085f511747b3cbf62b09be104b70c5cba72645fb0cf42",
+      "editorial_correction": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig4-1.svg",
@@ -731,22 +758,24 @@
       "source_blob_sha1": "85ce3f307d1643469df45c4f869a3e970835e018",
       "source_sha256": "efc9a0cf1fb1fec6fa4048f68fe6d8286684c49d9b0d38f96823f098ba0ab50b",
       "raw_sha256": "9a028f6949203b1becd70a273f0787fa82dc167d68ea041e8ee8e339331e03de",
-      "final_sha256": "3a2decdc1181c094e8b9a99a00f023f8b66fd1032effc03783a07f3dc7383a30",
+      "final_sha256": "e8399f9091ec1ffc515e4769a0a96d57ea46bc4eb6259dcae314ccb208fa219e",
       "origin": "gpt-translation",
       "groups": [
         "A"
-      ]
+      ],
+      "editorial_correction": "Editorial correction: prefix changes invalidate from the change point; cache hits depend on provider conditions, not guaranteed rates."
     },
     {
       "path": "book/images/fig4-4.svg",
       "source_blob_sha1": "8d1d789f564b162e8a0176da8bd408a93ea105bb",
       "source_sha256": "4629d38bc75bdae4451c56be3ffaf7b3cb3ecdc4497f005273cb5d9a4d2708bd",
       "raw_sha256": "5b7e804444411d78eacef97c6a497951944057ed9448aa5aa803668897334821",
-      "final_sha256": "cbbbb84af98d8d3cee1c50946783435132ecacfef2249758b06aa28a377543ac",
+      "final_sha256": "0beb8ac842b2fa79144d62df732870ebbb5255d60b35f8e1dfa328fce12d2ba2",
       "origin": "gpt-translation",
       "groups": [
         "A"
-      ]
+      ],
+      "editorial_correction": "Editorial correction: prefix changes invalidate from the change point; cache hits depend on provider conditions, not guaranteed rates."
     },
     {
       "path": "book/images/fig5-1.svg",
@@ -764,11 +793,12 @@
       "source_blob_sha1": "d18e08024a1a097b33630b4e349a201ebd372ac9",
       "source_sha256": "cf55e769bbb4926f4069513a5ce695ba2de7fc8ceb45936f5aa2f0556fca9f60",
       "raw_sha256": "5949e0f67630dd66d4f38e07a10cce7852f3b16dd38e35736ff74646c69043e6",
-      "final_sha256": "5949e0f67630dd66d4f38e07a10cce7852f3b16dd38e35736ff74646c69043e6",
-      "origin": "baseline-reuse",
+      "final_sha256": "560ea1bf815a16bd75d1e898ef2371bbfe15709dba658b0b71d20185e542b27b",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig5-10.svg",
-      "baseline_sha256": "5949e0f67630dd66d4f38e07a10cce7852f3b16dd38e35736ff74646c69043e6"
+      "baseline_sha256": "5949e0f67630dd66d4f38e07a10cce7852f3b16dd38e35736ff74646c69043e6",
+      "editorial_correction": "Inherited framework requires quality tests."
     },
     {
       "path": "book/images/fig5-11.svg",
@@ -786,11 +816,12 @@
       "source_blob_sha1": "4e183ea342341f50a6c9be1f3760536f50088f13",
       "source_sha256": "844646a0e6652c2959d2733d4e821e17d45fc14e98c9c00436c75ca4ce3b0244",
       "raw_sha256": "862016b6f4bbe6aea1fe93fb7c3f8fb0dcf310976aec6ff4ad082fb7aa07a7fe",
-      "final_sha256": "862016b6f4bbe6aea1fe93fb7c3f8fb0dcf310976aec6ff4ad082fb7aa07a7fe",
-      "origin": "baseline-reuse",
+      "final_sha256": "f1b1e5b1cf7b5067acbfc4f2a99391264bf33d0133069d7153e9ae7e1b415d74",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig5-2.svg",
-      "baseline_sha256": "862016b6f4bbe6aea1fe93fb7c3f8fb0dcf310976aec6ff4ad082fb7aa07a7fe"
+      "baseline_sha256": "862016b6f4bbe6aea1fe93fb7c3f8fb0dcf310976aec6ff4ad082fb7aa07a7fe",
+      "editorial_correction": "Correct code-review terminology, code repair, output truncation and iteration bounds."
     },
     {
       "path": "book/images/fig5-3.svg",
@@ -841,11 +872,12 @@
       "source_blob_sha1": "9108f42abb874acad7bd6d753d8daaad862b3ccc",
       "source_sha256": "f5d85c4eb3d9e3bb1bada98c69ff63de00521637d962102e29b617cd6c2fa8d5",
       "raw_sha256": "afe7689633a8ff253d50f255b477ac4d1f131c71e83ab8621cf8397a4f10763f",
-      "final_sha256": "afe7689633a8ff253d50f255b477ac4d1f131c71e83ab8621cf8397a4f10763f",
-      "origin": "baseline-reuse",
+      "final_sha256": "cdced4f4947e6c39e3267cef64d1643e5d355e874b2bda68ae016d5c76453e99",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig5-7.svg",
-      "baseline_sha256": "afe7689633a8ff253d50f255b477ac4d1f131c71e83ab8621cf8397a4f10763f"
+      "baseline_sha256": "afe7689633a8ff253d50f255b477ac4d1f131c71e83ab8621cf8397a4f10763f",
+      "editorial_correction": "Remove invalid post-purchase insurance advice and unsupported speed guarantee; correct check terminology."
     },
     {
       "path": "book/images/fig5-8.svg",
@@ -874,11 +906,12 @@
       "source_blob_sha1": "10dc4276e53dfe81c2cfa522edb873b262cb63cc",
       "source_sha256": "530d910ab8f75a3530e8036c8ed9df2e83eb6458232d3922cd05fe98c33c9d07",
       "raw_sha256": "492341b2477738b39c81ab720377ddcfcd5bd2441977a1cba4e1cd03c14a9a12",
-      "final_sha256": "492341b2477738b39c81ab720377ddcfcd5bd2441977a1cba4e1cd03c14a9a12",
-      "origin": "baseline-reuse",
+      "final_sha256": "829ea90a8efb4224e7b1e638bf093305f7feeeebe730b398f13bb33ba660e197",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig4-3.svg",
-      "baseline_sha256": "492341b2477738b39c81ab720377ddcfcd5bd2441977a1cba4e1cd03c14a9a12"
+      "baseline_sha256": "492341b2477738b39c81ab720377ddcfcd5bd2441977a1cba4e1cd03c14a9a12",
+      "editorial_correction": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-10.svg",
@@ -896,22 +929,24 @@
       "source_blob_sha1": "eea29b24520838e1f8185eb2f35441efa6324428",
       "source_sha256": "af8dff50cc66ad8a9a53723ac62657dc392c7c5445ab4e777614c113193bcedd",
       "raw_sha256": "e4b0476088cf7752e25e62e3622b9b9414388231c2a7654475378389fd370c7e",
-      "final_sha256": "e4b0476088cf7752e25e62e3622b9b9414388231c2a7654475378389fd370c7e",
-      "origin": "baseline-reuse",
+      "final_sha256": "eb7481fae331f8bd42d4f5fbdec17c84d26c11b64f1c80b7863281e79f647f00",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig9-7.svg",
-      "baseline_sha256": "e4b0476088cf7752e25e62e3622b9b9414388231c2a7654475378389fd370c7e"
+      "baseline_sha256": "e4b0476088cf7752e25e62e3622b9b9414388231c2a7654475378389fd370c7e",
+      "editorial_correction": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-12.svg",
       "source_blob_sha1": "186a232e7730468fddf27d9f07b7cb849eccde23",
       "source_sha256": "90c89a11a6c02207dcdcacd842192336c18ee55e3efb27ef189384e3aa58c5d8",
       "raw_sha256": "f922a171e8259414b4a209d4e9ccc0112764e1db3bb8a07d7d219455ae6b9076",
-      "final_sha256": "f922a171e8259414b4a209d4e9ccc0112764e1db3bb8a07d7d219455ae6b9076",
-      "origin": "baseline-reuse",
+      "final_sha256": "366f633fda5218445cecbb1b3db843b27d67121999ede09f3671d388596e3601",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig9-8.svg",
-      "baseline_sha256": "f922a171e8259414b4a209d4e9ccc0112764e1db3bb8a07d7d219455ae6b9076"
+      "baseline_sha256": "f922a171e8259414b4a209d4e9ccc0112764e1db3bb8a07d7d219455ae6b9076",
+      "editorial_correction": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-13.svg",
@@ -929,22 +964,24 @@
       "source_blob_sha1": "4f3b20feb48a7a8aa4cea0e419613650e357e306",
       "source_sha256": "6b9d168302e5ce010a761a8cd12f2152af0bd732668a4db967e5e304bf00a21d",
       "raw_sha256": "282664940c155748ef89a491de19a2d544a44d634a4fef11434bb28fc3f8c6a1",
-      "final_sha256": "282664940c155748ef89a491de19a2d544a44d634a4fef11434bb28fc3f8c6a1",
-      "origin": "baseline-reuse",
+      "final_sha256": "7a80dbd31fe48a837d9c9a1cb5a728aee8fae29c9392f1f83e66aaee5641124e",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig9-10.svg",
-      "baseline_sha256": "282664940c155748ef89a491de19a2d544a44d634a4fef11434bb28fc3f8c6a1"
+      "baseline_sha256": "282664940c155748ef89a491de19a2d544a44d634a4fef11434bb28fc3f8c6a1",
+      "editorial_correction": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-2.svg",
       "source_blob_sha1": "edee4b05ec6d843ef737ded32c6a8c771cc1c41e",
       "source_sha256": "0a1c708aa86bc15597dd44c7a51893cbb73113cd6e9a55c77abba567705c491a",
       "raw_sha256": "a45cfe039fd85f16b481eafa28129c4d11dc7d7106b1fa45ef933c6e1b18fdd6",
-      "final_sha256": "bc772b3a2003fb227bff312fb397f430a0798a627984f8874bfe6c7e84031e38",
+      "final_sha256": "dd317e30c279bf1f2c721d5986f8f4fc3263ac2e45376ad8f46e64076a34936e",
       "origin": "gpt-translation",
       "groups": [
         "B"
-      ]
+      ],
+      "editorial_correction": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-3.svg",
@@ -985,44 +1022,48 @@
       "source_blob_sha1": "60f7fae279e9484c53bf56da99f6e4760c59e5c2",
       "source_sha256": "4985dc3d8fd809ef1a5efd2ef53142c170f8950de2f6e2731b16637faf2bde6a",
       "raw_sha256": "827b77c4821169fb50489f3d3d8f683e3b2eae62ce0ccacce8606749a95f3d17",
-      "final_sha256": "827b77c4821169fb50489f3d3d8f683e3b2eae62ce0ccacce8606749a95f3d17",
-      "origin": "baseline-reuse",
+      "final_sha256": "3211dc3892e357946615ba83750a90c5fbe9870204843cd2d9eb1ebccb688803",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig9-1.svg",
-      "baseline_sha256": "827b77c4821169fb50489f3d3d8f683e3b2eae62ce0ccacce8606749a95f3d17"
+      "baseline_sha256": "827b77c4821169fb50489f3d3d8f683e3b2eae62ce0ccacce8606749a95f3d17",
+      "editorial_correction": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-7.svg",
       "source_blob_sha1": "db208494b50ac65ae847676bdf902909479d6cfa",
       "source_sha256": "0c85f2039b23e54815e65950172a269373c51420940ded39128c60e2e4c5bbc7",
       "raw_sha256": "e9416e8fe800e030f744db470c3fd7463444d31a0767889a70a24d94f9be7481",
-      "final_sha256": "e9416e8fe800e030f744db470c3fd7463444d31a0767889a70a24d94f9be7481",
-      "origin": "baseline-reuse",
+      "final_sha256": "94979a6e986aaa32870c6655316d01f88683598099cf5300e8e00b3c6c48ffae",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig9-2.svg",
-      "baseline_sha256": "e9416e8fe800e030f744db470c3fd7463444d31a0767889a70a24d94f9be7481"
+      "baseline_sha256": "e9416e8fe800e030f744db470c3fd7463444d31a0767889a70a24d94f9be7481",
+      "editorial_correction": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-8.svg",
       "source_blob_sha1": "00c9c0bd32fd25bff6d2161e7151acddabaf66b1",
       "source_sha256": "904404c75bd9e1147cf561631cfa8f3446c66c81b6fc0e051e7cd14231cc1bd4",
       "raw_sha256": "ac9a2e32d86077c07a4ff690e4ff30f090d17652d0e9e3192211044c68090664",
-      "final_sha256": "ac9a2e32d86077c07a4ff690e4ff30f090d17652d0e9e3192211044c68090664",
-      "origin": "baseline-reuse",
+      "final_sha256": "ded2bf2fadcc6d303b1e233f98669a7f094dada5fdd9ab90b0e8ad5d14b29f74",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig9-3.svg",
-      "baseline_sha256": "ac9a2e32d86077c07a4ff690e4ff30f090d17652d0e9e3192211044c68090664"
+      "baseline_sha256": "ac9a2e32d86077c07a4ff690e4ff30f090d17652d0e9e3192211044c68090664",
+      "editorial_correction": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-9.svg",
       "source_blob_sha1": "b54dcc2213dc7a895aafd353706eda2fe934aa47",
       "source_sha256": "eca1faf360d2bfa9668cc4426658365a07ae8f1b9c991c8fe103d3bfde0e3ff1",
       "raw_sha256": "c89e2a343119e4032a2164fdd649cd0b295200497a075dea754bf7609e171814",
-      "final_sha256": "e277ac1924b28c49fbbd0dea48360f546be53f503b88d42ec2c99b48a5e0db1a",
+      "final_sha256": "a8be1e5d22e813d726bfb8113c163dc439300add318fb1b92ddb8151e0c5b156",
       "origin": "gpt-translation",
       "groups": [
         "B"
-      ]
+      ],
+      "editorial_correction": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig7-1.svg",
@@ -1040,11 +1081,12 @@
       "source_blob_sha1": "7c984aaeac536046f1d42e950888e5dfabfbab9b",
       "source_sha256": "04c76c9f0bb2b4733861b2151267e5e8d4e2e94dc3119f76c5762a23d396e992",
       "raw_sha256": "ccea11e1335a9da86a3e3f58f50590bd55830cae15dd974e5e5b85abb12b010d",
-      "final_sha256": "17ae6bfb0331d3f1e8ceae2177600d07c9d0134595cc80feabde4b6f90d3b69b",
+      "final_sha256": "6e7283ce193104c63f3aefe6a16c3d56a917f731654c458015f4ad5b33e19b88",
       "origin": "gpt-translation",
       "groups": [
         "B"
-      ]
+      ],
+      "editorial_correction": "Chapter7 editorial correction: synchronize AndroidWorld results, distinguish evaluation and model variants, qualify unmeasured simulation claims, correct reward aggregation."
     },
     {
       "path": "book/images/fig7-2.svg",
@@ -1062,44 +1104,48 @@
       "source_blob_sha1": "8c8a96d391d89d3437cd842331f91162d60d80b7",
       "source_sha256": "7d8a2634ee8f17a9b1796ebb06f5a7b4ea992e71011041620982c30f6a94f4e3",
       "raw_sha256": "abbe9e873603f20420de86623dc04fc7636fa089c65e8cbf9169182b6ac660cd",
-      "final_sha256": "4adac31e1b447c67dbf435fbf574ead4f363a28fd7b1f7c9dc6e8c04784a44fd",
+      "final_sha256": "4813a4494521f8aa9f3fd29e85069a81136ebaa5ba03d02d3bf186fd79aa14e8",
       "origin": "gpt-translation",
       "groups": [
         "B"
-      ]
+      ],
+      "editorial_correction": "Chapter7 editorial correction: synchronize AndroidWorld results, distinguish evaluation and model variants, qualify unmeasured simulation claims, correct reward aggregation."
     },
     {
       "path": "book/images/fig7-4.svg",
       "source_blob_sha1": "42f86fecb306235cb9d394d53b0c5c9dbd09d4b3",
       "source_sha256": "cfc3f54430f3c3de5f243396a9458de937f952bbb99e61ce0de870ae1bd46f00",
       "raw_sha256": "26350c9b1cee980f3a8c4975c65c66d9b93303caa4a7d036d9f1968033514fb6",
-      "final_sha256": "6a306f44a492aee8a6e37707819f25e9bdc85b00837bf8f363742d21c030a17c",
+      "final_sha256": "8c82d42e9d4b680c0f1cb2e24846a2000d97a0812ca719744083be965c0a6703",
       "origin": "gpt-translation",
       "groups": [
         "B"
-      ]
+      ],
+      "editorial_correction": "Chapter7 editorial correction: synchronize AndroidWorld results, distinguish evaluation and model variants, qualify unmeasured simulation claims, correct reward aggregation."
     },
     {
       "path": "book/images/fig7-5.svg",
       "source_blob_sha1": "37db570912866bb31a2c6cee2430b0f0c764fed7",
       "source_sha256": "3fc3ce739e615cf6cd30f3a45e6da54c5ca49c84f4142a311423858ff6bc26b2",
       "raw_sha256": "8c7b7ffbf7dfb41539272ca5f3d03919f9ea57666d608d9454a5edc7980b4478",
-      "final_sha256": "fdc965daf43f7b2354e3d346eacffd2060727a8d98c794555c64001583ee3939",
+      "final_sha256": "922603202a5f71db4ab9e6403748fe7faf95006f0283bb00f1e5d38865412c06",
       "origin": "gpt-translation",
       "groups": [
         "B"
-      ]
+      ],
+      "editorial_correction": "Chapter7 editorial correction: synchronize AndroidWorld results, distinguish evaluation and model variants, qualify unmeasured simulation claims, correct reward aggregation."
     },
     {
       "path": "book/images/fig7-6.svg",
       "source_blob_sha1": "3a253037a1d8e5c975f10da57f737449d2654885",
       "source_sha256": "14e292d7ff93066fbc1a43fab02bcfc825fcfd1b6c5ade5380ae0f2431edac2f",
       "raw_sha256": "7f6744e75b2eea28f66f29e2970604524876412fc31719a7be5ecaef50ed00c2",
-      "final_sha256": "8cbfded1dd15aa6bf6eebc8ce9a9c515559011566bab2e97e8927110dfd9e168",
+      "final_sha256": "ddb5e63b92113b03adfcc49b4b6d8cf51850484c2cf8b41005a04be6790b18aa",
       "origin": "gpt-translation",
       "groups": [
         "B"
-      ]
+      ],
+      "editorial_correction": "Chapter7 editorial correction: synchronize AndroidWorld results, distinguish evaluation and model variants, qualify unmeasured simulation claims, correct reward aggregation."
     },
     {
       "path": "book/images/fig7-7.svg",
@@ -1117,66 +1163,72 @@
       "source_blob_sha1": "ad6e2738cbc038a9044826b35726115b15cf06bd",
       "source_sha256": "391afd6f3da088b5d2db9544380743615d74c51515a3bdf4d5fad043631d0bbb",
       "raw_sha256": "460da91e2eedc455775c4742ce7ac3002807db2a3d7fe62fda36594fae5ddd6e",
-      "final_sha256": "460da91e2eedc455775c4742ce7ac3002807db2a3d7fe62fda36594fae5ddd6e",
-      "origin": "baseline-reuse",
+      "final_sha256": "79c6a5e86684ca86a14e5bb9fdf3484a10cd3a9d4ca7e82568fa3922bdb17fa9",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig6-7.svg",
-      "baseline_sha256": "460da91e2eedc455775c4742ce7ac3002807db2a3d7fe62fda36594fae5ddd6e"
+      "baseline_sha256": "460da91e2eedc455775c4742ce7ac3002807db2a3d7fe62fda36594fae5ddd6e",
+      "editorial_correction": "Chapter7 editorial correction: synchronize AndroidWorld results, distinguish evaluation and model variants, qualify unmeasured simulation claims, correct reward aggregation."
     },
     {
       "path": "book/images/fig7-9.svg",
       "source_blob_sha1": "b3637d609cb716568b746dffa74cea550557682d",
       "source_sha256": "03a31cef7bee6641dd4a901923efdc9036126f7ec2dad8afc5bf96dd197df547",
       "raw_sha256": "470fde802e966d73e5130d76adcbf13fd4490c59e4192cfc7eaf9826eb75ec28",
-      "final_sha256": "470fde802e966d73e5130d76adcbf13fd4490c59e4192cfc7eaf9826eb75ec28",
-      "origin": "baseline-reuse",
+      "final_sha256": "6fe20bd7b4c484c1f63cc6b02aa30a2c0cbd2a9c8a91f5a80ddf3e941e634b1b",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig6-8.svg",
-      "baseline_sha256": "470fde802e966d73e5130d76adcbf13fd4490c59e4192cfc7eaf9826eb75ec28"
+      "baseline_sha256": "470fde802e966d73e5130d76adcbf13fd4490c59e4192cfc7eaf9826eb75ec28",
+      "editorial_correction": "Chapter7 editorial correction: synchronize AndroidWorld results, distinguish evaluation and model variants, qualify unmeasured simulation claims, correct reward aggregation."
     },
     {
       "path": "book/images/fig8-1.svg",
       "source_blob_sha1": "92be2d0860e539c195b6edd5006c5ea9433b56d1",
       "source_sha256": "dbed47a3f29d76d1d3a4fb6c0d392ba479359623d9cd2eaecaef985ae2058b26",
       "raw_sha256": "5ff6a5ffb8df81d0798b2a7d53797e83abc17660dc2718cf503de46503635dbe",
-      "final_sha256": "5ff6a5ffb8df81d0798b2a7d53797e83abc17660dc2718cf503de46503635dbe",
-      "origin": "baseline-reuse",
+      "final_sha256": "fba72d44eb97e84b3cfa603452241bc8f1b8d7914ea39b783c388b494cf2a39e",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-1.svg",
-      "baseline_sha256": "5ff6a5ffb8df81d0798b2a7d53797e83abc17660dc2718cf503de46503635dbe"
+      "baseline_sha256": "5ff6a5ffb8df81d0798b2a7d53797e83abc17660dc2718cf503de46503635dbe",
+      "editorial_correction": "Chapter8 diagram correction: current-greedy policy, full Markov state, illustrative grid separated from measured game results, and tabular-example scope; natural-width readable labels."
     },
     {
       "path": "book/images/fig8-10.svg",
       "source_blob_sha1": "19f4e6eaea0b8a467089ef4e1b24d5b361a62af5",
       "source_sha256": "fde5a8eaae635fe0df7cb744af61b674a959250da87176325734f5973e702b7d",
       "raw_sha256": "39a33b8128854ce8a78340b712d806d731e74c5064d9e63a614b4c519471153f",
-      "final_sha256": "39a33b8128854ce8a78340b712d806d731e74c5064d9e63a614b4c519471153f",
-      "origin": "baseline-reuse",
+      "final_sha256": "9df991350629b05b4411b6db9385f26facd2664893871e4db60e3a9b128a224b",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-10.svg",
-      "baseline_sha256": "39a33b8128854ce8a78340b712d806d731e74c5064d9e63a614b4c519471153f"
+      "baseline_sha256": "39a33b8128854ce8a78340b712d806d731e74c5064d9e63a614b4c519471153f",
+      "editorial_correction": "Chapter8 diagram readability and consistency: conditional token prediction, SFT/generalization scope, nonmandatory SFT/RL stages, GeneralPoints percentage-point results; natural-width fonts."
     },
     {
       "path": "book/images/fig8-11.svg",
       "source_blob_sha1": "aff6de30b34ecfef8638903919e8d769789be3b6",
       "source_sha256": "83e7481e4653b66e0c56c53a698959da8f9527ebb1f9a7a1dcb8a4441bd5097c",
       "raw_sha256": "0a5503a1b2b5d4f58ae277559109fa699aa20f4cedf07e58cab8befd68bec411",
-      "final_sha256": "0a5503a1b2b5d4f58ae277559109fa699aa20f4cedf07e58cab8befd68bec411",
-      "origin": "baseline-reuse",
+      "final_sha256": "8b5fa96ee7314c73fb0a02c212d77fa08dff21a0b97bc6ac3940ce92fcc8aac8",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-11.svg",
-      "baseline_sha256": "0a5503a1b2b5d4f58ae277559109fa699aa20f4cedf07e58cab8befd68bec411"
+      "baseline_sha256": "0a5503a1b2b5d4f58ae277559109fa699aa20f4cedf07e58cab8befd68bec411",
+      "editorial_correction": "Chapter8 diagram readability and consistency: conditional token prediction, SFT/generalization scope, nonmandatory SFT/RL stages, GeneralPoints percentage-point results; natural-width fonts."
     },
     {
       "path": "book/images/fig8-12.svg",
       "source_blob_sha1": "d5bc5359b44d5273b071c1e861e260199c8b3c41",
       "source_sha256": "a968186918e01d1258838bcc622133b2aece874a920413666a0c6858a8b2f656",
       "raw_sha256": "be5e8750f4b4d2f0067d50e47aa202acbe83b7bd143bd7496b7e64bddac62a1a",
-      "final_sha256": "be5e8750f4b4d2f0067d50e47aa202acbe83b7bd143bd7496b7e64bddac62a1a",
-      "origin": "baseline-reuse",
+      "final_sha256": "5417f93ea00338542aeb35f942759ce851486269f163bf6184f2de30c10b44ac",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-12.svg",
-      "baseline_sha256": "be5e8750f4b4d2f0067d50e47aa202acbe83b7bd143bd7496b7e64bddac62a1a"
+      "baseline_sha256": "be5e8750f4b4d2f0067d50e47aa202acbe83b7bd143bd7496b7e64bddac62a1a",
+      "editorial_correction": "Chapter8 diagram readability and consistency: conditional token prediction, SFT/generalization scope, nonmandatory SFT/RL stages, GeneralPoints percentage-point results; natural-width fonts."
     },
     {
       "path": "book/images/fig8-13.svg",
@@ -1194,143 +1246,156 @@
       "source_blob_sha1": "5f9570b386fb3bfb6c1e10688f9eac1ce7d32ddb",
       "source_sha256": "b1109e5935abb343b45c21ad3278663cdcc9d05a76f8d5bf780936259e49f327",
       "raw_sha256": "5f1117508616d371906bd8580c8e4dddb4d9956bdf5263821b0c45b54324d5ef",
-      "final_sha256": "5f1117508616d371906bd8580c8e4dddb4d9956bdf5263821b0c45b54324d5ef",
-      "origin": "baseline-reuse",
+      "final_sha256": "d1172641cdcf5ad1219a8e70833879971055954f571a40eea2b0565c1ac7cebf",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-14.svg",
-      "baseline_sha256": "5f1117508616d371906bd8580c8e4dddb4d9956bdf5263821b0c45b54324d5ef"
+      "baseline_sha256": "5f1117508616d371906bd8580c8e4dddb4d9956bdf5263821b0c45b54324d5ef",
+      "editorial_correction": "Chapter8 source review: experimental scope, readable natural-width labels, and distinction between interaction and training."
     },
     {
       "path": "book/images/fig8-15.svg",
       "source_blob_sha1": "0c6a2995b1cea91a35b3f357999a24d8ebed2b24",
       "source_sha256": "878dc803c33f51a4f9f97482e05f3be1aba50cc04a0cbc0a36acf647a037f36e",
       "raw_sha256": "0911a4937df1cf578b1811dea5ac6c2f7b44919f3a2e0d1a304a6e8142ce4afe",
-      "final_sha256": "0911a4937df1cf578b1811dea5ac6c2f7b44919f3a2e0d1a304a6e8142ce4afe",
-      "origin": "baseline-reuse",
+      "final_sha256": "70fa15bcb37cec026e701c9f2fca917938184907bd8f3de8a99178d019c0778c",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-15.svg",
-      "baseline_sha256": "0911a4937df1cf578b1811dea5ac6c2f7b44919f3a2e0d1a304a6e8142ce4afe"
+      "baseline_sha256": "0911a4937df1cf578b1811dea5ac6c2f7b44919f3a2e0d1a304a6e8142ce4afe",
+      "editorial_correction": "Chapter8 source review: experimental scope, readable natural-width labels, and distinction between interaction and training."
     },
     {
       "path": "book/images/fig8-16.svg",
       "source_blob_sha1": "9e886dcc1d0bc81173930522dea29464b8ae0a68",
       "source_sha256": "0eb7817c9f5791dd2a820602b12d75b7893a5ae1da0c041d07ed8884f2519c8e",
       "raw_sha256": "4f2f0e42d64fd8769de872ffca04e5df51a9da47a7e5c1531777be5225d168e1",
-      "final_sha256": "4f2f0e42d64fd8769de872ffca04e5df51a9da47a7e5c1531777be5225d168e1",
-      "origin": "baseline-reuse",
+      "final_sha256": "cf7c51ffffd6e44495fe55d664b998fb53862c30437de121fb8e91304fe081b5",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-18.svg",
-      "baseline_sha256": "4f2f0e42d64fd8769de872ffca04e5df51a9da47a7e5c1531777be5225d168e1"
+      "baseline_sha256": "4f2f0e42d64fd8769de872ffca04e5df51a9da47a7e5c1531777be5225d168e1",
+      "editorial_correction": "Chapter8 source review: experimental scope, readable natural-width labels, and distinction between interaction and training."
     },
     {
       "path": "book/images/fig8-17.svg",
       "source_blob_sha1": "b2efc3b0ed2c34840763284a84b1785225f57da1",
       "source_sha256": "e06465849c9d509172ff16d729ee7b7ac13212b207353523cf568becfc22dc31",
       "raw_sha256": "4c56350cf76e7e74cb3d6efa537ea7543ae44a8a7d1152d5d935f3f7f5e66177",
-      "final_sha256": "4c56350cf76e7e74cb3d6efa537ea7543ae44a8a7d1152d5d935f3f7f5e66177",
-      "origin": "baseline-reuse",
+      "final_sha256": "53dec8f80863b04a9beb2666beab4a0fef04a3900a9aa4869d6779b6cffac0c1",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-19.svg",
-      "baseline_sha256": "4c56350cf76e7e74cb3d6efa537ea7543ae44a8a7d1152d5d935f3f7f5e66177"
+      "baseline_sha256": "4c56350cf76e7e74cb3d6efa537ea7543ae44a8a7d1152d5d935f3f7f5e66177",
+      "editorial_correction": "Separate ReTool AIME2024/paper from AIME2025/repository; AWorld4B teaching configuration from32Bpaper and rollout from end-to-end timing. Natural-width labels."
     },
     {
       "path": "book/images/fig8-18.svg",
       "source_blob_sha1": "151e8c50978f068130e5afbf6c1fafc019129282",
       "source_sha256": "35b02e9247583f69671d5bcbe1b1ea73b804b37fcf22563c0d6362f575a24086",
       "raw_sha256": "add44549a244b0e24c19c726680ddb667019725bab7ad6e09b4ec080660dc6be",
-      "final_sha256": "add44549a244b0e24c19c726680ddb667019725bab7ad6e09b4ec080660dc6be",
-      "origin": "baseline-reuse",
+      "final_sha256": "69ae1623d71df8b897468f0d4e9b6b0f345775d89dd2bef824138167fead53d8",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-20.svg",
-      "baseline_sha256": "add44549a244b0e24c19c726680ddb667019725bab7ad6e09b4ec080660dc6be"
+      "baseline_sha256": "add44549a244b0e24c19c726680ddb667019725bab7ad6e09b4ec080660dc6be",
+      "editorial_correction": "Separate ReTool AIME2024/paper from AIME2025/repository; AWorld4B teaching configuration from32Bpaper and rollout from end-to-end timing. Natural-width labels."
     },
     {
       "path": "book/images/fig8-2.svg",
       "source_blob_sha1": "03bec1f52affed25dbd376fddd4a895eb90f1ac5",
       "source_sha256": "45e2cd6d89e87df5f789cc7113bde71689b0206fdaaea365224cd5da6b32fc84",
       "raw_sha256": "155b5998aaec5342e6fa1c94fb21580c7c0238918aa8e87ca2c34ff504ad7770",
-      "final_sha256": "155b5998aaec5342e6fa1c94fb21580c7c0238918aa8e87ca2c34ff504ad7770",
-      "origin": "baseline-reuse",
+      "final_sha256": "37e66f063ca29fc1023b7569eac12b6c86865f34cc4c22e8f8915754e09cd00a",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-2.svg",
-      "baseline_sha256": "155b5998aaec5342e6fa1c94fb21580c7c0238918aa8e87ca2c34ff504ad7770"
+      "baseline_sha256": "155b5998aaec5342e6fa1c94fb21580c7c0238918aa8e87ca2c34ff504ad7770",
+      "editorial_correction": "Chapter8 diagram correction: current-greedy policy, full Markov state, illustrative grid separated from measured game results, and tabular-example scope; natural-width readable labels."
     },
     {
       "path": "book/images/fig8-3.svg",
       "source_blob_sha1": "828ede227fdb5e5b26bc0895d9b03a19afa206f4",
       "source_sha256": "594dd113bd4fa0400d83921bc75061d10044f8ebb290021fe99f4f7322fc0443",
       "raw_sha256": "59bbd0fd748ffe82eae670d77f3f737742fe28bb2e1baed7cae253245e1f0b20",
-      "final_sha256": "59bbd0fd748ffe82eae670d77f3f737742fe28bb2e1baed7cae253245e1f0b20",
-      "origin": "baseline-reuse",
+      "final_sha256": "3b901281f62b5ae1bda9327d519265c20367367285fe1f85a10d0e21afcec277",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-3.svg",
-      "baseline_sha256": "59bbd0fd748ffe82eae670d77f3f737742fe28bb2e1baed7cae253245e1f0b20"
+      "baseline_sha256": "59bbd0fd748ffe82eae670d77f3f737742fe28bb2e1baed7cae253245e1f0b20",
+      "editorial_correction": "Chapter8 diagram correction: current-greedy policy, full Markov state, illustrative grid separated from measured game results, and tabular-example scope; natural-width readable labels."
     },
     {
       "path": "book/images/fig8-4.svg",
       "source_blob_sha1": "49a885fb9ff2648674621d357362fdec673c60f2",
       "source_sha256": "d3901202b81242790d2f5fd2b25a49af66f9592de9c219fa90163e1c00788ab8",
       "raw_sha256": "eb8514b0ccba6188c68f0ee7eea6d4f9b24eb6a4e253b9128a7d9c86fa725c42",
-      "final_sha256": "eb8514b0ccba6188c68f0ee7eea6d4f9b24eb6a4e253b9128a7d9c86fa725c42",
-      "origin": "baseline-reuse",
+      "final_sha256": "b90fcbdd093cbe54d1ab8528b410f8b662ebf62c456246744a3dcf774ab5e1ad",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-4.svg",
-      "baseline_sha256": "eb8514b0ccba6188c68f0ee7eea6d4f9b24eb6a4e253b9128a7d9c86fa725c42"
+      "baseline_sha256": "eb8514b0ccba6188c68f0ee7eea6d4f9b24eb6a4e253b9128a7d9c86fa725c42",
+      "editorial_correction": "Chapter8 figure4: TD backup toward predecessor state-action pair; exact arithmetic before rounding; natural-width readable text."
     },
     {
       "path": "book/images/fig8-5.svg",
       "source_blob_sha1": "a75bc8c8ce034fdb2e0843b68e68025d99db46b8",
       "source_sha256": "30ccaa8d2b4c3a00e942f3b23f184b8b81d3258d7f09689699fe71f662ed6441",
       "raw_sha256": "5a0aab69a9390f46bad75eff41d3da3fa6d22e963b87b20825a86daeda848bd8",
-      "final_sha256": "5a0aab69a9390f46bad75eff41d3da3fa6d22e963b87b20825a86daeda848bd8",
-      "origin": "baseline-reuse",
+      "final_sha256": "52578f887ec9bf6f5ae86df240d27a394bf4ea051a71ca7821ba8bec06b1b885",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-5.svg",
-      "baseline_sha256": "5a0aab69a9390f46bad75eff41d3da3fa6d22e963b87b20825a86daeda848bd8"
+      "baseline_sha256": "5a0aab69a9390f46bad75eff41d3da3fa6d22e963b87b20825a86daeda848bd8",
+      "editorial_correction": "Chapter8 diagram correction: current-greedy policy, full Markov state, illustrative grid separated from measured game results, and tabular-example scope; natural-width readable labels."
     },
     {
       "path": "book/images/fig8-6.svg",
       "source_blob_sha1": "ddb168ee4bef7214472eb821d8b7a5bfb8b2e5c9",
       "source_sha256": "6bdf2c0167cb4dfd03c43d9aea0097ce892f82190cc98059ede71007b6d352a8",
       "raw_sha256": "d611f6a067826e3daf7b26454b83e0ff9f8f2746b43a6fc499103f8a4826ac04",
-      "final_sha256": "d611f6a067826e3daf7b26454b83e0ff9f8f2746b43a6fc499103f8a4826ac04",
-      "origin": "baseline-reuse",
+      "final_sha256": "e7df01fd26e5177012ae73581cefcfb0f7db66d57719d81c3d9ff976f29a4a80",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-6.svg",
-      "baseline_sha256": "d611f6a067826e3daf7b26454b83e0ff9f8f2746b43a6fc499103f8a4826ac04"
+      "baseline_sha256": "d611f6a067826e3daf7b26454b83e0ff9f8f2746b43a6fc499103f8a4826ac04",
+      "editorial_correction": "Chapter8 diagram readability and consistency: conditional token prediction, SFT/generalization scope, nonmandatory SFT/RL stages, GeneralPoints percentage-point results; natural-width fonts."
     },
     {
       "path": "book/images/fig8-7.svg",
       "source_blob_sha1": "9d8200336b711af0e3906686dd9b9fd45f41b4c3",
       "source_sha256": "b1cc1c15c135065e04471f8c8719224249ab74cb7d4d17002a0ecc0345aa1cb5",
       "raw_sha256": "33eb62fbc9505cf2ce7b4f22285899b4e02892e3e1550cc80508ed9745bbbee0",
-      "final_sha256": "33eb62fbc9505cf2ce7b4f22285899b4e02892e3e1550cc80508ed9745bbbee0",
-      "origin": "baseline-reuse",
+      "final_sha256": "6e3e73fefd7aee644e6071f4209428754bfc17cbd2f1fb25d65ccc910b55a4c2",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-7.svg",
-      "baseline_sha256": "33eb62fbc9505cf2ce7b4f22285899b4e02892e3e1550cc80508ed9745bbbee0"
+      "baseline_sha256": "33eb62fbc9505cf2ce7b4f22285899b4e02892e3e1550cc80508ed9745bbbee0",
+      "editorial_correction": "Chapter8 figure7: Kimi K3 and18steps match prose; remove unsupported90% success; distinguish greedy from optimal; natural-width legible labels, no text overlap."
     },
     {
       "path": "book/images/fig8-8.svg",
       "source_blob_sha1": "bd097f90da03b5aa1908ef37943725b0a6cdbee8",
       "source_sha256": "1ca156b2aee933bee84e7f5a6c813078aecacb896cd48392169591a36d0f6969",
       "raw_sha256": "789415b9bb8d5ced37b35625f7dbe2a360ae2c45951337d23af5885d8b66df25",
-      "final_sha256": "789415b9bb8d5ced37b35625f7dbe2a360ae2c45951337d23af5885d8b66df25",
-      "origin": "baseline-reuse",
+      "final_sha256": "c468ae05e57642c5e24e391f0861a14ef7155afdeb8cb061cddeb5cfcf8178f9",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-8.svg",
-      "baseline_sha256": "789415b9bb8d5ced37b35625f7dbe2a360ae2c45951337d23af5885d8b66df25"
+      "baseline_sha256": "789415b9bb8d5ced37b35625f7dbe2a360ae2c45951337d23af5885d8b66df25",
+      "editorial_correction": "Chapter8 diagram readability and consistency: conditional token prediction, SFT/generalization scope, nonmandatory SFT/RL stages, GeneralPoints percentage-point results; natural-width fonts."
     },
     {
       "path": "book/images/fig8-9.svg",
       "source_blob_sha1": "1ea2c7167dac1ca59de4e9d5aaa19c271307368b",
       "source_sha256": "5528b2ec4108946914747f99c33043601790f656ac2005e2200c27d76438089c",
       "raw_sha256": "567b9852504d5a99f04eda4e81413736410d7a15d39ada4f710b974d8b69b0c3",
-      "final_sha256": "567b9852504d5a99f04eda4e81413736410d7a15d39ada4f710b974d8b69b0c3",
-      "origin": "baseline-reuse",
+      "final_sha256": "f5a304de8baddcea3826c13a6575f7947fb4bcb83adab8a098947b2b841937ad",
+      "origin": "editorial-correction",
       "baseline_commit": "ed2ae516d45dfe26e934cb390b80f105ca780b1f",
       "baseline_path": "book/images/fig7-9.svg",
-      "baseline_sha256": "567b9852504d5a99f04eda4e81413736410d7a15d39ada4f710b974d8b69b0c3"
+      "baseline_sha256": "567b9852504d5a99f04eda4e81413736410d7a15d39ada4f710b974d8b69b0c3",
+      "editorial_correction": "Chapter8 source review: experimental scope, readable natural-width labels, and distinction between interaction and training."
     },
     {
       "path": "book/images/fig9-1.svg",

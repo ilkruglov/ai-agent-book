@@ -15,3 +15,9 @@ __pycache__/
 *.synctex.gz
 *.toc
 *.xdv
+
+# Generated audiobook audio is distributed through GitHub Releases.
+/audiobook/*.mp3
+/audiobook/audio/
+/audiobook/qa/
+/audiobook/remaining-progress.json

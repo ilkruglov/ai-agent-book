@@ -51,28 +51,28 @@
     },
     {
       "path": "book/images/fig10-10.svg",
-      "sha256": "cea780840cbbf48b45a3a752df22c8054bc8e2ad27840f0e05795bdb8f69b4b4",
-      "status": "baseline-reuse"
+      "sha256": "aea3f50658c2d0970458726c00a70b5bd0f1301760410a099088a5a6249a531d",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig10-11.svg",
-      "sha256": "066bfa1436e08bff6911f06740b9d9c1c9f8c4ae8c77894c2e80df667500a82e",
-      "status": "baseline-reuse"
+      "sha256": "546d3a2e854c2a25dd2d2eb3eecfc574f918da8842e7a0cab1278140b308e41b",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig10-2.svg",
-      "sha256": "aa70f624de7dec046f36dc2f46664b50016d8f09e359dabccd26ef927f5328a7",
-      "status": "baseline-reuse"
+      "sha256": "eb94cbbbcdd0dd83e2fb69092dc06d51bb82e851e59b6b2e4b5ccca0ae08f43a",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig10-3.svg",
-      "sha256": "4cb32406209a7c4a677c2fa460e218514febcf102c7308684bfc54a1c8c1d6ae",
-      "status": "baseline-reuse"
+      "sha256": "c47d1364ca0e76ddb483782b6d2dcabf190804df14cc01a42076bb73931a685e",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig10-4.svg",
-      "sha256": "4558e38b7382545ae5ef39e1b3ffe77fb2815f93fed2d0d7883efb29f1ef1c9a",
-      "status": "baseline-reuse"
+      "sha256": "37f5f392a599f6cb27db8220cb54860382d7818e21580d036d1768056dc29565",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig10-5.svg",
@@ -81,18 +81,18 @@
     },
     {
       "path": "book/images/fig10-6.svg",
-      "sha256": "ebd147d8c7446831d349287c0057fb8c51495abafa99ce5356188b227d63e130",
-      "status": "baseline-reuse"
+      "sha256": "1a722a8b2af1f60134a0ff7acfcb644015153744a109fc6fcb17cd479c687a2a",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig10-7.svg",
-      "sha256": "2897f976607892bc98af03b054d0f7c15f0af825d3507252af72bf407d49b839",
-      "status": "baseline-reuse"
+      "sha256": "2dac7990d76d4b68357a3d8bed288cf6b492d71c93f2645e48790269f694cd13",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig10-8.svg",
-      "sha256": "f20e06b4d21a68d15221abe0ad79095a35e1f4ae2fc6ebb0ab339db875553a76",
-      "status": "baseline-reuse"
+      "sha256": "70aa385cf7a5f9dd9840f80560c8cf35481a843a718fc81f92563dd0fd5f2a7a",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig10-9.svg",
@@ -111,8 +111,9 @@
     },
     {
       "path": "book/images/fig2-11.svg",
-      "sha256": "2838c359d321c9b437e9d3b4f88145d922e256b7998fc5b3fa5b43cb678a9f98",
-      "status": "baseline-reuse"
+      "sha256": "7673d2177d5e1be2f6a7318cdc1071917c3346d990e3fdb17f1c30a3bef80b73",
+      "status": "editorial-correction",
+      "editorial_correction": "2026-09-30: схемы главы 2 согласованы с содержанием v2.0; стоимость и условия кэша уточнены."
     },
     {
       "path": "book/images/fig2-12.svg",
@@ -121,8 +122,9 @@
     },
     {
       "path": "book/images/fig2-13.svg",
-      "sha256": "f7c05b6b74e57b8be1f704f8c2a08a0ab2f60f5d2000ed4787e8ae92576f9df0",
-      "status": "baseline-reuse"
+      "sha256": "06939ecac64678c740c04e0ca93844bf53ae2de66ae525bc422b7d923ef5cdb2",
+      "status": "editorial-correction",
+      "editorial_correction": "2026-09-30: схемы главы 2 согласованы с содержанием v2.0; стоимость и условия кэша уточнены."
     },
     {
       "path": "book/images/fig2-14.svg",
@@ -146,8 +148,9 @@
     },
     {
       "path": "book/images/fig2-2.svg",
-      "sha256": "f18b45b3009c6318a65625125f8d45694b4d04693650bbeffb022ca48ffe6aa1",
-      "status": "baseline-reuse"
+      "sha256": "4f50982b74e6bae84979bd76936582d8505816b19bb1b0afb02b2e5e81906ff1",
+      "status": "editorial-correction",
+      "editorial_correction": "2026-09-30: схемы главы 2 согласованы с содержанием v2.0; стоимость и условия кэша уточнены."
     },
     {
       "path": "book/images/fig2-3.svg",
@@ -156,13 +159,15 @@
     },
     {
       "path": "book/images/fig2-4.svg",
-      "sha256": "0ed2234921221c99a994e03ec109873c85ed651bf88c35a559d4b5c27cddf18c",
-      "status": "baseline-reuse"
+      "sha256": "79d418da17c07bab877f23bd7c9ec668b28eaed6487f7e085b0e7e485c32cb77",
+      "status": "editorial-correction",
+      "editorial_correction": "2026-09-30: схемы главы 2 согласованы с содержанием v2.0; стоимость и условия кэша уточнены."
     },
     {
       "path": "book/images/fig2-5.svg",
-      "sha256": "a1490261687d2d2a3a53396ff6480006b1e18ae911a38dc81c52dbd75222274b",
-      "status": "baseline-reuse"
+      "sha256": "82a4d9f124cf42b96d0dddc07bebec33a911524facb5e147b99f5470e5f1a54e",
+      "status": "editorial-correction",
+      "editorial_correction": "2026-09-30: схемы главы 2 согласованы с содержанием v2.0; стоимость и условия кэша уточнены."
     },
     {
       "path": "book/images/fig2-6.svg",
@@ -176,43 +181,51 @@
     },
     {
       "path": "book/images/fig2-8.svg",
-      "sha256": "82a0bf9e95c7a9dfd0933a2f4b201d20b1621d40d6bb314f09408bd89f109d63",
-      "status": "baseline-reuse"
+      "sha256": "025743ab987d7e3f9fa745983b4fd141e275bc569549dca563ea1f85bc5e9443",
+      "status": "editorial-correction",
+      "editorial_correction": "2026-09-30: схемы главы 2 согласованы с содержанием v2.0; стоимость и условия кэша уточнены."
     },
     {
       "path": "book/images/fig2-9.svg",
-      "sha256": "152d32d385bfbb260ab9604de82881dd2d20100049bce74a2ea3b31b2aa8ddcd",
-      "status": "baseline-reuse"
+      "sha256": "768926c3bbeee402854ace8799800ea3b16d0264ff7fbbaf9eb7ff8c7d6c2b18",
+      "status": "editorial-correction",
+      "editorial_correction": "2026-09-30: схемы главы 2 согласованы с содержанием v2.0; стоимость и условия кэша уточнены."
     },
     {
       "path": "book/images/fig3-1.svg",
-      "sha256": "5ab3e6202e8c9580b459d55c02c6378f42e178ca217e765873021d410d348ec7",
-      "status": "baseline-reuse"
+      "sha256": "1121a866494f9994d95ef3a180d729fbe01b8a127b0f5f085d284838ca794cb6",
+      "status": "editorial-correction",
+      "note": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-10.svg",
-      "sha256": "7bb4d360617a1a547e0a1cb7898a6f0d5c5ab87885c11ea53d1e9b8346a78554",
-      "status": "baseline-reuse"
+      "sha256": "4d8d60bae92b62d6fb7a716b96b21b5a7ad60faa54bbcf2cab71a04e5991f86a",
+      "status": "editorial-correction",
+      "note": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-11.svg",
-      "sha256": "9fa5d14ef338bd7f92bd213649f5c2764b2d827dca62d7f52fd089f210c56ed4",
-      "status": "baseline-reuse"
+      "sha256": "7553d7230fb1182a28c8dc5173a6e7d8b4353a0e99c547d96391ade6681844fb",
+      "status": "editorial-correction",
+      "note": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-12.svg",
-      "sha256": "e3deac38cede5bc4f5afcde4fae92f1e338b94b797dd411f49e0f79aa3ab3b99",
-      "status": "baseline-reuse"
+      "sha256": "675d3f9fcc559181e49796dc24d9578d005482e9aaa042fd5ef02b3d88a08626",
+      "status": "editorial-correction",
+      "note": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-13.svg",
-      "sha256": "af8bc49bb364849990d83ddef91ba0d3bdaf5d7d7f647267482e76be2533c504",
-      "status": "baseline-reuse"
+      "sha256": "0cb72db5b5b1d463b7f5fa7dc35406d85468857ae63b235fb07098edf5006055",
+      "status": "editorial-correction",
+      "note": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-14.svg",
-      "sha256": "77526f532224d7496dcacd62cade2ff4db1a281d48a0820a394f6db97cf73393",
-      "status": "baseline-reuse"
+      "sha256": "2630d16197e4725d4370d78263edc9c13e9eb1486a86a1165c09b3502acbe978",
+      "status": "editorial-correction",
+      "note": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-15.svg",
@@ -221,8 +234,9 @@
     },
     {
       "path": "book/images/fig3-2.svg",
-      "sha256": "838d0cf4d72cf8584e30ab7cd78c21f2bd5b8a71d3237cead954540d917dfef5",
-      "status": "baseline-reuse"
+      "sha256": "87052b39381e1764792b8f90cb0f24ec15e10d5ee910a2ef3ac0a32d55cbf7a8",
+      "status": "editorial-correction",
+      "note": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-3.svg",
@@ -231,23 +245,27 @@
     },
     {
       "path": "book/images/fig3-4.svg",
-      "sha256": "63903ef9ee673dd62aade9413c0a912d7d5c0519e7680f6711dffd771b5524d7",
-      "status": "baseline-reuse"
+      "sha256": "d322664c6489bd4c0126e374ef25309ef936f58e2363a24a4b6565a38551493b",
+      "status": "editorial-correction",
+      "note": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-5.svg",
-      "sha256": "4d582f958ebd8fe2f486eecc7859922957544a13c47808f3bd9cdd73d9402163",
-      "status": "baseline-reuse"
+      "sha256": "be91a7dfd94962efd7964eca71c26cf454317f66af84640c446bfe2daf9abd45",
+      "status": "editorial-correction",
+      "note": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-6.svg",
-      "sha256": "8616edd94e885b7100e80fb1e2d70ed8ed035eb9376059873bd9d3445f6fd053",
-      "status": "baseline-reuse"
+      "sha256": "a754dd2cf21c42a57bc8da7db38a71300fb8faade131f66067634ce827626afe",
+      "status": "editorial-correction",
+      "note": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-7.svg",
-      "sha256": "65494339b4e45411ebdb18ad45c44a1dd16b3fbd7869acaef91cf458b2e0f454",
-      "status": "baseline-reuse"
+      "sha256": "1bafac1f68378ceea800d41c64bb1cf8778c85ec34c535a5b0ab41bd28e71727",
+      "status": "editorial-correction",
+      "note": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig3-8.svg",
@@ -256,8 +274,9 @@
     },
     {
       "path": "book/images/fig3-9.svg",
-      "sha256": "1c92b28b673677e9133085f511747b3cbf62b09be104b70c5cba72645fb0cf42",
-      "status": "baseline-reuse"
+      "sha256": "98c904ef6a2b10658833bec638da452b879f431d327aa6fb53a1755aba2ae283",
+      "status": "editorial-correction",
+      "note": "Correct chapter 3 v2.0 figure-to-caption mapping against the frozen upstream; restore the intended diagram and Russian labels. Figure 3-9 includes both RRF fusion and neural reranking; all six distinct candidate IDs remain after deduplication."
     },
     {
       "path": "book/images/fig4-1.svg",
@@ -271,13 +290,15 @@
     },
     {
       "path": "book/images/fig4-3.svg",
-      "sha256": "3a2decdc1181c094e8b9a99a00f023f8b66fd1032effc03783a07f3dc7383a30",
-      "status": "gpt-translation"
+      "sha256": "e8399f9091ec1ffc515e4769a0a96d57ea46bc4eb6259dcae314ccb208fa219e",
+      "status": "gpt-translation",
+      "note": "Editorial correction: prefix changes invalidate from the change point; cache hits depend on provider conditions, not guaranteed rates."
     },
     {
       "path": "book/images/fig4-4.svg",
-      "sha256": "cbbbb84af98d8d3cee1c50946783435132ecacfef2249758b06aa28a377543ac",
-      "status": "gpt-translation"
+      "sha256": "0beb8ac842b2fa79144d62df732870ebbb5255d60b35f8e1dfa328fce12d2ba2",
+      "status": "gpt-translation",
+      "note": "Editorial correction: prefix changes invalidate from the change point; cache hits depend on provider conditions, not guaranteed rates."
     },
     {
       "path": "book/images/fig5-1.svg",
@@ -286,8 +307,9 @@
     },
     {
       "path": "book/images/fig5-10.svg",
-      "sha256": "5949e0f67630dd66d4f38e07a10cce7852f3b16dd38e35736ff74646c69043e6",
-      "status": "baseline-reuse"
+      "sha256": "560ea1bf815a16bd75d1e898ef2371bbfe15709dba658b0b71d20185e542b27b",
+      "status": "editorial-correction",
+      "note": "Inherited framework requires quality tests."
     },
     {
       "path": "book/images/fig5-11.svg",
@@ -296,8 +318,9 @@
     },
     {
       "path": "book/images/fig5-2.svg",
-      "sha256": "862016b6f4bbe6aea1fe93fb7c3f8fb0dcf310976aec6ff4ad082fb7aa07a7fe",
-      "status": "baseline-reuse"
+      "sha256": "f1b1e5b1cf7b5067acbfc4f2a99391264bf33d0133069d7153e9ae7e1b415d74",
+      "status": "editorial-correction",
+      "note": "Correct code-review terminology, code repair, output truncation and iteration bounds."
     },
     {
       "path": "book/images/fig5-3.svg",
@@ -321,8 +344,9 @@
     },
     {
       "path": "book/images/fig5-7.svg",
-      "sha256": "afe7689633a8ff253d50f255b477ac4d1f131c71e83ab8621cf8397a4f10763f",
-      "status": "baseline-reuse"
+      "sha256": "cdced4f4947e6c39e3267cef64d1643e5d355e874b2bda68ae016d5c76453e99",
+      "status": "editorial-correction",
+      "note": "Remove invalid post-purchase insurance advice and unsupported speed guarantee; correct check terminology."
     },
     {
       "path": "book/images/fig5-8.svg",
@@ -336,8 +360,9 @@
     },
     {
       "path": "book/images/fig6-1.svg",
-      "sha256": "492341b2477738b39c81ab720377ddcfcd5bd2441977a1cba4e1cd03c14a9a12",
-      "status": "baseline-reuse"
+      "sha256": "829ea90a8efb4224e7b1e638bf093305f7feeeebe730b398f13bb33ba660e197",
+      "status": "editorial-correction",
+      "note": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-10.svg",
@@ -346,13 +371,15 @@
     },
     {
       "path": "book/images/fig6-11.svg",
-      "sha256": "e4b0476088cf7752e25e62e3622b9b9414388231c2a7654475378389fd370c7e",
-      "status": "baseline-reuse"
+      "sha256": "eb7481fae331f8bd42d4f5fbdec17c84d26c11b64f1c80b7863281e79f647f00",
+      "status": "editorial-correction",
+      "note": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-12.svg",
-      "sha256": "f922a171e8259414b4a209d4e9ccc0112764e1db3bb8a07d7d219455ae6b9076",
-      "status": "baseline-reuse"
+      "sha256": "366f633fda5218445cecbb1b3db843b27d67121999ede09f3671d388596e3601",
+      "status": "editorial-correction",
+      "note": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-13.svg",
@@ -361,13 +388,15 @@
     },
     {
       "path": "book/images/fig6-14.svg",
-      "sha256": "282664940c155748ef89a491de19a2d544a44d634a4fef11434bb28fc3f8c6a1",
-      "status": "baseline-reuse"
+      "sha256": "7a80dbd31fe48a837d9c9a1cb5a728aee8fae29c9392f1f83e66aaee5641124e",
+      "status": "editorial-correction",
+      "note": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-2.svg",
-      "sha256": "bc772b3a2003fb227bff312fb397f430a0798a627984f8874bfe6c7e84031e38",
-      "status": "gpt-translation"
+      "sha256": "dd317e30c279bf1f2c721d5986f8f4fc3263ac2e45376ad8f46e64076a34936e",
+      "status": "gpt-translation",
+      "note": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-3.svg",
@@ -386,23 +415,27 @@
     },
     {
       "path": "book/images/fig6-6.svg",
-      "sha256": "827b77c4821169fb50489f3d3d8f683e3b2eae62ce0ccacce8606749a95f3d17",
-      "status": "baseline-reuse"
+      "sha256": "3211dc3892e357946615ba83750a90c5fbe9870204843cd2d9eb1ebccb688803",
+      "status": "editorial-correction",
+      "note": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-7.svg",
-      "sha256": "e9416e8fe800e030f744db470c3fd7463444d31a0767889a70a24d94f9be7481",
-      "status": "baseline-reuse"
+      "sha256": "94979a6e986aaa32870c6655316d01f88683598099cf5300e8e00b3c6c48ffae",
+      "status": "editorial-correction",
+      "note": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-8.svg",
-      "sha256": "ac9a2e32d86077c07a4ff690e4ff30f090d17652d0e9e3192211044c68090664",
-      "status": "baseline-reuse"
+      "sha256": "ded2bf2fadcc6d303b1e233f98669a7f094dada5fdd9ab90b0e8ad5d14b29f74",
+      "status": "editorial-correction",
+      "note": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig6-9.svg",
-      "sha256": "e277ac1924b28c49fbbd0dea48360f546be53f503b88d42ec2c99b48a5e0db1a",
-      "status": "gpt-translation"
+      "sha256": "a8be1e5d22e813d726bfb8113c163dc439300add318fb1b92ddb8151e0c5b156",
+      "status": "gpt-translation",
+      "note": "Chapter6 editorial correction: clarify event/latency labels, illustrative queue assumptions and coordinate scaling; preserve source provenance."
     },
     {
       "path": "book/images/fig7-1.svg",
@@ -411,7 +444,7 @@
     },
     {
       "path": "book/images/fig7-10.svg",
-      "sha256": "17ae6bfb0331d3f1e8ceae2177600d07c9d0134595cc80feabde4b6f90d3b69b",
+      "sha256": "6e7283ce193104c63f3aefe6a16c3d56a917f731654c458015f4ad5b33e19b88",
       "status": "gpt-translation"
     },
     {
@@ -421,22 +454,22 @@
     },
     {
       "path": "book/images/fig7-3.svg",
-      "sha256": "4adac31e1b447c67dbf435fbf574ead4f363a28fd7b1f7c9dc6e8c04784a44fd",
+      "sha256": "4813a4494521f8aa9f3fd29e85069a81136ebaa5ba03d02d3bf186fd79aa14e8",
       "status": "gpt-translation"
     },
     {
       "path": "book/images/fig7-4.svg",
-      "sha256": "6a306f44a492aee8a6e37707819f25e9bdc85b00837bf8f363742d21c030a17c",
+      "sha256": "8c82d42e9d4b680c0f1cb2e24846a2000d97a0812ca719744083be965c0a6703",
       "status": "gpt-translation"
     },
     {
       "path": "book/images/fig7-5.svg",
-      "sha256": "fdc965daf43f7b2354e3d346eacffd2060727a8d98c794555c64001583ee3939",
+      "sha256": "922603202a5f71db4ab9e6403748fe7faf95006f0283bb00f1e5d38865412c06",
       "status": "gpt-translation"
     },
     {
       "path": "book/images/fig7-6.svg",
-      "sha256": "8cbfded1dd15aa6bf6eebc8ce9a9c515559011566bab2e97e8927110dfd9e168",
+      "sha256": "ddb5e63b92113b03adfcc49b4b6d8cf51850484c2cf8b41005a04be6790b18aa",
       "status": "gpt-translation"
     },
     {
@@ -446,33 +479,33 @@
     },
     {
       "path": "book/images/fig7-8.svg",
-      "sha256": "460da91e2eedc455775c4742ce7ac3002807db2a3d7fe62fda36594fae5ddd6e",
-      "status": "baseline-reuse"
+      "sha256": "79c6a5e86684ca86a14e5bb9fdf3484a10cd3a9d4ca7e82568fa3922bdb17fa9",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig7-9.svg",
-      "sha256": "470fde802e966d73e5130d76adcbf13fd4490c59e4192cfc7eaf9826eb75ec28",
-      "status": "baseline-reuse"
+      "sha256": "6fe20bd7b4c484c1f63cc6b02aa30a2c0cbd2a9c8a91f5a80ddf3e941e634b1b",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-1.svg",
-      "sha256": "5ff6a5ffb8df81d0798b2a7d53797e83abc17660dc2718cf503de46503635dbe",
-      "status": "baseline-reuse"
+      "sha256": "fba72d44eb97e84b3cfa603452241bc8f1b8d7914ea39b783c388b494cf2a39e",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-10.svg",
-      "sha256": "39a33b8128854ce8a78340b712d806d731e74c5064d9e63a614b4c519471153f",
-      "status": "baseline-reuse"
+      "sha256": "9df991350629b05b4411b6db9385f26facd2664893871e4db60e3a9b128a224b",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-11.svg",
-      "sha256": "0a5503a1b2b5d4f58ae277559109fa699aa20f4cedf07e58cab8befd68bec411",
-      "status": "baseline-reuse"
+      "sha256": "8b5fa96ee7314c73fb0a02c212d77fa08dff21a0b97bc6ac3940ce92fcc8aac8",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-12.svg",
-      "sha256": "be5e8750f4b4d2f0067d50e47aa202acbe83b7bd143bd7496b7e64bddac62a1a",
-      "status": "baseline-reuse"
+      "sha256": "5417f93ea00338542aeb35f942759ce851486269f163bf6184f2de30c10b44ac",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-13.svg",
@@ -481,68 +514,68 @@
     },
     {
       "path": "book/images/fig8-14.svg",
-      "sha256": "5f1117508616d371906bd8580c8e4dddb4d9956bdf5263821b0c45b54324d5ef",
-      "status": "baseline-reuse"
+      "sha256": "d1172641cdcf5ad1219a8e70833879971055954f571a40eea2b0565c1ac7cebf",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-15.svg",
-      "sha256": "0911a4937df1cf578b1811dea5ac6c2f7b44919f3a2e0d1a304a6e8142ce4afe",
-      "status": "baseline-reuse"
+      "sha256": "70fa15bcb37cec026e701c9f2fca917938184907bd8f3de8a99178d019c0778c",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-16.svg",
-      "sha256": "4f2f0e42d64fd8769de872ffca04e5df51a9da47a7e5c1531777be5225d168e1",
-      "status": "baseline-reuse"
+      "sha256": "cf7c51ffffd6e44495fe55d664b998fb53862c30437de121fb8e91304fe081b5",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-17.svg",
-      "sha256": "4c56350cf76e7e74cb3d6efa537ea7543ae44a8a7d1152d5d935f3f7f5e66177",
-      "status": "baseline-reuse"
+      "sha256": "53dec8f80863b04a9beb2666beab4a0fef04a3900a9aa4869d6779b6cffac0c1",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-18.svg",
-      "sha256": "add44549a244b0e24c19c726680ddb667019725bab7ad6e09b4ec080660dc6be",
-      "status": "baseline-reuse"
+      "sha256": "69ae1623d71df8b897468f0d4e9b6b0f345775d89dd2bef824138167fead53d8",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-2.svg",
-      "sha256": "155b5998aaec5342e6fa1c94fb21580c7c0238918aa8e87ca2c34ff504ad7770",
-      "status": "baseline-reuse"
+      "sha256": "37e66f063ca29fc1023b7569eac12b6c86865f34cc4c22e8f8915754e09cd00a",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-3.svg",
-      "sha256": "59bbd0fd748ffe82eae670d77f3f737742fe28bb2e1baed7cae253245e1f0b20",
-      "status": "baseline-reuse"
+      "sha256": "3b901281f62b5ae1bda9327d519265c20367367285fe1f85a10d0e21afcec277",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-4.svg",
-      "sha256": "eb8514b0ccba6188c68f0ee7eea6d4f9b24eb6a4e253b9128a7d9c86fa725c42",
-      "status": "baseline-reuse"
+      "sha256": "b90fcbdd093cbe54d1ab8528b410f8b662ebf62c456246744a3dcf774ab5e1ad",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-5.svg",
-      "sha256": "5a0aab69a9390f46bad75eff41d3da3fa6d22e963b87b20825a86daeda848bd8",
-      "status": "baseline-reuse"
+      "sha256": "52578f887ec9bf6f5ae86df240d27a394bf4ea051a71ca7821ba8bec06b1b885",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-6.svg",
-      "sha256": "d611f6a067826e3daf7b26454b83e0ff9f8f2746b43a6fc499103f8a4826ac04",
-      "status": "baseline-reuse"
+      "sha256": "e7df01fd26e5177012ae73581cefcfb0f7db66d57719d81c3d9ff976f29a4a80",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-7.svg",
-      "sha256": "33eb62fbc9505cf2ce7b4f22285899b4e02892e3e1550cc80508ed9745bbbee0",
-      "status": "baseline-reuse"
+      "sha256": "6e3e73fefd7aee644e6071f4209428754bfc17cbd2f1fb25d65ccc910b55a4c2",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-8.svg",
-      "sha256": "789415b9bb8d5ced37b35625f7dbe2a360ae2c45951337d23af5885d8b66df25",
-      "status": "baseline-reuse"
+      "sha256": "c468ae05e57642c5e24e391f0861a14ef7155afdeb8cb061cddeb5cfcf8178f9",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig8-9.svg",
-      "sha256": "567b9852504d5a99f04eda4e81413736410d7a15d39ada4f710b974d8b69b0c3",
-      "status": "baseline-reuse"
+      "sha256": "f5a304de8baddcea3826c13a6575f7947fb4bcb83adab8a098947b2b841937ad",
+      "status": "editorial-correction"
     },
     {
       "path": "book/images/fig9-1.svg",

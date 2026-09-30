@@ -1,56 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 40 980 520" width="980" height="520" style="background:#ffffff">
-<defs><marker id="ah" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto"><polygon points="0 0, 12 4, 0 8" fill="#333333"/></marker><marker id="ah-light" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto"><polygon points="0 0, 12 4, 0 8" fill="#999999"/></marker></defs>
-
-<rect x="20" y="60" width="420" height="130" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2"/>
-<text x="230" y="82" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="163.50" lengthAdjust="spacingAndGlyphs">① Наблюдение: отчёт диагностики</text>
-<text x="40" y="102" font-family="'Courier New', Courier, monospace" font-size="13" fill="#333333" text-anchor="start" dominant-baseline="central" textLength="182.03" lengthAdjust="spacingAndGlyphs">Общая успешность: 88% (102/116)</text>
-<text x="40" y="124" font-family="'Courier New', Courier, monospace" font-size="13" fill="#333333" text-anchor="start" dominant-baseline="central">transcription: 0%  complex_ui: 17%</text>
-<text x="40" y="146" font-family="'Courier New', Courier, monospace" font-size="13" fill="#333333" text-anchor="start" dominant-baseline="central" textLength="236.83" lengthAdjust="spacingAndGlyphs">math_counting: 0%  операции Wi-Fi: 0%</text>
-<text x="40" y="168" font-family="'Courier New', Courier, monospace" font-size="13" fill="#333333" text-anchor="start" dominant-baseline="central" textLength="176.83" lengthAdjust="spacingAndGlyphs">Сбои сконцентрированы в Task 82 и 102–115</text>
-<rect x="460" y="60" width="400" height="130" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2"/>
-<text x="660" y="82" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="203.50" lengthAdjust="spacingAndGlyphs">② Гипотезы: трёхуровневая схема улучшений</text>
-<rect x="475" y="94" width="60" height="24" rx="12" fill="#d0d0d0" stroke="#333333" stroke-width="2"/>
-<text x="505.0" y="106.0" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="28.00" lengthAdjust="spacingAndGlyphs">Поверхностный</text>
-<text x="545" y="106" font-family="'Courier New', Courier, monospace" font-size="12" fill="#333333" text-anchor="start" dominant-baseline="central" textLength="160.81" lengthAdjust="spacingAndGlyphs">H1 промпт навигации по настройкам  H2 правила UI</text>
-<rect x="475" y="126" width="60" height="24" rx="12" fill="#d0d0d0" stroke="#333333" stroke-width="2"/>
-<text x="505.0" y="138.0" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="28.00" lengthAdjust="spacingAndGlyphs">Средний</text>
-<text x="545" y="138" font-family="'Courier New', Courier, monospace" font-size="12" fill="#333333" text-anchor="start" dominant-baseline="central" textLength="158.42" lengthAdjust="spacingAndGlyphs">H3 починить мультимодальный пайплайн  H4 рассуждение</text>
-<rect x="475" y="158" width="60" height="24" rx="12" fill="#d0d0d0" stroke="#333333" stroke-width="2"/>
-<text x="505.0" y="170.0" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="28.00" lengthAdjust="spacingAndGlyphs">Глубинный</text>
-<text x="545" y="170" font-family="'Courier New', Courier, monospace" font-size="12" fill="#333333" text-anchor="start" dominant-baseline="central" textLength="136.83" lengthAdjust="spacingAndGlyphs">H5 GPT-5  H6 дерево UI-элементов</text>
-<line x1="420" y1="125" x2="458" y2="125" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="20" y="210" width="840" height="120" rx="6" fill="#ffffff" stroke="#333333" stroke-width="2" stroke-dasharray="8,4"/>
-<text x="440" y="232" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="404.13" lengthAdjust="spacingAndGlyphs">③ Эксперимент: поэтапная проверка (5 запусков × 116 задач на конфигурацию)</text>
-<rect x="40" y="250" width="190" height="65" rx="6" fill="#d0d0d0" stroke="#333333" stroke-width="2"/>
-<text x="135" y="268" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="56.91" lengthAdjust="spacingAndGlyphs">H1 Навигация</text>
-<text x="135" y="288" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="94.16" lengthAdjust="spacingAndGlyphs">Настройки 0%→75%</text>
-<text x="135" y="304" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal">token+8%</text>
-<rect x="250" y="250" width="190" height="65" rx="6" fill="#d0d0d0" stroke="#333333" stroke-width="2"/>
-<text x="345" y="268" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="72.91" lengthAdjust="spacingAndGlyphs">H3 Мультимодальность</text>
-<text x="345" y="288" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="94.16" lengthAdjust="spacingAndGlyphs">Транскрипция 0%→80%</text>
-<text x="345" y="304" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="50.97" lengthAdjust="spacingAndGlyphs">Задержка +1s</text>
-<rect x="460" y="250" width="190" height="65" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2"/>
-<text x="555" y="268" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="56.91" lengthAdjust="spacingAndGlyphs">H4 Рассуждение</text>
-<text x="555" y="288" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="94.16" lengthAdjust="spacingAndGlyphs">Подсчёт 0%→70%</text>
-<text x="555" y="304" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="50.58" lengthAdjust="spacingAndGlyphs">Задержка 3x!</text>
-<rect x="670" y="250" width="190" height="65" rx="6" fill="#d0d0d0" stroke="#333333" stroke-width="2"/>
-<text x="765" y="268" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="72.91" lengthAdjust="spacingAndGlyphs">H6 Дерево элементов</text>
-<text x="765" y="288" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="normal">UI 17%→52%</text>
-<text x="765" y="304" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal">token+30%</text>
-<rect x="20" y="350" width="420" height="130" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2"/>
-<text x="230" y="372" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="210.16" lengthAdjust="spacingAndGlyphs">④ Решение: баланс затрат и пользы</text>
-<text x="40" y="395" font-family="'Courier New', Courier, monospace" font-size="13" fill="#333333" text-anchor="start" dominant-baseline="central" textLength="197.64" lengthAdjust="spacingAndGlyphs">✓ H1+H3: дёшево и эффективно → внедрить</text>
-<text x="40" y="419" font-family="'Courier New', Courier, monospace" font-size="13" fill="#333333" text-anchor="start" dominant-baseline="central" textLength="231.45" lengthAdjust="spacingAndGlyphs">✗ H4: польза для 8% задач, но задержка 3x → отклонить</text>
-<text x="40" y="443" font-family="'Courier New', Courier, monospace" font-size="13" fill="#333333" text-anchor="start" dominant-baseline="central" textLength="202.86" lengthAdjust="spacingAndGlyphs">✓ H6: +35% / +30% затрат → внедрить</text>
-<text x="40" y="467" font-family="'Courier New', Courier, monospace" font-size="13" fill="#333333" text-anchor="start" dominant-baseline="central" textLength="192.45" lengthAdjust="spacingAndGlyphs">✗ H5: 15s/шаг неприемлемо → резерв</text>
-<rect x="460" y="350" width="400" height="130" rx="6" fill="#d0d0d0" stroke="#333333" stroke-width="2"/>
-<text x="660" y="372" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="183.50" lengthAdjust="spacingAndGlyphs">⑤ Итерация: новый цикл</text>
-<text x="480" y="395" font-family="'Courier New', Courier, monospace" font-size="13" fill="#333333" text-anchor="start" dominant-baseline="central" textLength="174.42" lengthAdjust="spacingAndGlyphs">Внедрить H1+H3+H6 → 88%→94%</text>
-<text x="480" y="419" font-family="'Courier New', Courier, monospace" font-size="13" fill="#333333" text-anchor="start" dominant-baseline="central" textLength="150.81" lengthAdjust="spacingAndGlyphs">Новый отчёт: другие типы сбоев:</text>
-<text x="480" y="443" font-family="'Courier New', Courier, monospace" font-size="13" fill="#333333" text-anchor="start" dominant-baseline="central" textLength="122.22" lengthAdjust="spacingAndGlyphs">  H7: включать рассуждение по условию</text>
-<text x="480" y="467" font-family="'Courier New', Courier, monospace" font-size="13" fill="#333333" text-anchor="start" dominant-baseline="central" textLength="135.22" lengthAdjust="spacingAndGlyphs">  H8: расширить пространство жестов</text>
-<line x1="870" y1="415" x2="870" y2="125" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
-<text x="885" y="270" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="bold" textLength="44.45" lengthAdjust="spacingAndGlyphs">↑ Цикл</text>
-<rect x="80" y="500" width="720" height="42" rx="6" fill="#999999" stroke="#333333" stroke-width="2"/>
-<text x="440" y="521" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#ffffff" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="444.02" lengthAdjust="spacingAndGlyphs">Метод: наблюдение→гипотеза→эксперимент→решение→итерация = от алхимии к инженерной науке</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="830" viewBox="0 0 900 830">
+<title>От наблюдения к проверенному улучшению: эксперимент AndroidWorld</title>
+<desc>Три парных сравнения на четырёх задачах Wi-Fi. H1 не увеличила успех, H5 улучшила наблюдения, H5C сократила токены. Полный прогон 116 задач с пятью seed остаётся следующим этапом.</desc>
+<defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0 0L9 4.5L0 9Z" fill="#4b5563"/></marker></defs>
+<rect width="900" height="830" fill="white"/>
+<g font-family="Arial, sans-serif" fill="#1f2937">
+<text x="450" y="34" text-anchor="middle" font-size="24" font-weight="bold">AndroidWorld: наблюдение → проверка → следующая итерация</text>
+<g fill="#f3f4f6" stroke="#4b5563" stroke-width="2">
+<rect x="30" y="60" width="840" height="112" rx="9"/>
+<rect x="30" y="200" width="840" height="112" rx="9"/>
+<rect x="30" y="340" width="840" height="112" rx="9"/>
+<rect x="30" y="480" width="840" height="112" rx="9"/>
+<rect x="30" y="620" width="840" height="150" rx="9"/>
+</g>
+<g stroke="#4b5563" stroke-width="2.5" marker-end="url(#arrow)">
+<path d="M450 174V194"/><path d="M450 314V334"/><path d="M450 454V474"/><path d="M450 594V614"/>
+</g>
+<g font-size="22" font-weight="bold">
+<text x="52" y="90">1. Наблюдение: исторический отчёт</text>
+<text x="52" y="230">2. H1: подсказки по навигации</text>
+<text x="52" y="370">3. H5: дерево UIAutomator вместо несовместимого feed</text>
+<text x="52" y="510">4. H5C: сокращение дерева без потери нужных данных</text>
+<text x="52" y="650">5. Решение: расширить проверку, не объявлять готовность</text>
+</g>
+<g font-size="20">
+<text x="52" y="122">Около 88% успеха на 116 задачах; сбои сгруппированы.</text>
+<text x="52" y="150">Для диагностики выделены 4 задачи Wi-Fi, по одному запуску.</text>
+<text x="52" y="262">Успех: 25% → 25%. Токены: 0,47× от контрольной группы.</text>
+<text x="52" y="290">Эта правка не дала прироста; проверяем другие гипотезы.</text>
+<text x="52" y="402">Успех: 25% → 100%. Токены: 2,498× от контрольной группы.</text>
+<text x="52" y="430">Наблюдения помогли, но их представление слишком дорого.</text>
+<text x="52" y="542">Успех: 100% → 100%. Токены: 0,506× от контрольной группы.</text>
+<text x="52" y="570">Все 4 задачи пройдены; это ещё не оценка всей системы.</text>
+<text x="52" y="684">Следующий этап: 116 задач × 5 seed, Pixel 6 / API 33.</text>
+<text x="52" y="716">Проверить успех, токены ≤ 75% и задержку ≤ 1,5× базы.</text>
+<text x="52" y="748">До полного прогона перенос результата на систему не доказан.</text>
+</g>
+<text x="450" y="808" font-size="20" text-anchor="middle">На каждой итерации меняется один фактор; область вывода ограничена выборкой.</text>
+</g></svg>

@@ -1,15 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 40 860 500" width="860" height="500" style="background:#ffffff">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 40 860 600" width="860" height="600" style="background:#ffffff">
 <defs><marker id="ah" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto"><polygon points="0 0, 12 4, 0 8" fill="#333333"/></marker></defs>
 
 
 <!-- Column headers -->
-<text x="145" y="62" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="93.89" lengthAdjust="spacingAndGlyphs">По завершении Turn 1</text>
-<text x="400" y="62" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="93.89" lengthAdjust="spacingAndGlyphs">По завершении Turn 2</text>
-<text x="655" y="62" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="93.89" lengthAdjust="spacingAndGlyphs">По завершении Turn 3</text>
+<text x="145" y="62" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">По завершении Turn 1</text>
+<text x="400" y="62" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">По завершении Turn 2</text>
+<text x="655" y="62" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="15" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">По завершении Turn 3</text>
 
-<text x="145" y="82" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666666" text-anchor="middle" dominant-baseline="central" textLength="114.00" lengthAdjust="spacingAndGlyphs">(первая загрузка skill PPTX)</text>
+<text x="145" y="82" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666666" text-anchor="middle" dominant-baseline="central">(первая загрузка skill PPTX)</text>
 <text x="400" y="82" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666666" text-anchor="middle" dominant-baseline="central">(чтение PDF)</text>
-<text x="655" y="82" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666666" text-anchor="middle" dominant-baseline="central" textLength="68.00" lengthAdjust="spacingAndGlyphs">(запись HTML)</text>
+<text x="655" y="82" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666666" text-anchor="middle" dominant-baseline="central">(запись HTML)</text>
 
 <!-- Column dividers -->
 <line x1="270" y1="55" x2="270" y2="430" stroke="#dddddd" stroke-width="1"/>
@@ -69,7 +69,7 @@
 
 <!-- Column 1 footer: cost -->
 <rect x="25" y="378" width="240" height="44" rx="4" fill="#fff8e1" stroke="#e6a817" stroke-width="1.5"/>
-<text x="145" y="392" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="114.72" lengthAdjust="spacingAndGlyphs">cache_creation этого хода</text>
+<text x="145" y="392" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">cache_creation этого хода</text>
 <text x="145" y="410" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#a06a00" text-anchor="middle" dominant-baseline="central" font-weight="bold">≈ 2.5k tokens</text>
 
 <!-- ============== COLUMN 2: Turn 2 ============== -->
@@ -117,7 +117,7 @@
 
 <!-- Column 2 footer: cost -->
 <rect x="280" y="378" width="240" height="44" rx="4" fill="#fff8e1" stroke="#e6a817" stroke-width="1.5"/>
-<text x="400" y="392" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="114.72" lengthAdjust="spacingAndGlyphs">cache_creation этого хода</text>
+<text x="400" y="392" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">cache_creation этого хода</text>
 <text x="400" y="410" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#a06a00" text-anchor="middle" dominant-baseline="central" font-weight="bold">≈ 0.5k tokens</text>
 
 <!-- ============== COLUMN 3: Turn 3 ============== -->
@@ -169,22 +169,22 @@
 
 <!-- Column 3 footer: cost -->
 <rect x="535" y="378" width="240" height="44" rx="4" fill="#fff8e1" stroke="#e6a817" stroke-width="1.5"/>
-<text x="655" y="392" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="114.72" lengthAdjust="spacingAndGlyphs">cache_creation этого хода</text>
+<text x="655" y="392" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">cache_creation этого хода</text>
 <text x="655" y="410" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#a06a00" text-anchor="middle" dominant-baseline="central" font-weight="bold">≈ 0.4k tokens</text>
 
 <!-- Legend -->
 <rect x="40" y="450" width="20" height="14" rx="2" fill="#fff3cd" stroke="#e6a817" stroke-width="1.5"/>
-<text x="68" y="457" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#333333" dominant-baseline="central" textLength="255.09" lengthAdjust="spacingAndGlyphs">NEW = новые токены хода; cache_creation оплачивается один раз</text>
+<text x="68" y="457" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#333333" dominant-baseline="central">NEW = новые токены; их обработка и запись в кэш имеют стоимость</text>
 
 <rect x="40" y="472" width="20" height="14" rx="2" fill="#f0f0f0" stroke="#aaaaaa" stroke-width="1"/>
-<text x="68" y="479" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#333333" dominant-baseline="central" textLength="188.80" lengthAdjust="spacingAndGlyphs">HIT = уже в кэшированном префиксе; в этом ходу бесплатно</text>
+<text x="68" y="479" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#333333" dominant-baseline="central">HIT = повторное использование префикса; цена зависит от тарифа</text>
 
 <rect x="40" y="494" width="20" height="14" rx="2" fill="none" stroke="#cccccc" stroke-width="1" stroke-dasharray="4,3"/>
-<text x="68" y="501" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#333333" dominant-baseline="central" textLength="123.34" lengthAdjust="spacingAndGlyphs">— Ещё не создано в этом ходу</text>
+<text x="68" y="501" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#333333" dominant-baseline="central">— Ещё не создано в этом ходу</text>
 
-<text x="450" y="479" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666666" dominant-baseline="central" textLength="369.78" lengthAdjust="spacingAndGlyphs">★ Вложение emit-once: cache_creation оплачивается лишь в Turn 1,</text>
-<text x="450" y="497" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666666" dominant-baseline="central" textLength="214.67" lengthAdjust="spacingAndGlyphs">      далее во всех ходах всегда HIT; предельная стоимость — ноль.</text>
+<text x="40" y="545" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666666" dominant-baseline="central">★ Пример emit-once: каталог и инструкции добавляются один раз;</text>
+<text x="40" y="568" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="12" fill="#666666" dominant-baseline="central">      повторное использование зависит от срока жизни и условий кэша.</text>
 
 <!-- Bottom note about position -->
-<text x="410" y="525" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#333333" text-anchor="middle" dominant-baseline="central" font-style="italic" textLength="452.84" lengthAdjust="spacingAndGlyphs">Важно: позиция сообщения после вставки не меняется; новое лишь добавляется в конец массива.</text>
+<text x="430" y="608" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#333333" text-anchor="middle" dominant-baseline="central" font-style="italic">В этом примере префикс неизменен, новые сообщения добавляются в конец.</text>
 </svg>

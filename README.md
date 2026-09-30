@@ -4,7 +4,13 @@
 
 Книга Bojie Li о проектировании AI-агентов: контексте, памяти, инструментах, оценке качества, обучении и совместной работе нескольких агентов.
 
-[Скачать книгу в PDF — 550 страниц](https://raw.githubusercontent.com/ilkruglov/ai-agent-book/main/dist/AI-Agents-in-Depth-RU-v2.0.pdf)
+[Скачать книгу в PDF — 565 страниц](https://raw.githubusercontent.com/ilkruglov/ai-agent-book/main/dist/AI-Agents-in-Depth-RU-v2.0.pdf)
+
+## Аудиокнига
+
+[Скачать аудиокнигу — 13 MP3, 28 часов 2 минуты](https://github.com/ilkruglov/ai-agent-book/releases/tag/audiobook-v2.0)
+
+Полная русская аудиоадаптация: введение, 10 глав, послесловие и ответы на вопросы. Схемы, таблицы и код объясняются словами; точные записи и ссылки доступны в печатной книге. Синтетическая озвучка ElevenLabs, голос «Artem Lebedev — Captivating and Engaging».
 
 ## Читать онлайн
 

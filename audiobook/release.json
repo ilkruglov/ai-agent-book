@@ -1,0 +1,100 @@
+{
+  "edition": "Русский перевод: community edition — аудиоадаптация 2.0",
+  "synthetic_voice": true,
+  "voice": "Artem Lebedev — Captivating and Engaging",
+  "model": "eleven_v4",
+  "total_duration_seconds": 100923.87265300001,
+  "files": [
+    {
+      "file": "00-Introduction.mp3",
+      "bytes": 29135499,
+      "duration_seconds": 1820.917551,
+      "sha256": "f45d0da6798c49b1024265475ac0bd0a364fdf5c978e33a6e22fc66ab7ba3e0c",
+      "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/00-Introduction.mp3"
+    },
+    {
+      "file": "01-Agent-Foundations.mp3",
+      "bytes": 110819382,
+      "duration_seconds": 6926.158367,
+      "sha256": "fce07e3590925b1bd3876d901d84fae5ec3e07d0fd15fa73294ce0df6f72a48f",
+      "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/01-Agent-Foundations.mp3"
+    },
+    {
+      "file": "02-Context-Engineering.mp3",
+      "bytes": 169854015,
+      "duration_seconds": 10615.823673,
+      "sha256": "1e0d60cc7e4e066b9378fc5e7c4a127b136111ffd4daf09bc06d597ccd1180d5",
+      "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/02-Context-Engineering.mp3"
+    },
+    {
+      "file": "03-Memory-and-Knowledge.mp3",
+      "bytes": 145408869,
+      "duration_seconds": 9088,
+      "sha256": "2f3033e08396d8caeab4aa395be1255e9ca4a1f323a3d663275929905678f9d7",
+      "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/03-Memory-and-Knowledge.mp3"
+    },
+    {
+      "file": "04-Tools.mp3",
+      "bytes": 105640846,
+      "duration_seconds": 6602.501224,
+      "sha256": "32b3934fa629347a9b35de94426ef8f413371dae245f91623a96309c787db32a",
+      "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/04-Tools.mp3"
+    },
+    {
+      "file": "05-Coding-and-General-Agents.mp3",
+      "bytes": 166464838,
+      "duration_seconds": 10403.996735,
+      "sha256": "139c6f609ff6799343882e535e6cffc1ed1bb3c3dd8914aa1e1476f4952fae56",
+      "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/05-Coding-and-General-Agents.mp3"
+    },
+    {
+      "file": "06-Interaction.mp3",
+      "bytes": 137912317,
+      "duration_seconds": 8619.467755,
+      "sha256": "f7297cdfd7af1dd2c4bf00de95f80a22a237a52049d2ca04fd51230575a2acc1",
+      "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/06-Interaction.mp3"
+    },
+    {
+      "file": "07-Evaluation.mp3",
+      "bytes": 161632313,
+      "duration_seconds": 10101.96898,
+      "sha256": "8c78ae94755b37fabb516d99c4e6217500de5c04afd76acca19c6138cc75ecfa",
+      "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/07-Evaluation.mp3"
+    },
+    {
+      "file": "08-Post-Training.mp3",
+      "bytes": 213715463,
+      "duration_seconds": 13357.165714,
+      "sha256": "34154baa79dfe984e59186f043d378f1a85dd823a264904f9ae5ffb14324d1b3",
+      "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/08-Post-Training.mp3"
+    },
+    {
+      "file": "09-Continual-Evolution.mp3",
+      "bytes": 90317231,
+      "duration_seconds": 5644.773878,
+      "sha256": "499807e696633c2d12d678aec6879bb70d089365f149cc67b33033e4ef3609fc",
+      "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/09-Continual-Evolution.mp3"
+    },
+    {
+      "file": "10-Multi-Agent-Collaboration.mp3",
+      "bytes": 150067848,
+      "duration_seconds": 9379.186939,
+      "sha256": "c7ec1d2e888296ef579894129abcdf59128be5d898653d5b55a6a6142bb061f5",
+      "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/10-Multi-Agent-Collaboration.mp3"
+    },
+    {
+      "file": "11-Afterword.mp3",
+      "bytes": 16040010,
+      "duration_seconds": 1002.44898,
+      "sha256": "c74ef326a8a8640538ee0b0bb6a352b8ffcfed288a87ea97357bc0ce69a03c4e",
+      "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/11-Afterword.mp3"
+    },
+    {
+      "file": "12-Reference-Answers.mp3",
+      "bytes": 117784258,
+      "duration_seconds": 7361.462857,
+      "sha256": "d661c9c4686fe3a3ae8cf0d595b1e7ebac2eeb9d5e721e998f0485273ff481c0",
+      "url": "https://github.com/ilkruglov/ai-agent-book/releases/download/audiobook-v2.0/12-Reference-Answers.mp3"
+    }
+  ]
+}

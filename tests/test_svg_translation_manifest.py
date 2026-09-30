@@ -139,10 +139,10 @@ def test_v2_assets_have_complete_two_pass_or_baseline_provenance() -> None:
         for item in json.loads((ROOT / "updates/v1.2/upstream.json").read_text())["images"]["files"]
     }
     assert len(records) == 114
-    assert sum(r["origin"] == "baseline-reuse" for r in records) == 74
+    assert sum(r["origin"] == "baseline-reuse" for r in records) == 18
     assert sum(r["origin"] == "gpt-translation" for r in records) == 38
     assert sum(r["origin"] == "upstream-technical-labels" for r in records) == 1
-    assert sum(r["origin"] == "editorial-correction" for r in records) == 1
+    assert sum(r["origin"] == "editorial-correction" for r in records) == 57
     for record in records:
         assert _sha256(ROOT / record["path"]) == record["final_sha256"]
         if record["origin"] == "baseline-reuse":

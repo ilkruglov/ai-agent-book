@@ -55,7 +55,7 @@
 <text x="800" y="295.0" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="end" dominant-baseline="central" font-weight="normal" textLength="145.0" lengthAdjust="spacingAndGlyphs">Наблюдение→мысль→действие</text>
 <line x1="630.0" y1="322" x2="630.0" y2="348" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
 <rect x="450" y="350" width="360" height="50" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2"/>
-<text x="460" y="375.0" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="bold" textLength="190.0" lengthAdjust="spacingAndGlyphs">Инструменты выполнения инструмента</text>
+<text x="460" y="375.0" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="bold" textLength="190.0" lengthAdjust="spacingAndGlyphs">Исполнение инструментов</text>
 <text x="800" y="375.0" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="end" dominant-baseline="central" font-weight="normal" textLength="145.0" lengthAdjust="spacingAndGlyphs">Асинхр./синхр. запуск</text>
 <line x1="630.0" y1="402" x2="630.0" y2="428" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
 <rect x="450" y="430" width="360" height="50" rx="6" fill="#d0d0d0" stroke="#333333" stroke-width="2"/>

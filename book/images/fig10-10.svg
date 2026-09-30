@@ -1,56 +1,55 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 40 810 520" width="810" height="520" style="background:#ffffff">
-<defs><marker id="ah" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto"><polygon points="0 0, 12 4, 0 8" fill="#333333"/></marker><marker id="ah-light" markerWidth="12" markerHeight="8" refX="12" refY="4" orient="auto"><polygon points="0 0, 12 4, 0 8" fill="#999999"/></marker></defs>
-
-<rect x="30" y="55" width="180" height="65" rx="6" fill="#d0d0d0" stroke="#333333" stroke-width="2"/>
-<text x="120" y="72" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold">Isabella Rodriguez</text>
-<text x="120" y="92" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="114.36" lengthAdjust="spacingAndGlyphs">Владелец кафе Hobbs</text>
-<text x="120" y="108" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="126.00" lengthAdjust="spacingAndGlyphs">Гостеприимный и общительный</text>
-<rect x="30" y="140" width="240" height="224" rx="6" fill="#f0f0f0" stroke="#333333" stroke-width="2"/>
-<text x="150" y="160" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="172.50" lengthAdjust="spacingAndGlyphs">Поток памяти Memory Stream</text>
-<text x="40" y="184" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="148.56" lengthAdjust="spacingAndGlyphs">[08:30] Кафе Hobbs открывается</text>
-<text x="40" y="199" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="10" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="normal">importance: 4  recency: 0.9</text>
-<text x="40" y="220" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="normal">[09:15] Klaus приходит за кофе</text>
-<text x="40" y="235" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="10" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="normal">importance: 5  recency: 0.85</text>
-<text x="40" y="256" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="146.70" lengthAdjust="spacingAndGlyphs">[10:00] Решает устроить вечеринку ко Дню влюблённых</text>
-<text x="40" y="271" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="10" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="normal">importance: 9  recency: 0.8</text>
-<text x="40" y="292" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="146.50" lengthAdjust="spacingAndGlyphs">[11:30] Приглашает Maria на вечеринку</text>
-<text x="40" y="307" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="10" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="normal">importance: 8  recency: 0.7</text>
-<text x="40" y="328" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="147.33" lengthAdjust="spacingAndGlyphs">[14:00] Просит Maria помочь подготовить зал</text>
-<text x="40" y="343" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="10" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="normal">importance: 7  recency: 0.6</text>
-<rect x="285" y="140" width="230" height="188" rx="6" fill="#d0d0d0" stroke="#333333" stroke-width="2"/>
-<text x="400" y="160" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="113.80" lengthAdjust="spacingAndGlyphs">Рефлексия Reflection</text>
-<text x="295" y="184" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="111.81" lengthAdjust="spacingAndGlyphs">«Кто постоянные гости кафе Hobbs?»</text>
-<text x="295" y="199" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="10" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="141.70" lengthAdjust="spacingAndGlyphs">→ Maria, Klaus, Tom (часто заходят)</text>
-<text x="295" y="220" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="106.90" lengthAdjust="spacingAndGlyphs">«Кого пригласить на вечеринку?»</text>
-<text x="295" y="235" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="10" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="92.78" lengthAdjust="spacingAndGlyphs">→ Всех постоянных гостей и друзей</text>
-<text x="295" y="256" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="117.90" lengthAdjust="spacingAndGlyphs">«Как идёт подготовка к вечеринке?»</text>
-<text x="295" y="271" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="10" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="108.34" lengthAdjust="spacingAndGlyphs">→ Несколько гостей приглашены, осталось подготовить зал</text>
-<text x="295" y="292" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="117.90" lengthAdjust="spacingAndGlyphs">«Кто поможет подготовить кафе?»</text>
-<text x="295" y="307" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="10" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="123.34" lengthAdjust="spacingAndGlyphs">→ Maria (подруга, готова помочь)</text>
-<rect x="530" y="140" width="250" height="260" rx="6" fill="#e8e8e8" stroke="#333333" stroke-width="2"/>
-<text x="655" y="160" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="152.00" lengthAdjust="spacingAndGlyphs">План и действия Planning</text>
-<text x="540" y="184" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="87.13" lengthAdjust="spacingAndGlyphs">08:00  Подъём + завтрак</text>
-<text x="540" y="220" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="109.44" lengthAdjust="spacingAndGlyphs">09:00  Hobbs открывает кафе</text>
-<text x="540" y="256" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="118.59" lengthAdjust="spacingAndGlyphs">12:00  Приглашать гостей во время работы</text>
-<text x="540" y="292" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="119.20" lengthAdjust="spacingAndGlyphs">14:00  Подготовить зал с Maria</text>
-<text x="540" y="328" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="107.59" lengthAdjust="spacingAndGlyphs">16:00  Подготовить угощения и места</text>
-<text x="540" y="343" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="10" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="52.78" lengthAdjust="spacingAndGlyphs">← Динамическая корректировка</text>
-<text x="540" y="364" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="156.50" lengthAdjust="spacingAndGlyphs">18:00  Вечеринка ко Дню влюблённых в Hobbs</text>
-<line x1="270" y1="250" x2="285" y2="250" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="263" y="213" width="30" height="16" rx="2" fill="#ffffff" stroke="none"/>
-<text x="277.5" y="225" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#666666" text-anchor="middle" dominant-baseline="auto" textLength="22.00" lengthAdjust="spacingAndGlyphs">Поиск</text>
-<line x1="515" y1="250" x2="530" y2="250" stroke="#333333" stroke-width="2" marker-end="url(#ah)"/>
-<rect x="508" y="213" width="30" height="16" rx="2" fill="#ffffff" stroke="none"/>
-<text x="522.5" y="225" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="11" fill="#666666" text-anchor="middle" dominant-baseline="auto" textLength="22.00" lengthAdjust="spacingAndGlyphs">Движет</text>
-<rect x="30" y="420" width="750" height="115" rx="4" fill="#f5f5f5" stroke="#333333" stroke-width="2"/>
-<text x="405" y="438" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="20" fill="#333333" text-anchor="middle" dominant-baseline="central" font-weight="bold" textLength="364.48" lengthAdjust="spacingAndGlyphs">Эмерджентное поведение (25 AI-агентов · 2 виртуальных дня)</text>
-<text x="50" y="462" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="bold" textLength="77.48" lengthAdjust="spacingAndGlyphs">▸ Спонтанное общение</text>
-<text x="140" y="462" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="211.56" lengthAdjust="spacingAndGlyphs">Случайные встречи → дружба → встречи по инициативе агентов</text>
-<text x="400" y="462" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="bold" textLength="77.48" lengthAdjust="spacingAndGlyphs">▸ Распространение информации</text>
-<text x="490" y="462" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="13" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="255.39" lengthAdjust="spacingAndGlyphs">Приглашение Isabella на вечеринку ко Дню влюблённых распространяется среди AI-агентов</text>
-<text x="50" y="498" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="bold" textLength="77.48" lengthAdjust="spacingAndGlyphs">▸ Предвыборная агитация</text>
-<text x="140" y="498" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="231.05" lengthAdjust="spacingAndGlyphs">AI-агенты узнают о выдвижении Sam в мэры</text>
-<text x="400" y="498" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#333333" text-anchor="start" dominant-baseline="central" font-weight="bold" textLength="77.48" lengthAdjust="spacingAndGlyphs">▸ Память об отношениях</text>
-<text x="490" y="498" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="14" fill="#666666" text-anchor="start" dominant-baseline="central" font-weight="normal" textLength="252.00" lengthAdjust="spacingAndGlyphs">Помнят прошлые беседы (например, о фотопроекте) и продолжают тему</text>
-<text x="405" y="525" font-family="Arial, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Microsoft YaHei', sans-serif" font-size="16" fill="#666666" text-anchor="middle" dominant-baseline="central" font-weight="normal" textLength="445.36" lengthAdjust="spacingAndGlyphs">Всё поведение не запрограммировано — оно возникает из памяти, рефлексии и социального здравого смысла</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 1080" width="780" height="1080" style="background:#fff">
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8Z" fill="#555"/></marker></defs>
+<g font-family="Arial, Helvetica, sans-serif" fill="#222">
+<text x="390" y="30" font-size="24" font-weight="bold" text-anchor="middle">Isabella Rodriguez · кафе Hobbs</text>
+<text x="390" y="57" font-size="17" text-anchor="middle">Гостеприимная владелица кафе; записи и расписание — иллюстрация</text>
+<rect x="20" y="85" width="355" height="400" rx="6" fill="#f5f5f5" stroke="#555" stroke-width="1.5"/>
+<text x="197.5" y="115" font-size="20" font-weight="bold" text-anchor="middle">Поток памяти</text>
+<text x="38" y="147" font-size="16" text-anchor="start">08:30 — кафе открывается.</text>
+<text x="38" y="173" font-size="16" text-anchor="start">importance: 4; recency: 0.9</text>
+<text x="38" y="199" font-size="16" text-anchor="start">09:15 — Klaus заходит за кофе.</text>
+<text x="38" y="225" font-size="16" text-anchor="start">importance: 5; recency: 0.85</text>
+<text x="38" y="251" font-size="16" text-anchor="start">10:00 — план вечеринки.</text>
+<text x="38" y="277" font-size="16" text-anchor="start">importance: 9; recency: 0.8</text>
+<text x="38" y="303" font-size="16" text-anchor="start">11:30 — приглашение Maria.</text>
+<text x="38" y="329" font-size="16" text-anchor="start">importance: 8; recency: 0.7</text>
+<text x="38" y="355" font-size="16" text-anchor="start">14:00 — просьба помочь с залом.</text>
+<text x="38" y="381" font-size="16" text-anchor="start">importance: 7; recency: 0.6</text>
+<text x="38" y="407" font-size="16" text-anchor="start"></text>
+<text x="38" y="433" font-size="16" text-anchor="start">Записи извлекаются по важности,</text>
+<text x="38" y="459" font-size="16" text-anchor="start">свежести и релевантности.</text>
+<rect x="405" y="85" width="355" height="400" rx="6" fill="#f5f5f5" stroke="#555" stroke-width="1.5"/>
+<text x="582.5" y="115" font-size="20" font-weight="bold" text-anchor="middle">Рефлексия</text>
+<text x="423" y="147" font-size="17" text-anchor="start">Кто постоянные гости?</text>
+<text x="423" y="173" font-size="17" text-anchor="start">→ Maria, Klaus, Tom.</text>
+<text x="423" y="199" font-size="17" text-anchor="start">Кого пригласить?</text>
+<text x="423" y="225" font-size="17" text-anchor="start">→ Постоянных гостей и друзей.</text>
+<text x="423" y="251" font-size="17" text-anchor="start">Как идёт подготовка?</text>
+<text x="423" y="277" font-size="17" text-anchor="start">→ Часть гостей приглашена,</text>
+<text x="423" y="303" font-size="17" text-anchor="start">   осталось подготовить зал.</text>
+<text x="423" y="329" font-size="17" text-anchor="start">Кто поможет?</text>
+<text x="423" y="355" font-size="17" text-anchor="start">→ Maria, подруга.</text>
+<text x="423" y="381" font-size="17" text-anchor="start"></text>
+<text x="423" y="407" font-size="17" text-anchor="start">Обобщения возвращаются</text>
+<text x="423" y="433" font-size="17" text-anchor="start">в память и влияют на решения.</text>
+<path d="M377 270 L403 270" fill="none" stroke="#777" stroke-width="1.5" marker-end="url(#arrow)"/>
+<path d="M582 488 L582 516" fill="none" stroke="#777" stroke-width="1.5" marker-end="url(#arrow)"/>
+<rect x="20" y="520" width="740" height="235" rx="6" fill="#f5f5f5" stroke="#555" stroke-width="1.5"/>
+<text x="390" y="550" font-size="20" font-weight="bold" text-anchor="middle">Планирование и действия</text>
+<text x="38" y="582" font-size="17" text-anchor="start">08:00 — подъём и завтрак; 09:00 — открытие кафе.</text>
+<text x="38" y="608" font-size="17" text-anchor="start">12:00 — приглашение гостей во время работы.</text>
+<text x="38" y="634" font-size="17" text-anchor="start">14:00 — подготовка зала с Maria; 16:00 — угощения и места.</text>
+<text x="38" y="660" font-size="17" text-anchor="start">18:00 — вечеринка ко Дню святого Валентина.</text>
+<text x="38" y="686" font-size="17" text-anchor="start">План корректируется по ситуации: память и новые наблюдения</text>
+<text x="38" y="712" font-size="17" text-anchor="start">влияют на следующие действия.</text>
+<rect x="20" y="790" width="740" height="245" rx="6" fill="#f5f5f5" stroke="#555" stroke-width="1.5"/>
+<text x="390" y="820" font-size="20" font-weight="bold" text-anchor="middle">Коллективное поведение: 25 агентов, два виртуальных дня</text>
+<text x="38" y="852" font-size="17" text-anchor="start">Общение: случайные встречи и развитие отношений.</text>
+<text x="38" y="878" font-size="17" text-anchor="start">Распространение приглашения Isabella через контакты.</text>
+<text x="38" y="904" font-size="17" text-anchor="start">Обсуждение намерения Sam баллотироваться в мэры.</text>
+<text x="38" y="930" font-size="17" text-anchor="start">Память об отношениях: продолжение тем прошлых разговоров.</text>
+<text x="38" y="956" font-size="17" text-anchor="start">Сценарий каждого совместного события не прописан пошагово,</text>
+<text x="38" y="982" font-size="17" text-anchor="start">но начальные цели, среда и механизмы заданы исследователями.</text>
+<text x="390" y="1064" font-size="17" text-anchor="middle">Текстовая рефлексия не является доказательством самосознания.</text>
+</g>
 </svg>
