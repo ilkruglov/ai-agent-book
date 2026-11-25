@@ -647,4 +647,4 @@ Anthropic свела опыт построения эффективных аге
 10. ★★★ Приведите пример инженерного метода, который будет упрощаться по мере совершенствования моделей. Объясните, какую проблему он решал изначально и как лежащие в его основе принципы проектирования систем продолжат приносить пользу.
 
 
-**Практикум к главе 1.** [Каталог экспериментов](https://github.com/bojieli/ai-agent-book/tree/f36d57f515ddc93867e45f23ce34fe4165335ff8/chapter1) · [Путеводитель на русском](https://github.com/bojieli/ai-agent-book/blob/f36d57f515ddc93867e45f23ce34fe4165335ff8/chapter1/README.ru.md).
+**Практикум к главе 1.** [Каталог экспериментов](https://github.com/bojieli/ai-agent-book/tree/40f4ce5778e6cc93e3606c3079bf8cf13a0c4d04/chapter1) · [Путеводитель на русском](https://github.com/bojieli/ai-agent-book/blob/40f4ce5778e6cc93e3606c3079bf8cf13a0c4d04/chapter1/README.ru.md).

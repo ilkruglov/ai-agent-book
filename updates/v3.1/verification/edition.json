@@ -1,8 +1,8 @@
 {
-  "upstream": "f36d57f515ddc93867e45f23ce34fe4165335ff8",
-  "sha256_pdf": "43f5c7cd33edf9aaa91457f84a77daf3c8333dd60cd924b57de9031f263d5e03",
-  "sha256_latex": "b6e8e5d2b7589b18261d37ba9b2da03b401ff1311c9579a123666a52f2e9c4f0",
-  "pages": 626,
+  "upstream": "40f4ce5778e6cc93e3606c3079bf8cf13a0c4d04",
+  "sha256_pdf": "63d548d504dcd8bc83a9322006d7d1f0594e2fd57d0fbce9d81f4602d8f6dcfb",
+  "sha256_latex": "60ac9159e742eeb683670f53b56c926587b89d44ad4bb480faf15bc5156164e7",
+  "pages": 628,
   "font": "PT Serif",
   "markdown_link_issues": 0,
   "chapters": {
@@ -22,7 +22,7 @@
       "blob": "fa366d400783f4a675f429f4927ea35272c6798f",
       "source_sha256": "d8f12d7b0840cbd3f5da1e0cb03794859e6612c71163a69242fb5d14d5a347e7",
       "verified_sha256": "e4e5d33ea73c249298a1539e7abe58e9d52e86278af290eff440b710eb49855c",
-      "edition_sha256": "78fce9ac9dfe0811c0f7d64386de223eec948b37f598516932d0d8d8ebc35f5b",
+      "edition_sha256": "211eca6065a461fa944dde6f4bc28501cd909fca15d01a507cb07ca5ac8b8e6c",
       "verified_chunks": 17,
       "figures": 7,
       "experiments": [
@@ -38,7 +38,7 @@
       "blob": "e049db8066159e9bbaa5e24242a2549c0b6f5406",
       "source_sha256": "2644001b2613e19320d90de003685a6154fb63b01c20446e431521f1b6cc3e83",
       "verified_sha256": "f076bc43258e5fd18c7a6d1782de73b255ceafda07ec8cc7f19fafd70079ead9",
-      "edition_sha256": "84afbd854b8a9a6eb4f669139ebb7773ce486a28f454564f9d6245e60b850592",
+      "edition_sha256": "1d805d29d37ac9d9906e484d1e6b9c0817fab578acb59134268c19712caa81dc",
       "verified_chunks": 21,
       "figures": 17,
       "experiments": [
@@ -57,10 +57,10 @@
     },
     "chapter3": {
       "original": "book/chapter3.md",
-      "blob": "b5b7dc75a73568b1853281210aec9235eef8d1d5",
-      "source_sha256": "05ba73a45cb7d1d7dccfa5c27a6b8bf0c3816591fba134fab842a8d282e94920",
+      "blob": "16eb7db1a2b8e802cf7e09a517ce14f509357592",
+      "source_sha256": "0480ac1431956b7c4e8420fef7f883e3b3cdbd6457800e1b804b23fbabd0245a",
       "verified_sha256": "d65bcfe18cf6eb2712cae0878480026c1ac3eb338a068509cae1cad194131e27",
-      "edition_sha256": "2e69b11b3ecf25354688f4b0f3a9671032410cd0bbb3de106fcf5f3eea8d5c22",
+      "edition_sha256": "4b83c37adfdd683a81973c65385e7390cd045d6dfc26cd6dbc114be7f2c704ef",
       "verified_chunks": 25,
       "figures": 15,
       "experiments": [
@@ -84,7 +84,7 @@
       "blob": "81b8b94e1a44afa06a991d3992dcc50db753c719",
       "source_sha256": "a82746984ae42f07f9e454fbf76656d8a9ccbda64281823d96af37a153a5f9f0",
       "verified_sha256": "2b2b3bcc4cc628d03e36640a7a1d01c86aafad7d63def923d67134f961bf03bf",
-      "edition_sha256": "c35b3f1a714164a537682f8aa28e3c0fdd9e57acb6eaa0470deb59f2718ecb1d",
+      "edition_sha256": "3ff433d6fc69ecab598fd71cb02495ce02bde1b4dc54181d2db99e7c6e2465cf",
       "verified_chunks": 10,
       "figures": 4,
       "experiments": [
@@ -101,7 +101,7 @@
       "blob": "2ddd8af995d74477b1f227429dbc962c8f2c86be",
       "source_sha256": "b99d6f9d8e7e95834e360ba377b0cb195afdb4d6f807d68b5d6d5f3372b8ec80",
       "verified_sha256": "b091cbf04c1645f9b6ca83686f0413e16001d93200ed327298078b71948e67d9",
-      "edition_sha256": "7519cfc1555fbe7f2b299d34de6a19449b3be79d5e6d4fe2f2d67bcc43a89e47",
+      "edition_sha256": "c355de6c89c4ea660cc50a93d41b728498ce202fa259ea608ea625e485500347",
       "verified_chunks": 20,
       "figures": 11,
       "experiments": [
@@ -126,10 +126,10 @@
     },
     "chapter6": {
       "original": "book/chapter6.md",
-      "blob": "e76ba1a7e6aebd1ce27fc3fdb5a0d8d3bb6a3c95",
-      "source_sha256": "1f048041120b245a163bb802e81f4b50a4c3a681f66b9e6aa0f579833ce21376",
+      "blob": "1649d2eaec0fff4c0dcab0c832cc34fb108c8f41",
+      "source_sha256": "ffef1d1ef288725e53b728fdb7ead10531a5a08b41dced27d7fefcf06e5cea05",
       "verified_sha256": "6148b510760c849e8651e43f7d6c0f13a470642f31f75984c34120792ece9d45",
-      "edition_sha256": "a9db1059333612c9186464e2b1768a5fecb6160409fd5c50c442da716cde12e2",
+      "edition_sha256": "17dc4a02bf561ad1287a6a365bba2bc9724847ddf51dce622e5172a4609157e2",
       "verified_chunks": 30,
       "figures": 15,
       "experiments": [
@@ -146,16 +146,17 @@
         "6-11",
         "6-12",
         "6-13",
-        "6-14"
+        "6-14",
+        "6-15"
       ],
-      "editorial_notes": 0
+      "editorial_notes": 1
     },
     "chapter7": {
       "original": "book/chapter7.md",
       "blob": "5f02d3a3a32d91b336fe8cced7baf6233c7a540c",
       "source_sha256": "5581011137e560fe08c13d9f73c4bc566c76606c9231b289eb70f6dccb7b8c64",
       "verified_sha256": "c89741d6a420940ebb054cfde52b78f9c20e8db9f386e1ff113d6c06ca350048",
-      "edition_sha256": "d2f2b630adcc074ca57ebd9d40ab0b3721c951abc8b6f550233d0658f05210ba",
+      "edition_sha256": "b5ea813d0fdf279417e81bbd30252b6f63aed7305339b01fa734fac16f1b1cba",
       "verified_chunks": 18,
       "figures": 10,
       "experiments": [
@@ -181,7 +182,7 @@
       "blob": "f47a52a3a29394921071c1e746dea0a555aa2fe1",
       "source_sha256": "181e9380fe3507013ab57379325f8c8929833b26776d5d3bca936a6cb58b3d97",
       "verified_sha256": "1fda510cf3ac6bdfee30c620170d5d3a71a8fce63eb9452217606758630a1030",
-      "edition_sha256": "63c51a3cfba9c5315dbe59baee18cef8859c641697c45985ea1f84642381c9ba",
+      "edition_sha256": "0c6913f996a77934f4e7d70ad16d74192d5fcd040b4d79585661c4833399a92d",
       "verified_chunks": 18,
       "figures": 18,
       "experiments": [
@@ -212,7 +213,7 @@
       "blob": "07645d0763a817a8533029039b590d341845cc70",
       "source_sha256": "47637ca037779709bc8c06f3cbc26cf4e2fb7831eb4e277a2cf9053d531e57ac",
       "verified_sha256": "5a41cf160482471c6a95ebc0ec039b973c603349407fa5e98b9016081d8c57d0",
-      "edition_sha256": "91436e7563430a9c0cbb4c7158f0625f9e89a86a4e43cb7471aed2a00d9109ca",
+      "edition_sha256": "160153b45f7654bc924de330f5a2abc69e2a0575e8c0702abf73bb221dbb1075",
       "verified_chunks": 14,
       "figures": 5,
       "experiments": [
@@ -233,7 +234,7 @@
       "blob": "8e24de333ff4845270c461ceabd9f70d81148870",
       "source_sha256": "0031ca57c9be6f4b2545845d22abfb3d5cb3bb3da9497334eaaebc8abf354fde",
       "verified_sha256": "ecee8b3b9d87d1cb6e1876a14dcee6e82a2dfce9add4b44435bde85c14623294",
-      "edition_sha256": "000b951d7a0af18f1515604ad6687fc0a95581a668f78f9a72ad12f1044cbe52",
+      "edition_sha256": "362c2dffd5fd192c28821b6b1b91c1568bc2a20b5ce71a2f8eeb33bfb4f126d4",
       "verified_chunks": 16,
       "figures": 11,
       "experiments": [
@@ -259,10 +260,10 @@
     },
     "reference-answers": {
       "original": "book/reference-answers.md",
-      "blob": "48121b7706767751d1ec667fecdd16a92e8f1292",
-      "source_sha256": "311d4c337e26fdff0e1f5b9e4f5a63c4750f469b19b7690647ca5cc90a234c42",
+      "blob": "a41a7be3a56b8fb0034d4f39afbdbde48c4f32d7",
+      "source_sha256": "01f25710c5a3bc1fe29e7d31f6a45206916a472afaf82b848393368af8dde8f2",
       "verified_sha256": "d98666c8a3470932f0905b35d250b06a46ba1b724a8c7b71678b306f3dbba598",
-      "edition_sha256": "d98666c8a3470932f0905b35d250b06a46ba1b724a8c7b71678b306f3dbba598",
+      "edition_sha256": "5297ff565bbe68362e58590c16ce3451d92195294ac494f856bd6cbfb034d253",
       "verified_chunks": 11,
       "figures": 0,
       "experiments": [],
@@ -389,5 +390,7 @@
   "latex_warnings_checked": [],
   "full_audio_rebuilt": false,
   "typeset_input": "typeset/book.tex",
-  "build_notes": "Из каталога с book.tex: поместить в images/revised растровую иллюстрацию PNG и PDF-копии SVG из book/images/revised (rsvg-convert --format=pdf); добавить book/vendor/elegantbook в TEXINPUTS. Три прохода xelatex. Используются системные шрифты PT Serif и DejaVu."
+  "build_notes": "Из каталога с book.tex: поместить в images/revised растровую иллюстрацию PNG и PDF-копии SVG из book/images/revised (rsvg-convert --format=pdf); добавить book/vendor/elegantbook в TEXINPUTS. Три прохода xelatex. Используются системные шрифты PT Serif и DejaVu. Для иероглифов примера в главе 6 нужен также шрифт CJK; контрольная сборка использует Droid Sans Fallback.",
+  "verification_base_upstream": "f36d57f515ddc93867e45f23ce34fe4165335ff8",
+  "sync_note": "Отчёты *.manifest.json описывают полную сверку базовой редакции f36d57f5. Изменения синхронизированы по PR 1254; контрольные суммы опубликованных файлов и оригинала приведены ниже. Новая сплошная сверка не заявляется."
 }

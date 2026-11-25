@@ -884,4 +884,4 @@ AI-агент неоднократно застревает на страниц�
 [^ch7-arena-ranking]: LMArena, «Набор данных рейтинга Arena», содержит историю использования оценивания Bradley–Terry в 2024 году. В эксперименте этого раздела фиксированный исторический снимок голосов используется для сравнения онлайн-рейтинга Elo с пакетной подгонкой модели.
 
 
-**Практикум к главе 7.** [Каталог экспериментов](https://github.com/bojieli/ai-agent-book/tree/f36d57f515ddc93867e45f23ce34fe4165335ff8/chapter7) · [Путеводитель на русском](https://github.com/bojieli/ai-agent-book/blob/f36d57f515ddc93867e45f23ce34fe4165335ff8/chapter7/README.ru.md).
+**Практикум к главе 7.** [Каталог экспериментов](https://github.com/bojieli/ai-agent-book/tree/40f4ce5778e6cc93e3606c3079bf8cf13a0c4d04/chapter7) · [Путеводитель на русском](https://github.com/bojieli/ai-agent-book/blob/40f4ce5778e6cc93e3606c3079bf8cf13a0c4d04/chapter7/README.ru.md).

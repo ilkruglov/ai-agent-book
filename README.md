@@ -36,4 +36,4 @@
 
 Издание содержит редакционные уточнения: отступления от авторского смысла помечены «Уточнение русского издания» с пояснением и источником; новые отступления также должны сопровождаться такой пометкой.
 
-[Оригинальная книга](https://github.com/bojieli/ai-agent-book/tree/f36d57f515ddc93867e45f23ce34fe4165335ff8) · Автор: Bojie Li · [Лицензия Apache 2.0](LICENSE) · [Атрибуция](updates/v3.1/NOTICE)
+[Оригинальная книга](https://github.com/bojieli/ai-agent-book/tree/40f4ce5778e6cc93e3606c3079bf8cf13a0c4d04) · Автор: Bojie Li · [Лицензия Apache 2.0](LICENSE) · [Атрибуция](updates/v3.1/NOTICE)

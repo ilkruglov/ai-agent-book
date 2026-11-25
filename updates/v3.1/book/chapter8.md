@@ -974,4 +974,4 @@ update(model, loss)
 13. ★★★ Какие смещения симуляции могут вводить агента в заблуждение при использовании модели для имитации поисковой системы или пользователя? Как откалибровать обучение с помощью состояния задачи и реальных взаимодействий?
 
 
-**Практикум к главе 8.** [Каталог экспериментов](https://github.com/bojieli/ai-agent-book/tree/f36d57f515ddc93867e45f23ce34fe4165335ff8/chapter8) · [Путеводитель на русском](https://github.com/bojieli/ai-agent-book/blob/f36d57f515ddc93867e45f23ce34fe4165335ff8/chapter8/README.ru.md).
+**Практикум к главе 8.** [Каталог экспериментов](https://github.com/bojieli/ai-agent-book/tree/40f4ce5778e6cc93e3606c3079bf8cf13a0c4d04/chapter8) · [Путеводитель на русском](https://github.com/bojieli/ai-agent-book/blob/40f4ce5778e6cc93e3606c3079bf8cf13a0c4d04/chapter8/README.ru.md).

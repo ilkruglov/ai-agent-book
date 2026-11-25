@@ -521,4 +521,4 @@ HITL (Human-in-the-Loop, «человек в контуре») подходит 
 4. ★★ Как ещё, помимо активного обнаружения, можно организовать возможности при наличии тысяч инструментов? Опишите условия применимости и компромиссы одного из подходов, использующего каталог с категориями, шаблоны рабочих процессов или универсальный исполнитель.
 
 
-**Практикум к главе 4.** [Каталог экспериментов](https://github.com/bojieli/ai-agent-book/tree/f36d57f515ddc93867e45f23ce34fe4165335ff8/chapter4) · [Путеводитель на русском](https://github.com/bojieli/ai-agent-book/blob/f36d57f515ddc93867e45f23ce34fe4165335ff8/chapter4/README.ru.md).
+**Практикум к главе 4.** [Каталог экспериментов](https://github.com/bojieli/ai-agent-book/tree/40f4ce5778e6cc93e3606c3079bf8cf13a0c4d04/chapter4) · [Путеводитель на русском](https://github.com/bojieli/ai-agent-book/blob/40f4ce5778e6cc93e3606c3079bf8cf13a0c4d04/chapter4/README.ru.md).

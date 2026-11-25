@@ -1125,4 +1125,4 @@ messages: [
 9. ★★★ Система содержит множество инструментов, а их набор часто меняется. Как бы вы расположили фиксированные определения, каталог инструментов, результаты загрузки по требованию и состояние во время выполнения? Учтите точность обнаружения, бюджет контекста и долю попаданий в кэш.
 
 
-**Практикум к главе 2.** [Каталог экспериментов](https://github.com/bojieli/ai-agent-book/tree/f36d57f515ddc93867e45f23ce34fe4165335ff8/chapter2) · [Путеводитель на русском](https://github.com/bojieli/ai-agent-book/blob/f36d57f515ddc93867e45f23ce34fe4165335ff8/chapter2/README.ru.md).
+**Практикум к главе 2.** [Каталог экспериментов](https://github.com/bojieli/ai-agent-book/tree/40f4ce5778e6cc93e3606c3079bf8cf13a0c4d04/chapter2) · [Путеводитель на русском](https://github.com/bojieli/ai-agent-book/blob/40f4ce5778e6cc93e3606c3079bf8cf13a0c4d04/chapter2/README.ru.md).
