@@ -1,7 +1,7 @@
 {
   "upstream": "40f4ce5778e6cc93e3606c3079bf8cf13a0c4d04",
-  "sha256_pdf": "63d548d504dcd8bc83a9322006d7d1f0594e2fd57d0fbce9d81f4602d8f6dcfb",
-  "sha256_latex": "60ac9159e742eeb683670f53b56c926587b89d44ad4bb480faf15bc5156164e7",
+  "sha256_pdf": "bfedcf1e23a0336b0523f92dac20d6485a07e0b57ce40f873fb1a7f9149607df",
+  "sha256_latex": "931f75b638ec696150fa147d3ae82ae77a1a830122a35de2194e65846e9a266d",
   "pages": 628,
   "font": "PT Serif",
   "markdown_link_issues": 0,
@@ -11,7 +11,7 @@
       "blob": "408463fffd66425748625afc4de194e567475dec",
       "source_sha256": "36ccba9a4a280c06a0fb0ef337d8a58c281ca79e1d178e9f75d27183f4d5af7e",
       "verified_sha256": "6ea36780845e08ec4cdeb2033701641f2b8b13696ba1c274e6a508cb33a79bd7",
-      "edition_sha256": "6ea36780845e08ec4cdeb2033701641f2b8b13696ba1c274e6a508cb33a79bd7",
+      "edition_sha256": "5d438fd787483f4a15ad8fe7a9bb30f90e469e20d4acd16cdfe557f65912b4d5",
       "verified_chunks": 6,
       "figures": 2,
       "experiments": [],
@@ -22,7 +22,7 @@
       "blob": "fa366d400783f4a675f429f4927ea35272c6798f",
       "source_sha256": "d8f12d7b0840cbd3f5da1e0cb03794859e6612c71163a69242fb5d14d5a347e7",
       "verified_sha256": "e4e5d33ea73c249298a1539e7abe58e9d52e86278af290eff440b710eb49855c",
-      "edition_sha256": "211eca6065a461fa944dde6f4bc28501cd909fca15d01a507cb07ca5ac8b8e6c",
+      "edition_sha256": "14b85b6dafc40b86b9f0b5e6846bec6f83d05785feb9a556ac68ca7e633b151b",
       "verified_chunks": 17,
       "figures": 7,
       "experiments": [
@@ -38,7 +38,7 @@
       "blob": "e049db8066159e9bbaa5e24242a2549c0b6f5406",
       "source_sha256": "2644001b2613e19320d90de003685a6154fb63b01c20446e431521f1b6cc3e83",
       "verified_sha256": "f076bc43258e5fd18c7a6d1782de73b255ceafda07ec8cc7f19fafd70079ead9",
-      "edition_sha256": "1d805d29d37ac9d9906e484d1e6b9c0817fab578acb59134268c19712caa81dc",
+      "edition_sha256": "fa7b58b5794cc55e4cd5eba3f744a9a92aa671784020524de66a55ec3965a0d8",
       "verified_chunks": 21,
       "figures": 17,
       "experiments": [
@@ -60,7 +60,7 @@
       "blob": "16eb7db1a2b8e802cf7e09a517ce14f509357592",
       "source_sha256": "0480ac1431956b7c4e8420fef7f883e3b3cdbd6457800e1b804b23fbabd0245a",
       "verified_sha256": "d65bcfe18cf6eb2712cae0878480026c1ac3eb338a068509cae1cad194131e27",
-      "edition_sha256": "4b83c37adfdd683a81973c65385e7390cd045d6dfc26cd6dbc114be7f2c704ef",
+      "edition_sha256": "41f497bc3bb01cb8bd2ba7ff39ab4197653b5211137ffa52061e4d3b32cc1f74",
       "verified_chunks": 25,
       "figures": 15,
       "experiments": [
@@ -84,7 +84,7 @@
       "blob": "81b8b94e1a44afa06a991d3992dcc50db753c719",
       "source_sha256": "a82746984ae42f07f9e454fbf76656d8a9ccbda64281823d96af37a153a5f9f0",
       "verified_sha256": "2b2b3bcc4cc628d03e36640a7a1d01c86aafad7d63def923d67134f961bf03bf",
-      "edition_sha256": "3ff433d6fc69ecab598fd71cb02495ce02bde1b4dc54181d2db99e7c6e2465cf",
+      "edition_sha256": "cba6941fc11e5f4af54a31f7cf7c9ef7618387bf1ba0d90da01ebeae7bafceef",
       "verified_chunks": 10,
       "figures": 4,
       "experiments": [
@@ -101,7 +101,7 @@
       "blob": "2ddd8af995d74477b1f227429dbc962c8f2c86be",
       "source_sha256": "b99d6f9d8e7e95834e360ba377b0cb195afdb4d6f807d68b5d6d5f3372b8ec80",
       "verified_sha256": "b091cbf04c1645f9b6ca83686f0413e16001d93200ed327298078b71948e67d9",
-      "edition_sha256": "c355de6c89c4ea660cc50a93d41b728498ce202fa259ea608ea625e485500347",
+      "edition_sha256": "069aeb64320abe99a4bce6a8609dac1c6bd65437ac190bd9c0eedb97c94bad05",
       "verified_chunks": 20,
       "figures": 11,
       "experiments": [
@@ -129,7 +129,7 @@
       "blob": "1649d2eaec0fff4c0dcab0c832cc34fb108c8f41",
       "source_sha256": "ffef1d1ef288725e53b728fdb7ead10531a5a08b41dced27d7fefcf06e5cea05",
       "verified_sha256": "6148b510760c849e8651e43f7d6c0f13a470642f31f75984c34120792ece9d45",
-      "edition_sha256": "17dc4a02bf561ad1287a6a365bba2bc9724847ddf51dce622e5172a4609157e2",
+      "edition_sha256": "17b6418d20d6de79e852cdf22c208259ce3fe7fc3e3d10aae3e91a857d8012a6",
       "verified_chunks": 30,
       "figures": 15,
       "experiments": [
@@ -156,7 +156,7 @@
       "blob": "5f02d3a3a32d91b336fe8cced7baf6233c7a540c",
       "source_sha256": "5581011137e560fe08c13d9f73c4bc566c76606c9231b289eb70f6dccb7b8c64",
       "verified_sha256": "c89741d6a420940ebb054cfde52b78f9c20e8db9f386e1ff113d6c06ca350048",
-      "edition_sha256": "b5ea813d0fdf279417e81bbd30252b6f63aed7305339b01fa734fac16f1b1cba",
+      "edition_sha256": "fca1f3196e0590602281d2c70a113fd3154e6cc9840367e8713a94fd35e9d7e1",
       "verified_chunks": 18,
       "figures": 10,
       "experiments": [
@@ -182,7 +182,7 @@
       "blob": "f47a52a3a29394921071c1e746dea0a555aa2fe1",
       "source_sha256": "181e9380fe3507013ab57379325f8c8929833b26776d5d3bca936a6cb58b3d97",
       "verified_sha256": "1fda510cf3ac6bdfee30c620170d5d3a71a8fce63eb9452217606758630a1030",
-      "edition_sha256": "0c6913f996a77934f4e7d70ad16d74192d5fcd040b4d79585661c4833399a92d",
+      "edition_sha256": "718af49a04cf9377bc33509dd83fa33b95c0757fce766fb3b3eaea14a33dd629",
       "verified_chunks": 18,
       "figures": 18,
       "experiments": [
@@ -213,7 +213,7 @@
       "blob": "07645d0763a817a8533029039b590d341845cc70",
       "source_sha256": "47637ca037779709bc8c06f3cbc26cf4e2fb7831eb4e277a2cf9053d531e57ac",
       "verified_sha256": "5a41cf160482471c6a95ebc0ec039b973c603349407fa5e98b9016081d8c57d0",
-      "edition_sha256": "160153b45f7654bc924de330f5a2abc69e2a0575e8c0702abf73bb221dbb1075",
+      "edition_sha256": "005de25307792dad0e337de7bf5b2d1844b63060fd00c82f759c678de11502a0",
       "verified_chunks": 14,
       "figures": 5,
       "experiments": [
@@ -234,7 +234,7 @@
       "blob": "8e24de333ff4845270c461ceabd9f70d81148870",
       "source_sha256": "0031ca57c9be6f4b2545845d22abfb3d5cb3bb3da9497334eaaebc8abf354fde",
       "verified_sha256": "ecee8b3b9d87d1cb6e1876a14dcee6e82a2dfce9add4b44435bde85c14623294",
-      "edition_sha256": "362c2dffd5fd192c28821b6b1b91c1568bc2a20b5ce71a2f8eeb33bfb4f126d4",
+      "edition_sha256": "09eb3456d735a62e7a5bb40b40dff928356662b785863613536b3b28ee9c2263",
       "verified_chunks": 16,
       "figures": 11,
       "experiments": [
@@ -252,7 +252,7 @@
       "blob": "0c1be3dabedbdec676b5eac4480651fd3263bec3",
       "source_sha256": "1ae658de48bcb6a47722b89ac27c149016312048b3a57e88858f3921b38875be",
       "verified_sha256": "1060a41a7f8fbf812f704f846459f4d20bda69a86b6150df315b9087533b7b1e",
-      "edition_sha256": "1060a41a7f8fbf812f704f846459f4d20bda69a86b6150df315b9087533b7b1e",
+      "edition_sha256": "43954973fe8823db65f50cc008c75122ebee1ef466e1816b0dd923202a5ae50d",
       "verified_chunks": 3,
       "figures": 0,
       "experiments": [],
@@ -263,7 +263,7 @@
       "blob": "a41a7be3a56b8fb0034d4f39afbdbde48c4f32d7",
       "source_sha256": "01f25710c5a3bc1fe29e7d31f6a45206916a472afaf82b848393368af8dde8f2",
       "verified_sha256": "d98666c8a3470932f0905b35d250b06a46ba1b724a8c7b71678b306f3dbba598",
-      "edition_sha256": "5297ff565bbe68362e58590c16ce3451d92195294ac494f856bd6cbfb034d253",
+      "edition_sha256": "e0a13b04fec92a9c1556e300572ab6ee4aec2ea58af65bc238ca9efbafc8d78b",
       "verified_chunks": 11,
       "figures": 0,
       "experiments": [],
@@ -320,7 +320,7 @@
     "images/revised/fig5-2.svg": "b07098874acacc6a7e417a20112246060913a36919efeafe852c90371bc7dde7",
     "images/revised/fig5-3.svg": "610c8c204880069e0ef44637e67900131c60163ff8772a198dd3baf07ea0a0ac",
     "images/revised/fig5-4.svg": "9f2a4f3da156d0894ababb86babed933381c27203f2c3c156fae77a01076a8d5",
-    "images/revised/fig5-5.svg": "cf234d7d5d6ac713cd260d56e02f90f00a3d7ff9457ffafb4554329f9c473d60",
+    "images/revised/fig5-5.svg": "e5392eb2348acf2dc3fc50ebe72d35763dab4a46ea963eb57fbbf890d345d9c7",
     "images/revised/fig5-6.svg": "a7655a355997068186e6089d129560fa7ee8f6b7dce41fc6117f47c10b5e541f",
     "images/revised/fig5-7.svg": "79a537952559e5f6f334ad899112d75a5cb2d309a0619be03c77b5f7ffd21164",
     "images/revised/fig5-8.svg": "6fa4692f27aa8840b3f8336f5bea0060fe623c205f46a8f5e60e85e205ca3d1e",
@@ -377,7 +377,7 @@
     "images/revised/fig9-5.svg": "14e4aac4c9cd7993d160f92d317723415617c2f3467b4a10fe3a5a9d3a7fe6ed",
     "images/revised/fig10-1.svg": "2b1f3edcd5f3e7212b74c22543ed246cc706d2dc63ad0cfd6e3d70f3d0f14ad2",
     "images/revised/fig10-2.svg": "f72a0fb5f5bd054fef1b4fdd985d261145a109155984e8943513dd9d73b44666",
-    "images/revised/fig10-3.svg": "ebe9c10ff9d483ba4b07fcf2b16270adf9c0154d5186bcce487baedd92bfb3db",
+    "images/revised/fig10-3.svg": "f218e83e8f9adf064289c4031fbe43cd2a2d6c7c87e5534d87dafead6283cdc6",
     "images/revised/fig10-4.svg": "436a9e5257974c9fb2dc660a5515b740a39b8d46a9558d3f3760198514f00647",
     "images/revised/fig10-5.svg": "828159f984ad32b0da6f6f71697bcb53cefd6f19281fcf9f174b82a3b9c2a023",
     "images/revised/fig10-6.svg": "5790a83681c41a5fd43fc2bf26af87391b0125965f17cde7334c779dec453a13",
@@ -392,5 +392,12 @@
   "typeset_input": "typeset/book.tex",
   "build_notes": "Из каталога с book.tex: поместить в images/revised растровую иллюстрацию PNG и PDF-копии SVG из book/images/revised (rsvg-convert --format=pdf); добавить book/vendor/elegantbook в TEXINPUTS. Три прохода xelatex. Используются системные шрифты PT Serif и DejaVu. Для иероглифов примера в главе 6 нужен также шрифт CJK; контрольная сборка использует Droid Sans Fallback.",
   "verification_base_upstream": "f36d57f515ddc93867e45f23ce34fe4165335ff8",
-  "sync_note": "Отчёты *.manifest.json описывают полную сверку базовой редакции f36d57f5. Изменения синхронизированы по PR 1254; контрольные суммы опубликованных файлов и оригинала приведены ниже. Новая сплошная сверка не заявляется."
+  "sync_note": "Отчёты *.manifest.json описывают полную сверку базовой редакции f36d57f5. Изменения синхронизированы по PR 1254; контрольные суммы опубликованных файлов и оригинала приведены ниже. Новая сплошная сверка не заявляется.",
+  "translation_revision": {
+    "base": "69530e3a",
+    "source": "40f4ce5778e6cc93e3606c3079bf8cf13a0c4d04",
+    "corrected_manuscript_lines": 81,
+    "line_numbers_preserved": true,
+    "editorial_notes": 9
+  }
 }
